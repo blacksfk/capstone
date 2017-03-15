@@ -3518,3 +3518,45 @@ Stack trace:
 #5 C:\xampp\htdocs\capstone_fucked\bootstrap\cache\compiled.php(2375): Illuminate\Session\Middleware\StartSession->terminate(Object(Illuminate\Http\Request), Object(Illuminate\Http\Response))
 #6 C:\xampp\htdocs\capstone_fucked\public\index.php(58): Illuminate\Foundation\Http\Kernel->terminate(Object(Illuminate\Http\Request), Object(Illuminate\Http\Response))
 #7 {main}  
+[2017-03-15 06:14:46] local.ERROR: exception 'LogicException' with message 'Unable to prepare route [/] for serialization. Uses Closure.' in /home/anthony/PhpstormProjects/capstone/bootstrap/cache/compiled.php:8838
+Stack trace:
+#0 /home/anthony/PhpstormProjects/capstone/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteCacheCommand.php(61): Illuminate\Routing\Route->prepareForSerialization()
+#1 [internal function]: Illuminate\Foundation\Console\RouteCacheCommand->fire()
+#2 /home/anthony/PhpstormProjects/capstone/bootstrap/cache/compiled.php(1257): call_user_func_array(Array, Array)
+#3 /home/anthony/PhpstormProjects/capstone/vendor/laravel/framework/src/Illuminate/Console/Command.php(169): Illuminate\Container\Container->call(Array)
+#4 /home/anthony/PhpstormProjects/capstone/vendor/symfony/console/Command/Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 /home/anthony/PhpstormProjects/capstone/vendor/laravel/framework/src/Illuminate/Console/Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /home/anthony/PhpstormProjects/capstone/vendor/symfony/console/Application.php(794): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /home/anthony/PhpstormProjects/capstone/vendor/symfony/console/Application.php(186): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\RouteCacheCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /home/anthony/PhpstormProjects/capstone/vendor/symfony/console/Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 /home/anthony/PhpstormProjects/capstone/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 /home/anthony/PhpstormProjects/capstone/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 {main}  
+[2017-03-15 06:19:57] local.ERROR: exception 'LogicException' with message 'Unable to prepare route [/] for serialization. Uses Closure.' in /home/anthony/PhpstormProjects/capstone/bootstrap/cache/compiled.php:8838
+Stack trace:
+#0 /home/anthony/PhpstormProjects/capstone/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteCacheCommand.php(61): Illuminate\Routing\Route->prepareForSerialization()
+#1 [internal function]: Illuminate\Foundation\Console\RouteCacheCommand->fire()
+#2 /home/anthony/PhpstormProjects/capstone/bootstrap/cache/compiled.php(1257): call_user_func_array(Array, Array)
+#3 /home/anthony/PhpstormProjects/capstone/vendor/laravel/framework/src/Illuminate/Console/Command.php(169): Illuminate\Container\Container->call(Array)
+#4 /home/anthony/PhpstormProjects/capstone/vendor/symfony/console/Command/Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 /home/anthony/PhpstormProjects/capstone/vendor/laravel/framework/src/Illuminate/Console/Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /home/anthony/PhpstormProjects/capstone/vendor/symfony/console/Application.php(794): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /home/anthony/PhpstormProjects/capstone/vendor/symfony/console/Application.php(186): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\RouteCacheCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /home/anthony/PhpstormProjects/capstone/vendor/symfony/console/Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 /home/anthony/PhpstormProjects/capstone/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 /home/anthony/PhpstormProjects/capstone/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 {main}  
+[2017-03-15 06:20:11] local.ERROR: exception 'LogicException' with message 'Unable to prepare route [/] for serialization. Uses Closure.' in /home/anthony/PhpstormProjects/capstone/bootstrap/cache/compiled.php:8838
+Stack trace:
+#0 /home/anthony/PhpstormProjects/capstone/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteCacheCommand.php(61): Illuminate\Routing\Route->prepareForSerialization()
+#1 [internal function]: Illuminate\Foundation\Console\RouteCacheCommand->fire()
+#2 /home/anthony/PhpstormProjects/capstone/bootstrap/cache/compiled.php(1257): call_user_func_array(Array, Array)
+#3 /home/anthony/PhpstormProjects/capstone/vendor/laravel/framework/src/Illuminate/Console/Command.php(169): Illuminate\Container\Container->call(Array)
+#4 /home/anthony/PhpstormProjects/capstone/vendor/symfony/console/Command/Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 /home/anthony/PhpstormProjects/capstone/vendor/laravel/framework/src/Illuminate/Console/Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /home/anthony/PhpstormProjects/capstone/vendor/symfony/console/Application.php(794): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /home/anthony/PhpstormProjects/capstone/vendor/symfony/console/Application.php(186): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\RouteCacheCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /home/anthony/PhpstormProjects/capstone/vendor/symfony/console/Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 /home/anthony/PhpstormProjects/capstone/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 /home/anthony/PhpstormProjects/capstone/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 {main}  
