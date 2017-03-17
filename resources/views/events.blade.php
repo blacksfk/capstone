@@ -1,4 +1,4 @@
-@extends('layouts.master')
+    @extends('layouts.master')
 @section('title', 'Welcome')
 @section('content')
     <div class="row text-center">

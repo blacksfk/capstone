@@ -5,16 +5,19 @@
         <div id="features-sec" class="container set-pad" >
             <div class="row text-center">
                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-                    <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line">ABOUT US</h1>
+                    <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line">CONTACT US</h1>
                     <p data-scroll-reveal="enter from the bottom after 0.3s" >
-                        Courtenay Gardens Primary School is committed to ensuring that all children have fostered in them qualities and skills which will enable them to adapt to change and be lifelong learners.
+                        Contact us for the future of your kids
                     </p>
                 </div>
 
                 <div class="col-4" data-scroll-reveal="enter from the bottom after 0.4s">
                     <div class="about-div">
                         <i class="fa fa-paper-plane-o fa-4x icon-round-border" ></i>
-                        <h3>CURRICULUMS PAGE </h3>
+                        <h3>Our school is located at </h3>
+                        <div>
+                            <a href="#"> <img src="assets/img/CGPS_location.jpg" alt="" /> </a>
+                        </div>
                         <p>
                             Grade sizes kept to a minimum<br>
                             Straight grades (where possible)<br>
