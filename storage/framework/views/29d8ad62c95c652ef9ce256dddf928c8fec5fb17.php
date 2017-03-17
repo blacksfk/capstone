@@ -6,6 +6,7 @@
 	<meta name="description" content="" />
 	<meta name="author" content="" />
 	<title>Courtenay Gardens Primary School | CGPS</title>
+	<link rel="shortcut icon" href="assets/img/primary_crop.png" />
 	<!-- BOOTSTRAP CORE STYLE CSS -->
 	<link href="assets/css/bootstrap.css" rel="stylesheet" />
 	<!-- FONT AWESOME CSS -->
@@ -27,15 +28,17 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><img class="logo-custom" src="assets/img/logo180-50.png" alt=""  /></a>
+				<a class="navbar-brand" href="#"><img class="logo-custom" src="assets/img/primary_logo.png" alt=""  /></a>
 			</div>
 			<div class="navbar-collapse collapse move-me">
 				<ul class="nav navbar-nav navbar-right">
 					<li ><a href="#home">HOME</a></li>
 					<li><a href="#features-sec">ABOUT US</a></li>
-					<li><a href="#faculty-sec">FACULTY</a></li>
+					<li><a href="#faculty-sec">CURRICULUM</a></li>
+                    <Li><a href="#">EVENTS</a></Li>
 					<li><a href="#course-sec">GET INVOLVED</a></li>
-					<li><a href="#contact-sec">CONTACT</a></li>
+                    <Li><a href="#">INFORMATION</a></Li>
+					<li><a href="#contact-sec">CONTACT US</a></li>
 				</ul>
 			</div>
 			
@@ -86,12 +89,9 @@
 	<div id="features-sec" class="container set-pad" >
 		<div class="row text-center">
 			<div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-				<h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line">FEATURE LIST </h1>
+				<h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line">ABOUT US</h1>
 				<p data-scroll-reveal="enter from the bottom after 0.3s" >
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo.
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-					Aenean commodo.
+				Courtenay Gardens Primary School is committed to ensuring that all children have fostered in them qualities and skills which will enable them to adapt to change and be lifelong learners.
 				</p>
 			</div>
 
@@ -102,40 +102,28 @@
 		<div class="row" >
 			
 			
-			<div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s">
+			<div class="col-4" data-scroll-reveal="enter from the bottom after 0.4s">
 				<div class="about-div">
 					<i class="fa fa-paper-plane-o fa-4x icon-round-border" ></i>
-					<h3 >Quality Education</h3>
-					<hr />
-					<hr />
-					<p >
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-						Aenean commodo . 
-						
+					<h3 >Features include</h3>
+					
+					<p>
+					grade sizes kept to a minimum<br>
+					straight grades (where possible)<br>
+					modern, well equipped school<br>
+					positive attitude to the wearing of our compulsory school uniform<br>
+					a clear code of coduct<br>
+					high academic standards<br>
+					safe, secure environment<br>
 					</p>
 					<a href="#" class="btn btn-info btn-set"  >ASK THE EXPERT</a>
 				</div>
 			</div>
-			<div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.5s">
-				<div class="about-div">
-					<i class="fa fa-bolt fa-4x icon-round-border" ></i>
-					<h3 >SYSTEMATIC APPROACH</h3>
-					<hr />
-					<hr />
-					<p >
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-						Aenean commodo . 
-						
-					</p>
-					<a href="#" class="btn btn-info btn-set"  >ASK THE EXPERT</a>
-				</div>
-			</div>
-			<div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.6s">
+
+			<div class="col-4" data-scroll-reveal="enter from the bottom after 0.6s">
 				<div class="about-div">
 					<i class="fa fa-magic fa-4x icon-round-border" ></i>
 					<h3 >ONE TO ONE STUDY</h3>
-					<hr />
-					<hr />
 					<p >
 						Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
 						Aenean commodo . 
@@ -372,7 +360,7 @@
 	</div>
 	<!-- CONTACT SECTION END-->
 	<div id="footer">
-		&copy 2014 yourdomain.com | All Rights Reserved |  <a href="http://binarytheme.com" style="color: #fff" target="_blank">Design by : binarytheme.com</a>
+		&copy;2017 Courtenay Gardens Primary School  | All Rights Reserved
 	</div>
 	<!-- FOOTER SECTION END-->
 	

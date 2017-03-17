@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view("home");
-});
+Route::get('/', function () { return view("home"); });
 
-Route::get("/old", function() {
-    return view("welcome");
-});
+Route::get("/old", function() {return view("welcome");});
+Route::get("/curriculum", function() {return view("curriculum");});
+Route::get("/events", function() {return view("events");});
+Route::get("/involve", function() {return view("involve");});
+Route::get("/contact", function() {return view("contact");});
