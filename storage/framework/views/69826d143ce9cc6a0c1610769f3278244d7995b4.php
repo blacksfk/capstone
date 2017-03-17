@@ -10,13 +10,12 @@
         </div>
         <div class="navbar-collapse collapse move-me">
             <ul class="nav navbar-nav navbar-right">
-                <li ><a href="#home">HOME</a></li>
-                <li><a href="#features-sec">ABOUT US</a></li>
-                <li><a href="#faculty-sec">FACULTY</a></li>
-                <li><a href="#course-sec">GET INVOLVED</a></li>
-                <li><a href="#contact-sec">CONTACT</a></li>
+                <li><a href="<?php echo e(url('')); ?>">HOME</a></li>
+                <li><a href="<?php echo e(url('curriculum')); ?>">CURRICULUM</a></li>
+                <Li><a href="<?php echo e(url('events')); ?>">EVENTS</a></Li>
+                <li><a href="<?php echo e(url('involve')); ?>">GET INVOLVED</a></li>
+                <li><a href="<?php echo e(url('contact')); ?>">CONTACT US</a></li>
             </ul>
         </div>
-        
     </div>
 </div>
