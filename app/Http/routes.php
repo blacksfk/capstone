@@ -12,7 +12,6 @@
 */
 
 Route::get('/', function () { return view("home"); });
-
 Route::get("/old", function() {return view("welcome");});
 Route::get("curriculum", function() {return view("curriculum");});
 Route::get("events", function() {return view("events");});
