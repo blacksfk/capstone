@@ -3901,5 +3901,6 @@ Stack trace:
 #8 D:\xampp\htdocs\capstone\bootstrap\cache\compiled.php(1874): Illuminate\Container\Container->make('App\\Http\\Middle...', Array)
 #9 D:\xampp\htdocs\capstone\bootstrap\cache\compiled.php(2373): Illuminate\Foundation\Application->make('App\\Http\\Middle...')
 #10 D:\xampp\htdocs\capstone\public\index.php(58): Illuminate\Foundation\Http\Kernel->terminate(Object(Illuminate\Http\Request), Object(Illuminate\Http\Response))
+>>>>>>> b35dfab9e1bc0fef9abc2053741c8204b85c27c9
 #11 {main}  
-
+>>>>>>> f6e6a0231cdc72e8fd5e032fed969d20c26a387a
