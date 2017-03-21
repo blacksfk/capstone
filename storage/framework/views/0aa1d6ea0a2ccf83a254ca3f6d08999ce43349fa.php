@@ -1,5 +1,15 @@
+<<<<<<< HEAD
 <?php $__env->startSection('title', 'Curriculum'); ?>
+=======
+<<<<<<< HEAD:resources/views/events.blade.php
+    @extends('layouts.master')
+@section('title', 'Welcome')
+@section('content')
+=======
+<?php $__env->startSection('title', 'Welcome'); ?>
+>>>>>>> b1b8f7fcc74b1c255fbbc37873f61183d6420488
 <?php $__env->startSection('content'); ?>
+>>>>>>> e06d29dbd4257d54c194bfb46bf2d3b2bcbf1196:storage/framework/views/0aa1d6ea0a2ccf83a254ca3f6d08999ce43349fa.php
     <div class="row text-center">
         <div id="features-sec" class="container set-pad" >
             <div class="row text-center">

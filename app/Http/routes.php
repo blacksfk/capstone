@@ -17,3 +17,7 @@ Route::get("/curriculum/literacy", function() {return view("curriculum.literacy"
 Route::get("/events", function() {return view("events");});
 Route::get("/involve", function() {return view("involve");});
 Route::get("/contact", function() {return view("contact");});
+Route::get("curriculum", function() {return view("curriculum");});
+Route::get("events", function() {return view("events");});
+Route::get("involve", function() {return view("involve");});
+Route::get("contact", function() {return view("contact");});
