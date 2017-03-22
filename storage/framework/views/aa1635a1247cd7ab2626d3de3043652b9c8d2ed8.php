@@ -10,7 +10,7 @@
                     </p>
                 </div>
 
-                <div class="col-4" data-scroll-reveal="enter from the bottom after 0.4s">
+                <div class="col-lg-6" data-scroll-reveal="enter from the bottom after 0.4s">
                     <div class="about-div">
                         <i class="fa fa-paper-plane-o fa-4x icon-round-border" ></i>
                         <h3>CURRICULUMS PAGE </h3>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <div class="col-4" data-scroll-reveal="enter from the bottom after 0.6s">
+                <div class="col-lg-6" data-scroll-reveal="enter from the bottom after 0.6s">
                     <div class="about-div">
                         <i class="fa fa-magic fa-4x icon-round-border" ></i>
                         <h3 >ONE TO ONE STUDY</h3>
