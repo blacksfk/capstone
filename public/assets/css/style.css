@@ -46,7 +46,7 @@ padding: 1em;       }
 th {                              /* removed the border from the table heading row  */
 text-align: center;                 
 padding: 1em;
-background-color: #5D9183;       /* added a red background color to the heading cells  */
+background-color: #5D9183;       /* added a green background color to the heading cells  */
 color: white;       }                 /* added a white font color to the heading text */
 
 tr {    
@@ -301,3 +301,7 @@ h1::after {
     color:#fff;
     font-size:15px;
 }
+
+/*=====================================
+  CONTACT 
+  ===================================*/
