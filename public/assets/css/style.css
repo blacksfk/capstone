@@ -305,3 +305,18 @@ h1::after {
 /*=====================================
   CONTACT 
   ===================================*/
+
+
+/*=====================================
+  FOR KIDS, DESCRIPTION LISTS
+  ===================================*/
+.list-left > dt{
+    text-align: left;
+    width: 260px;
+    padding-left: auto;
+    padding-right: auto;
+    line-height: 2;
+}
+list-left > dd {
+    width: auto;
+}

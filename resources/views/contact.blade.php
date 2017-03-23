@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Welcome')
+@section('title', 'Contact Us')
 @section('content')
 
         <div id="features-sec" class="container set-pad" >
