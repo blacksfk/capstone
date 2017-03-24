@@ -22,5 +22,8 @@ Route::get("/kids", function() {return view("kids");});
 Route::get("/parents", function() {return view("parents");});
 Route::get("/teachers", function() {return view("teachers");});
 
+Route::group(["middleware" => "auth"], function() {
+    // dump auth only routes here
+});
 
-
+Route::resource("admin/events", "EventController");
