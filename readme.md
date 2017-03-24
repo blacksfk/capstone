@@ -1,3 +1,14 @@
+How to database!?
+=======================
+1. Create the database file in the project directory (eg. storage/db.sqlite)
+2. If on mac/linux run: `chmod 666 storage/db.sqlite`
+3. Edit your .env:
+    `DB_CONNECTION=sqlite
+    DB_DATABASE=/absolute/path/to/storage/db.sqlite`
+4. Test you set it up correctly by running `php artisan migrate`
+5. ???
+6. Profit
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
