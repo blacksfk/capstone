@@ -4,7 +4,7 @@
 
 <div id="features-sec" class="container set-pad" >
     <div class="row text-center">
-            <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line">Events</h1>
+            <h1 class="header-line">Events</h1>
 <table>
   <tr>
     <th>Date</th>

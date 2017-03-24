@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row  text-center" >
                 <div class="col-lg-12  col-md-12 col-sm-12">      
-                    <h2 data-scroll-reveal="enter from the bottom after 0.1s" >
+                    <h2>
                         <i class="fa fa-circle-o-notch"></i>
                         @yield('title')
                         <i class="fa fa-circle-o-notch"></i>

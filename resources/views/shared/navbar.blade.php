@@ -17,7 +17,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{ url('/curriculum/literacy') }}">Literacy</a></li>
                                 <li><a href="{{ url('/curriculum/numeracy') }}">Numeracy</a></li>
-                                <li><a href="{{ url('digital_technologies') }}">Digital Technologies</a></li>
+                                <li><a href="{{ url('/curriculum/digital_technologies') }}">Digital Technologies</a></li>
                             </ul></li>
                             <li><a href="{{ url('events') }}">EVENTS</a></li>
                             <li class="dropdown dropdown-toggle">

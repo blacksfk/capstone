@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row set-row-pad"  >
-        <div class="col-lg-4 col-md-4 col-sm-4   col-lg-offset-1 col-md-offset-1 col-sm-offset-1 " data-scroll-reveal="enter from the bottom after 0.4s">
+        <div class="col-lg-4 col-md-4 col-sm-4   col-lg-offset-1 col-md-offset-1 col-sm-offset-1 ">
 
             <h2><strong>Our Location: </strong></h2>
             <hr />
@@ -14,15 +14,15 @@
 
 
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4   col-lg-offset-1 col-md-offset-1 col-sm-offset-1" data-scroll-reveal="enter from the bottom after 0.4s">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
 
-            <h2 ><strong>Social Conectivity </strong></h2>
-            <hr />
-            <div >
-                <a href="#"> <img src="assets/img/Social/facebook.png" alt="" /> </a>
-                <a href="#"> <img src="assets/img/Social/google-plus.png" alt="" /></a>
-                <a href="#"> <img src="assets/img/Social/twitter.png" alt="" /></a>
-            </div>
+            <h2><strong>We are here: </strong></h2><hr>
+
+            <div class="view hm-zoom">
+                <img src="assets/img/maps.png" class="maps" alt="CGPS maps">
+                <div class="mask flex-center">
+                    <p class="white-text">Google Maps</p>
+                </div>
         </div>
 
 
