@@ -11,16 +11,24 @@
         <div class="navbar-collapse collapse move-me">
             <ul class="nav navbar-nav navbar-right">
                     <li><a href="<?php echo e(url('')); ?>">HOME</a></li>
-                    <li class="dropdown dropdown-toggle" type="button" data-toggle="dropdown"><a href="<?php echo e(url('curriculum')); ?>">CURRICULUM<span class="caret"></span></a></li>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">HTML</a></li>
-                            <li><a href="#">CSS</a></li>
-                            <li><a href="#">JavaScript</a></li>
-                        </ul>
-
-                    <li><a href="<?php echo e(url('events')); ?>">EVENTS</a></li>
-                    <li><a href="<?php echo e(url('involve')); ?>">GET INVOLVED</a></li>
-                    <li><a href="<?php echo e(url('contact')); ?>">CONTACT US</a></li>
+                    <li class="dropdown dropdown-toggle">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">CURRICULUM
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?php echo e(url('/curriculum/literacy')); ?>">Literacy</a></li>
+                                <li><a href="<?php echo e(url('/curriculum/numeracy')); ?>">Numeracy</a></li>
+                                <li><a href="<?php echo e(url('digital_technologies')); ?>">Digital Technologies</a></li>
+                            </ul></li>
+                            <li><a href="<?php echo e(url('events')); ?>">EVENTS</a></li>
+                            <li class="dropdown dropdown-toggle">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">GET INVOLVED
+                                    <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="<?php echo e(url('kids')); ?>">For Kids</a></li>
+                                    <li><a href="<?php echo e(url('parents')); ?>">For Parents</a></li>
+                                    <li><a href="<?php echo e(url('teachers')); ?>">For Teachers</a></li>
+                                </ul></li>
+                            <li><a href="<?php echo e(url('contact')); ?>">CONTACT US</a></li>
             </ul>
         </div>
     </div>

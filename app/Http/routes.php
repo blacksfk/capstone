@@ -15,6 +15,8 @@ Route::get('/', function () { return view("home"); });
 Route::get("/old", function() {return view("welcome");});
 Route::get("/curriculum", function() {return view("curriculum");});
 Route::get("/curriculum/literacy", function() {return view("curriculum.literacy");});
+Route::get("/curriculum/numeracy", function() {return view("curriculum.numeracy");});
+Route::get("/curriculum/digital_technologies", function() {return view("curriculum.digital_technologies");});
 Route::get("/events", function() {return view("events");});
 Route::get("/involve", function() {return view("involve");});
 Route::get("/contact", function() {return view("contact");});

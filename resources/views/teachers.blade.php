@@ -5,7 +5,7 @@
         <div id="features-sec" class="container set-pad" >
             <div class="row text-left">
                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-                    <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line text-center">For Teachers</h1>
+                    <h1 class="header-line text-center">For Teachers</h1>
                     <p>Here are some websites for teachers:</p>
                     <div class="col-lg-6">
                         <div class="about-div text-center">
@@ -55,33 +55,6 @@
                         </p>
                     </div>
                 </div>
-                </div>
-
-                <div class="col-lg-6" data-scroll-reveal="enter from the bottom after 0.4s">
-                    <div class="about-div text-center">
-                        <i class="fa fa-paper-plane-o fa-4x icon-round-border" ></i>
-                        <h3>CURRICULUMS PAGE </h3>
-                        <p>
-                            Grade sizes kept to a minimum<br>
-                            Straight grades (where possible)<br>
-                            Modern, well equipped school<br>
-                            Positive attitude to the wearing of Our compulsory school uniform<br>
-                            A clear code of coduct<br>
-                            High academic standards<br>
-                            Safe, secure environment<br>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-6" data-scroll-reveal="enter from the bottom after 0.6s">
-                    <div class="about-div text-center">
-                        <i class="fa fa-magic fa-4x icon-round-border" ></i>
-                        <h3 >ONE TO ONE STUDY</h3>
-                        <p >
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Aenean commodo .
-
-                    </div>
                 </div>
             </div>
         </div>

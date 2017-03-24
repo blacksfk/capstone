@@ -4,7 +4,7 @@
 
         <div id="features-sec" class="container set-pad" >
             <div class="row text-center">   
-            <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line">CONTACT US</h1>
+            <h1 class="header-line">CONTACT US</h1>
         
 
         <form id="contact-form" method="post" action="contact.php" role="form">
@@ -64,15 +64,7 @@
         </div>
     </div>
 
-</form>
-
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script src="validator.js"></script>
-        <script src="contact.js"></script>
-                        
-                    
-                
+</form>         
             </div>
         </div>
-    </div>
 @endsection

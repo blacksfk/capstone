@@ -6,6 +6,7 @@
             <div class="row text-center">
                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
                     <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line">Literacy at Courtenay Gardens Primary School</h1>
+                    <div class="row text-left">
                     <p>In the Victorian Curriculum, the English domain is central to the learning and development of all students. It helps create confident communicators, imaginative thinkers and informed citizens. It is through the study of English that students learn to analyse, understand, communicate with and build relationships with others and with the world around them. In English, students are assessed under three areas: Reading and Viewing, Writing and Speaking and Listening.</p>
 
                     <p>The English domain aims to ensure that students: </p>
@@ -15,6 +16,8 @@
                         <li>Understand how Standard Australian English works in its spoken and written forms and in combination with non-linguistic forms of communication to create meaning</li>
                     </ul>
                 </div>
+                </div>
+                
 
                 
 

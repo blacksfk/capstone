@@ -5,7 +5,7 @@
         <div id="features-sec" class="container set-pad" >
             <div class="row text-left">
                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-                    <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line text-center">For Parents</h1>
+                    <h1 class="header-line text-center">For Parents</h1>
                     <p>After following the appropriate processes the School Council is extremely pleased to announce the replacement of the existing five Play Systems with new ones from a leading playground company. If you would like to see the drawings for each year level please click the following links:</p>
                     <ul class ="text-center">
                         <li><span class="glyphicon glyphicon-ok"></span> PREPS  -<a href=""> 4611517 </a></li>
@@ -15,7 +15,7 @@
                         <li><span class="glyphicon glyphicon-ok"></span> YRS5/6 -<a href=""> 4611542 </a></li>
                     </ul>
                     <hr>
-                    <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line text-center">CGPS Policies and Plans</h1>
+                    <h1 class="header-line text-center">CGPS Policies and Plans</h1>
                     <p>Many policies/guidelines are dictated from the Department of Education & Training. Their website is <a href="">http://www.education.vic.gov.au/</a></p>
                     <table border="1">
                         <tr>
@@ -127,32 +127,6 @@
                 </div>
 
                 <hr>
-                <div class="col-lg-6" data-scroll-reveal="enter from the bottom after 0.4s">
-                    <div class="about-div text-center">
-                        <i class="fa fa-paper-plane-o fa-4x icon-round-border" ></i>
-                        <h3>CURRICULUMS PAGE </h3>
-                        <p>
-                            Grade sizes kept to a minimum<br>
-                            Straight grades (where possible)<br>
-                            Modern, well equipped school<br>
-                            Positive attitude to the wearing of Our compulsory school uniform<br>
-                            A clear code of coduct<br>
-                            High academic standards<br>
-                            Safe, secure environment<br>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-6" data-scroll-reveal="enter from the bottom after 0.6s">
-                    <div class="about-div text-center">
-                        <i class="fa fa-magic fa-4x icon-round-border" ></i>
-                        <h3 >ONE TO ONE STUDY</h3>
-                        <p >
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Aenean commodo .
-
-                    </div>
-                </div>
             </div>
         </div>
     </div>
