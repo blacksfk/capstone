@@ -13,11 +13,14 @@
 
 Route::get('/', function () { return view("home"); });
 Route::get("/old", function() {return view("welcome");});
+Route::get("/curriculum", function() {return view("curriculum");});
 Route::get("/curriculum/literacy", function() {return view("curriculum.literacy");});
 Route::get("/events", function() {return view("events");});
 Route::get("/involve", function() {return view("involve");});
 Route::get("/contact", function() {return view("contact");});
-Route::get("curriculum", function() {return view("curriculum");});
-Route::get("events", function() {return view("events");});
-Route::get("involve", function() {return view("involve");});
-Route::get("contact", function() {return view("contact");});
+Route::get("/kids", function() {return view("kids");});
+Route::get("/parents", function() {return view("parents");});
+Route::get("/teachers", function() {return view("teachers");});
+
+
+

@@ -26,6 +26,38 @@ body {
     padding-bottom:50px;
 }
 
+/* =============================================================
+   TABLE STYLES
+ ============================================================ */
+table {
+margin: auto;
+width: 90%;
+font-family: "Lato","sans-serif";  }       /* added custom font-family  */
+
+table.one {                                  
+margin-bottom: 3em; 
+border-collapse:collapse;   }   
+
+td {                            /* removed the border from the table data rows  */
+text-align: center;     
+width: 10em;                    
+padding: 1em;       }       
+
+th {                              /* removed the border from the table heading row  */
+text-align: center;                 
+padding: 1em;
+background-color: #5D9183;       /* added a green background color to the heading cells  */
+color: white;       }                 /* added a white font color to the heading text */
+
+tr {    
+height: 1em;    }
+
+table tr:nth-child(even) {            /* added all even rows a #eee color  */
+       background-color: #eee;      }
+
+table tr:nth-child(odd) {            /* added all odd rows a #fff color  */
+background-color:#fff;      }
+
 /*=====================================
   NAVBAR STYLES 
     ===================================*/
@@ -268,4 +300,23 @@ h1::after {
     text-align:right;
     color:#fff;
     font-size:15px;
+}
+
+/*=====================================
+  CONTACT 
+  ===================================*/
+
+
+/*=====================================
+  FOR KIDS, DESCRIPTION LISTS
+  ===================================*/
+.list-left > dt{
+    text-align: left;
+    width: 260px;
+    padding-left: auto;
+    padding-right: auto;
+    line-height: 2;
+}
+list-left > dd {
+    width: auto;
 }

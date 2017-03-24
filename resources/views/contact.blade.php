@@ -1,37 +1,77 @@
 @extends('layouts.master')
-@section('title', 'Welcome')
+@section('title', 'Contact Us')
 @section('content')
-    <div class="row text-center">
+
         <div id="features-sec" class="container set-pad" >
-            <div class="row text-center">
-                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-                    <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line">CONTACT US</h1>
-                    <p data-scroll-reveal="enter from the bottom after 0.3s" >
-                        Contact us for the future of your kids
-                    </p>
-                </div>
+            <div class="row text-center">   
+            <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line">CONTACT US</h1>
+        
 
-                <div class="col-lg-12" data-scroll-reveal="enter from the bottom after 0.4s">
-                    <div class="about-div">
-                        <i class="fa fa-paper-plane-o fa-4x icon-round-border" ></i>
-                        <h3>Our school is located at </h3>
-                        <div>
-                            <a href="#"> <img src="assets/img/CGPS_location.jpg" alt="" /> </a>
+        <form id="contact-form" method="post" action="contact.php" role="form">
+
+            <div class="messages"></div>
+
+            <div class="controls">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="form_name">Firstname *</label>
+                            <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
+                            <div class="help-block with-errors"></div>
                         </div>
-                        <p>
-                            Grade sizes kept to a minimum<br>
-                            Straight grades (where possible)<br>
-                            Modern, well equipped school<br>
-                            Positive attitude to the wearing of Our compulsory school uniform<br>
-                            A clear code of coduct<br>
-                            High academic standards<br>
-                            Safe, secure environment<br>
-                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="form_lastname">Lastname *</label>
+                            <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required.">
+                            <div class="help-block with-errors"></div>
+                        </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="form_email">Email *</label>
+                            <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_phone">Phone</label>
+                    <input id="form_phone" type="tel" name="phone" class="form-control" placeholder="Please enter your phone">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="form_message">Message *</label>
+                    <textarea id="form_message" name="message" class="form-control" placeholder="Message for CGPS" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-success btn-send" value="Send message">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-muted"><strong>*</strong> These fields are required.</p>
+            </div>
+        </div>
+    </div>
 
-                    </div>
-                </div>
+</form>
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="validator.js"></script>
+        <script src="contact.js"></script>
+                        
+                    
+                
             </div>
         </div>
     </div>
