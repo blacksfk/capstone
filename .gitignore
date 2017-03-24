@@ -9,5 +9,4 @@ Homestead.yaml
 .env
 *.sublime*
 *.phar
-/storage/logs/*
-/storage/framework/*
+/storage
