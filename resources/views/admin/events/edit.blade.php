@@ -4,22 +4,16 @@
 <div id="features-sec" class="container set-pad">
     <div class="row text-center">
         <div class="form-group">
-        <div class="col-xs-12">
+            {{-- Delete form --}}
+            {{ Form::model($event, ['method' => 'DELETE', 'route' => ['admin.events.destroy', $event]]) }}
+                {{ Form::submit('Delete ' . $event->id, ['class' => 'form-control btn btn-danger']) }}
+            {{ Form::close() }}
+
+            {{-- Update/edit form --}}
             {{ Form::model($event, ['method' => 'PATCH', 'route' => ['admin.events.update', $event]]) }}
-                {{ Form::token() }}
-                {{ Form::label('name', 'Name') }}
-                {{ Form::text('name', null, ['class' => 'form-control']) }}
-                {{ Form::label('date', 'Date') }}
-                {{ Form::date('date', null, ['class' => 'form-control']) }}
-                {{ Form::label('start_time', 'Start time') }}
-                {{ Form::text('start_time', null, ['class' => 'form-control']) }}
-                {{ Form::label('end_time', 'End time') }}
-                {{ Form::text('end_time', null, ['class' => 'form-control']) }}
-                {{ Form::label('notes', 'Notes') }}
-                {{ Form::textarea('notes', null, ['class' => 'form-control']) }}
+                @include('admin.events.form')
                 {{ Form::submit('Save', ['class' => 'form-control btn btn-success']) }}
             {{ Form::close() }}
-        </div>
         </div>
     </div>
 </div>
