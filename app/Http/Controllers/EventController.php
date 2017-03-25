@@ -27,7 +27,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view("admin.events.new");
+        return view("admin.events.create");
     }
 
     /**
@@ -45,7 +45,7 @@ class EventController extends Controller
 
         Event::create($request->all());
 
-        return redirect()->route("admin/events.index")->with("success", "Event created successfully");
+        return redirect()->route("admin.events.index")->with("success", "Event created successfully");
     }
 
     /**
@@ -103,6 +103,6 @@ class EventController extends Controller
     {
         Event::find($id)->delete();
 
-        return redirect()->route("admin/events.index")->with("success", "Event deleted successfully");
+        return redirect()->route("admin.events.index")->with("success", "Event deleted successfully");
     }
 }
