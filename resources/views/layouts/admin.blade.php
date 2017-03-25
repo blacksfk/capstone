@@ -21,7 +21,6 @@
 </head>
 <body>
     @include('shared.navbar')
-    @include('shared.messages')
     <div  class="tag-line" >
         <div class="container">
             <div class="row  text-center" >
@@ -35,6 +34,7 @@
             </div>
         </div>
     </div>
+    @include('shared.messages')
     @yield('content')
     @include('shared.footer')
 
