@@ -3,6 +3,7 @@
 @section('content')
 <div id="features-sec" class="container set-pad">
     <div class="row text-center">
+        <a href="{{ route('admin.events.create') }}" class="btn btn-info">Create new Event</a>
         <table>
             <thead>
                 <tr>
