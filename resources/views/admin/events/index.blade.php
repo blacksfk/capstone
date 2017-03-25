@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 @section('title', 'Edit Events')
 @section('content')
-<div class="row text-center">
-    <div class="col-lg-8">
+<div id="features-sec" class="container set-pad">
+    <div class="row text-center">
         <table>
             <thead>
                 <tr>
@@ -22,7 +22,7 @@
                         <td>{{ $event->start_time }}</td>
                         <td>{{ $event->end_time }}</td>
                         <td>{{ $event->notes }}</td>
-                        <td><a href="{{ url('admin/events', $event->id) }}" class="btn btn-primary">Edit</a></td>
+                        <td><a href="{{ route('admin.events.edit', $event->id) }}" class="btn btn-primary">Edit</a></td>
                     </tr>
                 @endforeach
             </tbody>
