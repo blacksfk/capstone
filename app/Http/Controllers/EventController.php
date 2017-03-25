@@ -71,7 +71,7 @@ class EventController extends Controller
     {
         $event = Event::find($id);
 
-        return view("admin.events.edit")->with($event);
+        return view("admin.events.edit")->with("event", $event);
     }
 
     /**
@@ -90,7 +90,7 @@ class EventController extends Controller
 
         Event::find($id)->update($request->all());
 
-        return redirect()->route("admin/events.index")->with("success", "Event updated successfully");
+        return redirect()->route("admin.events.index")->with("success", "Event updated successfully");
     }
 
     /**
