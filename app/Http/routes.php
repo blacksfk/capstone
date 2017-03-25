@@ -26,4 +26,6 @@ Route::group(["middleware" => "auth"], function() {
     // dump auth only routes here
 });
 
-Route::resource("admin/events", "EventController");
+Route::group(["prefix" => "admin"], function() {
+    Route::resource("events", "EventController");
+});
