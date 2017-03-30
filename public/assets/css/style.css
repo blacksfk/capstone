@@ -5,17 +5,25 @@
     http://creativecommons.org/licenses/by/3.0/
 
     100% To use For Personal And Commercial Use.
-    IN EXCHANGE JUST GIVE US CREDITS AND TELL YOUR FRIENDS ABOUT US
    
     ========================================================  */
 
 /* =============================================================
    GENERAL STYLES
  ============================================================ */
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+
+h1 {
+    font-family: 'Slabo 27px', serif;
+}
+
 body {
-    font-family: 'Open Sans', sans-serif;
     line-height: 30px;
     font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .set-pad {
@@ -71,7 +79,7 @@ background-color:#fff;      }
     color: #fff;
     font-size: 12px;
     font-weight: 900;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     min-height: 70px;
 }
 
@@ -80,11 +88,29 @@ background-color:#fff;      }
     border-color: transparent;
 }
 
-    .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-nav > li > a:hover {
-        color: #FFF;
-        padding: 22px 10px;
-    }
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-nav > li > a:hover {
+    color: #FFF;
+    padding: 22px 10px;
+}
 
+.sliding-middle-out {
+    display: inline-block;
+    position: relative;
+    padding-bottom: 3px;
+}
+.sliding-middle-out:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 3px;
+    width: 0px;
+    background: transparent;
+    transition: width .2s ease, background-color .2s ease;
+}
+.sliding-middle-out:hover:after {
+    width: 100%;
+    background: white;
+}
 
 /*=====================================
   HOME STYLES 
@@ -102,7 +128,6 @@ background-color:#fff;      }
 
     .home-sec .overlay {
         background: rgba(38, 57, 88, 0.89);
-        min-height: 500px;
     }
 
     .home-sec h1 {
@@ -299,7 +324,7 @@ h1::after {
     background-color:#2d3d5a;
     text-align:right;
     color:#fff;
-    font-size:15px;
+    font-size:12px;
 }
 
 .maps {
