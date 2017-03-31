@@ -29,7 +29,7 @@
                                     <li><a href="{{ url('teachers') }}">For Teachers</a></li>
                                 </ul></li>
                             <li class="sliding-middle-out"><a href="{{ url('contact') }}">CONTACT US</a></li>
-                            <li class="sliding-middle-out"><a href="{{ route('admin.events.index') }}">ADMIN</a></li>
+                            <li class="sliding-middle-out"><a href="{{ url('dashboard') }}">ADMIN</a></li>
 
             </ul>
         </div>
