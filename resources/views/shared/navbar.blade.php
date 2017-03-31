@@ -22,9 +22,9 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">GET INVOLVED
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ url('kids') }}">For Kids</a></li>
-                                    <li><a href="{{ url('parents') }}">For Parents</a></li>
-                                    <li><a href="{{ url('teachers') }}">For Teachers</a></li>
+                                    <li><a href="{{ url('/involve/kids') }}">For Kids</a></li>
+                                    <li><a href="{{ url('/involve/parents') }}">For Parents</a></li>
+                                    <li><a href="{{ url('/involve/teachers') }}">For Teachers</a></li>
                                 </ul></li>
                             <li class="sliding-middle-out"><a href="{{ url('contact') }}">CONTACT US</a></li>
                             <li class="sliding-middle-out"><a href="{{ url('dashboard') }}">ADMIN</a></li>
