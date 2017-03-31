@@ -25,13 +25,14 @@ Route::get("/parents", function() {return view("parents");});
 Route::get("/teachers", function() {return view("teachers");});
 
 // to be moved to 'auth only' group
-Route::get("/dashboard", function() {return view("admin.dashboard");});
-Route::get("/addpage", function() {return view("admin.custompages.addpage");});
+//Route::get("/addpage", function() {return view("admin.custompages.addpage");});
 
 Route::group(["middleware" => "auth"], function() {
     // dump auth only routes here
 });
 
 Route::group(["prefix" => "admin"], function() {
+    Route::get("/", function() { return view("admin.dashboard"); });
+    Route::get("addpage", function() { return view("admin.custompages.addpage"); });
     Route::resource("events", "EventController");
 });
