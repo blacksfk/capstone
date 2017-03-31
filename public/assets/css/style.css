@@ -16,6 +16,7 @@
 
 h1 {
     font-family: 'Slabo 27px', serif;
+    letter-spacing: 1px;
 }
 
 body {
@@ -88,9 +89,23 @@ background-color:#fff;      }
     border-color: transparent;
 }
 
+.navbar-collapse.in {
+    overflow: hidden;
+    max-height: none !important;
+    height: auto !important;
+}
+
 .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-nav > li > a:hover {
     color: #FFF;
     padding: 22px 10px;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #FFF;
+}
+
+.navbar-inverse .navbar-toggle:active {
+    border-color: #FFF;
 }
 
 .sliding-middle-out {

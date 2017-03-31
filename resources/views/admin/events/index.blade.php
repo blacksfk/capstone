@@ -2,8 +2,10 @@
 @section('title', 'Edit Events')
 @section('content')
 <div id="features-sec" class="container set-pad">
-    <div class="row text-center">
+    @include('shared.sidebar')
+    <div class="well row text-center col-lg-offset-3">
         <a href="{{ route('admin.events.create') }}" class="btn btn-info">Create new Event</a>
+        <hr>
         <table>
             <thead>
                 <tr>

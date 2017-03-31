@@ -2,7 +2,8 @@
 @section('title', 'Edit ' . $event->id)
 @section('content')
 <div id="features-sec" class="container set-pad">
-    <div class="row text-center">
+    @include('shared.sidebar')
+    <div class="well row text-center col-lg-offset-3">
         <div class="form-group">
             {{-- Delete form --}}
             {{ Form::model($event, ['method' => 'DELETE', 'route' => ['admin.events.destroy', $event]]) }}

@@ -62,6 +62,12 @@
                 <p class="text-muted"><strong>*</strong> These fields are required.</p>
             </div>
         </div>
+
+        <div class="text-center">
+            <a>
+                <img class="img-fluid" src="assets/img/telephone.jpeg" alt="">
+            </a>
+        </div>
     </div>
 
 </form>         

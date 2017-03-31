@@ -2,11 +2,9 @@
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <span>MENU</span>
             </button>
-            <a class="navbar-brand" href="#"><img class="logo-custom" src="assets/img/logo180-50.png" alt=""  /></a>
+            <a class="navbar-brand" href="{{ url('/') }}"><img class="logo-custom" src="{{asset('assets/img/primary_logo.png')}}"></a>
         </div>
         <div class="navbar-collapse collapse move-me">
             <ul class="nav navbar-nav navbar-right">
@@ -24,9 +22,9 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">GET INVOLVED
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ url('kids') }}">For Kids</a></li>
-                                    <li><a href="{{ url('parents') }}">For Parents</a></li>
-                                    <li><a href="{{ url('teachers') }}">For Teachers</a></li>
+                                    <li><a href="{{ url('/involve/kids') }}">For Kids</a></li>
+                                    <li><a href="{{ url('/involve/parents') }}">For Parents</a></li>
+                                    <li><a href="{{ url('/involve/teachers') }}">For Teachers</a></li>
                                 </ul></li>
                             <li class="sliding-middle-out"><a href="{{ url('contact') }}">CONTACT US</a></li>
                             <li class="dropdown dropdown-toggle sliding-middle-out"><a href="#" class="dropdown-toggle" data-toggle="dropdown">ADMIN<span class="caret"></span></a>

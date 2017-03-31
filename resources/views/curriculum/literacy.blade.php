@@ -15,6 +15,15 @@
                         <li>Appreciate, enjoy and use the English language in all its variations and develop a sense of its richness and power to evoke feelings, convey information, form ideas, facilitate interaction with others, entertain, persuade and argue </li>
                         <li>Understand how Standard Australian English works in its spoken and written forms and in combination with non-linguistic forms of communication to create meaning</li>
                     </ul>
+
+                    <div class="container">
+                         <div class="col-lg-3 col-md-4 col-xs-6">
+                            <a class="thumbnail" href="#">
+                                <img class="img-responsive" src="//assets/img/literacy.jpg" alt="">
+                            </a>
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
         </div>
