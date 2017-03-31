@@ -12,10 +12,14 @@
 */
 
 Route::get('/', function () { return view("home"); });
-Route::get("/old", function() {return view("welcome");});
 Route::get("/curriculum", function() {return view("curriculum");});
 Route::get("/events", "Controller@events");
 Route::get("/contact", function() {return view("contact");});
+
+// TEST
+Route::get('/test2',function () { return view("curriculum.TEST_PAGE_CREATION"); });
+Route::get('/test1',"FileSaveController@store");
+Route::get('/test', function () { return view("test"); });
 
 // Under the 'Curriculum' dropdown
 Route::get("/curriculum/literacy", function() {return view("curriculum.literacy");});
@@ -29,6 +33,7 @@ Route::get("/involve/teachers", function() {return view("involve.teachers");});
 
 // to be moved to 'auth only' group
 Route::get("/dashboard", function() {return view("admin.dashboard");});
+Route::get("/view_pages", function() {return view("admin.view_pages");});
 Route::get("/addpage", function() {return view("admin.custompages.addpage");});
 
 Route::group(["middleware" => "auth"], function() {
