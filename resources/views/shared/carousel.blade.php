@@ -14,9 +14,6 @@
                                 <a  href="#features-sec" class="btn btn-info btn-lg" >
                                     LEARN MORE 
                                 </a>
-                                <a  href="#features-sec" class="btn btn-success btn-lg" >
-                                    ENROL NOW
-                                </a>
                             </li>
                         </ul>
                     </div>

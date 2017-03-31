@@ -19,7 +19,7 @@
             <h2><strong>We are here: </strong></h2><hr>
 
             <div class="view hm-zoom">
-                <img src="assets/img/maps.png" class="maps" alt="CGPS maps">
+                <img src="{{asset('assets/img/maps.png')}}" class="maps" alt="CGPS maps">
                 <div class="mask flex-center">
                     <p class="white-text">Google Maps</p>
                 </div>
