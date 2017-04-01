@@ -36,7 +36,7 @@ Route::group(["middleware" => "auth"], function() {
 
 Route::group(["prefix" => "admin"], function() {
     Route::get("/", function() { return view("admin.dashboard"); });
-    Route::get("addpage", function() { return view("admin.custompages.addpage"); });
+    
     Route::resource("events", "EventController");
     Route::resource("categories", "CategoryController");
     Route::resource("pages", "PageController");
