@@ -35,7 +35,12 @@
         </div>
     </div>
     @include('shared.messages')
-    @yield('content')
+    <div id="features-sec" class="container set-pad">
+        @include('shared.sidebar')
+        <div class="well row text-center col-lg-offset-3">
+            @yield('content')
+        </div>
+    </div>
     @include('shared.footer')
 
     <!--  Jquery Core Script -->

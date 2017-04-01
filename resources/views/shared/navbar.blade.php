@@ -31,7 +31,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{ url('admin') }}">Dashboard</a></li>
                                 <li><a href="{{ route('admin.events.index') }}">Edit Events</a></li>
-                                <li><a href="{{ url('admin/addpage') }}">Page Management</a></li>
+                                <li><a href="{{ route('admin.pages.index') }}">Page Management</a></li>
                             </ul>
                             </li>
             </ul>
