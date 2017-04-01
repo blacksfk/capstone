@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Edit Pages')
 @section('content')
-<a href="{{ route('admin.events.create') }}"></a>
+<a href="{{ route('admin.pages.create') }}" class="btn btn-info">Create new Page</a>
 <hr>
 <table>
     <thead>
