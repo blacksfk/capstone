@@ -21,7 +21,7 @@ class CreatePagesTable extends Migration
 
         Schema::table("pages", function(Blueprint $table) {
             $table->foreign("category_id")->references("id")->on("categories");
-        })
+        });
     }
 
     /**
