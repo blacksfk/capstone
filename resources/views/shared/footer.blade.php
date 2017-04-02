@@ -29,5 +29,12 @@
     </div>
 </div>
 <div id="footer">
-    &copy; 2017 Courtenay Gardens Primary School | All Rights Reserved 
+    &copy; 2017 Courtenay Gardens Primary School | All Rights Reserved <br>
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </div>
