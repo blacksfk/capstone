@@ -16,11 +16,11 @@ class CreatePagesTable extends Migration
             $table->increments('id');
             $table->string("name");
             $table->tinyInteger("status");
-            $table->integer("category_id")->unsigned()->nullable();
+            $table->integer("link")->unsigned()->nullable();
         });
 
         Schema::table("pages", function(Blueprint $table) {
-            $table->foreign("category_id")->references("id")->on("categories");
+            $table->foreign("link")->references("id")->on("links");
         });
     }
 
