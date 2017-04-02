@@ -4,7 +4,7 @@
 <div class="form-group">
     {{-- Delete form --}}
     {{ Form::model($event, ['method' => 'DELETE', 'route' => ['admin.events.destroy', $event]]) }}
-        {{ Form::submit('Delete ' . $event->id, ['class' => 'form-control btn btn-danger']) }}
+        {{ Form::submit('Delete ' . $event->name, ['class' => 'form-control btn btn-danger']) }}
     {{ Form::close() }}
 
     {{-- Update/edit form --}}
