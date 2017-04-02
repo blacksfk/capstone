@@ -38,6 +38,6 @@ Route::group(["prefix" => "admin"], function() {
     Route::get("/", function() { return view("admin.dashboard"); });
     
     Route::resource("events", "EventController");
-    Route::resource("categories", "CategoryController");
+    Route::resource("links", "LinkController");
     Route::resource("pages", "PageController");
 });
