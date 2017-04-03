@@ -8,6 +8,7 @@
         </div>
         <div class="navbar-collapse collapse move-me">
             <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
                 <li class="sliding-middle-out">
                     <a href="{{ url('') }}">HOME</a>
                 </li>
@@ -32,6 +33,7 @@
                         <li><a href="{{ url('/involve/kids') }}">For Kids</a></li>
                         <li><a href="{{ url('/involve/parents') }}">For Parents</a></li>
                         <li><a href="{{ url('/involve/teachers') }}">For Teachers</a></li>
+                        <li><a href="{{ url('/test1') }}">testing controller</a></li>
                     </ul>
                 </li>
                 <li class="sliding-middle-out">
@@ -40,6 +42,7 @@
                 <li class="sliding-middle-out">
                     <a href="{{ url('admin') }}">ADMIN</a>
                 </li>      
+
             </ul>
         </div>
     </div>

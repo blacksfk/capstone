@@ -12,10 +12,14 @@
 */
 
 Route::get('/', function () { return view("home"); });
-Route::get("/old", function() {return view("welcome");});
 Route::get("/curriculum", function() {return view("curriculum");});
 Route::get("/events", "Controller@events");
 Route::get("/contact", function() {return view("contact");});
+
+// TEST
+Route::get('/test2',function () { return view("curriculum.TEST_PAGE_CREATION"); });
+Route::get('/test1',"FileSaveController@store");
+Route::get('/test', function () { return view("test"); });
 
 // Under the 'Curriculum' dropdown
 Route::group(["prefix" => "curriculum"], function() {
@@ -25,11 +29,13 @@ Route::group(["prefix" => "curriculum"], function() {
 });
 
 // Under the 'Get Involved' dropdown
+
 Route::group(["prefix" => "involve"], function() {
     Route::get("kids", function() {return view("involve.kids");});
     Route::get("parents", function() {return view("involve.parents");});
     Route::get("teachers", function() {return view("involve.teachers");});
 });
+
 
 Route::group(["middleware" => "auth"], function() {
     // dump auth only routes here
