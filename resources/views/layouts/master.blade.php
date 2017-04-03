@@ -38,7 +38,7 @@
     @include('shared.footer')
 
     <!--  Jquery Core Script -->
-    <script src="{{ asset('assets/js/jquery-1.10.2.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!--  Core Bootstrap Script -->
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
     <!--  Flexslider Scripts --> 

@@ -12,29 +12,39 @@
 */
 
 Route::get('/', function () { return view("home"); });
-Route::get("/old", function() {return view("welcome");});
 Route::get("/curriculum", function() {return view("curriculum");});
 Route::get("/events", "Controller@events");
 Route::get("/contact", function() {return view("contact");});
 
+// TEST
+Route::get('/test2',function () { return view("curriculum.TEST_PAGE_CREATION"); });
+Route::get('/test1',"FileSaveController@store");
+Route::get('/test', function () { return view("test"); });
+
 // Under the 'Curriculum' dropdown
-Route::get("/curriculum/literacy", function() {return view("curriculum.literacy");});
-Route::get("/curriculum/numeracy", function() {return view("curriculum.numeracy");});
-Route::get("/curriculum/digital_technologies", function() {return view("curriculum.digital_technologies");});
+Route::group(["prefix" => "curriculum"], function() {
+    Route::get("literacy", function() {return view("curriculum.literacy");});
+    Route::get("numeracy", function() {return view("curriculum.numeracy");});
+    Route::get("digital_technologies", function() {return view("curriculum.digital_technologies");});
+});
 
 // Under the 'Get Involved' dropdown
-Route::get("/involve/kids", function() {return view("involve.kids");});
-Route::get("/involve/parents", function() {return view("involve.parents");});
-Route::get("/involve/teachers", function() {return view("involve.teachers");});
 
-// to be moved to 'auth only' group
-Route::get("/dashboard", function() {return view("admin.dashboard");});
-Route::get("/addpage", function() {return view("admin.custompages.addpage");});
+Route::group(["prefix" => "involve"], function() {
+    Route::get("kids", function() {return view("involve.kids");});
+    Route::get("parents", function() {return view("involve.parents");});
+    Route::get("teachers", function() {return view("involve.teachers");});
+});
+
 
 Route::group(["middleware" => "auth"], function() {
     // dump auth only routes here
 });
 
 Route::group(["prefix" => "admin"], function() {
+    Route::get("/", function() { return view("admin.dashboard"); });
+    
     Route::resource("events", "EventController");
+    Route::resource("links", "LinkController");
+    Route::resource("pages", "PageController");
 });

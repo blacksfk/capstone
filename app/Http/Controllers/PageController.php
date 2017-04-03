@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
+use App\Page;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
-class EventController extends Controller
+class PageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all()->sortBy("date");
+        $pages = Page::all();
 
-        return view("admin.events.index")->with("events", $events);
+        return view("admin.pages.index")->with("pages", $pages);
     }
 
     /**
@@ -27,7 +27,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view("admin.events.create");
+        return view("admin.pages.create");
     }
 
     /**
@@ -40,12 +40,16 @@ class EventController extends Controller
     {
         $this->validate($request, [
             "name" => "required",
-            "date" => "required",
+            "status" => "required"
         ]);
 
-        Event::create($request->all());
+        // store the page in the database
+        Page::create($request->name, $request->status);
+        
+        // TODO: call function to save the content from the request to file
+        // Utilities::writeToFile($request->content);
 
-        return redirect()->route("admin.events.index")->with("success", "Event created successfully");
+        return redirect()->route("admin.pages.index")->with("success", "Page created successfully");
     }
 
     /**
@@ -56,9 +60,12 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::find($id);
+        $page = Page::find($id);
 
-        return view("admin.events.edit")->with("event", $event);
+        // TODO: read the file and a content variable to the page object
+        // Utilities::getContentFromFile($page->path);
+
+        return view("admin.pages.edit")->with("page", $page);
     }
 
     /**
@@ -72,12 +79,15 @@ class EventController extends Controller
     {
         $this->validate($request, [
             "name" => "required",
-            "date" => "required",
+            "status" => "required"
         ]);
 
-        Event::find($id)->update($request->all());
+        $page = Page::find($id)->update($request->all());
 
-        return redirect()->route("admin.events.index")->with("success", "Event updated successfully");
+        // TODO: update the physical file with the new content (rewrite the file)
+        // Utilities::writeToFile($request->content());
+
+        return view("admin.pages.index")->with("success", "Page updated successfully");
     }
 
     /**
@@ -88,8 +98,8 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        Event::find($id)->delete();
+        Pages::find($id)->delete();
 
-        return redirect()->route("admin.events.index")->with("success", "Event deleted successfully");
+        return view("admin.pages.index")->with("success", "Page deleted successfully");
     }
 }

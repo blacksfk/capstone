@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Welcome')
 @section('content')
+
 	<div class="container set-pad" >
 		@include('shared.sidebar')
 		<div class="well col-lg-offset-3">
@@ -13,7 +14,7 @@
 							<label for="form-group">Please select a page template :</label><br>
 							<div class="col-lg-2 col-md-4 col-xs-6">
 								<img class="img-responsive" src="assets/img/placeholder.jpeg" alt="">
-								<input type="radio" name="template" id="withoutimage" value="template1" data-error="Template type required.">
+								<input type="radio" name="template" id="withoutimage" value="template1" data-error="Template type required." checked>
 							</div>
 							<div class="col-lg-2 col-md-4 col-xs-6">
 								<img class="img-responsive" src="assets/img/placeholder.jpeg" alt="">
@@ -34,13 +35,23 @@
 						</div>
 					</div>
 				</div>
-			
-			
+				{{--
+				<div class="row">
+					<div class="col-md-6">
+						<label for="form_name">Select navigation category :</label>
+						<select>
+						@foreach ($categories as $category)
+							<option name="category" value="{{$category->name}}" data-error="Category required.">{{$category->name}}</option>
+						@endforeach
+						</select>
+					</div>
+				</div>
+				--}}
 				<div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="form_name">Page name :</label>
-                            <input id="form_name" type="text" name="pagename" class="form-control" placeholder="Name of new page" required="required" data-error="Page name required.">
+                            <input id="form_name" type="text" value="{{$page->pagename or ""}}" name="pagename" class="form-control" placeholder="Name of new page" required="required" data-error="Page name required.">
                         </div>
                     </div>
                 </div>
@@ -50,12 +61,25 @@
 					<div class="col-md-12">
 						<div class="form-group">
 						<label for="form_message">Content :</label>
-						<textarea id="form_message" name="content" class="form-control" placeholder="Contents of page" rows="12" required="required" data-error="No content added."></textarea>
+						<textarea id="form_message" value=$newcontent name="content" class="form-control" placeholder="Contents of page" rows="12" required="required" data-error="No content added.">
+						{{$page->content or ""}}
+						</textarea>
 					</div>
 				</div>
 				</div>
 				
-				<div class="row">
+				<?php
+	#			$('#template').on('change', function(){
+	#				if($(this).val()==="withimage"){
+	#					$("#uploadimage").show()
+	#				}
+	#				else{
+	#					$("#uploadimage").hide()
+	#				}
+	#			});
+				?>
+				
+				<div class="row" id="uploadimage">
 					<div class="col-md-12">
 						<div class="form-group">
 							<label for="form_message">Upload image :</label>

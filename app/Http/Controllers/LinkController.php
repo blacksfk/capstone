@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
+use App\Link;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
-class EventController extends Controller
+class LinkController extends Controller
 {
+    private static $validation = [
+        "name" => "required",
+        "status" => "required"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +20,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all()->sortBy("date");
-
-        return view("admin.events.index")->with("events", $events);
+        return view("admin.links.index")->with("links", Link::all());
     }
 
     /**
@@ -27,7 +30,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view("admin.events.create");
+        return view("admin.links.create");
     }
 
     /**
@@ -38,14 +41,10 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            "name" => "required",
-            "date" => "required",
-        ]);
+        $this->validate($request, self::$validation);
+        Link::create($request->all());
 
-        Event::create($request->all());
-
-        return redirect()->route("admin.events.index")->with("success", "Event created successfully");
+        return redirect()->route("admin.links.index")->with("success", "Link successfully created");
     }
 
     /**
@@ -56,9 +55,9 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::find($id);
+        $link = Link::find($id);
 
-        return view("admin.events.edit")->with("event", $event);
+        return view("admin.links.edit")->with("link", $link);
     }
 
     /**
@@ -70,14 +69,10 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            "name" => "required",
-            "date" => "required",
-        ]);
+        $this->validate($request, self::$validation);
+        $this->find($id)->update($request->all());
 
-        Event::find($id)->update($request->all());
-
-        return redirect()->route("admin.events.index")->with("success", "Event updated successfully");
+        return redirect()->route("admin.links.index")->with("success", "Link successfully updated");
     }
 
     /**
@@ -88,8 +83,8 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        Event::find($id)->delete();
+        Link::find($id)->delete();
 
-        return redirect()->route("admin.events.index")->with("success", "Event deleted successfully");
+        return redirect()->route("admin.links.index")->with("success", "Link successfully deleted");
     }
 }
