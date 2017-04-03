@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class FileSaveController extends Controller
+class Utility
 {
     public function save(request $request)
     {
@@ -26,10 +25,10 @@ class FileSaveController extends Controller
         ];
         */
 
-            // compiles the path, leads to views folder (specifiy the folder), (specify the name)
+        // compiles the path, leads to views folder (specifiy the folder), (specify the name)
         $filename = resource_path()."/views/".$request["category"]."/".$request["page_name"].'.blade.php';
 
-            // attempt to open or write the file
+        // attempt to open or write the file
         $myfile = fopen($filename,"w")or die("can't open file");
         $txt = "@extends('layouts.master')
 @section('title', 'Welcome')
@@ -39,7 +38,7 @@ class FileSaveController extends Controller
         fwrite($myfile, $txt);
         fclose($myfile);
 
-            // return test view to see if page is successfully created and that all values are passed
+        // return test view to see if page is successfully created and that all values are passed
         return view("test", compact('request'));
     }
 }
