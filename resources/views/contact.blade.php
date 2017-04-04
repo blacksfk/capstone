@@ -5,11 +5,8 @@
         <div id="features-sec" class="container set-pad" >
             <div class="row text-center">   
             <h1 class="header-line">CONTACT US</h1>
-        
-
+            
         <form id="contact-form" method="post" action="contact.php" role="form">
-
-            <div class="messages"></div>
 
             <div class="controls">
 
