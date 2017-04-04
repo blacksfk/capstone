@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Contact')
 @section('content')
-<meta name="viewport" content="width=device-width, initial-scale=You Scale (Ej: 0.5), user-scalable=yes">
+<meta name="viewport" content="width=device-width>
 
 <div id="features-sec" class="container set-pad" >
     <div class="row text-center">
