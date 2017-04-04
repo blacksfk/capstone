@@ -21,6 +21,7 @@
                         <li><a href="{{ url('/curriculum/digital_technologies') }}">Digital Technologies</a></li>
                     </ul>
                 </li>
+                
                 <li class="sliding-middle-out">
                     <a href="{{ url('events') }}">EVENTS</a>
                 </li>
