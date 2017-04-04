@@ -10,9 +10,7 @@
                             <!-- Slider 01 -->
                             <li>
                                 <h3></h3>
-                                <h1>Courtenay Gardens Primary School</h1>
-                                <a  href="#features-sec" class="btn btn-info btn-lg" >
-                                    LEARN MORE 
+                                <h1>Courtenay Gardens Primary School</h1> 
                                 </a>
                             </li>
                         </ul>

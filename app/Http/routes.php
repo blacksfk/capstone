@@ -17,8 +17,8 @@ Route::get("/events", "Controller@events");
 Route::get("/contact", function() {return view("contact");});
 
 // TEST
-Route::get('/test2',function () { return view("curriculum.TEST_PAGE_CREATION"); });
-Route::get('/test1',"FileSaveController@store");
+//Route::get('/test2',function () { return view("curriculum.TEST_PAGE_CREATION"); });
+Route::get('/test1',"FileSaveController@save");
 Route::get('/test', function () { return view("test"); });
 
 // Under the 'Curriculum' dropdown
