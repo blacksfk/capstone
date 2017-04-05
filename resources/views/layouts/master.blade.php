@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="padded-sides">
-    @yield('content')
+        @yield('content')
     </div>
     @include('shared.footer')
 
