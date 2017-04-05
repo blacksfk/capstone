@@ -15,12 +15,14 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
             $table->string("name");
-            $table->tinyInteger("status");
-            $table->integer("link")->unsigned()->nullable();
+            $table->tinyInteger("active");
+            $table->integer("link_id")->unsigned()->nullable();
+            $table->string("content");
+            $table->timestamps();
         });
 
         Schema::table("pages", function(Blueprint $table) {
-            $table->foreign("link")->references("id")->on("links");
+            $table->foreign("link_id")->references("id")->on("links");
         });
     }
 
