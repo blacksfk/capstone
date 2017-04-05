@@ -34,7 +34,9 @@
             </div>
         </div>
     </div>
+    <div class="padded-sides">
     @yield('content')
+    </div>
     @include('shared.footer')
 
     <!--  Jquery Core Script -->
