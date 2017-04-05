@@ -8,6 +8,7 @@
 
     {{ Form::model($page, ['method' => 'PATCH', 'route' => ['admin.pages.update', $page]]) }}
         @include('admin.pages.form')
+        {{ Form::submit('Update', ['class' => 'form-control btn btn-success']) }}
     {{ Form::close() }}
 </div>
 @endsection
