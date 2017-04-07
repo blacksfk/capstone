@@ -23,13 +23,16 @@
                 <div class="mask flex-center">
                     <p class="white-text">Google Maps</p>
                 </div>
+            </div>
+
+
         </div>
-
-
     </div>
 </div>
 <div id="footer">
-    &copy; 2017 Courtenay Gardens Primary School | All Rights Reserved <br>
+    <div class="col-sm-10">
+    &copy; 2017 Courtenay Gardens Primary School | All Rights Reserved
+    </div>
     <div id="google_translate_element"></div>
     <script type="text/javascript">
         function googleTranslateElementInit() {

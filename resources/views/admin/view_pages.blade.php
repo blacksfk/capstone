@@ -3,7 +3,7 @@
 @section('content')
     <div class="container set-pad" >
         @include('shared.sidebar')
-        <div class="well row text-center col-lg-offset-3">
+        <div class="well row text-center col-sm-offset-3">
         <?php
         {
         $full_path = resource_path().'\\views\\';
