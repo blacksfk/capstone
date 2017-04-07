@@ -6,26 +6,22 @@ use App\Page;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
-class GalleryImageController extends Controller
+class GalleryCategoryController extends Controller
 {
 	public function index()
 	{
-		$pages = Page::all();
-
-        return view("admin.gallery.index")->with("images", $images);
+        return view("admin.gallerycategories.index")->with("categories", GalleryCategory::all());
 	}
 	
 	public function create()
 	{
-		return view("admin.gallery.create");
+		return view("admin.gallerycategories.create");
 	}
 	
 	public function store(Request $request)
 	{
 		$this->validate($request, [
-            "name" => "required",
-            "category" => "required",
-			"path" => "required"
+            "name" => "required"
         ]);
 
         Event::create($request->all());
@@ -35,32 +31,28 @@ class GalleryImageController extends Controller
 	
 	public function edit($id)
 	{
-		$event = Event::find($id);
+		$event = GalleryCategory::find($id);
 
-        return view("admin.gallery.edit")->with("image", $image);
+        return view("admin.gallerycategory.edit")->with("gallerycategory", GalleryCategory::find($id));
 	}
 	
 	public function update(Request $request, $id)
 	{
 		$this->validate($request, [
-            "name" => "required",
-            "category" => "required",
-			"path" => "required"
+            "name" => "required"
         ]);
 
-        $image = Page::find($id)->update($request->all());
+        GalleryCategory::find($id)->update($request->all());
 
-        // TODO: update the physical file with the new content (rewrite the file)
-        // Utilities::writeToFile($request->content());
-
-        return view("admin.gallery.index")->with("success", "Image updated successfully");
+        return view("admin.gallery.index")->with("success", "Category updated successfully");
 	}
 	
 	public function destroy($id)
 	{
-		Event::find($id)->delete();
+		GalleryCategory::find($id)->delete();
+		GalleryImage::where($id, $category_id)->delete();
 
-        return redirect()->route("admin.gallery.index")->with("success", "Image deleted successfully");
+        return redirect()->route("admin.gallery.index")->with("success", "Category deleted successfully");
 	}
 }
 

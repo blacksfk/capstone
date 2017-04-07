@@ -10,13 +10,18 @@ class GalleryImageController extends Controller
 {
 	public function index()
 	{
-		$pages = Page::all();
-
-        return view("admin.gallery.index")->with("images", $images);
+        return view("admin.gallery.index")->with("images", GalleryImage::all());
 	}
 	
 	public function create()
 	{
+		$categories = GalleryCategory::all();
+		
+		if (count($categories) === 0)
+		{
+			return redirect()->route("admin.GalleryCategory.create")->with("errors", "No categories exist, please create one here first");
+		}
+		
 		return view("admin.gallery.create");
 	}
 	
@@ -24,43 +29,20 @@ class GalleryImageController extends Controller
 	{
 		$this->validate($request, [
             "name" => "required",
-            "category" => "required",
+            "category_id" => "required",
 			"path" => "required"
         ]);
 
-        Event::create($request->all());
+        GalleryImage::create($request->all());
 
         return redirect()->route("admin.gallery.index")->with("success", "Image(s) created successfully");
 	}
 	
-	public function edit($id)
-	{
-		$event = Event::find($id);
-
-        return view("admin.gallery.edit")->with("image", $image);
-	}
-	
-	public function update(Request $request, $id)
-	{
-		$this->validate($request, [
-            "name" => "required",
-            "category" => "required",
-			"path" => "required"
-        ]);
-
-        $image = Page::find($id)->update($request->all());
-
-        // TODO: update the physical file with the new content (rewrite the file)
-        // Utilities::writeToFile($request->content());
-
-        return view("admin.gallery.index")->with("success", "Image updated successfully");
-	}
-	
 	public function destroy($id)
 	{
-		Event::find($id)->delete();
+		GalleryImage::findOrFail($id)->delete();
 
-        return redirect()->route("admin.gallery.index")->with("success", "Image deleted successfully");
+        return redirect()->route("admin.gallery.index")->with("success", "Gallery updated successfully");
 	}
 }
 
