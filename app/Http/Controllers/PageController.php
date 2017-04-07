@@ -39,7 +39,7 @@ class PageController extends Controller
         {
             return redirect()->route("admin.links.create")->with("errors", "No links found, please create one here first");
         }
-        return view("admin.pages.create")->with("links", Link::all());
+        return view("admin.pages.create")->with("links", $links);
     }
 
     /**
