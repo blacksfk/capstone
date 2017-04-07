@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Page;
+use App\Link;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
 class PageController extends Controller
 {
+    private static $validation = [
+        "name" => "required",
+        "link_id" => "required",
+        "content" => "required"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +22,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pages = Page::all();
-
-        return view("admin.pages.index")->with("pages", $pages);
+        return view("admin.pages.index")->with("pages", Page::all());
     }
 
     /**
@@ -27,7 +32,14 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view("admin.pages.create");
+        // send all the links to the view for dropdown population
+        $links = Link::all();
+
+        if (count($links) === 0)
+        {
+            return redirect()->route("admin.links.create")->with("errors", "No links found, please create one here first");
+        }
+        return view("admin.pages.create")->with("links", Link::all());
     }
 
     /**
@@ -38,13 +50,8 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            "name" => "required",
-            "status" => "required"
-        ]);
-
-        // store the page in the database
-        Page::create($request->name, $request->status);
+        $this->validate($request, self::$validation);
+        Page::create($request->all());
         
         // TODO: call function to save the content from the request to file
         // Utilities::writeToFile($request->content);
@@ -61,11 +68,9 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::find($id);
+        $links = Link::all();
 
-        // TODO: read the file and a content variable to the page object
-        // Utilities::getContentFromFile($page->path);
-
-        return view("admin.pages.edit")->with("page", $page);
+        return view("admin.pages.edit")->with("page", $page)->with("links", $links);
     }
 
     /**
@@ -77,17 +82,13 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            "name" => "required",
-            "status" => "required"
-        ]);
-
+        $this->validate($request, self::$validation);
         $page = Page::find($id)->update($request->all());
 
         // TODO: update the physical file with the new content (rewrite the file)
         // Utilities::writeToFile($request->content());
 
-        return view("admin.pages.index")->with("success", "Page updated successfully");
+        return redirect()->route("admin.pages.index")->with("success", "Page updated successfully");
     }
 
     /**
@@ -98,8 +99,8 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        Pages::find($id)->delete();
+        Page::findOrFail($id)->delete();
 
-        return view("admin.pages.index")->with("success", "Page deleted successfully");
+        return redirect()->route("admin.pages.index")->with("success", "Page deleted successfully");
     }
 }
