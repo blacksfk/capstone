@@ -35,5 +35,6 @@
         @endforeach
     </tbody>
 </table>
+<hr>
 <input type="submit" value="Enable ticked" class="btn btn-primary"></form>
 @endsection
