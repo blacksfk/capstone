@@ -10,7 +10,7 @@ class LinkController extends Controller
 {
     private static $validation = [
         "name" => "required",
-        "status" => "required"
+        "active" => "required"
     ];
 
     /**
@@ -30,7 +30,7 @@ class LinkController extends Controller
      */
     public function create()
     {
-        return view("admin.links.create");
+        return view("admin.links.create")->with("links", Link::all());
     }
 
     /**
@@ -55,9 +55,9 @@ class LinkController extends Controller
      */
     public function edit($id)
     {
-        $link = Link::find($id);
-
-        return view("admin.links.edit")->with("link", $link);
+        return view("admin.links.edit")
+            ->with("link", Link::find($id))
+            ->with("links", Link::all());
     }
 
     /**
@@ -70,7 +70,7 @@ class LinkController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, self::$validation);
-        $this->find($id)->update($request->all());
+        Link::find($id)->update($request->all());
 
         return redirect()->route("admin.links.index")->with("success", "Link successfully updated");
     }
