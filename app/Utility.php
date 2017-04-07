@@ -31,7 +31,7 @@ class Utility
         $txt = "@extends('layouts.master')\n" .
         "@section('title', 'Welcome')\n" . 
         "@section('content')\n" .
-        "<div class=\"row text-center\">". $contents."</div>\n" . 
+        "<div class=\"row text-center\">". $contents ."</div>\n" . 
         "@endsection";
         fwrite($myfile, $txt);
         fclose($myfile);
