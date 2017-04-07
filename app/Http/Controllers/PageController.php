@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use App\Link;
+use App\Utility;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -55,6 +56,8 @@ class PageController extends Controller
         
         // TODO: call function to save the content from the request to file
         // Utilities::writeToFile($request->content);
+
+        Utility::save($request->name, $request->contents, $request->lind_id);
 
         return redirect()->route("admin.pages.index")->with("success", "Page created successfully");
     }
