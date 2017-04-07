@@ -7,7 +7,7 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Status</th>
+            <th>Active</th>
             <th>Parent</th>
             <th>Action</th>
         </tr>
@@ -16,9 +16,17 @@
         @foreach ($links as $link)
             <tr>
                 <td>{{ $link->name }}</td>
-                <td>{{ $link->status }}</td>
-                <td>{{ $link->parent }}</td>
-                <td><a href="{{ route('admin.events.edit', $link->id) }}" class="btn btn-primary">Edit</a></td>
+                <td>
+                    @if ($link->active)
+                        {{ "True" }}
+                    @endif
+                </td>
+                <td>
+                    @if (!empty($link->parent_id))
+                        {{ $link->parent->name }}
+                    @endif
+                </td>
+                <td><a href="{{ route('admin.links.edit', $link->id) }}" class="btn btn-primary">Edit</a></td>
             </tr>
         @endforeach
     </tbody>
