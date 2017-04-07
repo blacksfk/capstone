@@ -45,6 +45,9 @@ Route::group(["prefix" => "admin"], function() {
     Route::get("/", function() { return view("admin.dashboard"); });
     
     Route::resource("events", "EventController");
-    Route::resource("links", "LinkController");
     Route::resource("pages", "PageController");
+
+    // custom controller method - put before resource!
+    Route::post("links/massEnable", "LinkController@massEnable");
+    Route::resource("links", "LinkController");
 });
