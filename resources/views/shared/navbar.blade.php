@@ -8,9 +8,6 @@
         </div>
         <div class="navbar-collapse collapse move-me">
             <ul class="nav navbar-nav navbar-right">
-                <li class="sliding-middle-out">
-                    <a href="{{ url('') }}">HOME</a>
-                </li>
                 <li class="dropdown dropdown-toggle sliding-middle-out">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         CURRICULUM<span class="caret"></span>
