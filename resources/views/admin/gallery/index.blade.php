@@ -24,13 +24,17 @@ input[type=checkbox]:checked + label {
 </style>
 		<form>
 			<label class="form-group">Images : </label><br>
-				
-			@foreach ($images as $image)
-				<input type='checkbox' name='{{}}' value='valuable' id="thing"/><label for="thing"></label>
+			<?php
+			@foreach ($categories as $category)
+				@foreach ($images as $image)
+					echo "<input type='checkbox' name='";
+					echo {{$image->$name}};
+					echo "'value=";
+					echo {{$image->$name}};
+					echo "id='thing'/><label for='thing'></label>";
+				@endforeach
 			@endforeach
-			
-			<input type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label>
-			
+			?>
 			<input type="submit" class="btn btn-success btn-send" value="Delete">
 		</form>
 @endsection
