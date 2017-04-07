@@ -1,4 +1,4 @@
-<div class="well col-lg-2">
+<div class="well col-sm-2">
     <p><b>Administration</b></p>
     <ul class="nav navbar-nav">
         <li><a href="{{ url('admin') }}">Landing Page</a></li>

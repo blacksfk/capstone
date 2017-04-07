@@ -37,6 +37,7 @@
     <div class="padded-sides">
         @yield('content')
     </div>
+
     @include('shared.footer')
 
     <!--  Jquery Core Script -->
@@ -52,4 +53,5 @@
     <!--  Custom Scripts --> 
     <script src="{{ asset('assets/js/custom.js') }}"></script>
 </body>
+
 </html>
