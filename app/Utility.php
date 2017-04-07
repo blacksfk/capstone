@@ -1,13 +1,11 @@
 <?php
 
-
+namespace App;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 
 class Utility
 {
-    public function save(request $request)
+    public static function save($name, $contents, $category=null)
     {
         /*
          * check request object if empty
@@ -26,15 +24,15 @@ class Utility
         */
 
         // compiles the path, leads to views folder (specifiy the folder), (specify the name)
-        $filename = resource_path()."/views/".$request["category"]."/".$request["page_name"].'.blade.php';
+        $filename = resource_path()."/views/".$category."/".$name.'.blade.php';
 
         // attempt to open or write the file
         $myfile = fopen($filename,"w")or die("can't open file");
-        $txt = "@extends('layouts.master')
-@section('title', 'Welcome')
-@section('content')
-<div class=\"row text-center\">". $request["contents"]."</div>
-    @endsection";
+        $txt = "@extends('layouts.master')\n" .
+        "@section('title', 'Welcome')\n" . 
+        "@section('content')\n" .
+        "<div class=\"row text-center\">". $contents."</div>\n" . 
+        "@endsection";
         fwrite($myfile, $txt);
         fclose($myfile);
 
