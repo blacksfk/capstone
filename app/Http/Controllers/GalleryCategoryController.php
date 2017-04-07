@@ -6,7 +6,7 @@ use App\Page;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
-class PageController extends Controller
+class GalleryImageController extends Controller
 {
 	public function index()
 	{
