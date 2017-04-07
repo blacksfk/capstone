@@ -14,12 +14,12 @@
                 </li>
 
             <li class="dropdown sliding-middle-out">
-                <a href="#">CURRICULUM<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="{{ url('/curriculum/literacy') }}">Literacy</a></li>
-                    <li><a href="{{ url('/curriculum/Numeracy') }}">Numeracy</a></li>
-                    <li><a href="{{ url('/curriculum/digital_technologies') }}">Digital Technologies</a></li>
-                </ul>
+                <a class="dropbtn" href="#">CURRICULUM<span class="caret"></span></a>
+                <div class="dropdown-content">
+                    <a class="sliding-middle-out" href="{{ url('/curriculum/literacy') }}">Literacy</a>
+                    <a href="{{ url('/curriculum/Numeracy') }}">Numeracy</a>
+                    <a href="{{ url('/curriculum/digital_technologies') }}">Digital Technologies</a>
+                </div>
             </li>
                 
                 <li class="sliding-middle-out">
