@@ -87,7 +87,6 @@ class PageController extends Controller
         $page = Page::find($id)->update($request->all());
         Utility::save($request->name, $request->content);
 
-        
         return redirect()->route("admin.pages.index")->with("success", "Page updated successfully");
     }
 
