@@ -87,4 +87,19 @@ class LinkController extends Controller
 
         return redirect()->route("admin.links.index")->with("success", "Link successfully deleted");
     }
+
+    // controller method to mass enable all links in the request
+    public function massEnable(Request $request)
+    {
+        $linksToEnable = array_slice(array_keys($request->all()), 1);
+        
+        foreach ($linksToEnable as $linkID)
+        {
+            $link = Link::find($linkID);
+            $link->active = 1;
+            $link->save();
+        }
+
+        return redirect()->route("admin.links.index")->with("success", count($linksToEnable) . " link(s) enabled successfully");
+    }
 }
