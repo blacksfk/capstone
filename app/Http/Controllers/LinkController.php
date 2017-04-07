@@ -10,7 +10,7 @@ class LinkController extends Controller
 {
     private static $validation = [
         "name" => "required",
-        "status" => "required"
+        "active" => "required"
     ];
 
     /**
@@ -30,7 +30,7 @@ class LinkController extends Controller
      */
     public function create()
     {
-        return view("admin.links.create");
+        return view("admin.links.create")->with("links", Link::all());
     }
 
     /**
