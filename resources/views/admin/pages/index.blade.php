@@ -9,7 +9,6 @@
             <th>Name</th>
             <th>Path</th>
             <th>Link</th>
-            <th>Status</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -18,8 +17,7 @@
             <tr>
                 <td>{{ $page->name }}</td>
                 <td>{{ $page->path }}</td>
-                <td>{{ $page->link }}</td>
-                <td>{{ $page->status }}</td>
+                <td>{{ $page->link->name }}</td>
                 <td><a href="{{ route('admin.pages.edit', $page->id) }}" class="btn btn-primary">Edit</a></td>
             </tr>
         @endforeach

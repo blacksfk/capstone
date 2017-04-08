@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Page;
 use App\Link;
+use App\Utility;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -33,12 +35,13 @@ class PageController extends Controller
     public function create()
     {
         // send all the links to the view for dropdown population
-        $links = Link::all();
+        $links = self::getOrphanLinks();
 
         if (count($links) === 0)
         {
-            return redirect()->route("admin.links.create")->with("errors", "No links found, please create one here first");
+            return redirect()->route("admin.links.create")->with("errors", "No links found, please create one here");
         }
+
         return view("admin.pages.create")->with("links", $links);
     }
 
@@ -52,9 +55,7 @@ class PageController extends Controller
     {
         $this->validate($request, self::$validation);
         Page::create($request->all());
-        
-        // TODO: call function to save the content from the request to file
-        // Utilities::writeToFile($request->content);
+        Utility::save($request->name, $request->content);
 
         return redirect()->route("admin.pages.index")->with("success", "Page created successfully");
     }
@@ -68,7 +69,7 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::find($id);
-        $links = Link::all();
+        $links = self::getOrphanLinks();
 
         return view("admin.pages.edit")->with("page", $page)->with("links", $links);
     }
@@ -84,9 +85,7 @@ class PageController extends Controller
     {
         $this->validate($request, self::$validation);
         $page = Page::find($id)->update($request->all());
-
-        // TODO: update the physical file with the new content (rewrite the file)
-        // Utilities::writeToFile($request->content());
+        Utility::save($request->name, $request->content);
 
         return redirect()->route("admin.pages.index")->with("success", "Page updated successfully");
     }
@@ -102,5 +101,13 @@ class PageController extends Controller
         Page::findOrFail($id)->delete();
 
         return redirect()->route("admin.pages.index")->with("success", "Page deleted successfully");
+    }
+
+    // this query only selects links which do not have pages
+    private function getOrphanLinks()
+    {
+        return DB::table("links")->whereNotIn("id", function($query) {
+            $query->select(DB::raw("link_id"))->from("pages");
+        })->get();   
     }
 }
