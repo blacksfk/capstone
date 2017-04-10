@@ -55,7 +55,7 @@ class PageController extends Controller
     {
         $this->validate($request, self::$validation);
         Page::create($request->all());
-        Utility::save($request->name, $request->content);
+        //Utility::save($request->name, $request->content);
 
         return redirect()->route("admin.pages.index")->with("success", "Page created successfully");
     }
@@ -85,7 +85,7 @@ class PageController extends Controller
     {
         $this->validate($request, self::$validation);
         $page = Page::find($id)->update($request->all());
-        Utility::save($request->name, $request->content);
+        //Utility::save($request->name, $request->content);
 
         return redirect()->route("admin.pages.index")->with("success", "Page updated successfully");
     }
