@@ -51,3 +51,6 @@ Route::group(["prefix" => "admin"], function() {
     Route::post("links/massEnable", "LinkController@massEnable");
     Route::resource("links", "LinkController");
 });
+
+// Dynamic routing to custom pages
+Route::get("/{page_name}", "DynamicViewController@show")->name("dynamic.show");
