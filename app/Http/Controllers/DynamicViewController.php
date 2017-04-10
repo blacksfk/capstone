@@ -10,11 +10,11 @@ class DynamicViewController extends Controller
 {
     public function show($page_name = "home")
     {
-        $page = Page::where("name", $page_name)->get();
+        $page = Page::where("name", $page_name)->first();
 
-        if (!isset($page))
+        if ($page->count() === 0)
         {
-            return redirect()->url("/");
+            return redirect("/");
         }
 
         return view("dynamic")->with("page", $page);
