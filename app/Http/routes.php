@@ -46,6 +46,7 @@ Route::group(["prefix" => "admin"], function() {
     
     Route::resource("events", "EventController");
     Route::resource("pages", "PageController");
+    Route::resource("templates", "TemplateController");
 
     // custom controller method - put before resource!
     Route::post("links/massEnable", "LinkController@massEnable");
