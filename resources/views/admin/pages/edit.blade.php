@@ -17,11 +17,24 @@
         <div class="form-group">
             <label for="link_id">Link</label>
             <select name="link_id" id="link_id" class="form-control">
-                @if (isset($page->link_id))
-                    <option value="{{ $page->link_id }}" selected>{{ $page->link->name }}</option>
-                @endif
                 @foreach ($links as $link)
-                    <option value="{{ $link->id }}">{{ $link->name }}</option>
+                    @if ($page->link_id === $link->id)
+                        <option value="{{ $page->link->id }}" selected>{{ $page->link->name }}</option>
+                    @else
+                        <option value="{{ $link->id }}">{{ $link->name }}</option>
+                    @endif
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="template_id">Template</label>
+            <select name="template_id" id="template_id" class="form-control">
+                @foreach ($templates as $template)
+                    @if ($page->template_id === $template->id)
+                        <option value="{{ $page->template_id }}" selected>{{ $page->template->name }}</option>
+                    @else
+                        <option value="{{ $template->id }}">{{ $template->name }}</option>
+                    @endif
                 @endforeach
             </select>
         </div>

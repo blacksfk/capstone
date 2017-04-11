@@ -17,6 +17,14 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="template_id">Template</label>
+            <select name="template_id" id="template_id" class="form-control">
+                @foreach ($templates as $template)
+                    <option value="{{ $template->id }}">{{ $template->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <label for="content">Content</label>
             <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
         </div>
