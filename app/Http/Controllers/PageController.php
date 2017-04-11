@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Page;
 use App\Link;
+use App\Template;
 use App\Utility;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -35,14 +36,18 @@ class PageController extends Controller
     public function create()
     {
         // send all the links to the view for dropdown population
-        $links = self::getOrphanLinks();
+        $links = $this->getOrphanLinks();
 
         if (count($links) === 0)
         {
             return redirect()->route("admin.links.create")->with("errors", "No links found, please create one here");
         }
 
-        return view("admin.pages.create")->with("links", $links);
+        /* give the page both links and templates
+            to populate the dropdowns with */
+        return view("admin.pages.create")
+            ->with("links", $links)
+            ->with("templates", Template::all());
     }
 
     /**
@@ -69,9 +74,13 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::find($id);
-        $links = self::getOrphanLinks();
+        $links = $this->getOrphanLinks();
+        $templates = Template::all();
 
-        return view("admin.pages.edit")->with("page", $page)->with("links", $links);
+        return view("admin.pages.edit")
+            ->with("page", $page)
+            ->with("links", $links)
+            ->with("templates", $templates);
     }
 
     /**
