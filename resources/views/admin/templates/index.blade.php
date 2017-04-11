@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($templates as $tempalte)
+        @foreach ($templates as $template)
             <td>{{ $template->name }}</td>
             <td>
                 <a href="{{ route('admin.templates.edit', $template->id) }}" class="btn btn-primary">Edit</a>
@@ -19,3 +19,4 @@
         @endforeach
     </tbody>
 </table>
+@endsection
