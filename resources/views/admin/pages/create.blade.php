@@ -28,7 +28,17 @@
             <label for="content">Content</label>
             <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
         </div>
+        <a id="preview" class="btn btn-primary">Preview</a>
         <input type="submit" value="Create" class="btn btn-success">
-    </form>    
+    </form>
 </div>
+<script>
+    $("#preview").click(function(event) {
+        event.preventDefault();
+        $.get("{{ route('admin.pages.preview') }}", {id: $("#template_id").val(), name: $("#name").val(), content: $("#content").val()}, function(data) {
+            var wdw = window.open();
+            wdw.document.write(data);
+        });
+    });
+</script>
 @endsection
