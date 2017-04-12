@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">   
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     @include('shared.navbar')
@@ -44,7 +45,7 @@
     @include('shared.footer')
 
     <!--  Jquery Core Script -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
     <!--  Core Bootstrap Script -->
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
     <!--  Flexslider Scripts --> 
