@@ -45,12 +45,15 @@ Route::group(["prefix" => "admin"], function() {
     Route::get("/", function() { return view("admin.dashboard"); });
     
     Route::resource("events", "EventController");
-    Route::resource("pages", "PageController");
     Route::resource("templates", "TemplateController");
 
     // custom controller method - put before resource!
     Route::post("links/massEnable", "LinkController@massEnable");
     Route::resource("links", "LinkController");
+
+    // custom route for previewing a page
+    Route::get("pages/preview", "PageController@preview")->name("admin.pages.preview");
+    Route::resource("pages", "PageController");
 });
 
 // Dynamic routing to custom pages
