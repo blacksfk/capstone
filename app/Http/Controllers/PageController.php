@@ -119,4 +119,18 @@ class PageController extends Controller
             $query->select(DB::raw("link_id"))->from("pages");
         })->get();   
     }
+
+    // ajax only method to preview pages when creating/editing
+    public function preview(Request $request)
+    {
+        //$template = Template::find($request->id);
+        $template = Template::find(1);
+        $view = view("admin.pages.preview")
+            ->with("template", $template)
+            ->with("name", $request->name)
+            ->with("content", $request->content)
+            ->render();
+
+        return $view;
+    }
 }
