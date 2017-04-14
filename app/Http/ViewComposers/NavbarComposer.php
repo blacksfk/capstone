@@ -23,10 +23,18 @@ class NavbarComposer
         // now get all their children
         foreach ($categories as $category)
         {
-            $this->links[$category->name] = 
-                Link::where("parent_id", $category->id)
-                        ->where("active", true)
-                        ->get();
+            $children = Link::where("parent_id", $category->id)
+                                ->where("active", true)
+                                ->get();
+
+            if (count($children) === 0)
+            {
+                $this->links[$category->name] = $category;
+            }
+            else
+            {
+                $this->links[$category->name] = $children;
+            }
         }
     }
 
