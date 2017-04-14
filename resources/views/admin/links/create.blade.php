@@ -1,4 +1,4 @@
-@extends('layouts.admin_form')
+@extends('layouts.admin')
 @section('title', 'Create new Link')
 @section('back_link', route('admin.links.index'))
 @section('content')

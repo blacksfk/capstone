@@ -1,4 +1,4 @@
-@extends('layouts.admin_form')
+@extends('layouts.admin')
 @section('title', 'Create new Event')
 @section('back_link', route('admin.events.index'))
 @section('content')
