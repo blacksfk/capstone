@@ -12,7 +12,7 @@ class DynamicViewController extends Controller
     {
         $page = Page::where("name", $page_name)->first();
 
-        if ($page->count() === 0)
+        if (!isset($page))
         {
             return redirect("/");
         }
