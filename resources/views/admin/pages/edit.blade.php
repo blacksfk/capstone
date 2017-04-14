@@ -20,7 +20,9 @@
             <select name="link_id" id="link_id" class="form-control">
                 <option value="{{ $page->link->id }}" selected>{{ $page->link->name }}</option>
                 @foreach ($links as $link)
-                    <option value="{{ $link->id }}">{{ $link->name }}</option>
+                    @if ($link->id !== $page->link->id)
+                        <option value="{{ $link->id }}">{{ $link->name }}</option>
+                    @endif
                 @endforeach
             </select>
         </div>
