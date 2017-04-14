@@ -14,7 +14,7 @@
         <label for="name">Link name</label>
         <input type="text" name="name" id="name" class="form-control" value="{{ $link->name }}">
     </div>
-    @if (isset($link->page))
+    @if (isset($link->page) || count($link->children))
         <label for="active">Active</label>
         <div class="form-group">
             <input type="radio" name="active" value=1 @if ($link->active) checked @endif> Enabled <br>
