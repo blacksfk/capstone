@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Edit ' . $link->name)
-@section('back_link', route('admin.link.index'))
+@section('back_link', route('admin.links.index'))
 @section('content')
 <form action="{{ route('admin.links.destroy', $link->id) }}" method="post">
     <input type="hidden" name="_method" value="DELETE">
