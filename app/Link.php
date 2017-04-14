@@ -37,7 +37,7 @@ class Link extends Model
 
     /**
      * Casts the active attribute from tinyInt to boolean so you
-     * can run checks like: $link->active
+     * can run checks like: if ($link->active) { // } etc.
      * @var Boolean
      */
     protected $casts = [
