@@ -21,6 +21,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+    @include('shared.modal')
     @include('shared.navbar')
     <div  class="tag-line" >
         <div class="container">
