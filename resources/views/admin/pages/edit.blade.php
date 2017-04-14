@@ -1,6 +1,7 @@
 @extends('layouts.admin_form')
 @section('title', 'Edit ' . $page->name)
-@section('form')
+@section('back_link', route('admin.pages.index'))
+@section('content')
     <form action="{{ route('admin.pages.destroy', $page->id) }}" method="post">
         <input type="hidden" name="_method" value="DELETE">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">

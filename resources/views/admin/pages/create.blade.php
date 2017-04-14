@@ -1,6 +1,7 @@
-@extends('layouts.admin_form')
+@extends('layouts.admin')
 @section('title', 'Create new Page')
-@section('form')
+@section('back_link', route('admin.pages.index'))
+@section('content')
 <div class="form-group">
     <form action="{{ route('admin.pages.store') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">

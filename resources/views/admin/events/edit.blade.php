@@ -1,6 +1,7 @@
 @extends('layouts.admin_form')
 @section('title', 'Edit ' . $event->name)
-@section('form')
+@section('back_link', route('admin.events.index'))
+@section('content')
 <form action="{{ route('admin.events.destroy', $event->id) }}" method="post">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">

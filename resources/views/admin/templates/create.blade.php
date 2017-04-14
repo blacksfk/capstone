@@ -1,6 +1,7 @@
 @extends('layouts.admin_form')
 @section('title', 'Create Template')
-@section('form')
+@section('back_link', route('admin.templates.index'))
+@section('content')
 <form action="{{ route('admin.templates.store') }}" method="post">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="form-group">

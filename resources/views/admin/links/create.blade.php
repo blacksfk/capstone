@@ -1,6 +1,7 @@
 @extends('layouts.admin_form')
 @section('title', 'Create new Link')
-@section('form')
+@section('back_link', route('admin.links.index'))
+@section('content')
     <form action="{{ route('admin.links.store') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
