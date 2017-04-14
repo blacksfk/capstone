@@ -43,6 +43,18 @@ class TemplateController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, self::$validation);
+
+        // try to write the file first
+        try
+        {
+            Utility::save($request->name, $request->content, "templates");
+        }
+        catch (\Exception $e)   // Escape to global namespace with reverse slash
+        {
+            return back()->withInput()->with("errors", "Unable to create file: " . $e->getMessage());
+        }
+
+        // save only if writing was successful
         Template::create($request->all());
 
         return redirect()->route("admin.templates.index")->with("success", "Template created successfully");
@@ -81,9 +93,21 @@ class TemplateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request->all());
-        Template::findOrFail($id)->update($request->all());
-        // Utility::save($request->name, $request->content, "layouts");
+        $this->validate($request, self::$validation);
+        $template = Template::findOrFail($id);
+        
+        // now attempt to write to file and handle any exceptions
+        try
+        {
+            Utility::write($template->name, $template->content, "templates");
+        }
+        catch (\Exception $e)
+        {
+            return back()->withInput()->with("errors", "Unable to write file: " . $e->getMessage());
+        }
+
+        // only update the record if file writing was successful
+        $template->update($request->all())
 
         return redirect()->route("admin.templates.index")->with("success", $request->name . " updated successfully");
     }
