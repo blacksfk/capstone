@@ -123,8 +123,7 @@ class PageController extends Controller
     // ajax only method to preview pages when creating/editing
     public function preview(Request $request)
     {
-        //$template = Template::find($request->id);
-        $template = Template::find(1);
+        $template = Template::find($request->id);
         $view = view("admin.pages.preview")
             ->with("template", $template)
             ->with("name", $request->name)
