@@ -107,7 +107,7 @@ class TemplateController extends Controller
         }
 
         // only update the record if file writing was successful
-        $template->update($request->all())
+        $template->update($request->all());
 
         return redirect()->route("admin.templates.index")->with("success", $request->name . " updated successfully");
     }
