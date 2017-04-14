@@ -1,9 +1,9 @@
-@extends('layouts.master')
+@extends('templates.' . $template->name)
 @section('title', 'Preview ' . $name)
-@section('content')
+@section('page_content')
 {{ $content }}
 <script>
-    $("a, button, input[type='submit']").not("#back").click(function(event) {
+    $("a, button, input[type='submit']").click(function(event) {
         event.preventDefault();
     });
 </script>
