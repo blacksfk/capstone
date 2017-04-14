@@ -40,7 +40,8 @@ class PageController extends Controller
 
         if (count($links) === 0)
         {
-            return redirect()->route("admin.links.create")->with("errors", "No links found, please create one here");
+            return redirect()->route("admin.links.create")
+                ->with("errors", "No links found, please create one here");
         }
 
         /* give the page both links and templates
@@ -62,7 +63,8 @@ class PageController extends Controller
         Page::create($request->all());
         //Utility::save($request->name, $request->content);
 
-        return redirect()->route("admin.pages.index")->with("success", "Page created successfully");
+        return redirect()->route("admin.pages.index")
+            ->with("success", "Page created successfully");
     }
 
     /**
@@ -76,6 +78,12 @@ class PageController extends Controller
         $page = Page::find($id);
         $links = $this->getOrphanLinks();
         $templates = Template::all();
+
+        // if the page already has a link then remove it from the links array
+        if (!is_null($page->link) && in_array($page->link, $links))
+        {
+            unset($links[$page->link]);
+        }
 
         return view("admin.pages.edit")
             ->with("page", $page)
@@ -93,10 +101,21 @@ class PageController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, self::$validation);
-        $page = Page::find($id)->update($request->all());
-        //Utility::save($request->name, $request->content);
+        $page = Page::find($id);
+        $update = [];
 
-        return redirect()->route("admin.pages.index")->with("success", "Page updated successfully");
+        // set the old link to inactive if link has changed
+        if ($page->link_id !== $request->link_id)
+        {
+            $link = Link::find($page->link_id)->update(["active" => 0]);
+            $update[] = $link->name . " has been disabled";
+        }
+
+        $page->update($request->all());
+
+        return redirect()->route("admin.pages.index")
+            ->with("success", "Page updated successfully")
+            ->with("update", $update);
     }
 
     /**
@@ -109,7 +128,8 @@ class PageController extends Controller
     {
         Page::findOrFail($id)->delete();
 
-        return redirect()->route("admin.pages.index")->with("success", "Page deleted successfully");
+        return redirect()->route("admin.pages.index")
+            ->with("success", "Page deleted successfully");
     }
 
     // this query only selects links which do not have pages
