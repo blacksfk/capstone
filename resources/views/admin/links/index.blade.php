@@ -11,6 +11,7 @@
             <th>Name</th>
             <th>Active</th>
             <th>Parent</th>
+            <th>Page</th>
             <th>Enable</th>
             <th>Edit</th>
         </tr>
@@ -21,12 +22,19 @@
                 <td>{{ $link->name }}</td>
                 <td>
                     @if ($link->active)
-                        {{ "True" }}
+                        True
+                    @else
+                        False
                     @endif
                 </td>
                 <td>
                     @if (!empty($link->parent_id))
                         {{ $link->parent->name }}
+                    @endif
+                </td>
+                <td>
+                    @if (!empty($link->page))
+                        {{ $link->page->name }}
                     @endif
                 </td>
                 <td><input type="checkbox" name="{{ $link->id }}" value="1"></td>
