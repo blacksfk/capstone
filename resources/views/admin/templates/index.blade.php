@@ -12,10 +12,12 @@
     </thead>
     <tbody>
         @foreach ($templates as $template)
-            <td>{{ $template->name }}</td>
-            <td>
-                <a href="{{ route('admin.templates.edit', $template->id) }}" class="btn btn-primary">Edit</a>
-            </td>
+            <tr>
+                <td>{{ $template->name }}</td>
+                <td>
+                    <a href="{{ route('admin.templates.edit', $template->id) }}" class="btn btn-primary">Edit</a>
+                </td>
+            </tr>
         @endforeach
     </tbody>
 </table>
