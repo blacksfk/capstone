@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Utility;
 use App\Page;
 use App\Template;
 use Illuminate\Http\Request;
@@ -93,13 +94,18 @@ class TemplateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, self::$validation);
+        /* repeated validation until i figure if it's worth 
+            creating request based validation */
+        $this->validate($request, [
+            "name" => "required|max:255",
+            "content" => "required|max:3000"
+        ]);
         $template = Template::findOrFail($id);
         
         // now attempt to write to file and handle any exceptions
         try
         {
-            Utility::write($template->name, $template->content, "templates");
+            Utility::save($template->name, $request->content, "templates");
         }
         catch (\Exception $e)
         {
@@ -124,17 +130,31 @@ class TemplateController extends Controller
         that uses the template to be deleted with the default */
         $template = Template::findOrFail($id);
         $default = Template::where("name", "default")->first();
+        $update = [];
 
         foreach ($template->pages as $page)
         {
             $page->template_id = $default->id;
             $page->save();
+            $update[] = $page->name . " updated with default template";
+        }
+
+        try
+        {
+            Utility::delete(resource_path("views/templates/" . $template->name . ".blade.php"));
+        }
+        catch (\Exception $e)
+        {
+            return back()
+                ->with("errors", "Unable to delete " . $template->name . " from disk")
+                ->with("upadte", $update);
         }
 
         // now delete the template
         $template->delete();
 
-        return redirect()->route("admin.templates.index")->with("success", "Template deleted successfully");
-
+        return redirect()->route("admin.templates.index")
+            ->with("success", "Template deleted successfully")
+            ->with("update", $update);
     }
 }
