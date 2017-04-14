@@ -79,12 +79,6 @@ class PageController extends Controller
         $links = $this->getOrphanLinks();
         $templates = Template::all();
 
-        // if the page already has a link then remove it from the links array
-        if (!is_null($page->link) && in_array($page->link, $links))
-        {
-            unset($links[$page->link]);
-        }
-
         return view("admin.pages.edit")
             ->with("page", $page)
             ->with("links", $links)
