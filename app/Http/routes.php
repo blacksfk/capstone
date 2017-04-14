@@ -52,7 +52,11 @@ Route::group(["prefix" => "admin"], function() {
     Route::resource("links", "LinkController");
 
     // custom route for previewing a page
-    Route::get("pages/preview", "PageController@preview")->name("admin.pages.preview");
+    Route::get("pages/preview", [
+        "as" => "admin.pages.preview",
+        "middleware" => "ajax",
+        "uses" => "PageController@preview"
+    ]);
     Route::resource("pages", "PageController");
 });
 
