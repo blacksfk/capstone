@@ -36,10 +36,34 @@
                 <li class="sliding-middle-out">
                     <a href="{{ url('contact') }}">CONTACT US</a>
                 </li>
+
+                {{-- Dynamic links go here!! --}}
+                @foreach ($dynLinks as $category => $links)
+                    @if (count($links) > 0)
+                        <li class="dropdown dropdown-toggle sliding-middle-out">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                {{ strtoupper($category) }}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                @foreach ($links as $link)
+                                    <li><a href="{{ url($link->name) }}">
+                                        {{ $link->name }}
+                                    </a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @else
+                        <li class="slidiing-middle-out">
+                            <a href="{{ url($category) }}">
+                                {{ strtoupper($category) }}
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
+                {{-- End dynamic links --}}
+
                 <li class="sliding-middle-out">
                     <a href="{{ url('admin') }}">ADMIN</a>
-                </li>      
-
+                </li>
             </ul>
         </div>
     </div>
