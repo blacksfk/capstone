@@ -1,4 +1,4 @@
-@extends('layouts.admin_form')
+@extends('layouts.admin')
 @section('title', 'Edit ' . $page->name)
 @section('back_link', route('admin.pages.index'))
 @section('content')
