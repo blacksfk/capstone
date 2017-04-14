@@ -86,6 +86,7 @@ class LinkController extends Controller
     public function destroy($id)
     {
         $link = Link::find($id);
+        $update = [];
 
         if (isset($link->page))
         {
@@ -100,12 +101,14 @@ class LinkController extends Controller
         {
             $child->parent_id = null;
             $child->save();
+            $update[] = $child->name . " no longer has a parent link";
         }
 
         $link->delete();
 
         return redirect()->route("admin.links.index")
-            ->with("success", "Link successfully deleted");
+            ->with("success", "Link successfully deleted")
+            ->with("update", $update);
     }
 
     // controller method to mass enable all links in the request
