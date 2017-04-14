@@ -44,8 +44,7 @@
     </div>
     @include('shared.footer')
 
-    <!--  Jquery Core Script -->
-    
+    <script src="{{ asset('assets/js/admin.js') }}"></script>
     <!--  Core Bootstrap Script -->
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
     <!--  Flexslider Scripts --> 
