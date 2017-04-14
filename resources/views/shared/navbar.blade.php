@@ -45,8 +45,8 @@
                                 {{ strtoupper($category) }}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 @foreach ($links as $link)
-                                    <li><a href="{{ url($link->name) }}">
-                                        {{ $link->name }}
+                                    <li><a href="{{ url($link->page->name) }}">
+                                        {{ $link->page->name }}
                                     </a></li>
                                 @endforeach
                             </ul>
