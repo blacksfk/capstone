@@ -136,7 +136,7 @@ class TemplateController extends Controller
         {
             $page->template_id = $default->id;
             $page->save();
-            $update[] = $page->name . " updated with default template";
+            $update[] = $page->name . " was updated with the default template";
         }
 
         try
