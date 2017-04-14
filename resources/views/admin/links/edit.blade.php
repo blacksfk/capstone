@@ -14,11 +14,15 @@
         <label for="name">Link name</label>
         <input type="text" name="name" id="name" class="form-control" value="{{ $link->name }}">
     </div>
-    <label for="active">Active</label>
-    <div class="form-group">
+    @if (isset($link->page))
+        <label for="active">Active</label>
+        <div class="form-group">
             <input type="radio" name="active" value=1 @if ($link->active) checked @endif> Enabled <br>
             <input type="radio" name="active" value=0 @if (!$link->active) checked @endif> Disabled
-    </div>
+        </div>
+    @else
+        <input type="hidden" name="active" value="0">
+    @endif
     <div class="form-group">
         <label for="parent_id">Parent link</label>
         <select name="parent_id" id="parent_id" class="form-control">

@@ -92,14 +92,28 @@ class LinkController extends Controller
     public function massEnable(Request $request)
     {
         $linksToEnable = array_slice(array_keys($request->all()), 1);
+        $errors = [];
+        $success = [];
         
         foreach ($linksToEnable as $linkID)
         {
             $link = Link::find($linkID);
-            $link->active = 1;
-            $link->save();
+
+            if (isset($link->page))
+            {
+                $link->active = 1;
+                $link->save();
+                $success[] = $link->name . " enabled successfully";
+            }
+            else
+            {
+                $errors[] = $link->name .
+                    " has not been bound to a page and cannot be enabled";
+            }
         }
 
-        return redirect()->route("admin.links.index")->with("success", count($linksToEnable) . " link(s) enabled successfully");
+        return redirect()->route("admin.links.index")
+            ->with("success", $success)
+            ->with("errors", $errors);
     }
 }

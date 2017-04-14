@@ -6,12 +6,9 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
             <label for="name">Link name</label>
-            <input type="text" name="name" id="name" class="form-control"></div>
-        <div class="form-group">
-            <label for="active">Active</label>
-            <input type="hidden" name="active" value=0>
-            <input type="checkbox" name="active" id="active" value=1>
+            <input type="text" name="name" id="name" class="form-control">
         </div>
+        <input type="hidden" name="active" value=0>
         <div class="form-group">
             <label for="parent">Parent</label>
             <select name="parent" id="parent" class="form-control">
