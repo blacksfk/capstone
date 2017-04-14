@@ -44,7 +44,8 @@ class LinkController extends Controller
         $this->validate($request, self::$validation);
         Link::create($request->all());
 
-        return redirect()->route("admin.links.index")->with("success", "Link successfully created");
+        return redirect()->route("admin.links.index")
+            ->with("success", "Link successfully created");
     }
 
     /**
@@ -72,7 +73,8 @@ class LinkController extends Controller
         $this->validate($request, self::$validation);
         Link::find($id)->update($request->all());
 
-        return redirect()->route("admin.links.index")->with("success", "Link successfully updated");
+        return redirect()->route("admin.links.index")
+            ->with("success", "Link successfully updated");
     }
 
     /**
@@ -83,9 +85,27 @@ class LinkController extends Controller
      */
     public function destroy($id)
     {
-        Link::find($id)->delete();
+        $link = Link::find($id);
 
-        return redirect()->route("admin.links.index")->with("success", "Link successfully deleted");
+        if (isset($link->page))
+        {
+            return redirect()->route("admin.pages.edit", $link->page->id)
+                ->with("page", $link->page)
+                ->with("errors", $link->name . " is bound to " . $link->page->name .
+                        " and cannot be deleted until it is unbound");
+        }
+
+        // link is a parent so set all children parent_id fields to null
+        foreach ($link->children as $child)
+        {
+            $child->parent_id = null;
+            $child->save();
+        }
+
+        $link->delete();
+
+        return redirect()->route("admin.links.index")
+            ->with("success", "Link successfully deleted");
     }
 
     // controller method to mass enable all links in the request
