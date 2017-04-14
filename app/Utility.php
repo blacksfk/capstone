@@ -4,6 +4,12 @@ namespace App;
 
 class Utility
 {
+    /**
+     * Saves a files to the views directory (blade.php only for now)
+     * @param  string $name     name of the file
+     * @param  string $contents the file's contents
+     * @param  string $category directory path
+     */
     public static function save($name, $contents, $category=null)
     {
         // compiles the path, leads to views folder (specifiy the folder), (specify the name)
@@ -31,5 +37,21 @@ class Utility
         }
 
         fclose($myfile);
+    }
+
+    /**
+     * Deletes files on disk. Make sure to handle the exception!!
+     * @param  string $pathToFile The absolute path to the resource!
+     */
+    public static function delete($pathToFile)
+    {
+        try
+        {
+            unlink($pathToFile);
+        }
+        catch (\Exception $e)
+        {
+            throw $e;
+        }
     }
 }
