@@ -99,7 +99,7 @@ class LinkController extends Controller
         {
             $link = Link::find($linkID);
 
-            if (isset($link->page))
+            if (isset($link->page) || count($link->children))
             {
                 $link->active = 1;
                 $link->save();
