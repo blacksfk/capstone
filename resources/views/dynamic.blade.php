@@ -1,5 +1,5 @@
-@extends('layouts.master')
+@extends('templates.' . $template->name)
 @section('title', '' . $page->name)
-@section('content')
+@section('page_content')
     {{ $page->content }}
 @endsection
