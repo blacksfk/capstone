@@ -120,10 +120,22 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        Page::findOrFail($id)->delete();
+        $page = Page::find($id);
+        $update = [];
+
+        // disable link the page is bound to
+        if (isset($page->link))
+        {
+            $page->link->active = 0;
+            $page->link->save();
+            $update[] = $page->link->name . " is no longer active";
+        }
+
+        $page->delete();
 
         return redirect()->route("admin.pages.index")
-            ->with("success", "Page deleted successfully");
+            ->with("success", "Page deleted successfully")
+            ->with("update", $update);
     }
 
     // this query only selects links which do not have pages
