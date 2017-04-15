@@ -7,7 +7,7 @@
         <li><a href="{{ route('admin.events.index') }}">Event management</a></li>
         <li><a href="{{ route('admin.links.index') }}">Link management</a></li>
         <li><a href="{{ route('admin.templates.index') }}">Template management</a></li>
-        <li><a href="#">Upload gallery images</a></li>
+        <li><a href="{{ route('admin.assets.index') }}">Asset management</a></li>
     </ul>
 </div>
 
