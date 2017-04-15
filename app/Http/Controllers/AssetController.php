@@ -21,7 +21,8 @@ class AssetController extends Controller
      */
     public function index()
     {
-        return view("admin.assets.index");
+        return view("admin.assets.index")
+            ->with("assets", Asset::all());
     }
 
     /**
@@ -31,7 +32,7 @@ class AssetController extends Controller
      */
     public function create()
     {
-        return view("admin.assets.create");
+        return view("admin.assets.create")->with("types", Asset::$assetTypes);
     }
 
     /**
@@ -43,10 +44,43 @@ class AssetController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, self::$validation);
+        $ext = "";
 
-        dd($request->file("photo"));
+        if ($request->file("asset")->isValid())
+        {
+            $dir = public_path("assets/" . $request->type);
+            $ext = $request->file("asset")->guessExtension();
 
-        Asset::create($request->all());
+            if (!file_exists($dir))
+            {
+                $result = mkdir($dir, 0755);
+
+                if (!$result)
+                {
+                    return back()->withInput()
+                        ->with("errors", "Unable to create directory");
+                }
+            }
+
+            // change the file name to the name and move to assets directory
+            try 
+            {
+                $request->file("asset")->move(
+                    $dir, 
+                    $request->name . "." . $ext
+                );
+            }
+            catch (FileException $e)
+            {
+                return back()->withInput()
+                    ->with("errors", "Could not move file: " . $e->getMessage());
+            }
+        }
+
+        Asset::create([
+            "name" => $request->name . "." . $ext,
+            "type" => $request->type
+        ]);
 
         return redirect()->route("admin.assets.index")
             ->with("success", "Asset uploaded successfully");
@@ -72,7 +106,8 @@ class AssetController extends Controller
     public function edit($id)
     {
         return view("admin.assets.edit")
-            ->with("asset", Asset::find($id));
+            ->with("asset", Asset::find($id))
+            ->with("types", Asset::$assetTypes);
     }
 
     /**
