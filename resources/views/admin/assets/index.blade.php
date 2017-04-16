@@ -16,15 +16,19 @@
                 <td>{{ $asset->type }}</td>
                 <td>
                     @if ($asset->type === "img")
-                        <img src="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}" alt="{{ $asset->name }}" class="img-thumbnail">
+                        <img src="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}" alt="{{ $asset->name }}" class="img-thumbnail" height="200" width="200">
                     @elseif ($asset->type === "video")
-                        <video controls class="embed-responsive-item">
+                        <video controls class="embed-responsive-item img-thumbnail">
                             <source src="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}">
                         </video>
                     @endif
                 </td>
                 <td>
-                    <a href="{{ route('admin.assets.edit', $asset->id) }}" class="btn btn-primary">Edit</a>
+                    <form action="{{ route('admin.assets.destroy', $asset->id) }}" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="submit" value="Delete {{ $asset->name }}" class="btn btn-danger">
+                    </form>
                 </td>
             </tr>
         @endforeach
