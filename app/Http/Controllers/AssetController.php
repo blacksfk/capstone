@@ -44,12 +44,22 @@ class AssetController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, self::$validation);
-        $ext = "";
+        $name = "";
 
         if ($request->file("asset")->isValid())
         {
             $dir = public_path("assets/" . $request->type);
-            $ext = $request->file("asset")->guessExtension();
+
+            // check if an extension was given in the file name
+            if (preg_match("/\.(.+)$/", $request->name))
+            {
+                $name = $request->name;
+            }
+            else
+            {
+                // no extension given in name field so get it from the file
+                $name = $request->name . "." . $request->file("asset")->guessExtension();
+            }
 
             if (!file_exists($dir))
             {
@@ -65,10 +75,7 @@ class AssetController extends Controller
             // change the file name to the name and move to assets directory
             try 
             {
-                $request->file("asset")->move(
-                    $dir, 
-                    $request->name . "." . $ext
-                );
+                $request->file("asset")->move($dir, $name);
             }
             catch (FileException $e)
             {
@@ -76,11 +83,13 @@ class AssetController extends Controller
                     ->with("errors", "Could not move file: " . $e->getMessage());
             }
         }
+        else
+        {
+            return back()->withInput()
+                ->with("errors", "Not a valid asset");
+        }
 
-        Asset::create([
-            "name" => $request->name . "." . $ext,
-            "type" => $request->type
-        ]);
+        Asset::create(["name" => $name, "type" => $request->type]);
 
         return redirect()->route("admin.assets.index")
             ->with("success", "Asset uploaded successfully");
