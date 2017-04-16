@@ -1,25 +1,35 @@
-const ALERT_FADE_TIME = 3000;
 var deleteClicked = false;
 
-// show confirmation modal on deletion
-$(".btn-danger[value~='Delete']").click(function(event) {
+$("form").submit(function(event) {
     if (deleteClicked === true) {
+        return;
+    }
+
+    // only show modal if the form action is delete
+    if ($(this).find("[name='_method']").val() !== "DELETE") {
         return;
     }
 
     event.preventDefault();
     deleteClicked = true;
-    var button = $(this);
 
-    // populate the modal with text
+    var form = this;
+    var button = $(form).find("input:submit");
+
     $(".modal-header").text("Confirm deletion");
-    $(".modal-body").text("Are you sure you want to delete " + $("#name").val() + "? This action cannot be undone!");
-    $("#adminModal").modal("show");
+
+    // extract the name of the item from the button
+    $(".modal-body").text(
+        "Are you sure you want to delete " + 
+        $(button).val().match(/^Delete\s(.+)/)[1] +  
+        "? This action cannot be undone!"
+    );
+    $("#adminModal").modal("show")
 
     // trigger the form action on click confirmation
     $(".modal-footer > .btn-danger").click(function() {
         $("#adminModal").modal("hide");
-        $(button).trigger("click");
+        $(form).submit();
     });
 });
 
