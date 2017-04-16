@@ -6,7 +6,7 @@ $("form").submit(function(event) {
     }
 
     // only show modal if the form action is delete
-    if ($(this).find("[name='_method']").val() !== "DELETE") {
+    if ($(this).find("[name='_method']").val().toUpperCase() !== "DELETE") {
         return;
     }
 
