@@ -16,4 +16,7 @@
 			<p>Recently the eSmart Committee promoted a whole school contest where students were asked to create a poster promoting the safe and responsible use of technology or cybersafety. We are very pleased to present the winners (right side of page).</p>
 
 			<p>If you have any further questions about the ICT/eSmart program, please feel free to contact us.</p>
+		</div>
+	</div>
+</div>
 @endsection

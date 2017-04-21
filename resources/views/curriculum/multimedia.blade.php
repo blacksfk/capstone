@@ -46,4 +46,6 @@
 				<img src="{{asset('assets/img/multimedia_pic1.jpg')}}">
 				<img src="{{asset('assets/img/multimedia_pic2.jpg')}}">
 			</div>
+		</div>
+	</div>
 @endsection
