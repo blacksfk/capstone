@@ -16,12 +16,14 @@ class CreatePagesTable extends Migration
             $table->increments('id');
             $table->string("name");
             $table->integer("link_id")->unsigned();
+            $table->integer("template_id")->unsigned();
             $table->string("content");
             $table->timestamps();
         });
 
         Schema::table("pages", function(Blueprint $table) {
             $table->foreign("link_id")->references("id")->on("links");
+            $table->foreign("template_id")->references("id")->on("templates");
         });
     }
 

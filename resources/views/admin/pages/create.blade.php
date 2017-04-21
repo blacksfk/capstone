@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Create new Page')
+@section('back_link', route('admin.pages.index'))
 @section('content')
 <div class="form-group">
     <form action="{{ route('admin.pages.store') }}" method="post">
@@ -17,10 +18,28 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="template_id">Template</label>
+            <select name="template_id" id="template_id" class="form-control">
+                @foreach ($templates as $template)
+                    <option value="{{ $template->id }}">{{ $template->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <label for="content">Content</label>
             <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
         </div>
+        <a id="preview" class="btn btn-primary">Preview</a>
         <input type="submit" value="Create" class="btn btn-success">
-    </form>    
+    </form>
 </div>
+<script>
+    $("#preview").click(function(event) {
+        event.preventDefault();
+        $.get("{{ route('admin.pages.preview') }}", {id: $("#template_id").val(), name: $("#name").val(), content: $("#content").val()}, function(data) {
+            var wdw = window.open();
+            wdw.document.write(data);
+        });
+    });
+</script>
 @endsection

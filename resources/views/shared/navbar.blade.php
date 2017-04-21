@@ -39,10 +39,38 @@
                 <li class="sliding-middle-out">
                     <a href="{{ url('contact') }}">CONTACT US</a>
                 </li>
+
+
+
+                {{-- Dynamic links go here!! --}}
+                @foreach ($dynLinks as $parent => $child)
+                    {{-- It's not a fucking array it's a fucking collection --}}
+                    @if ($child instanceof Illuminate\Database\Eloquent\Collection)
+                        <li class="dropdown dropdown-toggle sliding-middle-out">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                {{ strtoupper($parent) }}<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach ($child as $link)
+                                    <li><a href="{{ url($link->page->name) }}">
+                                        {{ $link->page->name }}
+                                    </a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @else
+                        <li class="sliding-middle-out">
+                            <a href="{{ url($child->page->name) }}">
+                                {{ strtoupper($child->page->name) }}
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
+                {{-- End dynamic links --}}
+
                 <li class="sliding-middle-out">
                     <a href="{{ url('admin') }}">ADMIN</a>
-                </li>      
-
+                </li>
             </ul>
         </div>
     </div>

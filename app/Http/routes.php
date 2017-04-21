@@ -36,6 +36,7 @@ Route::group(["prefix" => "involve"], function() {
     Route::get("kids", function() {return view("involve.kids");});
     Route::get("parents", function() {return view("involve.parents");});
     Route::get("teachers", function() {return view("involve.teachers");});
+    Route::get("enrolment", function() {return view("involve.enrolment");});
 });
 
 
@@ -47,9 +48,21 @@ Route::group(["prefix" => "admin"], function() {
     Route::get("/", function() { return view("admin.dashboard"); });
     
     Route::resource("events", "EventController");
-    Route::resource("pages", "PageController");
+    Route::resource("templates", "TemplateController");
+    Route::resource("assets", "AssetController");
 
     // custom controller method - put before resource!
     Route::post("links/massEnable", "LinkController@massEnable");
     Route::resource("links", "LinkController");
+
+    // custom route for previewing a page
+    Route::get("pages/preview", [
+        "as" => "admin.pages.preview",
+        "middleware" => "ajax",
+        "uses" => "PageController@preview"
+    ]);
+    Route::resource("pages", "PageController");
 });
+
+// Dynamic routing to custom pages
+Route::get("/{page_name}", "DynamicViewController@show")->name("dynamic.show");

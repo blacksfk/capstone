@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Edit ' . $page->name)
+@section('back_link', route('admin.pages.index'))
 @section('content')
     <form action="{{ route('admin.pages.destroy', $page->id) }}" method="post">
         <input type="hidden" name="_method" value="DELETE">
@@ -17,11 +18,23 @@
         <div class="form-group">
             <label for="link_id">Link</label>
             <select name="link_id" id="link_id" class="form-control">
-                @if (isset($page->link_id))
-                    <option value="{{ $page->link_id }}" selected>{{ $page->link->name }}</option>
-                @endif
+                <option value="{{ $page->link->id }}" selected>{{ $page->link->name }}</option>
                 @foreach ($links as $link)
-                    <option value="{{ $link->id }}">{{ $link->name }}</option>
+                    @if ($link->id !== $page->link->id)
+                        <option value="{{ $link->id }}">{{ $link->name }}</option>
+                    @endif
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="template_id">Template</label>
+            <select name="template_id" id="template_id" class="form-control">
+                @foreach ($templates as $template)
+                    @if ($page->template_id === $template->id)
+                        <option value="{{ $page->template_id }}" selected>{{ $page->template->name }}</option>
+                    @else
+                        <option value="{{ $template->id }}">{{ $template->name }}</option>
+                    @endif
                 @endforeach
             </select>
         </div>

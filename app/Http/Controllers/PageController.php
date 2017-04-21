@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Page;
 use App\Link;
+use App\Template;
 use App\Utility;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -35,14 +36,19 @@ class PageController extends Controller
     public function create()
     {
         // send all the links to the view for dropdown population
-        $links = self::getOrphanLinks();
+        $links = $this->getOrphanLinks();
 
         if (count($links) === 0)
         {
-            return redirect()->route("admin.links.create")->with("errors", "No links found, please create one here");
+            return redirect()->route("admin.links.create")
+                ->with("errors", "No links found, please create one here");
         }
 
-        return view("admin.pages.create")->with("links", $links);
+        /* give the page both links and templates
+            to populate the dropdowns with */
+        return view("admin.pages.create")
+            ->with("links", $links)
+            ->with("templates", Template::all());
     }
 
     /**
@@ -55,9 +61,10 @@ class PageController extends Controller
     {
         $this->validate($request, self::$validation);
         Page::create($request->all());
-        Utility::save($request->name, $request->content);
+        //Utility::save($request->name, $request->content);
 
-        return redirect()->route("admin.pages.index")->with("success", "Page created successfully");
+        return redirect()->route("admin.pages.index")
+            ->with("success", "Page created successfully");
     }
 
     /**
@@ -69,9 +76,13 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::find($id);
-        $links = self::getOrphanLinks();
+        $links = $this->getOrphanLinks();
+        $templates = Template::all();
 
-        return view("admin.pages.edit")->with("page", $page)->with("links", $links);
+        return view("admin.pages.edit")
+            ->with("page", $page)
+            ->with("links", $links)
+            ->with("templates", $templates);
     }
 
     /**
@@ -84,10 +95,21 @@ class PageController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, self::$validation);
-        $page = Page::find($id)->update($request->all());
-        Utility::save($request->name, $request->content);
+        $page = Page::find($id);
+        $update = [];
 
-        return redirect()->route("admin.pages.index")->with("success", "Page updated successfully");
+        // set the old link to inactive if link has changed
+        if ($page->link_id !== $request->link_id)
+        {
+            $link = Link::find($page->link_id)->update(["active" => 0]);
+            $update[] = $link->name . " has been disabled";
+        }
+
+        $page->update($request->all());
+
+        return redirect()->route("admin.pages.index")
+            ->with("success", "Page updated successfully")
+            ->with("update", $update);
     }
 
     /**
@@ -98,9 +120,22 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        Page::findOrFail($id)->delete();
+        $page = Page::find($id);
+        $update = [];
 
-        return redirect()->route("admin.pages.index")->with("success", "Page deleted successfully");
+        // disable link the page is bound to
+        if (isset($page->link))
+        {
+            $page->link->active = 0;
+            $page->link->save();
+            $update[] = $page->link->name . " is no longer active";
+        }
+
+        $page->delete();
+
+        return redirect()->route("admin.pages.index")
+            ->with("success", "Page deleted successfully")
+            ->with("update", $update);
     }
 
     // this query only selects links which do not have pages
@@ -109,5 +144,18 @@ class PageController extends Controller
         return DB::table("links")->whereNotIn("id", function($query) {
             $query->select(DB::raw("link_id"))->from("pages");
         })->get();   
+    }
+
+    // ajax only method to preview pages when creating/editing
+    public function preview(Request $request)
+    {
+        $template = Template::find($request->id);
+        $view = view("admin.pages.preview")
+            ->with("template", $template)
+            ->with("name", $request->name)
+            ->with("content", $request->content)
+            ->render();
+
+        return $view;
     }
 }

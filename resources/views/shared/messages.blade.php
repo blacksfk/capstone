@@ -2,6 +2,9 @@
     @if ($success = Session::get("success"))
         <div class="row">
             <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <strong>Success</strong>
                 @if (is_array($success))
                     @foreach ($success as $s)
@@ -20,7 +23,10 @@
 
     @if ($update = Session::get("update"))
         <div class="row">
-            <div class="alert alert-info">
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <strong>Updated</strong>
                 @if (is_array($update))
                     @foreach ($update as $u)
@@ -39,7 +45,10 @@
 
     @if ($errors = Session::get("errors"))
         <div class="row">
-            <div class="alert alert-danger">
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <strong>Errors</strong>
                 @if (is_array($errors))
                     @foreach ($errors as $e)

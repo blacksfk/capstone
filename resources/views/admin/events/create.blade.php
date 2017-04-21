@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Create new Event')
+@section('back_link', route('admin.events.index'))
 @section('content')
 <form action="{{ route('admin.events.store') }}" method="post">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
