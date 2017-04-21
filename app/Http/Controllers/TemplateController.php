@@ -55,8 +55,11 @@ class TemplateController extends Controller
             return back()->withInput()->with("errors", "Unable to create file: " . $e->getMessage());
         }
 
+        $sections = $this->extract($request->content);
+        //dd(gettype($sections));
+
         // save only if writing was successful
-        Template::create($request->all());
+        Template::create(['name' => $request->name,'content'=>$request->content,'sections'=>$sections]);
 
         return redirect()->route("admin.templates.index")->with("success", "Template created successfully");
     }
@@ -112,8 +115,10 @@ class TemplateController extends Controller
             return back()->withInput()->with("errors", "Unable to write file: " . $e->getMessage());
         }
 
+        $sections = $this->extract($request->content);
+
         // only update the record if file writing was successful
-        $template->update($request->all());
+        $template->update(['name' => $request->name,'content'=>$request->content,'sections'=>$sections]);
 
         return redirect()->route("admin.templates.index")->with("success", $request->name . " updated successfully");
     }
@@ -164,5 +169,14 @@ class TemplateController extends Controller
         $template = Template::find($request->id);
 
         return json_encode($template->sections);
+    }
+
+    private function extract($contents)
+    {
+        preg_match_all(
+            '/@yield\(\'(?<section>.*)\'\)/',
+            $contents,
+            $matches);
+        return $matches["section"];
     }
 }
