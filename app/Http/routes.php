@@ -55,7 +55,7 @@ Route::group(["as" => "admin.", "prefix" => "admin"], function() {
 
     // custom route for previewing a page
     Route::get("pages/preview", [
-        "as" => "admin.pages.preview",
+        "as" => "pages.preview",
         "middleware" => "ajax",
         "uses" => "PageController@preview"
     ]);
