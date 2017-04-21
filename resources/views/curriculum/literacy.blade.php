@@ -19,7 +19,7 @@
                 <div class="container">
                    <div class="col-lg-3 col-md-4 col-xs-6">
                     <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="//assets/img/literacy.jpg" alt="">
+                        <img class="img-responsive" src="{{ assetassets/img/literacy.jpg" alt="">
                     </a>
                 </div>
                 
