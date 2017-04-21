@@ -7,7 +7,6 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Path</th>
             <th>Link</th>
             <th>Template</th>
             <th>Action</th>
@@ -17,7 +16,6 @@
         @foreach ($pages as $page)
             <tr>
                 <td>{{ $page->name }}</td>
-                <td>{{ $page->path }}</td>
                 <td>{{ $page->link->name }}</td>
                 <td>{{ $page->template->name }}</td>
                 <td><a href="{{ route('admin.pages.edit', $page->id) }}" class="btn btn-primary">Edit</a></td>

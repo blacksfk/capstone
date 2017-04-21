@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Auth::routes();
 
 Route::get('/', function () { return view("home"); });
 Route::get("/curriculum", function() {return view("curriculum");});
@@ -44,7 +45,7 @@ Route::group(["middleware" => "auth"], function() {
     // dump auth only routes here
 });
 
-Route::group(["prefix" => "admin"], function() {
+Route::group(["as" => "admin.", "prefix" => "admin"], function() {
     Route::get("/", function() { return view("admin.dashboard"); });
     
     Route::resource("events", "EventController");
@@ -57,7 +58,7 @@ Route::group(["prefix" => "admin"], function() {
 
     // custom route for previewing a page
     Route::get("pages/preview", [
-        "as" => "admin.pages.preview",
+        "as" => "pages.preview",
         "middleware" => "ajax",
         "uses" => "PageController@preview"
     ]);
