@@ -25,21 +25,42 @@
                 @endforeach
             </select>
         </div>
-        <div class="form-group">
-            <label for="content">Content</label>
-            <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
+        <div id="inputs">
+            
         </div>
         <a id="preview" class="btn btn-primary">Preview</a>
         <input type="submit" value="Create" class="btn btn-success">
     </form>
 </div>
 <script>
-    $("#preview").click(function(event) {
-        event.preventDefault();
-        $.get("{{ route('admin.pages.preview') }}", {id: $("#template_id").val(), name: $("#name").val(), content: $("#content").val()}, function(data) {
-            var wdw = window.open();
-            wdw.document.write(data);
-        });
+// create and inputs to the form
+function appendSections(data) {
+    $.each(data, function(section) {
+        htmlString = "" +
+            "<div class='form-group'>" +
+            "<label for='content[" + section + "]'>" + section + "</label>" +
+            "<textarea name='content[" + section + "]' cols='30' rows='10' class='form-control'></textarea>" +
+            "</div>"
+        $(htmlString).hide().appendTo("#inputs").slideDown(700);
+    }); 
+}
+
+// page preview functionality
+$("#preview").click(function(event) {
+    event.preventDefault();
+    $.get("{{ route('admin.pages.preview') }}", {id: $("#template_id").val(), name: $("#name").val(), content: $("#content").val()}, function(data) {
+        var wdw = window.open();
+        wdw.document.write(data);
     });
+});
+
+// get all the sections for a template
+$("#template_id").change(function() {
+    if ($("#inputs").html() !== "") {
+        $("#inputs").html("");
+    }
+
+    $.get("{{ route('admin.templates.sections') }}", {id: $(this).val()}, appendSections, "json");
+});
 </script>
 @endsection
