@@ -35,6 +35,7 @@ Route::group(["prefix" => "involve"], function() {
     Route::get("kids", function() {return view("involve.kids");});
     Route::get("parents", function() {return view("involve.parents");});
     Route::get("teachers", function() {return view("involve.teachers");});
+    Route::get("enrolment", function() {return view("involve.enrolment");});
 });
 
 
