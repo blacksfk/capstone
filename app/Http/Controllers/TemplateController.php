@@ -157,4 +157,12 @@ class TemplateController extends Controller
             ->with("success", "Template deleted successfully")
             ->with("update", $update);
     }
+
+    // Ajax only method to retrieve all the sections for page editing
+    public function getSections(Request $request)
+    {
+        $template = Template::find($request->id);
+
+        return json_encode($template->sections);
+    }
 }
