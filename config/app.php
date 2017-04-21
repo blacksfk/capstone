@@ -2,6 +2,8 @@
 
 return [
 
+    'name' => 'Courtenay Gardens Primary School',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
