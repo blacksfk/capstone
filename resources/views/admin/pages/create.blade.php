@@ -35,7 +35,7 @@
 <script>
 // create and inputs to the form
 function appendSections(data) {
-    $.each(data, function(section) {
+    $.each(data, function(index, section) {
         htmlString = "" +
             "<div class='form-group'>" +
             "<label for='content[" + section + "]'>" + section + "</label>" +
