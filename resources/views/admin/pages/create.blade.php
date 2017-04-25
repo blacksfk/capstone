@@ -26,14 +26,25 @@
                 @endforeach
             </select>
         </div>
-        <div id="inputs">
-            
+        <div class="form-group">
+            <label>Template sections</label>
+            <hr>
+            <div id="inputs">
+                {{-- This should display the default templates sections --}}
+                @foreach ($templates->find(1)->sections as $section)
+                    <div class="form-group">
+                        <label for="content[{{ $section }}]">{{ $section }}</label>
+                        <textarea name="content[{{ $section }}]" id="content[{{ $section }}]" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <a id="preview" class="btn btn-primary">Preview</a>
         <input type="submit" value="Create" class="btn btn-success">
     </form>
 </div>
 <script>
+const SLIDE_TIME = 700;
 // create and inputs to the form
 function appendSections(data) {
     $.each(data, function(index, section) {
@@ -42,7 +53,7 @@ function appendSections(data) {
             "<label for='content[" + section + "]'>" + section + "</label>" +
             "<textarea name='content[" + section + "]' cols='30' rows='10' class='form-control'></textarea>" +
             "</div>"
-        $(htmlString).hide().appendTo("#inputs").slideDown(700);
+        $(htmlString).hide().appendTo("#inputs").slideDown(SLIDE_TIME);
     }); 
 }
 
