@@ -18,11 +18,12 @@
         <div class="form-group">
             <label for="link_id">Link</label>
             <select name="link_id" id="link_id" class="form-control">
-                <option value="{{ $page->link->id }}" selected>{{ $page->link->name }}</option>
+                <option value="">None</option>
+                @if (isset($page->link))
+                    <option value="{{ $page->link_id }}" selected>{{ $page->link->name }}</option>
+                @endif
                 @foreach ($links as $link)
-                    @if ($link->id !== $page->link->id)
-                        <option value="{{ $link->id}}">{{ $link->name }}</option>
-                    @endif
+                    <option value="{{ $link->id}}">{{ $link->name }}
                 @endforeach
             </select>
         </div>
