@@ -7,6 +7,7 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>Sections</th>
             <th>Edit</th>
         </tr>
     </thead>
@@ -14,6 +15,7 @@
         @foreach ($templates as $template)
             <tr>
                 <td>{{ $template->name }}</td>
+                <td>{{ implode(", ", $template->sections) }}</td>
                 <td>
                     <a href="{{ route('admin.templates.edit', $template->id) }}" class="btn btn-primary">Edit</a>
                 </td>
