@@ -16,7 +16,7 @@ class CreateTemplatesTable extends Migration
             $table->increments('id');
             $table->string("name")->unique();
             $table->string("content");
-            $table->string("sections")->nullable();
+            $table->string("sections");
             $table->timestamps();
         });
     }
