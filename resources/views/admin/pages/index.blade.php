@@ -16,7 +16,11 @@
         @foreach ($pages as $page)
             <tr>
                 <td>{{ $page->name }}</td>
-                <td>{{ $page->link->name }}</td>
+                <td>
+                    @if (isset($page->link))
+                        {{ $page->link->name }}
+                    @endif
+                </td>
                 <td>{{ $page->template->name }}</td>
                 <td><a href="{{ route('admin.pages.edit', $page->id) }}" class="btn btn-primary">Edit</a></td>
             </tr>
