@@ -36,12 +36,19 @@ class Link extends Model
         return $this->belongsTo("App\Link", "parent_id", "id");
     }
 
+    public function enableLink()
+    {
+        $this->attributes["active"] = true;
+        $this->save();
+    }
+
     /**
      * Sets the active attribute of this link to false
      * @return void 
      */
     public function disableLink()
     {
-        $this->attributes["active"] = 0;
+        $this->attributes["active"] = false;
+        $this->save();
     }
 }
