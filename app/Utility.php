@@ -54,4 +54,19 @@ class Utility
             throw $e;
         }
     }
+
+    /**
+     * Filters out keys which start with an underscore and 
+     * returns the rest of the array
+     * 
+     * @param  Array $array An associative array
+     * @return Array        An associative array without invalid keys
+     */
+    public static function filterOutInvalidKeys($array)
+    {
+        return array_filter($array, function($key) {
+            preg_match("/^[^_].*/", $key, $matches);
+            return $matches;
+        }, ARRAY_FILTER_USE_KEY);
+    }
 }
