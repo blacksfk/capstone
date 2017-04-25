@@ -40,8 +40,16 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="content">Content</label>
-            <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{ $page->content }}</textarea>
+            <label>Template sections</label>
+            <hr>
+            <div id="inputs">
+                @foreach ($page->template->sections as $section)
+                    <div class="form-group">
+                        <label for="content[{{ $section }}]">{{ $section }}</label>
+                        <textarea name="content[{{ $section }}]" id="content[{{ $section }}]" cols="30" rows="10" class="form-control">{{ $page->content[$section] }}</textarea>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <input type="submit" value="Update {{ $page->name }}" class="btn btn-success">
     </form>
