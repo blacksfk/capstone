@@ -15,7 +15,7 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
             $table->string("name");
-            $table->integer("link_id")->unsigned();
+            $table->integer("link_id")->unsigned()->nullable();
             $table->integer("template_id")->unsigned();
             $table->string("content");
             $table->timestamps();
