@@ -12,6 +12,7 @@
         <div class="form-group">
             <label for="link_id">Link</label>
             <select name="link_id" id="link_id" class="form-control">
+                <option value="">None</option>
                 @foreach ($links as $link)
                     <option value="{{ $link->id }}">{{ $link->name }}</option>
                 @endforeach
