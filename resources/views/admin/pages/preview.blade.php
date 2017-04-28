@@ -1,10 +1,12 @@
 @extends('templates.' . $template->name)
 @section('title', 'Preview ' . $name)
-@section('page_content')
-{{ $content }}
+@foreach ($content as $section => $input)
+    @section($section)
+        {{ $input }}
+    @endsection
+@endforeach
 <script>
     $("a, button, input[type='submit']").click(function(event) {
         event.preventDefault();
     });
 </script>
-@endsection
