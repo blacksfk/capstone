@@ -34,7 +34,7 @@
                 @foreach ($templates->find(1)->sections as $section)
                     <div class="form-group">
                         <label for="content[{{ $section }}]">{{ $section }}</label>
-                        <textarea name="content[{{ $section }}]" id="content[{{ $section }}]" cols="30" rows="10" class="form-control"></textarea>
+                        <textarea name="content[{{ $section }}]" id="{{ $section }}" cols="30" rows="10" class="form-control"></textarea>
                     </div>
                 @endforeach
             </div>
@@ -51,7 +51,7 @@ function appendSections(data) {
         htmlString = "" +
             "<div class='form-group'>" +
             "<label for='content[" + section + "]'>" + section + "</label>" +
-            "<textarea name='content[" + section + "]' cols='30' rows='10' class='form-control'></textarea>" +
+            "<textarea name='content[" + section + "]' id=" + section + " cols='30' rows='10' class='form-control'></textarea>" +
             "</div>"
         $(htmlString).hide().appendTo("#inputs").slideDown(SLIDE_TIME);
     }); 
@@ -60,10 +60,16 @@ function appendSections(data) {
 // page preview functionality
 $("#preview").click(function(event) {
     event.preventDefault();
-    $.get("{{ route('admin.pages.preview') }}", {id: $("#template_id").val(), name: $("#name").val(), content: $("#content").val()}, function(data) {
-        var wdw = window.open();
-        wdw.document.write(data);
-    });
+    var contentArray = {};
+
+    $.each($("[name^='content']"), function(key, element) {
+        contentArray[element.id] = element.value;
+    }).promise().done(function() {
+        $.get("{{ route('admin.pages.preview') }}", {id: $("#template_id").val(), name: $("#name").val(), content: JSON.stringify(contentArray)}, function(data) {
+            var wdw = window.open();
+            wdw.document.write(data);
+        });
+    })
 });
 
 // get all the sections for a template
