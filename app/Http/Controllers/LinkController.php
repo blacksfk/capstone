@@ -125,7 +125,7 @@ class LinkController extends Controller
         $errors = [];
         $success = [];
         
-        foreach ($linksToEnable as $linkID)
+        foreach ($linksToEnable as $linkID => $linkValue)
         {
             $link = Link::find($linkID);
 
