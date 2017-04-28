@@ -157,7 +157,7 @@ class PageController extends Controller
         $view = view("admin.pages.preview")
             ->with("template", $template)
             ->with("name", $request->name)
-            ->with("content", $request->content)
+            ->with("content", json_decode($request->content)) // should be a json string
             ->render();
 
         return $view;
