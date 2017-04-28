@@ -27,6 +27,8 @@ Route::group(["prefix" => "curriculum"], function() {
     Route::get("literacy", function() {return view("curriculum.literacy");});
     Route::get("numeracy", function() {return view("curriculum.numeracy");});
     Route::get("digital_technologies", function() {return view("curriculum.digital_technologies");});
+    Route::get("multimedia", function() {return view("curriculum.multimedia");});
+    Route::get("esmart", function() {return view("curriculum.esmart");});
 });
 
 // Under the 'Get Involved' dropdown

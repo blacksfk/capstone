@@ -19,9 +19,9 @@
             <h2><strong>We are here: </strong></h2><hr>
 
             <div class="view hm-zoom">
-                <img src="{{asset('assets/img/maps.png')}}" class="maps" alt="CGPS maps">
+                
                 <div class="mask flex-center">
-                    <p class="white-text">Google Maps</p>
+                <div id="map"></div>
                 </div>
             </div>
 
@@ -37,6 +37,19 @@
         function googleTranslateElementInit() {
           new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
         }
+    </script>
+        <script>
+      function initMap() {
+        var uluru = {lat: -38.079655, lng: 145.283334};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </div>

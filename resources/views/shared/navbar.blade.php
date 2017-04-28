@@ -16,6 +16,9 @@
                         <li><a href="{{ url('/curriculum/literacy') }}">Literacy</a></li>
                         <li><a href="{{ url('/curriculum/numeracy') }}">Numeracy</a></li>
                         <li><a href="{{ url('/curriculum/digital_technologies') }}">Digital Technologies</a></li>
+                        <li><a href="{{ url('/curriculum/multimedia') }}">Multimedia</a></li>
+                        <li><a href="{{ url('/curriculum/esmart') }}">eSmart</a></li>
+
                     </ul>
                 </li>
                 
