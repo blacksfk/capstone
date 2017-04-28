@@ -18,11 +18,12 @@
         <div class="form-group">
             <label for="link_id">Link</label>
             <select name="link_id" id="link_id" class="form-control">
-                <option value="{{ $page->link->id }}" selected>{{ $page->link->name }}</option>
+                <option value="">None</option>
+                @if (isset($page->link))
+                    <option value="{{ $page->link_id }}" selected>{{ $page->link->name }}</option>
+                @endif
                 @foreach ($links as $link)
-                    @if ($link->id !== $page->link->id)
-                        <option value="{{ $link->id }}">{{ $link->name }}</option>
-                    @endif
+                    <option value="{{ $link->id}}">{{ $link->name }}
                 @endforeach
             </select>
         </div>
@@ -39,8 +40,16 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="content">Content</label>
-            <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{ $page->content }}</textarea>
+            <label>Template sections</label>
+            <hr>
+            <div id="inputs">
+                @foreach ($page->template->sections as $section)
+                    <div class="form-group">
+                        <label for="content[{{ $section }}]">{{ $section }}</label>
+                        <textarea name="content[{{ $section }}]" id="content[{{ $section }}]" cols="30" rows="10" class="form-control">{{ $page->content[$section] }}</textarea>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <input type="submit" value="Update {{ $page->name }}" class="btn btn-success">
     </form>

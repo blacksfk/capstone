@@ -21,11 +21,7 @@
             <tr>
                 <td>{{ $link->name }}</td>
                 <td>
-                    @if ($link->active)
-                        True
-                    @else
-                        False
-                    @endif
+                    <?php echo($link->active ? "True" : "False"); ?>
                 </td>
                 <td>
                     @if (!empty($link->parent_id))

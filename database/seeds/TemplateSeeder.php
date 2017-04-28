@@ -24,7 +24,8 @@ class TemplateSeeder extends Seeder
                         </div>
                     </div>
                 </div>
-                @endsection"
+                @endsection",
+            "sections" => '["page_content"]'
         ]);
     }
 }

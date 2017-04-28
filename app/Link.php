@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Link extends Model
 {
     protected $fillable = ["name", "active", "parent_id"];
+    protected $casts = ["active" => "boolean"];
 
     /**
      * One to One relationship between this link and it's page
@@ -35,12 +36,19 @@ class Link extends Model
         return $this->belongsTo("App\Link", "parent_id", "id");
     }
 
+    public function enableLink()
+    {
+        $this->attributes["active"] = true;
+        $this->save();
+    }
+
     /**
-     * Casts the active attribute from tinyInt to boolean so you
-     * can run checks like: if ($link->active) { // } etc.
-     * @var Boolean
+     * Sets the active attribute of this link to false
+     * @return void 
      */
-    protected $casts = [
-        "active" => "boolean"
-    ];
+    public function disableLink()
+    {
+        $this->attributes["active"] = false;
+        $this->save();
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Link;
+use App\Utility;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -111,10 +112,16 @@ class LinkController extends Controller
             ->with("update", $update);
     }
 
-    // controller method to mass enable all links in the request
+    /**
+     * Enable all links in the request
+     * 
+     * @param  Request $request HTTP POST request
+     * @return \Illuminate\Http\Response     
+     */
     public function massEnable(Request $request)
     {
-        $linksToEnable = array_slice(array_keys($request->all()), 1);
+        // skip _token key (should be first key of array)
+        $linksToEnable = Utility::filterOutInvalidKeys($request->all());
         $errors = [];
         $success = [];
         
@@ -124,8 +131,7 @@ class LinkController extends Controller
 
             if (isset($link->page) || count($link->children))
             {
-                $link->active = 1;
-                $link->save();
+                $link->enableLink();
                 $success[] = $link->name . " enabled successfully";
             }
             else

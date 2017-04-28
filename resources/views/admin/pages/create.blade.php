@@ -12,6 +12,7 @@
         <div class="form-group">
             <label for="link_id">Link</label>
             <select name="link_id" id="link_id" class="form-control">
+                <option value="">None</option>
                 @foreach ($links as $link)
                     <option value="{{ $link->id }}">{{ $link->name }}</option>
                 @endforeach
@@ -26,20 +27,52 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="content">Content</label>
-            <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
+            <label>Template sections</label>
+            <hr>
+            <div id="inputs">
+                {{-- This should display the default templates sections --}}
+                @foreach ($templates->find(1)->sections as $section)
+                    <div class="form-group">
+                        <label for="content[{{ $section }}]">{{ $section }}</label>
+                        <textarea name="content[{{ $section }}]" id="content[{{ $section }}]" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <a id="preview" class="btn btn-primary">Preview</a>
         <input type="submit" value="Create" class="btn btn-success">
     </form>
 </div>
 <script>
-    $("#preview").click(function(event) {
-        event.preventDefault();
-        $.get("{{ route('admin.pages.preview') }}", {id: $("#template_id").val(), name: $("#name").val(), content: $("#content").val()}, function(data) {
-            var wdw = window.open();
-            wdw.document.write(data);
-        });
+const SLIDE_TIME = 700;
+// create and inputs to the form
+function appendSections(data) {
+    $.each(data, function(index, section) {
+        htmlString = "" +
+            "<div class='form-group'>" +
+            "<label for='content[" + section + "]'>" + section + "</label>" +
+            "<textarea name='content[" + section + "]' cols='30' rows='10' class='form-control'></textarea>" +
+            "</div>"
+        $(htmlString).hide().appendTo("#inputs").slideDown(SLIDE_TIME);
+    }); 
+}
+
+// page preview functionality
+$("#preview").click(function(event) {
+    event.preventDefault();
+    $.get("{{ route('admin.pages.preview') }}", {id: $("#template_id").val(), name: $("#name").val(), content: $("#content").val()}, function(data) {
+        var wdw = window.open();
+        wdw.document.write(data);
     });
+});
+
+// get all the sections for a template
+$("#template_id").change(function() {
+    if ($("#inputs").html() !== "") {
+        $("#inputs").html("");
+    }
+
+    $.get("{{ route('admin.templates.sections') }}", {id: $(this).val()}, appendSections, "json");
+});
 </script>
 @endsection

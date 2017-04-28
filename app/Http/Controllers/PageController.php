@@ -14,7 +14,6 @@ class PageController extends Controller
 {
     private static $validation = [
         "name" => "required",
-        "link_id" => "required",
         "content" => "required"
     ];
 
@@ -61,7 +60,6 @@ class PageController extends Controller
     {
         $this->validate($request, self::$validation);
         Page::create($request->all());
-        //Utility::save($request->name, $request->content);
 
         return redirect()->route("admin.pages.index")
             ->with("success", "Page created successfully");
@@ -99,10 +97,10 @@ class PageController extends Controller
         $update = [];
 
         // set the old link to inactive if link has changed
-        if ($page->link_id !== $request->link_id)
+        if (isset($page->link) && $page->link_id !== $request->link_id)
         {
-            $link = Link::find($page->link_id)->update(["active" => 0]);
-            $update[] = $link->name . " has been disabled";
+            Link::find($page->link_id)->disableLink();
+            $update[] = $page->link->name . " has been disabled";
         }
 
         $page->update($request->all());
@@ -126,8 +124,7 @@ class PageController extends Controller
         // disable link the page is bound to
         if (isset($page->link))
         {
-            $page->link->active = 0;
-            $page->link->save();
+            Link::find($page->link_id)->disableLink();
             $update[] = $page->link->name . " is no longer active";
         }
 
@@ -138,7 +135,10 @@ class PageController extends Controller
             ->with("update", $update);
     }
 
-    // this query only selects links which do not have pages
+    /**
+     * Get all links which aren't bound to pages
+     * @return array Collection of link objects
+     */
     private function getOrphanLinks()
     {
         return DB::table("links")->whereNotIn("id", function($query) {
@@ -146,7 +146,11 @@ class PageController extends Controller
         })->get();   
     }
 
-    // ajax only method to preview pages when creating/editing
+    /**
+     * Ajax only method to build and return a view for previewing
+     * @param  Request $request HTTP GET request
+     * @return String           A string of HTML built with the view helper
+     */
     public function preview(Request $request)
     {
         $template = Template::find($request->id);

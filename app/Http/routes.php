@@ -49,8 +49,15 @@ Route::group(["as" => "admin.", "prefix" => "admin"], function() {
     Route::get("/", function() { return view("admin.dashboard"); });
     
     Route::resource("events", "EventController");
-    Route::resource("templates", "TemplateController");
     Route::resource("assets", "AssetController");
+
+    // custom method for retrieving a templates section
+    Route::get("templates/sections", [
+        "as" => "templates.sections",
+        "middleware" => "ajax",
+        "uses" => "TemplateController@getSections"
+    ]);
+    Route::resource("templates", "TemplateController");
 
     // custom controller method - put before resource!
     Route::post("links/massEnable", "LinkController@massEnable");
