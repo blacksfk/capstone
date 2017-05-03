@@ -9,8 +9,7 @@
         <div class="navbar-collapse collapse move-me">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown dropdown-toggle sliding-middle-out">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        CURRICULUM<span class="caret"></span>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">CURRICULUM<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ url('/curriculum/literacy') }}">Literacy</a></li>
@@ -33,7 +32,6 @@
                         <li><a href="{{ url('/involve/kids') }}">For Kids</a></li>
                         <li><a href="{{ url('/involve/parents') }}">For Parents</a></li>
                         <li><a href="{{ url('/involve/teachers') }}">For Teachers</a></li>
-                        <li><a href="{{ url('/test1') }}">testing controller</a></li>
                     </ul>
                 </li>
                 <li class="sliding-middle-out">
