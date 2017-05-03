@@ -54,6 +54,8 @@
     <script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
     <!--  Custom Scripts --> 
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+    <script src="{{ asset('assets/js/accordion.js') }}"></script>
 </body>
 
 </html>

@@ -16,6 +16,7 @@ Route::get('/', function () { return view("home"); });
 Route::get("/curriculum", function() {return view("curriculum");});
 Route::get("/events", "Controller@events");
 Route::get("/contact", function() {return view("contact");});
+Route::get("/faqs", function() {return view("faqs");});
 
 // TEST
 //Route::get('/test2',function () { return view("curriculum.TEST_PAGE_CREATION"); });
