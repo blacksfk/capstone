@@ -83,16 +83,18 @@ class Utility
     public static function splitLinesIntoArray($attrs, $string, $delim)
     {
         $values = [];
-        $lines = explode(PHP_EOL, $string);
+        $words = explode($delim, $string);
+        $key = 0;
 
-        foreach ($lines as $line)
+        // if there are more words than model attrs then throw an exception 
+        if (count($words) > count($attrs))
         {
-            $key = 0;
+            throw new \Exception("Your file has more values than there are fields.");
+        }
 
-            foreach (explode($delim, $line) as $val)
-            {
-                $values[$attrs[$key++]] = trim($val);    
-            }
+        foreach ($words as $val)
+        {
+            $values[$attrs[$key++]] = trim($val);
         }
 
         return $values;
