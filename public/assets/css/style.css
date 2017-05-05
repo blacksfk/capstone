@@ -91,9 +91,16 @@ background-color:#fff;      }
 /*=====================================
   NAVBAR STYLES 
     ===================================*/
-
+.background-nav {
+    background-color: #2d3d5a;
+}
 .logo-custom {
     max-height: 40px;
+}
+
+.navcol {
+    background-color: #2d3d5a;
+    color: #fff;
 }
 
 #menu {
@@ -103,6 +110,10 @@ background-color:#fff;      }
     font-weight: 900;
     letter-spacing: 2px;
     min-height: 70px;
+}
+
+.navbar {
+    border-radius: 0px;
 }
 
 .navbar-inverse {
