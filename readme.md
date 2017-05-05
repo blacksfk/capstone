@@ -27,3 +27,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 REFERENCES
 www.pos.com
+
+## LOGGING IN
+DEFAULT USER <br />
+admin@admin.com <br />
+DEFAULT PASSWORD <br />
+secret
