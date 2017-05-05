@@ -32,7 +32,7 @@
                         GET INVOLVED<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url('/involve/kids') }}">For Kids</a></li>
+                        <li><a href="{{ url('/involve/kids') }}">For Students</a></li>
                         <li><a href="{{ url('/involve/parents') }}">For Parents</a></li>
                     </ul>
                 </li>
