@@ -18,8 +18,17 @@
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1GEg7gRkcV2id4F8yoC0TtaW9Ok7jhx4&callback=initMap"
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1GEg7gRkcV2id4F8yoC0TtaW9Ok7jhx4&callback=initMap&libraries=places&cal"
   type="text/javascript"></script>
+
+    <!-- CSRF token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
 </head>
 <body>
     @include('shared.navbar')
@@ -54,8 +63,12 @@
     <script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
     <!--  Custom Scripts --> 
     <script src="{{ asset('assets/js/custom.js') }}"></script>
-
+    <!--  Highlight current link -->
+    <script src="{{ asset('assets/js/changeActiveLink.js') }}"></script>
+    <!-- Accordion -->
     <script src="{{ asset('assets/js/accordion.js') }}"></script>
+
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

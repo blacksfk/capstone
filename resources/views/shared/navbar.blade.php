@@ -98,8 +98,9 @@
                     <a class="navcol" href="{{ url('home') }}">HOME</a>
                 </li>
                 <li class="dropdown dropdown-toggle sliding-middle-out">
-                    <a class="dropdown-toggle navcol" data-toggle="dropdown" href="#">
-                        CURRICULUM<span class="caret"></span>
+
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">CURRICULUM<span class="caret"></span>
+
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ url('/curriculum/literacy') }}">Literacy</a></li>
@@ -121,8 +122,6 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ url('/involve/kids') }}">For Kids</a></li>
                         <li><a href="{{ url('/involve/parents') }}">For Parents</a></li>
-                        <li><a href="{{ url('/involve/teachers') }}">For Teachers</a></li>
-                        <li><a href="{{ url('/test1') }}">testing controller</a></li>
                     </ul>
                 </li>
                 <li class="sliding-middle-out">
@@ -130,9 +129,32 @@
                 </li>
 
 
+                @if (Auth::guest())
+                    <li class="sliding-middle-out"><a href="{{ route('login') }}">LOGIN</a></li>
+                @else
+                    <li class="dropdown dropdown-toggle sliding-middle-out">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
 
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ url('admin') }}">ADMIN</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
 
-
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
