@@ -47,7 +47,7 @@ Route::group(["middleware" => "auth"], function() {
     // dump auth only routes here
 });
 
-Route::group(["as" => "admin.", "prefix" => "admin"], function() {
+Route::group(["as" => "admin.", "prefix" => "admin","middleware" => "auth"], function() {
     Route::get("/", function() { return view("admin.dashboard"); });
     
     Route::resource("events", "EventController");
