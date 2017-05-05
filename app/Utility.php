@@ -69,4 +69,32 @@ class Utility
             return $matches;
         }, ARRAY_FILTER_USE_KEY);
     }
+
+    /**
+     * Takes a string read from file, splits it into lines, 
+     * splits the lines into words and matches those words to the model 
+     * attributes provided.
+     * 
+     * @param  array $attrs     Array of model attributes to match values to
+     * @param  string $string   String of files read from a csv file
+     * @param  string $delim    Characters to split the words on
+     * @return array            Associative array with the model attributes as key and the extracted word as value
+     */
+    public static function splitLinesIntoArray($attrs, $string, $delim)
+    {
+        $values = [];
+        $lines = explode(PHP_EOL, $string);
+
+        foreach ($lines as $line)
+        {
+            $key = 0;
+
+            foreach (explode($delim, $line) as $val)
+            {
+                $values[$attrs[$key++]] = trim($val);    
+            }
+        }
+
+        return $values;
+    }
 }
