@@ -23,23 +23,41 @@
             <li><a href="{{ url('/curriculum/digital_technologies') }}">Digital Technologies</a></li>
             <li><a href="{{ url('/curriculum/multimedia') }}">Multimedia</a></li>
             <li><a href="{{ url('/curriculum/esmart') }}">eSmart</a></li>
-        </ul>
+            </ul>
     </li>
 </ul>
 <ul class="nav navbar-nav">
     <li><a href="{{ url('events') }}">EVENTS</a></li>
     <li><a href="{{ url('contact') }}">CONTACT US</a></li>
-    <li class="dropdown">
-      <a href="{{ url('admin') }}">ADMIN</a>
-      <ul class="dropdown-menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Separated link</a></li>
+    <li><a href="{{ url('faq') }}">FAQ</a></li>
+    <ul class="nav navbar-nav navbar-right">
+        <!-- Authentication Links -->
+        @if (Auth::guest())
+            <li><a href="{{ route('login') }}">LOGIN</a></li>
+        @else
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    {{ Auth::user()->name }} <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{ url('admin') }}">ADMIN</a></li>
+                    <li>
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        @endif
     </ul>
 </li>
-<li><a href="{{ url('faq') }}">FAQ</a></li>
 </ul>
 
 
@@ -121,7 +139,7 @@
                         GET INVOLVED<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url('/involve/kids') }}">For Kids</a></li>
+                        <li><a href="{{ url('/involve/kids') }}">For Students</a></li>
                         <li><a href="{{ url('/involve/parents') }}">For Parents</a></li>
                     </ul>
                 </li>
