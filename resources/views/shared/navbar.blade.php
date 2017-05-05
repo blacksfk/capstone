@@ -30,7 +30,7 @@
     <li><a href="{{ url('events') }}">EVENTS</a></li>
     <li><a href="{{ url('contact') }}">CONTACT US</a></li>
     <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMIN<span class="caret"></span></a>
+      <a href="{{ url('admin') }}">ADMIN</a>
       <ul class="dropdown-menu">
         <li><a href="#">Action</a></li>
         <li><a href="#">Another action</a></li>
@@ -41,6 +41,9 @@
 </li>
 <li><a href="{{ url('faq') }}">FAQ</a></li>
 </ul>
+
+
+
 {{-- Dynamic links go here!! --}}
 @foreach ($dynLinks as $parent => $child)
 {{-- It's not a fucking array it's a fucking collection --}}
@@ -67,9 +70,7 @@
 @endforeach
 {{-- End dynamic links --}}
 
-<li>
-    <a href="{{ url('admin') }}">ADMIN</a>
-</li>
+
 </div><!-- /.navbar-collapse -->
 </div><!-- /.container-fluid -->
 </nav>
