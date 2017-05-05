@@ -34,7 +34,6 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ url('/involve/kids') }}">For Kids</a></li>
                         <li><a href="{{ url('/involve/parents') }}">For Parents</a></li>
-                        <li><a href="{{ url('/involve/teachers') }}">For Teachers</a></li>
                     </ul>
                 </li>
                 <li class="sliding-middle-out">
