@@ -17,4 +17,14 @@
         <th>Notes</th>
     </thead>
 </table>
-<a href="{{ route('admin.events.batchUpload') }}" class="btn btn-success" disabled>Confirm</a>
+<input type="submit" value="Confirm" class="btn btn-success" disabled>
+<script>
+    $("#upload").click(function(event) {
+        event.preventDefault();
+
+        $.post("{{ route('admin.events.previewFile') }}", {events: $("#file").val()}, function(data) {
+            
+        }, "json");
+    })
+</script>
+@endsection
