@@ -16,11 +16,13 @@ Route::get('/', function () { return view("home"); });
 Route::get("/curriculum", function() {return view("curriculum");});
 Route::get("/events", "Controller@events");
 Route::get("/contact", function() {return view("contact");});
+Route::get("/faq", function() {return view("faq");});
 
 // TEST
 //Route::get('/test2',function () { return view("curriculum.TEST_PAGE_CREATION"); });
 Route::get('/test1',"FileSaveController@save");
 Route::get('/test', function () { return view("test"); });
+Route::get('/enrolment', function() {return view("involve.enrolment");});
 
 // Under the 'Curriculum' dropdown
 Route::group(["prefix" => "curriculum"], function() {
@@ -45,7 +47,7 @@ Route::group(["middleware" => "auth"], function() {
     // dump auth only routes here
 });
 
-Route::group(["as" => "admin.", "prefix" => "admin"], function() {
+Route::group(["as" => "admin.", "prefix" => "admin","middleware" => "auth"], function() {
     Route::get("/", function() { return view("admin.dashboard"); });
     
     Route::resource("events", "EventController");

@@ -4,7 +4,7 @@
 
 <div class="container set-pad">
 <div class="row text-center">
-    <p>Click <a href="{{ asset('assets/pdf/enrol.pdf') }}">here</a> to download the official policy on CGPS enrolment areas.</p>
+    <p>Click <a href="{{ asset('assets/pdf/enrol.pdf') }}" target="_blank">here</a> to download the official policy on CGPS enrolment areas.</p>
     
     <h1 class="header-line text-center">Where do you need to live to attend CGPS?</h1>
     
@@ -30,6 +30,40 @@
                 <img class="img-responsive" src="{{ asset('assets/img/priority_zones.JPG') }}" alt="">
             </a>
         </div>
+    </div>
+    
+    <div class="pac-card" id="pac-card">
+        <div>
+            <div id="title">
+                Address Lookup
+            </div>
+            <div id="type-selector" class="pac-controls">
+                <input type="radio" name="type" id="changetype-all" checked="checked">
+                <label for="changetype-all">All</label>
+
+                <input type="radio" name="type" id="changetype-establishment">
+                <label for="changetype-establishment">Establishments</label>
+
+                <input type="radio" name="type" id="changetype-address">
+                <label for="changetype-address">Addresses</label>
+
+                <input type="radio" name="type" id="changetype-geocode">
+                <label for="changetype-geocode">Geocodes</label>
+            </div>
+            <div id="strict-bounds-selector" class="pac-controls">
+                <input type="checkbox" id="use-strict-bounds" value="">
+                <label for="use-strict-bounds">Strict Bounds</label>
+            </div>
+        </div>
+        <div id="pac-container">
+            <input id="pac-input" type="text" placeholder="Enter a location">
+        </div>
+    </div>
+    <div id="zone"></div>
+    <div id="infowindow-content" >
+        <img src="" width="16" height="16" id="place-icon">
+        <span id="place-name"  class="title"></span><br>
+        <span id="place-address"></span>
     </div>
     
     <h1 class="header-line text-center">Enrolment Info</h1>
