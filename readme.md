@@ -29,7 +29,7 @@ REFERENCES
 www.pos.com
 
 ## LOGGING IN
-DEFAULT USER
-admin@admin.com
-DEFAULT PASSWORD
+DEFAULT USER <br />
+admin@admin.com <br />
+DEFAULT PASSWORD <br />
 secret
