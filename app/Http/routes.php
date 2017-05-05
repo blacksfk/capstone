@@ -50,6 +50,22 @@ Route::group(["middleware" => "auth"], function() {
 Route::group(["as" => "admin.", "prefix" => "admin","middleware" => "auth"], function() {
     Route::get("/", function() { return view("admin.dashboard"); });
     
+    // custom routes for events for batch upload
+    Route::get("events/uploadFile", function() {
+        return view("admin.events.uploadFile");
+    })->name("events.uploadFile");
+
+    Route::post("events/previewFile", [
+        "as" => "events.previewFile",
+        "middleware" => "ajax",
+        "uses" => "EventController@previewFile"
+    ]);
+
+    Route::post("events/batchUpload", [
+        "as" => "events.batchUpload",
+        "uses" => "EventsController@batchUpload"
+    ]);
+
     Route::resource("events", "EventController");
     Route::resource("assets", "AssetController");
 

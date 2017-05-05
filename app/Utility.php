@@ -73,7 +73,38 @@ class Utility
         }, ARRAY_FILTER_USE_KEY);
     }
 
-    public static function  saveFile(Request $request){
+    /**
+     * Takes a string read from file, splits it into lines, 
+     * splits the lines into words and matches those words to the model 
+     * attributes provided.
+     * 
+     * @param  array $attrs     Array of model attributes to match values to
+     * @param  string $string   String of files read from a csv file
+     * @param  string $delim    Characters to split the words on
+     * @return array            Associative array with the model attributes as key and the extracted word as value
+     */
+    public static function splitLinesIntoArray($attrs, $string, $delim)
+    {
+        $values = [];
+        $words = explode($delim, $string);
+        $key = 0;
+
+        // if there are more words than model attrs then throw an exception 
+        if (count($words) > count($attrs))
+        {
+            throw new \Exception("Your file has more values than there are fields.");
+        }
+
+        foreach ($words as $val)
+        {
+            $values[$attrs[$key++]] = trim($val);
+        }
+
+        return $values;
+    }
+
+    public static function  saveFile(Request $request)
+    {
         $dir = public_path("assets/" . $request->type);
 
         // check if an extension was given in the file name

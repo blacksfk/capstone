@@ -2,6 +2,7 @@
 @section('title', 'Edit Events')
 @section('content')
 <a href="{{ route('admin.events.create') }}" class="btn btn-info">Create new Event</a>
+<a href="{{ route('admin.events.uploadFile') }}" class="btn btn-info">Batch Upload from CSV</a>
 <hr>
 <table>
     <thead>

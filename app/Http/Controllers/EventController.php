@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Utility;
 
 class EventController extends Controller
 {
@@ -91,5 +92,28 @@ class EventController extends Controller
         Event::find($id)->delete();
 
         return redirect()->route("admin.events.index")->with("success", "Event deleted successfully");
+    }
+
+    public function previewFile(Request $request)
+    {
+        if (!$request->file("events")->isValid())
+        {
+            return json_encode(["errors" => "File is not valid"]);
+        }
+
+        $file = fopen($request->file("events"), "r");
+        $events = [];
+
+        while (!feof($file))
+        {
+            $events[] = Utility::splitLinesIntoArray(Event::attributesToArray(), fgets($file), ",");
+        }
+
+        return json_encode($events);
+    }
+
+    public function batchUpload(Request $request)
+    {
+
     }
 }
