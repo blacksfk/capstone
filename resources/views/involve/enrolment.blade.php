@@ -4,7 +4,7 @@
 
 <div class="container set-pad">
 <div class="row text-center">
-    <p>Click <a href="{{ asset('assets/pdf/enrol.pdf') }}">here</a> to download the official policy on CGPS enrolment areas.</p>
+    <p>Click <a href="{{ asset('assets/pdf/enrol.pdf') }}" target="_blank">here</a> to download the official policy on CGPS enrolment areas.</p>
     
     <h1 class="header-line text-center">Where do you need to live to attend CGPS?</h1>
     
@@ -31,7 +31,7 @@
             </a>
         </div>
     </div>
-    
+    <div id="zone" style="width:500px; height:300px; background-color:grey;"></div>
     <h1 class="header-line text-center">Enrolment Info</h1>
     
     <p>
