@@ -23,6 +23,7 @@ Route::get("/faq", function() {return view("faq");});
 Route::get('/test1',"FileSaveController@save");
 Route::get('/test', function () { return view("test"); });
 Route::get('/enrolment', function() {return view("involve.enrolment");});
+Route::get('/newsletters', function() {return view("involve.newsletters");});
 
 // Under the 'Curriculum' dropdown
 Route::group(["prefix" => "curriculum"], function() {
