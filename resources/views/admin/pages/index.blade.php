@@ -23,7 +23,7 @@
                     @endif
                 </td>
                 <td>{{ $page->template->name }}</td>
-                <td><a href="{{ route('admin.pages.edit', $page->id) }}" class="btn btn-primary">Edit</a></td>
+                <td><a href="{{ route('admin.pages.edit', $page->id) }}">Edit</a></td>
             </tr>
         @endforeach
     </tbody>

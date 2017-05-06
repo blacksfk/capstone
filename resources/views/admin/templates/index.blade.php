@@ -18,7 +18,7 @@
                 <td>{{ $template->name }}</td>
                 <td>{{ implode(", ", $template->sections) }}</td>
                 <td>
-                    <a href="{{ route('admin.templates.edit', $template->id) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ route('admin.templates.edit', $template->id) }}">Edit</a>
                 </td>
             </tr>
         @endforeach

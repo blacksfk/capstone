@@ -12,7 +12,7 @@
         <label for="content">Template Content</label>
         <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
     </div>
-    <input type="submit" value="Create new Template" class="btn btn-success">
+    <input type="submit" value="Create new Template" class="btn btn-success center-block">
 </form>
 @endsection
 @section('form_nav')

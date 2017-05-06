@@ -36,7 +36,7 @@
                     @endif
                 </td>
                 <td><input type="checkbox" name="{{ $link->id }}" value="1"></td>
-                <td><a href="{{ route('admin.links.edit', $link->id) }}" class="btn btn-primary">Edit</a></td>
+                <td><a href="{{ route('admin.links.edit', $link->id) }}">Edit</a></td>
             </tr>
         @endforeach
     </tbody>

@@ -12,7 +12,7 @@
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="form-group"><label for="name">Template Name</label><input type="text" name="name" id="name" value="{{ $template->name }}" class="form-control"></div>
     <div class="form-group"><label for="content">Template Content</label><textarea name="content" id="content" cols="30" rows="10" class="form-control">{{ $template->content }}</textarea></div>
-    <input type="submit" value="Update {{ $template->name }}" class="btn btn-success">
+    <input type="submit" value="Update {{ $template->name }}" class="btn btn-success center-block">
 </form>
 @endsection
 @section('form_nav')

@@ -40,7 +40,7 @@
             </div>
         </div>
         <a id="preview" class="btn btn-primary">Preview</a>
-        <input type="submit" value="Create" class="btn btn-success">
+        <input type="submit" value="Create" class="btn btn-success center-block">
     </form>
 </div>
 <script>

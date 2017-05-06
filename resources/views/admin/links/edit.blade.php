@@ -35,7 +35,7 @@
             @endforeach
         </select>
     </div>
-    <input type="submit" value="Update {{ $link->name }}" class="btn btn-success">
+    <input type="submit" value="Update {{ $link->name }}" class="btn btn-success center-block">
 </form>
 @endsection
 @section('form_nav')
