@@ -5,15 +5,15 @@ $("form").submit(function(event) {
         return;
     }
 
+    var form = this;
+
     // only show modal if the form action is delete
-    if ($(this).find("[name='_method']").val().toUpperCase() !== "DELETE") {
+    if ($("input[name='_method']", form).length === 0 || $("input[name='_method']", form).val().toUpperCase() !== "DELETE") {
         return;
     }
 
     event.preventDefault();
     deleteClicked = true;
-
-    var form = this;
     var name = $(form).find("input[name='record']");
 
     $(".modal-header").text("Confirm deletion");
