@@ -3,6 +3,7 @@
 namespace App\Http\ViewComposers;
 
 use App\Link;
+use App\ParentLink;
 use Illuminate\View\View;
 
 class NavbarComposer
@@ -20,21 +21,10 @@ class NavbarComposer
                             ->where("active", true)
                             ->get();
 
-        // now get all their children
+        // loop all of the 
         foreach ($categories as $category)
         {
-            $children = Link::where("parent_id", $category->id)
-                                ->where("active", true)
-                                ->get();
-
-            if (count($children) === 0)
-            {
-                $this->links[$category->name] = $category;
-            }
-            else
-            {
-                $this->links[$category->name] = $children;
-            }
+            $this->links[] = new ParentLink($category);
         }
     }
 
@@ -45,6 +35,7 @@ class NavbarComposer
      */
     public function compose(View $view)
     {
+        // dd($this->links);
         $view->with("dynLinks", $this->links);
     }
 }

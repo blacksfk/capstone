@@ -1,180 +1,60 @@
 <div class="background-nav">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span>MENU</span>
-        </button>
-        <a class="navbar-brand" href="#">CGPS</a>
-    </div>
+    <nav class="navbar navbar-inverse" id="menu">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span>MENU</span>
+                </button>
+                <a class="navbar-brand" href="#">CGPS</a>
+            </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="{{ url('home') }}">HOME <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">ABOUT US</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CURRICULUM<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ url('/curriculum/literacy') }}">Literacy</a></li>
-            <li><a href="{{ url('/curriculum/numeracy') }}">Numeracy</a></li>
-            <li><a href="{{ url('/curriculum/digital_technologies') }}">Digital Technologies</a></li>
-            <li><a href="{{ url('/curriculum/multimedia') }}">Multimedia</a></li>
-            <li><a href="{{ url('/curriculum/esmart') }}">eSmart</a></li>
-            </ul>
-    </li>
-</ul>
-<ul class="nav navbar-nav">
-    <li><a href="{{ url('events') }}">EVENTS</a></li>
-    <li><a href="{{ url('contact') }}">CONTACT US</a></li>
-    <li><a href="{{ url('faq') }}">FAQ</a></li>
-    <ul class="nav navbar-nav navbar-right">
-        <!-- Authentication Links -->
-        @if (Auth::guest())
-            <li><a href="{{ route('login') }}">LOGIN</a></li>
-        @else
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                    {{ Auth::user()->name }} <span class="caret"></span>
-                </a>
-
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="{{ url('admin') }}">ADMIN</a></li>
-                    <li>
-                        <a href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
-                </ul>
-            </li>
-        @endif
-    </ul>
-</li>
-</ul>
-
-
-
-{{-- Dynamic links go here!! --}}
-@foreach ($dynLinks as $parent => $child)
-{{-- It's not a fucking array it's a fucking collection --}}
-@if ($child instanceof Illuminate\Database\Eloquent\Collection)
-<li class="dropdown dropdown-toggle sliding-middle-out">
-    <a class=" dropdown-toggle" data-toggle="dropdown" href="#">
-        {{ strtoupper($parent) }}<span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-        @foreach ($child as $link)
-        <li><a href="{{ url($link->page->name) }}">
-            {{ $link->page->name }}
-        </a></li>
-        @endforeach
-    </ul>
-</li>
-@else
-<li>
-    <a href="{{ url($child->page->name) }}">
-        {{ strtoupper($child->page->name) }}
-    </a>
-</li>
-@endif
-@endforeach
-{{-- End dynamic links --}}
-
-
-</div><!-- /.navbar-collapse -->
-</div><!-- /.container-fluid -->
-</nav>
-</div>
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="navbar navbar-inverse navbar-fixed-top " id="menu">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span>MENU</span>
-            </button>
-            <a class="navbar-brand" href="{{ url('/') }}"><img class="logo-custom" src="{{asset('assets/img/primary_logo.png')}}"></a>
-        </div>
-        <div class="navbar-collapse collapse move-me">
-            <ul class="nav navbar-right">
-                <li class="sliding-middle-out">
-                    <a class="navcol" href="{{ url('home') }}">HOME</a>
-                </li>
-                <li class="dropdown dropdown-toggle sliding-middle-out">
-
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">CURRICULUM<span class="caret"></span>
-
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ url('/curriculum/literacy') }}">Literacy</a></li>
-                        <li><a href="{{ url('/curriculum/numeracy') }}">Numeracy</a></li>
-                        <li><a href="{{ url('/curriculum/digital_technologies') }}">Digital Technologies</a></li>
-                        <li><a href="{{ url('/curriculum/multimedia') }}">Multimedia</a></li>
-                        <li><a href="{{ url('/curriculum/esmart') }}">eSmart</a></li>
-
-                    </ul>
-                </li>
-                
-                <li class="sliding-middle-out">
-                    <a class="navcol" href="{{ url('events') }}">EVENTS</a>
-                </li>
-                <li class="dropdown dropdown-toggle sliding-middle-out">
-                    <a class="dropdown-toggle navcol" data-toggle="dropdown" href="#">
-                        GET INVOLVED<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ url('/involve/kids') }}">For Students</a></li>
-                        <li><a href="{{ url('/involve/parents') }}">For Parents</a></li>
-                    </ul>
-                </li>
-                <li class="sliding-middle-out">
-                    <a class="navcol" href="{{ url('contact') }}">CONTACT US</a>
-                </li>
-
-
-                @if (Auth::guest())
-                    <li class="sliding-middle-out"><a href="{{ route('login') }}">LOGIN</a></li>
-                @else
-                    <li class="dropdown dropdown-toggle sliding-middle-out">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ url('admin') }}">ADMIN</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">ABOUT US</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CURRICULUM<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('/curriculum/literacy') }}">Literacy</a></li>
+                            <li><a href="{{ url('/curriculum/numeracy') }}">Numeracy</a></li>
+                            <li><a href="{{ url('/curriculum/digital_technologies') }}">Digital Technologies</a></li>
+                            <li><a href="{{ url('/curriculum/multimedia') }}">Multimedia</a></li>
+                            <li><a href="{{ url('/curriculum/esmart') }}">eSmart</a></li>
                         </ul>
                     </li>
+                    <li><a href="{{ url('events') }}">EVENTS</a></li>
+                    <li><a href="{{ url('contact') }}">CONTACT US</a></li>
+                    <li><a href="{{ url('faq') }}">FAQ</a></li>
+                {{-- Dynamic links go here!! --}}
+            @foreach ($dynLinks as $link)
+                @if (!empty($link->getChildren()))
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">{{ strtoupper($link->getLink()->name) }}<span class="caret"></span></a>
+                    @foreach ($link->getChildren() as $child)
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url($child->page->name) }}">{{ strtoupper($child->page->name) }}</a></li>
+                        </ul>
+                    @endforeach
+                    </li>
+                @else
+                    <li><a href="{{ url($link->getLink()->page->name) }}">{{ strtoupper($link->getLink()->page->name) }}</a></li>
                 @endif
-            </ul>
+            @endforeach
+                <!-- Authentication Links -->
+                @if (Auth::guest())
+                    <li><a href="{{ route('login') }}">LOGIN</a></li>
+                @else
+                    <li><a href="{{ url('admin') }}">ADMIN</a></li>
+                    <li><a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">LOGOUT</a></li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                @endif
+                </ul>
+            </div>
         </div>
-    </div>
-</div> -->
+    </nav>
+</div>
