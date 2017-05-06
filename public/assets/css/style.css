@@ -31,6 +31,7 @@ h1 {
 }
 
 body {
+    padding-top: 70px;
     height: 100%;
     line-height: 30px;
     font-size: 14px;
@@ -110,6 +111,10 @@ background-color:#fff;      }
     font-weight: 900;
     letter-spacing: 2px;
     min-height: 70px;
+    position: fixed;
+    top: 0;
+    z-index: 500;
+    width: 100%;
 }
 
 .navbar {
