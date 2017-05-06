@@ -82,3 +82,6 @@ $("#template_id").change(function() {
 });
 </script>
 @endsection
+@section('form_nav')
+<a href="{{ route('admin.pages.index') }}" class="btn btn-warning">Cancel</a>
+@endsection

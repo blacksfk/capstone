@@ -2,10 +2,12 @@
 @section('title', 'Link management')
 @section('content')
 <a href="{{ route('admin.links.create') }}" class="btn btn-info">Create new Link</a>
-<hr>
-<form action="{{ url('admin/links/massEnable') }}" method="post">
-<input type="hidden" name="_token" value="{{ csrf_token() }}">
-<table>
+<form action="{{ url('admin/links/massEnable') }}" method="post" id="form-massEnable">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+</form>
+@endsection
+@section('table')
+<table class="table table-hover">
     <thead>
         <tr>
             <th>Name</th>
@@ -39,6 +41,7 @@
         @endforeach
     </tbody>
 </table>
-<hr>
-<input type="submit" value="Enable ticked" class="btn btn-primary"></form>
+@endsection
+@section('form_nav')
+<a href="{{ url('admin/links/massEnable') }}" onclick="event.preventDefault();$('#form-massEnable').submit();" class="btn btn-primary">Enable ticked</a>
 @endsection

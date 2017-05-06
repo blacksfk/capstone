@@ -2,6 +2,8 @@
 @section('title', 'Asset management')
 @section('content')
 <a href="{{ route('admin.assets.create') }}" class="btn btn-success">Upload new Asset</a>
+@endsection
+@section('table')
 <table class="table table-hover">
     <thead>
         <th>Name</th>

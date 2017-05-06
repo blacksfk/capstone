@@ -2,8 +2,9 @@
 @section('title', 'Edit Templates')
 @section('content')
 <a href="{{ route('admin.templates.create') }}" class="btn btn-info">Create new Template</a>
-<hr>
-<table>
+@endsection
+@section('table')
+<table class="table table-hover">
     <thead>
         <tr>
             <th>Name</th>

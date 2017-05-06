@@ -2,10 +2,10 @@
 @section('title', 'Edit ' . $link->name)
 @section('back_link', route('admin.links.index'))
 @section('content')
-<form action="{{ route('admin.links.destroy', $link->id) }}" method="post">
+<form action="{{ route('admin.links.destroy', $link->id) }}" method="post" id="delete-form">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <input type="submit" value="Delete {{ $link->name }}" class="btn btn-danger">
+    <input type="hidden" name="record" value="{{ $link->name }}">
 </form>
 <form action="{{ route('admin.links.update', $link->id) }}" method="post">
     <input type="hidden" name="_method" value="PATCH">
@@ -37,4 +37,8 @@
     </div>
     <input type="submit" value="Update {{ $link->name }}" class="btn btn-success">
 </form>
+@endsection
+@section('form_nav')
+<a href="{{ route('admin.links.index') }}" class="btn btn-warning">Cancel</a>
+<a href="{{ route('admin.links.destroy', $link->id) }}" class="btn btn-danger" onclick="event.preventDefault();$('#delete-form').submit();">Delete {{ $link->name }}</a>
 @endsection

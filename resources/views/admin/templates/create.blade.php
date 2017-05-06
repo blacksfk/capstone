@@ -15,3 +15,6 @@
     <input type="submit" value="Create new Template" class="btn btn-success">
 </form>
 @endsection
+@section('form_nav')
+<a href="{{ route('admin.templates.index') }}" class="btn btn-warning">Cancel</a>
+@endsection

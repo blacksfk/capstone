@@ -21,3 +21,6 @@
         <input type="submit" value="Create new Link" class="btn btn-success">
     </form>
 @endsection
+@section('form_nav')
+<a href="{{ route('admin.links.index') }}" class="btn btn-warning">Cancel</a>
+@endsection

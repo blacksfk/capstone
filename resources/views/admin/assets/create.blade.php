@@ -22,3 +22,6 @@
     <input type="submit" value="Upload new Asset" class="btn btn-success">
 </form>
 @endsection
+@section('form_nav')
+<a href="{{ route('admin.assets.index') }}" class="btn btn-warning">Cancel</a>
+@endsection
