@@ -30,14 +30,14 @@
                     <li><a href="{{ url('faq') }}">FAQ</a></li>
                 {{-- Dynamic links go here!! --}}
             @foreach ($dynLinks as $link)
-                @if (!empty($link->getChildren()))
+                @if ($link->getChildren()->count())
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">{{ strtoupper($link->getLink()->name) }}<span class="caret"></span></a>
-                    @foreach ($link->getChildren() as $child)
                         <ul class="dropdown-menu">
+                    @foreach ($link->getChildren() as $child)
                             <li><a href="{{ url($child->page->name) }}">{{ strtoupper($child->page->name) }}</a></li>
-                        </ul>
                     @endforeach
+                        </ul>
                     </li>
                 @else
                     <li><a href="{{ url($link->getLink()->page->name) }}">{{ strtoupper($link->getLink()->page->name) }}</a></li>
