@@ -14,14 +14,14 @@ $("form").submit(function(event) {
     deleteClicked = true;
 
     var form = this;
-    var button = $(form).find("input:submit");
+    var name = $(form).find("input[name='record']");
 
     $(".modal-header").text("Confirm deletion");
 
     // extract the name of the item from the button
     $(".modal-body").text(
         "Are you sure you want to delete " + 
-        $(button).val().match(/^Delete\s(.+)/)[1] +  
+        $(name).val() +  
         "? This action cannot be undone!"
     );
     $("#adminModal").modal("show")
