@@ -54,7 +54,7 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
 
     Route::post("events/batchUpload", [
         "as" => "events.batchUpload",
-        "uses" => "EventsController@batchUpload"
+        "uses" => "EventController@batchUpload"
     ]);
 
     Route::resource("events", "EventController");
