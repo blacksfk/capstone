@@ -60,34 +60,36 @@ body {
 /* =============================================================
    TABLE STYLES
  ============================================================ */
-table {
-margin: auto;
-width: 90%;
-font-family: "Lato","sans-serif";  }       /* added custom font-family  */
+.template_table {
+    margin: auto;
+    width: 90%;
+    font-family: "Lato","sans-serif";
+}      
 
-table.one {                                  
-margin-bottom: 3em; 
-border-collapse:collapse;   }   
+.template_table td {                           
+    text-align: center;     
+    width: 10em;                    
+    padding: 1em;
+}       
 
-td {                            /* removed the border from the table data rows  */
-text-align: center;     
-width: 10em;                    
-padding: 1em;       }       
+.template_table th {                              
+    text-align: center;                 
+    padding: 1em;
+    background-color: #5D9183;       
+    color: white;
+}
 
-th {                              /* removed the border from the table heading row  */
-text-align: center;                 
-padding: 1em;
-background-color: #5D9183;       /* added a green background color to the heading cells  */
-color: white;       }                 /* added a white font color to the heading text */
+.template_table tr {
+    height: 1em;
+}
 
-tr {    
-height: 1em;    }
+.template_table table tr:nth-child(even) {            
+       background-color: #eee;
+}
 
-table tr:nth-child(even) {            /* added all even rows a #eee color  */
-       background-color: #eee;      }
-
-table tr:nth-child(odd) {            /* added all odd rows a #fff color  */
-background-color:#fff;      }
+.template_table table tr:nth-child(odd) {            
+    background-color:#fff;
+}
 
 /*=====================================
   NAVBAR STYLES 
@@ -514,7 +516,7 @@ button.accordion.active:after {
     content: "\2212";
 }
 
-div.panel {
+/*div.panel {
     padding: 0 18px;
     background-color: white;
     max-height: 0;
@@ -524,7 +526,7 @@ div.panel {
 
 .panel {
     margin-bottom: 0px;
-}
+}*/
 
 /*=====================================
   ENROLMENT ZONE MAP

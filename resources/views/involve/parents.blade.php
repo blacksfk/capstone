@@ -16,8 +16,8 @@
             </ul>
             <hr>
             <h1 class="header-line text-center">CGPS Policies and Plans</h1>
-            <p>Many policies/guidelines are dictated from the Department of Education & Training. Their website is <a href="">http://www.education.vic.gov.au/</a></p>
-            <table border="1">
+            <p>Many policies/guidelines are dictated from the Department of Education &amp; Training. Their website is <a href="">http://www.education.vic.gov.au/</a></p>
+            <table class="table table-hover template_table">
                 <tr>
                     <td><span class="style4 style11 style7 style10"><span class="style11 style13"><a href="2014AIP.pdf">CGPS Annual Implementation Plan </a></span></span></td>
                 </tr>
