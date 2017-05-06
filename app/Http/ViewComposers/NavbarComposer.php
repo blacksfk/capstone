@@ -21,7 +21,7 @@ class NavbarComposer
                             ->where("active", true)
                             ->get();
 
-        // loop all of the 
+        // loop all of the parent links and create objects
         foreach ($categories as $category)
         {
             $this->links[] = new ParentLink($category);
@@ -35,7 +35,6 @@ class NavbarComposer
      */
     public function compose(View $view)
     {
-        // dd($this->links);
         $view->with("dynLinks", $this->links);
     }
 }
