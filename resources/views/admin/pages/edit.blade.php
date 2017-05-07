@@ -27,6 +27,8 @@
         </select>
     </div>
     <div class="form-group">
+        {{-- This hidden field is required if the JS is going to be external --}}
+        <input type="hidden" name="_template_route" value="{{ route('admin.templates.sections') }}">
         <label for="template_id">Template</label>
         <select name="template_id" id="template_id" class="form-control">
             @foreach ($templates as $template)
