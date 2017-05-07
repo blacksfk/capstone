@@ -26,7 +26,6 @@ function confirmDelete(event, formID) {
     $("#modalConfirm").addClass("btn-danger");
     $("#adminModal").modal("show");
     $("#adminModal .btn-danger").click(function() {
-        $("#adminModal").modal("hide");
         $(formID).submit();
     })
 }
