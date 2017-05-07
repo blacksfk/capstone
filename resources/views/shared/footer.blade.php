@@ -201,5 +201,7 @@
     }
 */
     </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1GEg7gRkcV2id4F8yoC0TtaW9Ok7jhx4&callback=initMap&libraries=places&cal"
+    type="text/javascript"></script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </div>
