@@ -2,8 +2,13 @@
 @section('title', 'Link management')
 @section('content')
 <a href="{{ route('admin.links.create') }}" class="btn btn-info">Create new Link</a>
-<form action="{{ url('admin/links/massEnable') }}" method="post" id="form-massEnable">
+<form action="{{ route('admin.links.toggle') }}" method="post" id="form-massEnable" class="hiddenForm">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="_enable" value="1">
+</form>
+<form action="{{ route('admin.links.toggle') }}" method="post" id="form-massDisable" class="hiddenForm">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="_enable" value="0">
 </form>
 @endsection
 @section('table')
@@ -14,7 +19,7 @@
             <th>Active</th>
             <th>Parent</th>
             <th>Page</th>
-            <th>Enable</th>
+            <th>Select</th>
             <th>Edit</th>
         </tr>
     </thead>
@@ -22,19 +27,9 @@
         @foreach ($links as $link)
             <tr>
                 <td>{{ $link->name }}</td>
-                <td>
-                    <?php echo($link->active ? "True" : "False"); ?>
-                </td>
-                <td>
-                    @if (!empty($link->parent_id))
-                        {{ $link->parent->name }}
-                    @endif
-                </td>
-                <td>
-                    @if (!empty($link->page))
-                        {{ $link->page->name }}
-                    @endif
-                </td>
+                <td>{{ ($link->active ? "True" : "False") }}</td>
+                <td>{{ (empty($link->parent_id) ? "None" : $link->parent->name) }}</td>
+                <td>{{ (empty($link->page) ? "None" : $link->page->name) }}</td>
                 <td><input type="checkbox" name="{{ $link->id }}" value="1"></td>
                 <td><a href="{{ route('admin.links.edit', $link->id) }}">Edit</a></td>
             </tr>
@@ -43,5 +38,6 @@
 </table>
 @endsection
 @section('form_nav')
-<a href="{{ url('admin/links/massEnable') }}" onclick="event.preventDefault();$('#form-massEnable').submit();" class="btn btn-primary">Enable ticked</a>
+<a href="{{ route('admin.links.toggle') }}" onclick="toggleLinks(event, '#form-massEnable')" class="btn btn-primary">Enable ticked</a>
+<a href="{{ route('admin.links.toggle') }}" class="btn btn-warning" onclick="toggleLinks(event, '#form-massDisable')">Disable ticked</a>
 @endsection
