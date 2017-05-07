@@ -69,7 +69,10 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
     Route::resource("templates", "TemplateController");
 
     // custom controller method - put before resource!
-    Route::post("links/massEnable", "LinkController@massEnable");
+    Route::post("admin/links/toggle", [
+        "as" => "links.toggle",
+        "uses" => "LinkController@toggle"
+    ]);
     Route::resource("links", "LinkController");
 
     // custom route for previewing a page
