@@ -17,14 +17,15 @@ function confirmDelete(event, formID) {
     
     var name = $(formID).find("input[name='record']");
 
-    $(".modal-header").text("Confirm deleteion");
-    $(".modal-body").text(
+    $("#adminModal .modal-header").text("Confirm deletion");
+    $("#adminModal .modal-body").text(
         "Are you sure you want to delete " +
         $(name).val() +
         "? This action cannot be undone!"
     );
+    $("#modalConfirm").addClass("btn-danger");
     $("#adminModal").modal("show");
-    $(".modal-footer > .btn-danger").click(function() {
+    $("#adminModal .btn-danger").click(function() {
         $("#adminModal").modal("hide");
         $(formID).submit();
     })
