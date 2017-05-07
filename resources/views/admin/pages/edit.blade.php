@@ -55,5 +55,5 @@
 @endsection
 @section('form_nav')
 <a href="{{ route('admin.pages.index') }}" class="btn btn-warning">Cancel</a>
-<a href="{{ route('admin.pages.destroy', $page->id) }}" class="btn btn-danger" onclick="event.preventDefault();$('#delete-form').submit();">Delete {{ $page->name }}</a>
+<a href="{{ route('admin.pages.destroy', $page->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form')">Delete {{ $page->name }}</a>
 @endsection
