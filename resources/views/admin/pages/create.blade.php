@@ -35,7 +35,9 @@
             @foreach ($templates->find(1)->sections as $section)
                 <div class="form-group">
                     <label for="content[{{ $section }}]">{{ $section }}</label>
-                    <textarea name="content[{{ $section }}]" id="{{ $section }}" cols="30" rows="10" class="form-control"></textarea>
+                    <div class="code-editor" data-language="php">
+                        <textarea name="content[{{ $section }}]" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
                 </div>
             @endforeach
         </div>

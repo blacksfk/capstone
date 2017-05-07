@@ -88,10 +88,12 @@ function appendSections(data) {
         htmlString = "" +
             "<div class='form-group'>" +
             "<label for='content[" + section + "]'>" + section + "</label>" +
+            "<div class='code-editor' data-language='php'>" +
             "<textarea name='content[" + section + "]' id=" + section + " cols='30' rows='10' class='form-control'></textarea>" +
-            "</div>"
+            "</div></div>"
         $(htmlString).hide().appendTo("#inputs").slideDown(SLIDE_TIME);
-    }); 
+    });
+    $(":animated").promise().done(function() {flask.runAll(".code-editor");});
 }
 
 
@@ -117,3 +119,6 @@ $("#template_id").change(function() {
         "json"
     );
 });
+
+var flask = new CodeFlask;
+flask.runAll(".code-editor");
