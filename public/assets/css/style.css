@@ -599,3 +599,10 @@ button.accordion.active:after {
     font-weight: 500;
     padding: 6px 12px;
 }
+
+/*=====================================
+  FORM STYLES
+  ===================================*/  
+.hiddenForm {
+    display: none;
+}
