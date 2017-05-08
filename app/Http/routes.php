@@ -84,4 +84,4 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
 });
 
 // Dynamic routing to custom pages
-Route::get("/{page_name}", "DynamicViewController@show")->name("dynamic.show");
+Route::get("/{page_name}", "Controller@dynamic")->name("dynamic.show");
