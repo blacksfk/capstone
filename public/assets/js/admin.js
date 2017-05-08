@@ -1,28 +1,12 @@
 /*================================================================
     CONSTANTS
- ===============================================================*/
+  ==============================================================*/
  const SLIDE_TIME = 700;
 
 
  /*================================================================
     FUNCTIONS
- ===============================================================*/
- /**
-  * Finds all of the checked input boxes, appends them to the form specified, 
-  * and then submits the form
-  * 
-  * @param  JSEvent event
-  * @param  String formID The ID attribute of the form that will be submitted
-  * @return void
-  */
-function toggleLinks(event, formID) {
-    event.preventDefault();
-    $("input:checked").each(function(index, element) {
-        $(formID).append(element);
-    });
-    $(formID).submit();
-}
-
+   ==============================================================*/
 /**
  * Creates and shows a deletion confirmation modal, and submits 
  * the original form if the user clicks confirm
@@ -96,10 +80,47 @@ function appendSections(data) {
     $(":animated").promise().done(function() {flask.runAll(".code-editor");});
 }
 
+/**
+ * Deletes a row from a table with the slide away animation
+ * 
+ * @param  HTMLObject caller
+ * @param  JSEvent event
+ * @return void
+ */
+function deleteRow(caller, event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    var tr = $(caller).parents("tr").first();
+
+    $(tr).addClass("slideAway");
+    $(tr).one("webkitAnimationEnd oanimationend msAnimationEnd animationend", function() {
+        $(tr).remove();
+    });
+}
+
+/**
+ * Appends all elements given by the selector to the form specified
+ * 
+ * @param  JSEvent event
+ * @param  String formID   The form to append to
+ * @param  String selector The inputs to append to the form
+ * @return void
+ */
+function appendToForm(event, formID, selector) {
+    event.preventDefault();
+
+    $(selector).each(function(index, element) {
+        $(element).appendTo(formID);
+    });
+
+    $(formID).submit();
+}
+
 
 /*================================================================
     EVENT HANDLERS
- ===============================================================*/
+  ==============================================================*/
  // slide away alerts (smoother)
 $(".alert").on("close.bs.alert", function(event) {
     event.preventDefault();
