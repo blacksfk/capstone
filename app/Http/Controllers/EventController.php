@@ -94,26 +94,72 @@ class EventController extends Controller
         return redirect()->route("admin.events.index")->with("success", "Event deleted successfully");
     }
 
+    /**
+     * Iterates through the provided file, creates event objects and then
+     * previews them to the user for confirmation
+     * 
+     * @param  Request $request An HTTP post request
+     * @return View           A view to preview the created events
+     */
     public function previewFile(Request $request)
     {
         if (!$request->file("events")->isValid())
         {
-            return json_encode(["errors" => "File is not valid"]);
+            return redirect()->route("admin.events.uploadFile")
+                ->with("errors", "Invalid file");
         }
 
         $file = fopen($request->file("events"), "r");
         $events = [];
+        $errors = [];
+        $lc = 1;
 
         while (!feof($file))
         {
-            $events[] = Utility::splitLinesIntoArray(Event::attributesToArray(), fgets($file), ",");
+            // prevent from reading invalid lines
+            if ($line = fgets($file)) 
+            {
+                try
+                {
+                    $events[] = Utility::splitLinesIntoArray("App\Event", $line, ",");
+                }
+                catch (\Exception $e)
+                {
+                    $errors[] = "Line: " . $lc . ". " . $e->getMessage();
+                }
+
+                $lc++;
+            }
         }
 
-        return json_encode($events);
+        fclose($file);
+        /* errors are found via the session, and since this route returns
+            a view, session variables cannot be set using the ->with()
+            syntax, so flash() them instead */
+        $request->session()->flash("errors", $errors);
+
+        return view("admin.events.previewFile")
+            ->with("events", $events);
     }
 
+    /**
+     * This creates the events that have been deemed to be valid by the
+     * user in the preview page.
+     * 
+     * @param  Request $request An HTTP post request
+     * @return \Illuminate\Http\Response
+     */
     public function batchUpload(Request $request)
     {
+        $success = [];
 
+        foreach ($request->events as $event)
+        {
+            $created = Event::create($event);
+            $success[] = $created->name . " inserted successfully";
+        }
+
+        return redirect()->route("admin.events.index")
+            ->with("success", $success);
     }
 }
