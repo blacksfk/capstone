@@ -67,5 +67,5 @@
 @endsection
 @section('form_nav')
 <a href="{{ route('admin.events.uploadFile') }}" class="btn btn-warning">Cancel</a>
-<a href="{{ route('admin.events.batchUpload') }}" class="btn btn-success pull-right" onclick="appendElementsToForm(event, '#event-batch-form', 'td > input')">Confirm</a>
+<a href="{{ route('admin.events.batchUpload') }}" class="btn btn-success pull-right" onclick="appendToForm(event, '#event-batch-form', 'td > input')">Confirm</a>
 @endsection

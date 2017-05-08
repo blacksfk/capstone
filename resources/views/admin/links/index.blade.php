@@ -38,6 +38,6 @@
 </table>
 @endsection
 @section('form_nav')
-<a href="{{ route('admin.links.toggle') }}" onclick="toggleLinks(event, '#form-massEnable')" class="btn btn-primary">Enable ticked</a>
-<a href="{{ route('admin.links.toggle') }}" class="btn btn-warning" onclick="toggleLinks(event, '#form-massDisable')">Disable ticked</a>
+<a href="{{ route('admin.links.toggle') }}" onclick="appendToForm(event, '#form-massEnable', 'input:checked')" class="btn btn-primary">Enable ticked</a>
+<a href="{{ route('admin.links.toggle') }}" class="btn btn-warning" onclick="appendToForm(event, '#form-massDisable', 'input:checked')">Disable ticked</a>
 @endsection
