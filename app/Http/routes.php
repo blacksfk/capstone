@@ -48,7 +48,6 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
 
     Route::post("events/previewFile", [
         "as" => "events.previewFile",
-        "middleware" => "ajax",
         "uses" => "EventController@previewFile"
     ]);
 
