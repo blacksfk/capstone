@@ -130,7 +130,7 @@ class LinkController extends Controller
             $link = Link::find($id);
 
             // only enable links that are bound or have children links
-            if (isset($link->page) || count($link->children))
+            if (isset($link->page) || count($link->children->where("active", true)))
             {
                 $link->active = $enable;
                 $success[] = $link->name . 
@@ -139,7 +139,7 @@ class LinkController extends Controller
             else
             {
                 $errors[] = $link->name . 
-                    " does not have any children or has not been bound to a page and cannot be enabled";
+                    " does not have any active children or has not been bound to a page and cannot be enabled";
             }
         }
 
