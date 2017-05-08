@@ -83,11 +83,11 @@ body {
     height: 1em;
 }
 
-.template_table table tr:nth-child(even) {            
+.template_table tr:nth-child(even) {            
        background-color: #eee;
 }
 
-.template_table table tr:nth-child(odd) {            
+.template_table tr:nth-child(odd) {            
     background-color:#fff;
 }
 
@@ -628,4 +628,36 @@ button.accordion.active:after {
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+
+/*=====================================
+  CUSTOM ANIMATIONS
+  ===================================*/
+/* slide awayyyyyyyy baby */
+@keyframes slideLeftAndFade {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    12.5% {
+        opacity: 0.66;
+    }
+    25% {
+        opacity: 0.33;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-20%);
+        opacity: 0;
+    }
+}
+
+.slideAway {
+    position: relative;
+    animation-name: slideLeftAndFade;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-out;
 }
