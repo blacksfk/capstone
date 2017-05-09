@@ -43,6 +43,28 @@
         </div>
     @endif
 
+    @if ($warnings = Session::get("warnings"))
+        <div class="row">
+            <div class="alert alert-warning alert-dismissable">
+                <button class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Warnings</strong>
+                @if (is_array($warnings))
+                    @foreach ($warnings as $w)
+                        <p>{{ $w }}</p>
+                    @endforeach
+                @elseif (is_object($warnings))
+                    @foreach ($warnings->all() as $w)
+                        <p>{{ $w }}</p>
+                    @endforeach
+                @else
+                    <p>{{ $warnings }}</p>
+                @endif
+            </div>
+        </div>
+    @endif
+
     @if ($errors = Session::get("errors"))
         <div class="row">
             <div class="alert alert-danger alert-dismissable">
