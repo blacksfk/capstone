@@ -8,8 +8,8 @@
         <table class="table table-hover template_table">
             <thead>
                 <tr>
-                    <th>Name</th>
                     <th>Date</th>
+                    <th>Name</th>
                     <th>Start time</th>
                     <th>End time</th>
                     <th>Notes</th>
@@ -18,8 +18,8 @@
             <tbody>
                 @foreach ($events as $event)
                     <tr>
-                        <td>{{ $event->name }}</td>
                         <td>{{ $event->date }}</td>
+                        <td>{{ $event->name }}</td>
                         <td>{{ $event->start_time }}</td>
                         <td>{{ $event->end_time }}</td>
                         <td>{{ $event->notes }}</td>
