@@ -16,6 +16,7 @@
  * @return void
  */
 function confirmDelete(event, formID) {
+    event.stopPropagation();
     event.preventDefault();
     
     var name = $(formID).find("input[name='record']");
@@ -30,7 +31,7 @@ function confirmDelete(event, formID) {
     $("#adminModal").modal("show");
     $("#modalConfirm").click(function() {
         $(formID).submit();
-    })
+    });
 }
 
 /**
@@ -42,7 +43,9 @@ function confirmDelete(event, formID) {
  * @return void
  */
 function previewPage(caller, event) {
+    event.stopPropagation();
     event.preventDefault();
+
     var contentArray = {};
 
     $("input[name^='content']").each(function(index, element) {
@@ -108,6 +111,7 @@ function deleteRow(caller, event) {
  * @return void
  */
 function appendToForm(event, formID, selector) {
+    event.stopPropagation();
     event.preventDefault();
 
     $(selector).each(function(index, element) {
