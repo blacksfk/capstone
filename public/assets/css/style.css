@@ -91,6 +91,10 @@ body {
     background-color:#fff;
 }
 
+.principal-left {
+    display: flex;
+}
+
 /*=====================================
   NAVBAR STYLES 
     ===================================*/

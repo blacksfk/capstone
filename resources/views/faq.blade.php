@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Curriculum')
+@section('title', 'Faq')
 @section('content')
 
 <div id="features-sec" class="container set-pad" >

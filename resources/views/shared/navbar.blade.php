@@ -17,11 +17,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ABOUT US<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('/curriculum/') }}">Principal</a></li>
-                            <li><a href="{{ url('/curriculum/numeracy') }}">Numeracy</a></li>
-                            <li><a href="{{ url('/curriculum/digital_technologies') }}">Digital Technologies</a></li>
-                            <li><a href="{{ url('/curriculum/multimedia') }}">Multimedia</a></li>
-                            <li><a href="{{ url('/curriculum/esmart') }}">eSmart</a></li>
+                            <li><a href="{{ url('/about/principal') }}">Principal</a></li>
+                            <li><a href="{{ url('/about/history') }}">History</a></li>
+                            <li><a href="{{ url('/about/policies') }}">Policies</a></li>
+                            
                         </ul>
                     </li>
                     <li class="dropdown">

@@ -17,8 +17,6 @@ Route::get("/curriculum", function() {return view("curriculum");});
 Route::get("/events", "Controller@events");
 Route::get("/contact", function() {return view("contact");});
 Route::get("/faq", function() {return view("faq");});
-Route::get('/enrolment', function() {return view("involve.enrolment");});
-Route::get('/newsletters', function() {return view("involve.newsletters");});
 
 // Under the 'Curriculum' dropdown
 Route::group(["prefix" => "curriculum"], function() {
@@ -27,17 +25,15 @@ Route::group(["prefix" => "curriculum"], function() {
     Route::get("digital_technologies", function() {return view("curriculum.digital_technologies");});
     Route::get("multimedia", function() {return view("curriculum.multimedia");});
     Route::get("esmart", function() {return view("curriculum.esmart");});
+    Route::get('/enrolment', function() {return view("curriculum.enrolment");});
+    Route::get('/newsletters', function() {return view("curriculum.newsletters");});
 });
 
-// Under the 'Get Involved' dropdown
+// Under the 'About Us' dropdown
 Route::group(["prefix" => "about"], function() {
     Route::get("principal", function() {return view("about.principal");});
-    Route::get("parents", function() {return view("involve.parents");});
-    Route::get("teachers", function() {return view("involve.teachers");});
-    Route::get("enrolment", function() {return view("involve.enrolment");});
+    Route::get("policies", function() {return view("about.policies");});
 });
-
-
 
 // Under the 'Get Involved' dropdown
 
