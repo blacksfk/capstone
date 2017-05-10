@@ -124,7 +124,7 @@ class PageController extends Controller
         // disable link the page is bound to
         if (isset($page->link))
         {
-            Link::find($page->link_id)->disableLink();
+            Link::find($page->link_id)->active = false;
             $update[] = $page->link->name . " is no longer active";
         }
 
