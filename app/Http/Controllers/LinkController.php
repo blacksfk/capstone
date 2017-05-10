@@ -43,7 +43,12 @@ class LinkController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, self::$validation);
-        Link::create($request->all());
+
+        $link = new Link();
+        $link->name = $request->name;
+        $link->active = $request->active;
+        $link->parent_id = $request->parent_id;
+        $link->save();
 
         return redirect()->route("admin.links.index")
             ->with("success", "Link successfully created");
