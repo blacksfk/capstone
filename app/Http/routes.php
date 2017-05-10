@@ -30,6 +30,16 @@ Route::group(["prefix" => "curriculum"], function() {
 });
 
 // Under the 'Get Involved' dropdown
+Route::group(["prefix" => "about"], function() {
+    Route::get("principal", function() {return view("about.principal");});
+    Route::get("parents", function() {return view("involve.parents");});
+    Route::get("teachers", function() {return view("involve.teachers");});
+    Route::get("enrolment", function() {return view("involve.enrolment");});
+});
+
+
+
+// Under the 'Get Involved' dropdown
 
 Route::group(["prefix" => "involve"], function() {
     Route::get("kids", function() {return view("involve.kids");});

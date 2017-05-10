@@ -13,8 +13,17 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">HOME <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">ABOUT US</a></li>
+                    <li><a href="{{ url('/') }}">HOME<span class="sr-only">(current)</span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ABOUT US<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('/curriculum/') }}">Principal</a></li>
+                            <li><a href="{{ url('/curriculum/numeracy') }}">Numeracy</a></li>
+                            <li><a href="{{ url('/curriculum/digital_technologies') }}">Digital Technologies</a></li>
+                            <li><a href="{{ url('/curriculum/multimedia') }}">Multimedia</a></li>
+                            <li><a href="{{ url('/curriculum/esmart') }}">eSmart</a></li>
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CURRICULUM<span class="caret"></span></a>
                         <ul class="dropdown-menu">
