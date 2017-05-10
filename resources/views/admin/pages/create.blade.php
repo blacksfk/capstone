@@ -2,7 +2,9 @@
 @section('title', 'Create new Page')
 @section('back_link', route('admin.pages.index'))
 @section('content')
-<form action="{{ route('admin.pages.store') }}" method="post">
+<a href="{{ route('admin.pages.index') }}" class="btn btn-warning">Cancel</a>
+<hr>
+<form action="{{ route('admin.pages.store') }}" method="post" id="create-form">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="form-group">
         <label for="name">Name</label>
@@ -42,10 +44,9 @@
             @endforeach
         </div>
     </div>
-    <a href="{{ route('admin.pages.preview') }}" class="btn btn-primary" onclick="previewPage(this, event)">Preview</a>
-    <input type="submit" value="Create" class="btn btn-success center-block">
 </form>
 @endsection
 @section('form_nav')
-<a href="{{ route('admin.pages.index') }}" class="btn btn-warning">Cancel</a>
+<a href="{{ route('admin.pages.preview') }}" class="btn btn-primary" onclick="previewPage(this, event)">Preview</a>
+<a class="btn btn-success pull-right" onclick="event.preventDefault();$('#create-form').submit();">Create new Page</a>
 @endsection

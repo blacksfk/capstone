@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 @section('title', 'Confirm events upload')
 @section('content')
+<a href="{{ route('admin.events.index') }}" class="btn btn-warning">Cancel</a>
+<hr>
 <p>Confirm that these events match the file. If some valid data does not appear correctly ensure the following format:</p>
 <table class="table table-hover">
     <thead>
@@ -66,6 +68,7 @@
 </table>
 @endsection
 @section('form_nav')
-<a href="{{ route('admin.events.uploadFile') }}" class="btn btn-warning">Cancel</a>
-<a href="{{ route('admin.events.batchUpload') }}" class="btn btn-success pull-right" onclick="appendToForm(event, '#event-batch-form', 'td > input')">Confirm</a>
+<div class="text-right">
+    <a href="{{ route('admin.events.batchUpload') }}" class="btn btn-success" onclick="appendToForm(event, '#event-batch-form', 'td > input')">Confirm</a>
+</div>
 @endsection

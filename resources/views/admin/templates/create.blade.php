@@ -1,8 +1,9 @@
 @extends('layouts.admin')
 @section('title', 'Create Template')
-@section('back_link', route('admin.templates.index'))
 @section('content')
-<form action="{{ route('admin.templates.store') }}" method="post">
+<a href="{{ route('admin.templates.index') }}" class="btn btn-warning">Cancel</a>
+<hr>
+<form action="{{ route('admin.templates.store') }}" method="post" id="create-form">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="form-group">
         <label for="name">Template Name</label>
@@ -12,9 +13,10 @@
         <label for="content">Template Content</label>
         <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
     </div>
-    <input type="submit" value="Create new Template" class="btn btn-success center-block">
 </form>
 @endsection
 @section('form_nav')
-<a href="{{ route('admin.templates.index') }}" class="btn btn-warning">Cancel</a>
+<div class="text-right">
+    <a class="btn btn-success" onclick="event.preventDefault();$('#create-form').submit();">Create new Template</a>
+</div>
 @endsection
