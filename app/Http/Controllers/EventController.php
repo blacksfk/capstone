@@ -151,7 +151,7 @@ class EventController extends Controller
 
     /**
      * This creates the events that have been deemed to be valid by the
-     * user in the preview page.
+     * user in the preview page and removes all of the old events!
      * 
      * @param  Request $request An HTTP post request
      * @return \Illuminate\Http\Response
@@ -165,6 +165,13 @@ class EventController extends Controller
         }
 
         $success = [];
+
+        // delete all of the exisitng events
+        foreach (Event::all() as $event)
+        {
+            $success[] = $event->name . " deleted successfully";
+            $event->delete();
+        }
 
         foreach ($request->events as $event)
         {
