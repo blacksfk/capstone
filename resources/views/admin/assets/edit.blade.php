@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 @section('title', 'Edit ' . $asset->name)
 @section('content')
-<form action="{{ route('admin.assets.destroy', $asset->id) }}" method="post">
+<form action="{{ route('admin.assets.destroy', $asset->id) }}" method="post" id ="delete-form">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete {{ $asset->name }}" class="btn btn-danger">
+    <input type="hidden" name="record" value="{{ $asset->name }}">
 </form>
 <form action="{{ route('admin.assets.update', $asset->id) }}" method="post">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -23,6 +23,10 @@
             @endforeach
         </select>
     </div>
-    <input type="submit" value="Update {{ $asset->name }}" class="btn btn-success">
+    <input type="submit" value="Update {{ $asset->name }}" class="btn btn-success center-block">
 </form>
+@endsection
+@section('form_nav')
+<a href="{{ route('admin.assets.index') }}" class="btn btn-warning">Cancel</a>
+<a href="{{ route('admin.assets.destroy', $assets->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form')">Delete {{ $asset->name }}</a>
 @endsection

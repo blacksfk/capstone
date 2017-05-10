@@ -17,7 +17,7 @@ class NavbarComposer
     public function __construct()
     {
         // get all links that don't have children
-        $categories = Link::where("parent_id", null)
+        $categories = Link::where("parent_id", "")
                             ->where("active", true)
                             ->get();
 

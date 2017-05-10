@@ -2,10 +2,10 @@
 @section('title', 'Edit ' . $event->name)
 @section('back_link', route('admin.events.index'))
 @section('content')
-<form action="{{ route('admin.events.destroy', $event->id) }}" method="post">
+<form action="{{ route('admin.events.destroy', $event->id) }}" method="post" id="delete-form">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <input type="submit" value="Delete {{ $event->name }}" class="btn btn-danger">
+    <input type="hidden" name="record" value="{{ $event->name }}">
 </form>
 <form action="{{ route('admin.events.update', $event->id) }}" method="post">
     <input type="hidden" name="_method" value="PATCH">
@@ -29,6 +29,10 @@
         <label for="notes">Notes</label>
         <textarea name="notes" id="notes" class="form-control">{{ $event->notes }}</textarea>
     </div>
-    <input type="submit" value="Update {{ $event->name }}" class="btn btn-success">
+    <input type="submit" value="Update {{ $event->name }}" class="btn btn-success center-block">
 </form>
+@endsection
+@section('form_nav')
+<a href="{{ route('admin.events.index') }}" class="btn btn-warning">Cancel</a>
+<a href="{{ route('admin.events.destroy', $event->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form')">Delete {{ $event->name }}</a>
 @endsection

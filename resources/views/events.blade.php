@@ -5,7 +5,7 @@
 <div id="features-sec" class="container set-pad" >
     <div class="row text-center">
         <h1 class="header-line">Events</h1>
-        <table>
+        <table class="table table-hover template_table">
             <thead>
                 <tr>
                     <th>Name</th>

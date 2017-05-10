@@ -39,14 +39,14 @@
                     <li><a href="{{ url('faq') }}">FAQ</a></li>
                 {{-- Dynamic links go here!! --}}
             @foreach ($dynLinks as $link)
-                @if (!empty($link->getChildren()))
+                @if ($link->getChildren()->count())
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">{{ strtoupper($link->getLink()->name) }}<span class="caret"></span></a>
-                    @foreach ($link->getChildren() as $child)
                         <ul class="dropdown-menu">
+                    @foreach ($link->getChildren() as $child)
                             <li><a href="{{ url($child->page->name) }}">{{ strtoupper($child->page->name) }}</a></li>
-                        </ul>
                     @endforeach
+                        </ul>
                     </li>
                 @else
                     <li><a href="{{ url($link->getLink()->page->name) }}">{{ strtoupper($link->getLink()->page->name) }}</a></li>
@@ -56,7 +56,16 @@
                 @if (Auth::guest())
                     <li><a href="{{ route('login') }}">LOGIN</a></li>
                 @else
-                    <li><a href="{{ url('admin') }}">ADMIN</a></li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">ADMINISTRATION<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('admin.assets.index') }}">Asset managment</a></li>
+                            <li><a href="{{ route('admin.events.index') }}">Event management</a></li>
+                            <li><a href="{{ route('admin.links.index') }}">Link management</a></li>
+                            <li><a href="{{ route('admin.pages.index') }}">Page management</a></li>
+                            <li><a href="{{ route('admin.templates.index') }}">Template management</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">LOGOUT</a></li>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}

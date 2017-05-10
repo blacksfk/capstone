@@ -2,8 +2,9 @@
 @section('title', 'Edit Templates')
 @section('content')
 <a href="{{ route('admin.templates.create') }}" class="btn btn-info">Create new Template</a>
-<hr>
-<table>
+@endsection
+@section('table')
+<table class="table table-hover">
     <thead>
         <tr>
             <th>Name</th>
@@ -17,7 +18,7 @@
                 <td>{{ $template->name }}</td>
                 <td>{{ implode(", ", $template->sections) }}</td>
                 <td>
-                    <a href="{{ route('admin.templates.edit', $template->id) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ route('admin.templates.edit', $template->id) }}">Edit</a>
                 </td>
             </tr>
         @endforeach

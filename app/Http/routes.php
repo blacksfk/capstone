@@ -58,13 +58,12 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
 
     Route::post("events/previewFile", [
         "as" => "events.previewFile",
-        "middleware" => "ajax",
         "uses" => "EventController@previewFile"
     ]);
 
     Route::post("events/batchUpload", [
         "as" => "events.batchUpload",
-        "uses" => "EventsController@batchUpload"
+        "uses" => "EventController@batchUpload"
     ]);
 
     Route::resource("events", "EventController");
@@ -79,7 +78,10 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
     Route::resource("templates", "TemplateController");
 
     // custom controller method - put before resource!
-    Route::post("links/massEnable", "LinkController@massEnable");
+    Route::post("admin/links/toggle", [
+        "as" => "links.toggle",
+        "uses" => "LinkController@toggle"
+    ]);
     Route::resource("links", "LinkController");
 
     // custom route for previewing a page
@@ -92,4 +94,4 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
 });
 
 // Dynamic routing to custom pages
-Route::get("/{page_name}", "DynamicViewController@show")->name("dynamic.show");
+Route::get("/{page_name}", "Controller@dynamic")->name("dynamic.show");

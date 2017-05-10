@@ -19,6 +19,9 @@
         <label for="asset">Upload</label>
         <input type="file" name="asset" id="asset">
     </div>
-    <input type="submit" value="Upload new Asset" class="btn btn-success">
+    <input type="submit" value="Upload new Asset" class="btn btn-success center-block">
 </form>
+@endsection
+@section('form_nav')
+<a href="{{ route('admin.assets.index') }}" class="btn btn-warning">Cancel</a>
 @endsection

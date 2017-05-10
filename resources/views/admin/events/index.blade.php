@@ -3,8 +3,9 @@
 @section('content')
 <a href="{{ route('admin.events.create') }}" class="btn btn-info">Create new Event</a>
 <a href="{{ route('admin.events.uploadFile') }}" class="btn btn-info">Batch Upload from CSV</a>
-<hr>
-<table>
+@endsection
+@section('table')
+<table class="table table-hover">
     <thead>
         <tr>
             <th>Name</th>
@@ -23,7 +24,7 @@
                 <td>{{ $event->start_time }}</td>
                 <td>{{ $event->end_time }}</td>
                 <td>{{ $event->notes }}</td>
-                <td><a href="{{ route('admin.events.edit', $event->id) }}" class="btn btn-primary">Edit</a></td>
+                <td><a href="{{ route('admin.events.edit', $event->id) }}">Edit</a></td>
             </tr>
         @endforeach
     </tbody>

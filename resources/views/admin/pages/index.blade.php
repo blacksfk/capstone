@@ -2,8 +2,9 @@
 @section('title', 'Edit Pages')
 @section('content')
 <a href="{{ route('admin.pages.create') }}" class="btn btn-info">Create new Page</a>
-<hr>
-<table>
+@endsection
+@section('table')
+<table class="table table-hover">
     <thead>
         <tr>
             <th>Name</th>
@@ -22,7 +23,7 @@
                     @endif
                 </td>
                 <td>{{ $page->template->name }}</td>
-                <td><a href="{{ route('admin.pages.edit', $page->id) }}" class="btn btn-primary">Edit</a></td>
+                <td><a href="{{ route('admin.pages.edit', $page->id) }}">Edit</a></td>
             </tr>
         @endforeach
     </tbody>

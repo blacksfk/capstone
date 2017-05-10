@@ -113,31 +113,33 @@ class LinkController extends Controller
     }
 
     /**
-     * Enable all links in the request
+     * Toggles the selected links between active and inactive
      * 
      * @param  Request $request HTTP POST request
-     * @return \Illuminate\Http\Response     
+     * @return \Illuminate\Http\Response
      */
-    public function massEnable(Request $request)
+    public function toggle(Request $request)
     {
-        // skip _token key (should be first key of array)
+        $enable = $request->_enable;
         $linksToEnable = Utility::filterOutInvalidKeys($request->all());
         $errors = [];
         $success = [];
-        
-        foreach ($linksToEnable as $linkID => $linkValue)
-        {
-            $link = Link::find($linkID);
 
-            if (isset($link->page) || count($link->children))
+        foreach ($linksToEnable as $id => $val)
+        {
+            $link = Link::find($id);
+
+            // only enable links that are bound or have children links
+            if (isset($link->page) || count($link->children->where("active", true)))
             {
-                $link->enableLink();
-                $success[] = $link->name . " enabled successfully";
+                $link->active = $enable;
+                $success[] = $link->name . 
+                    ($enable ? " enabled" : " disabled") . " successfully";
             }
             else
             {
-                $errors[] = $link->name .
-                    " has not been bound to a page and cannot be enabled";
+                $errors[] = $link->name . 
+                    " does not have any active children or has not been bound to a page and cannot be enabled";
             }
         }
 

@@ -2,6 +2,8 @@
 @section('title', 'Asset management')
 @section('content')
 <a href="{{ route('admin.assets.create') }}" class="btn btn-success">Upload new Asset</a>
+@endsection
+@section('table')
 <table class="table table-hover">
     <thead>
         <th>Name</th>
@@ -24,10 +26,10 @@
                     @endif
                 </td>
                 <td>
-                    <form action="{{ route('admin.assets.destroy', $asset->id) }}" method="post">
+                    <form action="{{ route('admin.assets.destroy', $asset->id) }}" method="post" id="delete-form">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="_method" value="DELETE">
-                        <input type="submit" value="Delete {{ $asset->name }}" class="btn btn-danger">
+                        <input type="submit" value="Delete {{ $asset->name }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form')">
                     </form>
                 </td>
             </tr>

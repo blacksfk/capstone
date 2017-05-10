@@ -10,7 +10,7 @@
             <div class="modal-body"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger">Confirm</button>
+                <button type="button" class="btn" data-dismiss="modal" id="modalConfirm">Confirm</button>
             </div>
         </div>
     </div>

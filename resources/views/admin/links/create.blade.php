@@ -18,6 +18,9 @@
                 @endforeach
             </select>
         </div>
-        <input type="submit" value="Create new Link" class="btn btn-success">
+        <input type="submit" value="Create new Link" class="btn btn-success center-block">
     </form>
+@endsection
+@section('form_nav')
+<a href="{{ route('admin.links.index') }}" class="btn btn-warning">Cancel</a>
 @endsection
