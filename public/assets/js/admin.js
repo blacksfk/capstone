@@ -35,6 +35,27 @@ function confirmDelete(event, formID) {
 }
 
 /**
+ * Shows a modal and runs a callback
+ * @param  JSEvent   event
+ * @param  string   formID      ID of the form to submit
+ * @param  {Function} callback  The function to run once the user clicks confirm
+ * @param  string   selector    The inputs to append to the form
+ * @return void            
+ */
+function confirmOverwrite(event, formID, callback, selector) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    $("#adminModal .modal-header").text("Confirm overwrite");
+    $("#adminModal .modal-body").text("Are you sure you want overwrite all records in the database? This action cannot be undone!");
+    $("#modalConfirm").addClass("btn-danger");
+    $("#adminModal").modal("show");
+    $("#modalConfirm").click(function() {
+        callback(event, formID, selector);
+    });
+}
+
+/**
  * Builds an associative array, performs an ajax get request to the server,
  * creates a window, and appends the result (a string to the newly created window)
  * 
