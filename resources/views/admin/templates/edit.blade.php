@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
         <label for="content">Template Content</label>
-        <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{ $template->content }}</textarea>
+        <textarea name="content" id="content" cols="30" rows="10" class="form-control" readonly>{{ $template->content }}</textarea>
     </div>
 </form>
 @endsection

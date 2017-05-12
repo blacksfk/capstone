@@ -7,15 +7,12 @@
     <div class="row text-center">
         <p>The Courtenay Gardens newsletter, known as 'Courtenay News', is produced fortnightly on a Thursday. 
             Each issue can be downloaded by clicking on the links below.</p>
-            
-            <?php 
-            $datetime = getdate();
-            $year = $datetime['year'];
-            echo($year)
-            ?>
     </div>
     <div class="row text-center">
         <div class="well col-sm-2">
+            @foreach ($newsletters as $newsletter)
+                <a id="pdfLink" href="assets/pdf/{{ $newsletter->name }}">{{ $newsletter->name }}</a>
+            @endforeach
             <a id="pdfLink" href="{{ asset('assets/pdf/enrol.pdf') }}">Click me pls</a>
         </div>
         
