@@ -10,7 +10,7 @@ use App\Http\Requests;
 class AssetController extends Controller
 {
     private static $validation = [
-        "name" => "required|max:255|unique:assets",
+        //"name" => "required|max:255|unique:assets",
         "type" => "required"
     ];
 
@@ -44,19 +44,16 @@ class AssetController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, self::$validation);
-        $name = "";
+        $request->asset->storeAs(
+            $request->type,
+            $request->asset->getClientOriginalName(),
+            "public"
+        );
 
-        if ($request->file("asset")->isValid())
-        {
-          $name = Utility::saveFile($request);
-        }
-        else
-        {
-            return back()->withInput()
-                ->with("errors", "Not a valid asset");
-        }
-
-        Asset::create(["name" => $name, "type" => $request->type]);
+        $asset = new Asset();
+        $asset->name = $request->asset->getClientOriginalName();
+        $asset->type = $request->type;
+        $asset->save();
 
         return redirect()->route("admin.assets.index")
             ->with("success", "Asset uploaded successfully");
@@ -111,6 +108,7 @@ class AssetController extends Controller
     public function destroy($id)
     {
         $asset = Asset::find($id);
+        $errors = "";
 
         // first try to delete the asset
         try
@@ -123,17 +121,14 @@ class AssetController extends Controller
         }
         catch (\Exception $e)
         {
-            return back()
-                ->withInput()
-                ->with("errors", 
-                    "Unable to delete " . $asset->name . ". " . $e->getMessage()
-                );
+            $errors = "Unable to delete " . $asset->name . " from disk. " . $e->getMessage();
         }
 
         // if succesful, now delete the model
         $asset->delete();
 
         return redirect()->route("admin.assets.index")
-            ->with("success", "Asset deleted successfully");
+            ->with("success", "Asset deleted successfully")
+            ->with("errors", $errors);
     }
 }
