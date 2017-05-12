@@ -10,7 +10,7 @@ use App\Http\Requests;
 class AssetController extends Controller
 {
     private static $validation = [
-        //"name" => "required|max:255|unique:assets",
+        "asset" => "required",
         "type" => "required"
     ];
 
