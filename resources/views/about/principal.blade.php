@@ -5,14 +5,21 @@
 <div id="features-sec" class="container set-pad">
 	<div class="row">
 		<h1 class="header-line text-center">Principal: Loretta Hamilton</h1>
-		<img class="pull-right" src="{{ asset('assets/img/principal.jpg') }}" width="15%" height="15%" alt="principal">
-		<h3>Congratulations to Miss Hamilton for winning the 2012 Australian Principal of the Year!</h3>
-		<p><em>BEd, Grad. Dip. Ed. Admin., Grad Dip Comp. Edu., Dip. Tching Prim., I.T.F.</em></p>
+    	<div class="col-md-8">
+			<h3>Congratulations to Miss Hamilton for winning the 2012 Australian Principal of the Year!</h3>
+			<p><em>BEd, Grad. Dip. Ed. Admin., Grad Dip Comp. Edu., Dip. Tching Prim., I.T.F.</em></p>
 	
-	<p>Loretta is currently Principal of Courtenay Gardens Primary School, in Cranbourne North, Victoria. Courtenay Gardens opened with 399 students in 1995 and through the years peaked as high as 870 students. The school has approximately 820 students this year.
+			<p>Loretta is currently Principal of Courtenay Gardens Primary School, in Cranbourne North, Victoria. Courtenay Gardens opened with 399 students in 1995 and through the years peaked as high as 870 students. The school has approximately 820 students this year.
 
-	Over the past twenty-one years, through the hard work of the leadership team and staff, School Council and parents, the community and most importantly our children, we have become a centre of excellence where we constantly strive to be the BEST School in Victoria.</p>
+			Over the past twenty-one years, through the hard work of the leadership team and staff, School Council and parents, the community and most importantly our children, we have become a centre of excellence where we constantly strive to be the BEST School in Victoria.</p>		
+		</div>        
+    
+    	<div class="col-md-4">
+        	<img class="img-responsive" src="{{ asset('assets/img/principal.jpg') }}" alt="principal">
+    	</div>
 	</div>
+
+
 	<div class="row">
 		<h1 class="header-line text-center">Personal Profile</h1>
 	</div>
