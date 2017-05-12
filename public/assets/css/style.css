@@ -379,10 +379,8 @@ h1::after {
   CAROUSEL
   ===================================*/
 .carousel-inner {
-    max-height: 550px;
+    height: 25%;
     width: auto;
-    height: auto;
-    overflow: hidden;
 }
 
 /*=====================================
@@ -456,7 +454,7 @@ h1::after {
     padding:5px 20px;
     background-color:#2d3d5a;
     text-align:right;
-    color:#fff;
+    color:#ffffff;
     font-size:12px;
 }
 
@@ -466,7 +464,49 @@ h1::after {
     background-color: grey;
 }
 
+#footer-header-links
+{
+    color: #DEDEDE;
+}
 
+.centered-footer {
+    padding: 2%;
+    text-decoration: none;
+}
+
+.centered-footer a {
+    text-decoration: none;
+    color: rgb(110,110,110);
+}
+
+.centered-footer ul {
+    width:100%;
+    list-style: none;
+}
+
+.centered-footer ul li {
+    float: left;
+    width: 150px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #FFF;
+}
+
+.centered-footer ul li ul {
+    padding: 0;
+}
+
+.centered-footer ul li ul li {
+    float: none;
+    padding: 5px 0;
+    font-weight: normal; 
+
+}
+
+div.centered-footer {
+    background-color: #252525;
+    color: rgb(130,130,130);
+}
 /*=====================================
   CONTACT 
   ===================================*/
