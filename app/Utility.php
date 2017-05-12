@@ -13,7 +13,7 @@ class Utility
      * @param  string $contents the file's contents
      * @param  string $category directory path
      */
-    public static function save($name, $contents, $category=null)
+    public static function createFile($name, $contents, $category=null)
     {
         // compiles the path, leads to views folder (specifiy the folder), (specify the name)
         $filename = resource_path()."/views/".$category."/".$name.'.blade.php';
