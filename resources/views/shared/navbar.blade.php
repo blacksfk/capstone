@@ -31,6 +31,8 @@
                             <li><a href="{{ url('/curriculum/digital_technologies') }}">Digital Technologies</a></li>
                             <li><a href="{{ url('/curriculum/multimedia') }}">Multimedia</a></li>
                             <li><a href="{{ url('/curriculum/esmart') }}">eSmart</a></li>
+                            <li><a href="{{ url('/curriculum/enrolment') }}">Enrolment</a></li>
+
                         </ul>
                     </li>
                     <li><a href="{{ url('events') }}">EVENTS</a></li>
