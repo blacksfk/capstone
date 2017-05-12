@@ -7,6 +7,9 @@
 <body>
     @include('shared.navbar')
     @include('shared.carousel')
+    <span id="error-float" >
+        @include('shared.messages')
+    </span>
     <div  class="tag-line" >
         <div class="container">
             <div class="row  text-center" >

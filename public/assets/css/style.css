@@ -665,3 +665,12 @@ button.accordion.active:after {
     animation-duration: 0.75s;
     animation-timing-function: ease-out;
 }
+#error-float {
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    left: 0;
+}
+#error-float {
+    z-index: 100;
+}

@@ -10,9 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Auth::routes();
 
-Route::get('/', function () { return view("home"); });
+Route::get('/', function () { return view("home"); })->name("index");
 Route::get("/curriculum", function() {return view("curriculum");});
 Route::get("/events", "Controller@events");
 Route::get("/contact", function() {return view("contact");});
@@ -89,6 +88,10 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
     ]);
     Route::resource("pages", "PageController");
 });
+// Auth routes, register and login
+Auth::routes();
+Route::get("/register", "Auth\RegisterController@index");
 
 // Dynamic routing to custom pages
 Route::get("/{page_name}", "Controller@dynamic")->name("dynamic.show");
+
