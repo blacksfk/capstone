@@ -11,10 +11,6 @@
                 <h4><strong>Fax: </strong>(03) 5995 7148</h4>
                 <h4><strong>Email: </strong>courtenay.gardens.ps@edumail.vic.gov.au</h4>
             </div>
-
-
-
-
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
             <h2><strong>Our opening hours: </strong></h2>
