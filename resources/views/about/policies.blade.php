@@ -1,21 +1,9 @@
 @extends('layouts.master')
-@section('title', 'For Parents')
+@section('title', 'Policies')
 @section('content')
 
-<div id="features-sec" class="container set-pad" >
-    <div class="row text-left">
-        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-            <h1 class="header-line text-center">For Parents</h1>
-            <p>After following the appropriate processes the School Council is extremely pleased to announce the replacement of the existing five Play Systems with new ones from a leading playground company. If you would like to see the drawings for each year level please click the following links:</p>
-            <ul class ="text-center">
-                <li><span class="glyphicon glyphicon-ok"></span> PREPS  -<a href=""> 4611517 </a></li>
-                <li><span class="glyphicon glyphicon-ok"></span> YEAR 1 -<a href=""> 4611519 </a></li>
-                <li><span class="glyphicon glyphicon-ok"></span> YEAR 2 -<a href=""> 4611520 </a></li>
-                <li><span class="glyphicon glyphicon-ok"></span> YRS3/4 -<a href=""> 4611522 </a></li>
-                <li><span class="glyphicon glyphicon-ok"></span> YRS5/6 -<a href=""> 4611542 </a></li>
-            </ul>
-            <hr>
-            <h1 class="header-line text-center">CGPS Policies and Plans</h1>
+<div id="features-sec" class="container set-pad">
+<h1 class="header-line text-center">CGPS Policies and Plans</h1>
             <p>Many policies/guidelines are dictated from the Department of Education &amp; Training. Their website is <a href="">http://www.education.vic.gov.au/</a></p>
             <table class="table table-hover template_table">
                 <tr>

@@ -3,6 +3,7 @@
 namespace App\Http\ViewComposers;
 
 use App\Link;
+use App\ParentLink;
 use Illuminate\View\View;
 
 class NavbarComposer
@@ -16,25 +17,14 @@ class NavbarComposer
     public function __construct()
     {
         // get all links that don't have children
-        $categories = Link::where("parent_id", null)
+        $categories = Link::where("parent_id", "")
                             ->where("active", true)
                             ->get();
 
-        // now get all their children
+        // loop all of the parent links and create objects
         foreach ($categories as $category)
         {
-            $children = Link::where("parent_id", $category->id)
-                                ->where("active", true)
-                                ->get();
-
-            if (count($children) === 0)
-            {
-                $this->links[$category->name] = $category;
-            }
-            else
-            {
-                $this->links[$category->name] = $children;
-            }
+            $this->links[] = new ParentLink($category);
         }
     }
 

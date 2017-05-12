@@ -18,12 +18,6 @@ Route::get("/events", "Controller@events");
 Route::get("/contact", function() {return view("contact");});
 Route::get("/faq", function() {return view("faq");});
 
-// TEST
-//Route::get('/test2',function () { return view("curriculum.TEST_PAGE_CREATION"); });
-Route::get('/test1',"FileSaveController@save");
-Route::get('/test', function () { return view("test"); });
-Route::get('/enrolment', function() {return view("involve.enrolment");});
-
 // Under the 'Curriculum' dropdown
 Route::group(["prefix" => "curriculum"], function() {
     Route::get("literacy", function() {return view("curriculum.literacy");});
@@ -31,6 +25,14 @@ Route::group(["prefix" => "curriculum"], function() {
     Route::get("digital_technologies", function() {return view("curriculum.digital_technologies");});
     Route::get("multimedia", function() {return view("curriculum.multimedia");});
     Route::get("esmart", function() {return view("curriculum.esmart");});
+    Route::get('/enrolment', function() {return view("curriculum.enrolment");});
+    Route::get('/newsletters', function() {return view("curriculum.newsletters");});
+});
+
+// Under the 'About Us' dropdown
+Route::group(["prefix" => "about"], function() {
+    Route::get("principal", function() {return view("about.principal");});
+    Route::get("policies", function() {return view("about.policies");});
 });
 
 // Under the 'Get Involved' dropdown
@@ -42,12 +44,7 @@ Route::group(["prefix" => "involve"], function() {
     Route::get("enrolment", function() {return view("involve.enrolment");});
 });
 
-
-Route::group(["middleware" => "auth"], function() {
-    // dump auth only routes here
-});
-
-Route::group(["as" => "admin.", "prefix" => "admin","middleware" => "auth"], function() {
+Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], function() {
     Route::get("/", function() { return view("admin.dashboard"); });
     
     // custom routes for events for batch upload
@@ -57,13 +54,12 @@ Route::group(["as" => "admin.", "prefix" => "admin","middleware" => "auth"], fun
 
     Route::post("events/previewFile", [
         "as" => "events.previewFile",
-        "middleware" => "ajax",
         "uses" => "EventController@previewFile"
     ]);
 
     Route::post("events/batchUpload", [
         "as" => "events.batchUpload",
-        "uses" => "EventsController@batchUpload"
+        "uses" => "EventController@batchUpload"
     ]);
 
     Route::resource("events", "EventController");
@@ -78,7 +74,10 @@ Route::group(["as" => "admin.", "prefix" => "admin","middleware" => "auth"], fun
     Route::resource("templates", "TemplateController");
 
     // custom controller method - put before resource!
-    Route::post("links/massEnable", "LinkController@massEnable");
+    Route::post("admin/links/toggle", [
+        "as" => "links.toggle",
+        "uses" => "LinkController@toggle"
+    ]);
     Route::resource("links", "LinkController");
 
     // custom route for previewing a page
@@ -91,4 +90,4 @@ Route::group(["as" => "admin.", "prefix" => "admin","middleware" => "auth"], fun
 });
 
 // Dynamic routing to custom pages
-Route::get("/{page_name}", "DynamicViewController@show")->name("dynamic.show");
+Route::get("/{page_name}", "Controller@dynamic")->name("dynamic.show");

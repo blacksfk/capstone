@@ -31,6 +31,7 @@ h1 {
 }
 
 body {
+    padding-top: 70px;
     height: 100%;
     line-height: 30px;
     font-size: 14px;
@@ -59,34 +60,40 @@ body {
 /* =============================================================
    TABLE STYLES
  ============================================================ */
-table {
-margin: auto;
-width: 90%;
-font-family: "Lato","sans-serif";  }       /* added custom font-family  */
+.template_table {
+    margin: auto;
+    width: 90%;
+    font-family: "Lato","sans-serif";
+}      
 
-table.one {                                  
-margin-bottom: 3em; 
-border-collapse:collapse;   }   
+.template_table td {                           
+    text-align: center;     
+    width: 10em;                    
+    padding: 1em;
+}       
 
-td {                            /* removed the border from the table data rows  */
-text-align: center;     
-width: 10em;                    
-padding: 1em;       }       
+.template_table th {                              
+    text-align: center;                 
+    padding: 1em;
+    background-color: #5D9183;       
+    color: white;
+}
 
-th {                              /* removed the border from the table heading row  */
-text-align: center;                 
-padding: 1em;
-background-color: #5D9183;       /* added a green background color to the heading cells  */
-color: white;       }                 /* added a white font color to the heading text */
+.template_table tr {
+    height: 1em;
+}
 
-tr {    
-height: 1em;    }
+.template_table tr:nth-child(even) {            
+       background-color: #eee;
+}
 
-table tr:nth-child(even) {            /* added all even rows a #eee color  */
-       background-color: #eee;      }
+.template_table tr:nth-child(odd) {            
+    background-color:#fff;
+}
 
-table tr:nth-child(odd) {            /* added all odd rows a #fff color  */
-background-color:#fff;      }
+.principal-left {
+    display: flex;
+}
 
 /*=====================================
   NAVBAR STYLES 
@@ -110,6 +117,10 @@ background-color:#fff;      }
     font-weight: 900;
     letter-spacing: 2px;
     min-height: 70px;
+    position: fixed;
+    top: 0;
+    z-index: 500;
+    width: 100%;
 }
 
 .navbar {
@@ -509,7 +520,7 @@ button.accordion.active:after {
     content: "\2212";
 }
 
-div.panel {
+/*div.panel {
     padding: 0 18px;
     background-color: white;
     max-height: 0;
@@ -519,7 +530,7 @@ div.panel {
 
 .panel {
     margin-bottom: 0px;
-}
+}*/
 
 /*=====================================
   ENROLMENT ZONE MAP
@@ -591,4 +602,66 @@ div.panel {
     font-size: 25px;
     font-weight: 500;
     padding: 6px 12px;
+}
+
+/*=====================================
+  FORM STYLES
+  ===================================*/  
+.hiddenForm {
+    display: none;
+}
+
+.code-editor {
+    display: block;
+    width: 100%;
+    height: 500px;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.code-editor:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+
+/*=====================================
+  CUSTOM ANIMATIONS
+  ===================================*/
+/* slide awayyyyyyyy baby */
+@keyframes slideLeftAndFade {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    12.5% {
+        opacity: 0.66;
+    }
+    25% {
+        opacity: 0.33;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-20%);
+        opacity: 0;
+    }
+}
+
+.slideAway {
+    position: relative;
+    animation-name: slideLeftAndFade;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-out;
 }

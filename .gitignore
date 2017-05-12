@@ -11,3 +11,5 @@ Homestead.yaml
 *.phar
 /storage
 *.sqlite
+/resources/views/templates
+/public/assets/video

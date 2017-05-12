@@ -1,8 +1,9 @@
 @extends('layouts.admin')
 @section('title', 'Create new Event')
-@section('back_link', route('admin.events.index'))
 @section('content')
-<form action="{{ route('admin.events.store') }}" method="post">
+<a href="{{ route('admin.events.index') }}" class="btn btn-warning">Cancel</a>
+<hr>
+<form action="{{ route('admin.events.store') }}" method="post" id="create-form">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="form-group">
         <label for="name">Name</label>
@@ -23,6 +24,10 @@
         <label for="notes">Notes</label>
         <textarea name="notes" id="notes" class="form-control"></textarea>
     </div>
-    <input type="submit" value="Create new Event" class="btn btn-success">
 </form>
+@endsection
+@section('form_nav')
+<div class="text-right">
+    <a class="btn btn-success" onclick="event.preventDefault();$('#create-form').submit();">Create new Event</a>
+</div>
 @endsection

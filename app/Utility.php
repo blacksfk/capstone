@@ -74,33 +74,36 @@ class Utility
     }
 
     /**
-     * Takes a string read from file, splits it into lines, 
-     * splits the lines into words and matches those words to the model 
-     * attributes provided.
+     * Creates an object of the class given by splitting the string on
+     * the delim (assumed that these are the values to be created).
+     * Throws an exception if there are more values than there
+     * are attributes, so make sure to handle it!
      * 
-     * @param  array $attrs     Array of model attributes to match values to
-     * @param  string $string   String of files read from a csv file
-     * @param  string $delim    Characters to split the words on
-     * @return array            Associative array with the model attributes as key and the extracted word as value
+     * @param  Class $class     The class to create an object of
+     * @param  string $string   The string that contains the values to extract
+     * @param  string $delim    The delimiter to split the string on
+     * 
+     * @return object           An object of the class specified
      */
-    public static function splitLinesIntoArray($attrs, $string, $delim)
+    public static function splitLinesIntoArray($class, $string, $delim)
     {
         $values = [];
         $words = explode($delim, $string);
-        $key = 0;
+        $object = new $class();
+        $fillables = $object->getFillable();
 
         // if there are more words than model attrs then throw an exception 
-        if (count($words) > count($attrs))
+        if (count($words) > count($fillables))
         {
-            throw new \Exception("Your file has more values than there are fields.");
+            throw new \Exception("Found more values than fillable fields.");
         }
 
-        foreach ($words as $val)
+        for ($i = 0; $i < count($fillables); $i++)
         {
-            $values[$attrs[$key++]] = trim($val);
+            $object->{$fillables[$i]} = trim($words[$i]);
         }
 
-        return $values;
+        return $object;
     }
 
     public static function  saveFile(Request $request)

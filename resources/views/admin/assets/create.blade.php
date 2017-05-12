@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 @section('title', 'Upload new asset')
 @section('content')
-<form action="{{ route('admin.assets.store') }}" method="post" enctype="multipart/form-data">
+<a href="{{ route('admin.assets.index') }}" class="btn btn-warning">Cancel</a>
+<hr>
+<form action="{{ route('admin.assets.store') }}" method="post" enctype="multipart/form-data" id="upload-form">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="form-group">
         <label for="name">Name</label>
@@ -19,6 +21,10 @@
         <label for="asset">Upload</label>
         <input type="file" name="asset" id="asset">
     </div>
-    <input type="submit" value="Upload new Asset" class="btn btn-success">
 </form>
+@endsection
+@section('form_nav')
+<div class="text-right">
+    <a class="btn btn-success" onclick="event.preventDefault();$('#upload-form').submit();">Upload new Asset</a>
+</div>
 @endsection

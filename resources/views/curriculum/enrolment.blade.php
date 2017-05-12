@@ -3,8 +3,10 @@
 @section('content')
 
 <div class="container set-pad">
-<div class="row text-center">
+<div class="row">
+<div class="text-center">
     <p>Click <a href="{{ asset('assets/pdf/enrol.pdf') }}" target="_blank">here</a> to download the official policy on CGPS enrolment areas.</p>
+</div>
     
     <h1 class="header-line text-center">Where do you need to live to attend CGPS?</h1>
     

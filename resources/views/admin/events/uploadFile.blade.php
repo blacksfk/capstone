@@ -1,30 +1,18 @@
 @extends('layouts.admin')
 @section('title', 'Upload Events from file')
 @section('content')
-<div class="form-group">
-    <label for="file">File</label>
-    <input type="file" name="file" id="file">
-    <input type="submit" value="Upload" class="btn btn-primary">
-</div>
+<a href="{{ route('admin.events.index') }}" class="btn btn-warning">Cancel</a>
 <hr>
-<table class="table table-hover">
-    <thead>
-        <th>No.</th>
-        <th>Name</th>
-        <th>Date</th>
-        <th>Start time</th>
-        <th>End time</th>
-        <th>Notes</th>
-    </thead>
-</table>
-<input type="submit" value="Confirm" class="btn btn-success" disabled>
-<script>
-    $("#upload").click(function(event) {
-        event.preventDefault();
-
-        $.post("{{ route('admin.events.previewFile') }}", {events: $("#file").val()}, function(data) {
-            
-        }, "json");
-    })
-</script>
+<form action="{{ route('admin.events.previewFile') }}" method="post" enctype="multipart/form-data" id="upload-form">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <div class="form-group">
+        <label for="events">Select file</label>
+        <input type="file" name="events" id="events">
+    </div>
+</form>
+@endsection
+@section('form_nav')
+<div class="text-right">
+    <a class="btn btn-success" onclick="event.preventDefault();$('#upload-form').submit();">Upload file</a>
+</div>
 @endsection

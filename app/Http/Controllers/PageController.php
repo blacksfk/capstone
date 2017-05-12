@@ -99,7 +99,7 @@ class PageController extends Controller
         // set the old link to inactive if link has changed
         if (isset($page->link) && $page->link_id !== $request->link_id)
         {
-            Link::find($page->link_id)->disableLink();
+            Link::find($page->link_id)->active = false;
             $update[] = $page->link->name . " has been disabled";
         }
 
@@ -124,7 +124,7 @@ class PageController extends Controller
         // disable link the page is bound to
         if (isset($page->link))
         {
-            Link::find($page->link_id)->disableLink();
+            Link::find($page->link_id)->active = false;
             $update[] = $page->link->name . " is no longer active";
         }
 
