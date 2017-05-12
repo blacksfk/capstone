@@ -1,13 +1,14 @@
 @extends('layouts.admin')
 @section('title', 'Edit ' . $link->name)
-@section('back_link', route('admin.links.index'))
 @section('content')
+<a href="{{ route('admin.links.index') }}" class="btn btn-warning">Cancel</a>
+<hr>
 <form action="{{ route('admin.links.destroy', $link->id) }}" method="post" id="delete-form">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="record" value="{{ $link->name }}">
 </form>
-<form action="{{ route('admin.links.update', $link->id) }}" method="post">
+<form action="{{ route('admin.links.update', $link->id) }}" method="post" id="edit-form">
     <input type="hidden" name="_method" value="PATCH">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="form-group">
@@ -35,10 +36,9 @@
             @endforeach
         </select>
     </div>
-    <input type="submit" value="Update {{ $link->name }}" class="btn btn-success center-block">
 </form>
 @endsection
 @section('form_nav')
-<a href="{{ route('admin.links.index') }}" class="btn btn-warning">Cancel</a>
 <a href="{{ route('admin.links.destroy', $link->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form')">Delete {{ $link->name }}</a>
+<a class="btn btn-success pull-right" onclick="event.preventDefault();$('#edit-form').submit();">Update {{ $link->name }}</a>
 @endsection

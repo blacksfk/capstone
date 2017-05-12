@@ -17,12 +17,8 @@ class CreateLinksTable extends Migration
             $table->string("name");
             $table->tinyInteger("active");
             $table->integer("parent_id")->unsigned()->nullable();
+            $table->foreign("parent_id")->references("id")->on("links");
             $table->timestamps();
-        });
-
-        Schema::table("links", function(Blueprint $table) {
-            // self reference for drop downs
-            $table->foreign("parent")->references("id")->on("links");
         });
     }
 

@@ -17,6 +17,7 @@ Route::get("/curriculum", function() {return view("curriculum");});
 Route::get("/events", "Controller@events");
 Route::get("/contact", function() {return view("contact");});
 Route::get("/faq", function() {return view("faq");});
+Route::get("/noscript", function() {return view("noscript");});
 
 // Under the 'Curriculum' dropdown
 Route::group(["prefix" => "curriculum"], function() {

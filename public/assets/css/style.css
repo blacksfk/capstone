@@ -645,6 +645,30 @@ button.accordion.active:after {
 }
 
 /*=====================================
+  IMAGE GALLERY
+  ===================================*/  
+#galleryimage {
+    border: 5px solid;
+    border-color: #2f9484;
+    transition-property: border;
+	transition-duration: 0.5s;
+	transition-timing-function: linear;
+	cursor: pointer;
+    margin: 5px;
+}
+
+#galleryimage:hover {
+    border-color: #182B4B;
+    position:relative;
+    top:-25px;
+    left:-35px;
+    width:500px;
+    height:auto;
+    display:block;
+    z-index:999;
+}
+
+/*=====================================
   FORM STYLES
   ===================================*/  
 .hiddenForm {

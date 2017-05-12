@@ -1,13 +1,14 @@
 @extends('layouts.admin')
 @section('title', 'Edit ' . $page->name)
-@section('back_link', route('admin.pages.index'))
 @section('content')
+<a href="{{ route('admin.pages.index') }}" class="btn btn-warning">Cancel</a>
+<hr>
 <form action="{{ route('admin.pages.destroy', $page->id) }}" method="post" id="delete-form">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="record" value="{{ $page->name }}">
 </form>
-<form action="{{ route('admin.pages.update', $page->id) }}" method="post">
+<form action="{{ route('admin.pages.update', $page->id) }}" method="post" id="edit-form">
     <input type="hidden" name="_method" value="PATCH">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="form-group">
@@ -29,7 +30,10 @@
     <div class="form-group">
         {{-- This hidden field is required if the JS is going to be external --}}
         <input type="hidden" name="_template_route" value="{{ route('admin.templates.sections') }}">
-        <label for="template_id">Template</label>
+        {{--<label for="template_id">Template</label>--}}
+        
+        <input type="hidden" name="template_id" value="{{ $page->template_id }}">
+            {{--
         <select name="template_id" id="template_id" class="form-control">
             @foreach ($templates as $template)
                 @if ($page->template_id === $template->id)
@@ -39,6 +43,7 @@
                 @endif
             @endforeach
         </select>
+            --}}
     </div>
     <div class="form-group">
         <label>Template sections</label>
@@ -54,10 +59,9 @@
             @endforeach
         </div>
     </div>
-    <input type="submit" value="Update {{ $page->name }}" class="btn btn-success center-block">
 </form>
 @endsection
 @section('form_nav')
-<a href="{{ route('admin.pages.index') }}" class="btn btn-warning">Cancel</a>
 <a href="{{ route('admin.pages.destroy', $page->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form')">Delete {{ $page->name }}</a>
+<a class="btn btn-success pull-right" onclick="event.preventDefault();$('#edit-form').submit();">Update {{ $page->name }}</a>
 @endsection

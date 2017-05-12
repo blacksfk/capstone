@@ -16,6 +16,7 @@
  * @return void
  */
 function confirmDelete(event, formID) {
+    event.stopPropagation();
     event.preventDefault();
     
     var name = $(formID).find("input[name='record']");
@@ -30,7 +31,28 @@ function confirmDelete(event, formID) {
     $("#adminModal").modal("show");
     $("#modalConfirm").click(function() {
         $(formID).submit();
-    })
+    });
+}
+
+/**
+ * Shows a modal and runs a callback
+ * @param  JSEvent   event
+ * @param  string   formID      ID of the form to submit
+ * @param  {Function} callback  The function to run once the user clicks confirm
+ * @param  string   selector    The inputs to append to the form
+ * @return void            
+ */
+function confirmOverwrite(event, formID, callback, selector) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    $("#adminModal .modal-header").text("Confirm overwrite");
+    $("#adminModal .modal-body").text("Are you sure you want overwrite all records in the database? This action cannot be undone!");
+    $("#modalConfirm").addClass("btn-danger");
+    $("#adminModal").modal("show");
+    $("#modalConfirm").click(function() {
+        callback(event, formID, selector);
+    });
 }
 
 /**
@@ -42,7 +64,9 @@ function confirmDelete(event, formID) {
  * @return void
  */
 function previewPage(caller, event) {
+    event.stopPropagation();
     event.preventDefault();
+
     var contentArray = {};
 
     $("input[name^='content']").each(function(index, element) {
@@ -108,6 +132,7 @@ function deleteRow(caller, event) {
  * @return void
  */
 function appendToForm(event, formID, selector) {
+    event.stopPropagation();
     event.preventDefault();
 
     $(selector).each(function(index, element) {

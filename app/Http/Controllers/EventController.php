@@ -112,6 +112,7 @@ class EventController extends Controller
         $file = fopen($request->file("events"), "r");
         $events = [];
         $errors = [];
+        $warnings = [];
         $lc = 1;
 
         while (!feof($file))
@@ -125,7 +126,7 @@ class EventController extends Controller
                 }
                 catch (\Exception $e)
                 {
-                    $errors[] = "Line: " . $lc . ". " . $e->getMessage();
+                    $warnings[] = "Line: " . $lc . ". " . $e->getMessage();
                 }
 
                 $lc++;
@@ -133,10 +134,16 @@ class EventController extends Controller
         }
 
         fclose($file);
+
+        if (!count($events))
+        {
+            $errors[] = "No events loaded";
+        }
         /* errors are found via the session, and since this route returns
             a view, session variables cannot be set using the ->with()
             syntax, so flash() them instead */
         $request->session()->flash("errors", $errors);
+        $request->session()->flash("warnings", $warnings);
 
         return view("admin.events.previewFile")
             ->with("events", $events);
@@ -144,14 +151,27 @@ class EventController extends Controller
 
     /**
      * This creates the events that have been deemed to be valid by the
-     * user in the preview page.
+     * user in the preview page and removes all of the old events!
      * 
      * @param  Request $request An HTTP post request
      * @return \Illuminate\Http\Response
      */
     public function batchUpload(Request $request)
     {
+        if (!count($request->events))
+        {
+            return redirect()->route("admin.events.index")
+                ->with("errors", "No events to upload");
+        }
+
         $success = [];
+
+        // delete all of the exisitng events
+        foreach (Event::all() as $event)
+        {
+            $success[] = $event->name . " deleted successfully";
+            $event->delete();
+        }
 
         foreach ($request->events as $event)
         {

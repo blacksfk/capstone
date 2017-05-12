@@ -106,5 +106,26 @@ class Template2Seeder extends Seeder
                 </div>
                 @endsection",
             "sections" => '["page_content"]'
+        ]);
+        
+        DB::table("templates")->insert([
+            "id" => 5,
+            "name" => "gallery", 
+            "content" => 
+                "@extends('layouts.master')
+                @section('content')
+                <div id='features-sec' class='container set-pad'>
+                    <div class='row text-center'>
+                        <div id='galleryimage'>
+                            <img src='@yield('image')'>
+                        </div>
+                        <div id='galleryimage'>
+                            <img src='@yield('image')'>
+                        </div>
+                    </div>
+                </div>
+                @endsection",
+            "sections" => '["page_content"]'
+        ]);
     }
 }
