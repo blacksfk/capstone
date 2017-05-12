@@ -30,7 +30,10 @@
     <div class="form-group">
         {{-- This hidden field is required if the JS is going to be external --}}
         <input type="hidden" name="_template_route" value="{{ route('admin.templates.sections') }}">
-        <label for="template_id">Template</label>
+        {{--<label for="template_id">Template</label>--}}
+        
+        <input type="hidden" name="template_id" value="{{ $page->template_id }}">
+            {{--
         <select name="template_id" id="template_id" class="form-control">
             @foreach ($templates as $template)
                 @if ($page->template_id === $template->id)
@@ -40,6 +43,7 @@
                 @endif
             @endforeach
         </select>
+            --}}
     </div>
     <div class="form-group">
         <label>Template sections</label>
