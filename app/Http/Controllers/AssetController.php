@@ -43,7 +43,6 @@ class AssetController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->file("asset")->getClientOriginalName());
         $this->validate($request, self::$validation);
         $name = "";
 
@@ -58,8 +57,6 @@ class AssetController extends Controller
         }
 
         Asset::create(["name" => $name, "type" => $request->type]);
-        $asset = new Asset();
-        // $asset->name = $request->file("asset")->
 
         return redirect()->route("admin.assets.index")
             ->with("success", "Asset uploaded successfully");
