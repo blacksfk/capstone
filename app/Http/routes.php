@@ -46,8 +46,6 @@ Route::group(["prefix" => "involve"], function() {
 });
 
 Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], function() {
-    Route::get("/", function() { return view("admin.dashboard"); });
-    
     // custom routes for events for batch upload
     Route::get("events/uploadFile", function() {
         return view("admin.events.uploadFile");
