@@ -69,6 +69,7 @@
                             <li><a href="{{ route('admin.links.index') }}">Link management</a></li>
                             <li><a href="{{ route('admin.pages.index') }}">Page management</a></li>
                             <li><a href="{{ route('admin.templates.index') }}">Template management</a></li>
+                            <li><a href="{{ route('admin.newsletter.index') }}">Newsletter Management</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">LOGOUT</a></li>

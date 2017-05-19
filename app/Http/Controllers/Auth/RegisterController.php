@@ -34,6 +34,11 @@ class RegisterController extends Controller
      *
      * @return void
      */
+    public function index()
+    {
+        return redirect()->route("index")->with("errors", "Unauthorized Access");
+    }
+
     public function __construct()
     {
         $this->middleware('guest');

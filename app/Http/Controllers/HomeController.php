@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Utility;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,15 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function output()
+    {
+        $results =  Utility::scanDirectory();
+
+
+
+        return view("test")
+            ->with("results", $results);
     }
 }
