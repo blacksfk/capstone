@@ -18,7 +18,7 @@
                       <div class="card-block panel-body">
                         <h3 class="card-title">About Us</h3>
                         <p class="card-text">Wish to know more about our history?</p>
-                        <a href="#" class="btn btn-primary">Click here</a>
+                        <a href="{{ url('/about/history') }}" class="btn btn-primary">Click here</a>
                       </div>
                     </div>
                   </div>
@@ -27,7 +27,7 @@
                       <div class="card-block panel-body">
                         <h3 class="card-title">Events</h3>
                         <p class="card-text">Wish to know what's happening in CGPS?</p>
-                        <a href="#" class="btn btn-primary">Click here</a>
+                        <a href="{{ url('/events') }}" class="btn btn-primary">Click here</a>
                       </div>
                     </div>
                   </div>
@@ -36,7 +36,7 @@
                       <div class="card-block panel-body">
                         <h3 class="card-title">Contact Us</h3>
                         <p class="card-text">Wish to enquire more information about CGPS?</p>
-                        <a href="#" class="btn btn-primary">Click here</a>
+                        <a href="{{ url('/contact') }}" class="btn btn-primary">Click here</a>
                       </div>
                     </div>
                   </div>
