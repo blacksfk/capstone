@@ -24,7 +24,7 @@ Route::group(["prefix" => "curriculum"], function() {
     Route::get("literacy", function() {return view("curriculum.literacy");});
     Route::get("numeracy", function() {return view("curriculum.numeracy");});
     Route::get('/enrolment', function() {return view("curriculum.enrolment");});
-    Route::get('newsletters', "Controller@newsletters");
+    Route::get('newsletters', "NewsletterController@show");
 });
 
 //Under the 'Digital Tech' dropdown
@@ -67,6 +67,7 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
 
     Route::resource("events", "EventController");
     Route::resource("assets", "AssetController");
+    Route::resource("newsletter", "NewsletterController");
 
     // custom method for retrieving a templates section
     Route::get("templates/sections", [
