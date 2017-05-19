@@ -24,9 +24,13 @@ Route::get('/enrolment', function() {return view("enrolment");});
 Route::group(["prefix" => "curriculum"], function() {
     Route::get("literacy", function() {return view("curriculum.literacy");});
     Route::get("numeracy", function() {return view("curriculum.numeracy");});
-
     Route::get('/enrolment', function() {return view("curriculum.enrolment");});
     Route::get('newsletters', "NewsletterController@show");
+});
+
+// Under the 'parents info' dropdown
+Route::group(["prefix" => "parents-info"], function() {
+    Route::get("canteen", function() {return view("parents-info.canteen");});   
 });
 
 //Under the 'Digital Tech' dropdown
