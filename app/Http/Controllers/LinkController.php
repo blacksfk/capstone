@@ -5,14 +5,10 @@ namespace App\Http\Controllers;
 use App\Link;
 use App\Utility;
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use App\Http\Requests\LinkPost;
 
 class LinkController extends Controller
 {
-    private static $validation = [
-        "name" => "required",
-        "active" => "required"
-    ];
 
     /**
      * Display a listing of the resource.
@@ -40,9 +36,8 @@ class LinkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LinkPost $request)
     {
-        $this->validate($request, self::$validation);
 
         $link = new Link();
         $link->name = $request->name;
@@ -74,9 +69,8 @@ class LinkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LinkPost $request, $id)
     {
-        $this->validate($request, self::$validation);
         Link::find($id)->update($request->all());
 
         return redirect()->route("admin.links.index")

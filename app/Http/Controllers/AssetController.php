@@ -5,14 +5,10 @@ namespace App\Http\Controllers;
 use App\Asset;
 use App\Utility;
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use App\Http\Requests\AssetPost;
 
 class AssetController extends Controller
 {
-    private static $validation = [
-        "asset" => "required",
-        "type" => "required"
-    ];
 
     /**
      * Display a listing of the resource.
@@ -41,9 +37,8 @@ class AssetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AssetPost $request)
     {
-        $this->validate($request, self::$validation);
         $request->asset->storeAs(
             $request->type,
             $request->asset->getClientOriginalName(),
@@ -90,9 +85,8 @@ class AssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AssetPost $request, $id)
     {
-        $this->validate($request, self::$validation);
         Asset::find($id)->update($request->all());
 
         return redirect()->route("admin.assets.index")
@@ -126,6 +120,7 @@ class AssetController extends Controller
 
         // if succesful, now delete the model
         $asset->delete();
+
 
         return redirect()->route("admin.assets.index")
             ->with("success", "Asset deleted successfully")
