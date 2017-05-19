@@ -39,7 +39,12 @@
                         </ul>
                     </li>
                     <li><a href="{{ url('/enrolment') }}">ENROLMENT</a></li>
-                    <li><a href="{{ url('parents-info') }}">PARENTS INFO</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PARENTS INFO<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('/parents-info/canteen') }}">Canteen Menu</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{{ url('events') }}">EVENTS</a></li>
                     <li><a href="{{ url('contact') }}">CONTACT US</a></li>
                 {{-- Dynamic links go here!! --}}

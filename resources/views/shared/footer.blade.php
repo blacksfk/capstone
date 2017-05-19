@@ -23,7 +23,7 @@
 
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
-            <h2><strong>Links</strong></strong></h2>
+            <h2><strong>Links:</strong></strong></h2>
             <hr>
             <ul>
                 <li>
@@ -40,15 +40,13 @@
                         <li><a href="{{ url('/digital-tech/multimedia') }}">Multimedia</a></li>
                         <li><a href="{{ url('/digital-tech/esmart') }}">eSmart</a></li>
                         <li><a href="{{ url('/digital-tech/tms') }}">The Morning Show</a></li>
-
                     </ul>
                     <div>
                     <li><a id="footer-header-links" href="{{ url('/enrolment') }}">Enrolment</a></li>
                     <li><a id="footer-header-links" href="{{ url('/parents-info') }}">Parents Info</a></li>
                     <li><a id="footer-header-links" href="{{ url('/events') }}">Events</a></li>
                     <li><a id="footer-header-links" href="{{ url('/contact') }}">Contact Us</a></li>
-                    <li><a id="footer-header-links" href="{{ url('/faq') }}">Faq</a></li>
-
+                    <li><a id="footer-header-links" href="{{ url('/faq') }}">FAQ</a></li>
                     </div>
                 
             </ul>
