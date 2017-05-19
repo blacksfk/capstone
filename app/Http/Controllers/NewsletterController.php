@@ -45,7 +45,7 @@ class NewsletterController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, self::$validation);
-        $dir = public_path("assets/pdf/test");
+        $dir = public_path("assets/pdf/newsletters");
         $name = "issue". $request->input('issue') . ".pdf";
         $check = $dir ."/". $name;
 
@@ -126,7 +126,7 @@ class NewsletterController extends Controller
      */
     public function destroy($name)
     {
-        $dir = public_path("assets/pdf/test");
+        $dir = public_path("assets/pdf/newsletters");
         $check = $dir ."/". $name;
 
         if (file_exists($check)){

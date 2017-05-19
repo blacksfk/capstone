@@ -6,6 +6,7 @@
 <?php
 unset($newsletters[0]);
 unset($newsletters[1]);
+natsort($newsletters);
 ?>
 
 <div class="container set-pad">
@@ -17,7 +18,8 @@ unset($newsletters[1]);
         <div class="well col-sm-2">
 
             @foreach ($newsletters as $newsletter)
-                <a class="pdfLink" href="{{ asset('assets/pdf/test/'.$newsletter) }}">{{ $newsletter }}</a>
+
+                <a id="pdfLink" href="{{ asset('assets/pdf/newsletters/'.$newsletter) }}">{{ $newsletter }}</a>
                 <br>
             @endforeach
             <a class="pdfLink" href="{{ asset('assets/pdf/enrol.pdf') }}">Click me pls</a>

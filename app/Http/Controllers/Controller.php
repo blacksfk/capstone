@@ -45,10 +45,4 @@ class Controller extends BaseController
         return view("dynamic")->with("page", $page);
     }
 
-    public function newsletters()
-    {
-        $newsletters = Asset::where("type", "pdf")->get();
-
-        return view("curriculum.newsletters")->with("newsletters", $newsletters);
-    }
 }

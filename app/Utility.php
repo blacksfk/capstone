@@ -147,7 +147,7 @@ class Utility
     }
 
     public static function scanDirectory(){
-        $dir = public_path("assets/pdf/test");
+        $dir = public_path("assets/pdf/newsletters");
 
         $output = scandir($dir);
 

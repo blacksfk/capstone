@@ -10,31 +10,36 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Auth::routes();
 
-Route::get('/', function () { return view("home"); })->name("index");
+Route::get('/', function () { return view("home"); });
 Route::get("/curriculum", function() {return view("curriculum");});
 Route::get("/events", "Controller@events");
 Route::get("/contact", function() {return view("contact");});
 Route::get("/faq", function() {return view("faq");});
 Route::get("/noscript", function() {return view("noscript");});
-
-
+Route::get('/enrolment', function() {return view("enrolment");});
 
 // Under the 'Curriculum' dropdown
 Route::group(["prefix" => "curriculum"], function() {
     Route::get("literacy", function() {return view("curriculum.literacy");});
     Route::get("numeracy", function() {return view("curriculum.numeracy");});
-    Route::get("digital_technologies", function() {return view("curriculum.digital_technologies");});
-    Route::get("multimedia", function() {return view("curriculum.multimedia");});
-    Route::get("esmart", function() {return view("curriculum.esmart");});
-    Route::get('/enrolment', function() {return view("curriculum.enrolment");});
-    Route::get('newsletters', "NewsletterController@show");
+
+    Route::get('newsletters', "Controller@newsletters");
+});
+
+//Under the 'Digital Tech' dropdown
+Route::group(["prefix" => "digital-tech"], function() {
+    Route::get("multimedia", function() {return view("digital-tech.multimedia");});
+    Route::get("esmart", function() {return view("digital-tech.esmart");});
+    Route::get("tms", function() {return view("digital-tech.tms");});    
 });
 
 // Under the 'About Us' dropdown
 Route::group(["prefix" => "about"], function() {
     Route::get("principal", function() {return view("about.principal");});
     Route::get("policies", function() {return view("about.policies");});
+    Route::get("history", function() {return view("about.history");});    
 });
 
 // Under the 'Get Involved' dropdown
@@ -65,8 +70,6 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
     Route::resource("events", "EventController");
     Route::resource("assets", "AssetController");
 
-    Route::resource('newsletter', 'NewsletterController');
-
     // custom method for retrieving a templates section
     Route::get("templates/sections", [
         "as" => "templates.sections",
@@ -90,10 +93,6 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
     ]);
     Route::resource("pages", "PageController");
 });
-// Auth routes, register and login
-Auth::routes();
-Route::get("/register", "Auth\RegisterController@index");
 
 // Dynamic routing to custom pages
 Route::get("/{page_name}", "Controller@dynamic")->name("dynamic.show");
-
