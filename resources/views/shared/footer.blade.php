@@ -32,19 +32,23 @@
                         <li><a href="{{ url('/about/principal') }}">Principal</a></li>
                         <li><a href="{{ url('/about/history') }}">History</a></li>
                         <li><a href="{{ url('/about/policies') }}">Policies</a></li>
-
                     </ul>
                 </li>
                 <li>
-                    <a id="footer-header-links" href="">Curriculum</a>
+                    <a id="footer-header-links" href="">Digital Tech</a>
                     <ul>    
-                        <li><a href="{{ url('/curriculum/literacy') }}">Literacy</a></li>
-                        <li><a href="{{ url('/curriculum/enrolment') }}">Enrolment</a></li>
+                        <li><a href="{{ url('/digital-tech/multimedia') }}">Multimedia</a></li>
+                        <li><a href="{{ url('/digital-tech/esmart') }}">eSmart</a></li>
+                        <li><a href="{{ url('/digital-tech/tms') }}">The Morning Show</a></li>
+
                     </ul>
                     <div>
+                    <li><a id="footer-header-links" href="{{ url('/enrolment') }}">Enrolment</a></li>
+                    <li><a id="footer-header-links" href="{{ url('/parents-info') }}">Parents Info</a></li>
                     <li><a id="footer-header-links" href="{{ url('/events') }}">Events</a></li>
                     <li><a id="footer-header-links" href="{{ url('/contact') }}">Contact Us</a></li>
                     <li><a id="footer-header-links" href="{{ url('/faq') }}">Faq</a></li>
+
                     </div>
                 
             </ul>
