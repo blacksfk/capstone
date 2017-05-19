@@ -17,10 +17,10 @@ unset($newsletters[1]);
         <div class="well col-sm-2">
 
             @foreach ($newsletters as $newsletter)
-                <a id="pdfLink" href="{{ asset('assets/pdf/test/'.$newsletter) }}">{{ $newsletter }}</a>
+                <a class="pdfLink" href="{{ asset('assets/pdf/test/'.$newsletter) }}">{{ $newsletter }}</a>
                 <br>
             @endforeach
-            <a id="pdfLink" href="{{ asset('assets/pdf/enrol.pdf') }}">Click me pls</a>
+            <a class="pdfLink" href="{{ asset('assets/pdf/enrol.pdf') }}">Click me pls</a>
         </div>
         
         <div class="well row col-lg-offset-3" id="pdfContainer">
