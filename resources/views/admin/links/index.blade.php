@@ -12,9 +12,9 @@
 </form>
 @endsection
 @section('table')
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
             <tr>
                 <th>Name</th>
                 <th>Active</th>
@@ -23,27 +23,27 @@
                 <th>Select</th>
                 <th>Edit</th>
             </tr>
-        </thead>
-        <tbody>
-        @foreach ($links as $link)
-            <tr>
-                <td>{{ $link->name }}</td>
-                <td>{{ ($link->active ? "True" : "False") }}</td>
-                <td>{{ (empty($link->parent_id) ? "None" : $link->parent->name) }}</td>
-                <td>{{ (empty($link->page) ? "None" : $link->page->name) }}</td>
-                <td><input type="checkbox" name="{{ $link->id }}" value="1"></td>
-                <td><a href="{{ route('admin.links.edit', $link->id) }}">Edit</a></td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+            @foreach ($links as $link)
+                <tr>
+                    <td>{{ $link->name }}</td>
+                    <td>{{ ($link->active ? "True" : "False") }}</td>
+                    <td>{{ (empty($link->parent_id) ? "None" : $link->parent->name) }}</td>
+                    <td>{{ (empty($link->page) ? "None" : $link->page->name) }}</td>
+                    <td><input type="checkbox" name="{{ $link->id }}" value="1"></td>
+                    <td><a href="{{ route('admin.links.edit', $link->id) }}">Edit</a></td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection
 @section('form_nav')
-<div class="row">
-    <div class="pull-right">
-        <a href="{{ route('admin.links.toggle') }}" onclick="appendToForm(event, '#form-massEnable', 'input:checked')" class="btn btn-success">Enable selected</a>
-        <a href="{{ route('admin.links.toggle') }}" class="btn btn-default" onclick="appendToForm(event, '#form-massDisable', 'input:checked')">Disable selected</a>
+    <div class="row">
+        <div class="pull-right">
+            <a href="{{ route('admin.links.toggle') }}" onclick="appendToForm(event, '#form-massEnable', 'input:checked')" class="btn btn-success">Enable selected</a>
+            <a href="{{ route('admin.links.toggle') }}" class="btn btn-default" onclick="appendToForm(event, '#form-massDisable', 'input:checked')">Disable selected</a>
+        </div>
     </div>
-</div>
 @endsection

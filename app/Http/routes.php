@@ -18,6 +18,8 @@ Route::get("/contact", function() {return view("contact");});
 Route::get("/faq", function() {return view("faq");});
 Route::get("/noscript", function() {return view("noscript");});
 
+
+
 // Under the 'Curriculum' dropdown
 Route::group(["prefix" => "curriculum"], function() {
     Route::get("literacy", function() {return view("curriculum.literacy");});
@@ -64,6 +66,8 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
 
     Route::resource("events", "EventController");
     Route::resource("assets", "AssetController");
+
+    Route::resource('newsletter', 'NewsletterController');
 
     // custom method for retrieving a templates section
     Route::get("templates/sections", [

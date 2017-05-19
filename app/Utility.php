@@ -145,4 +145,12 @@ class Utility
 
         return $name;
     }
+
+    public static function scanDirectory(){
+        $dir = public_path("assets/pdf/test");
+
+        $output = scandir($dir);
+
+        return $output;
+    }
 }
