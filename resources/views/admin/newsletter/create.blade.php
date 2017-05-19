@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
             <label for="Issue">Issue Number</label>
-            <input type="number" name="issue" id="issue" class="form-control" min="1" max="21"></div>
+            <input type="number" name="issue" id="issue" class="form-control" min="1" max="20"></div>
         </div>
     </form>
 @endsection

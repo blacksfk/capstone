@@ -28,7 +28,7 @@ Route::group(["prefix" => "curriculum"], function() {
     Route::get("multimedia", function() {return view("curriculum.multimedia");});
     Route::get("esmart", function() {return view("curriculum.esmart");});
     Route::get('/enrolment', function() {return view("curriculum.enrolment");});
-    Route::get('newsletters', "Controller@newsletters");
+    Route::get('newsletters', "NewsletterController@show");
 });
 
 // Under the 'About Us' dropdown

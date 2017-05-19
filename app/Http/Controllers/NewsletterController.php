@@ -8,6 +8,10 @@ use App\Http\Requests;
 
 class NewsletterController extends Controller
 {
+    private static $validation = [
+        "asset" => "required",
+        "issue" => "required"
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -40,6 +44,7 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, self::$validation);
         $dir = public_path("assets/pdf/test");
         $name = "issue". $request->input('issue') . ".pdf";
         $check = $dir ."/". $name;
@@ -82,9 +87,12 @@ class NewsletterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $newsletters =  Utility::scanDirectory();
+
+        return view("curriculum.newsletters")
+            ->with("newsletters", $newsletters);
     }
 
     /**

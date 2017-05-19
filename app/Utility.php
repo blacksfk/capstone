@@ -106,7 +106,7 @@ class Utility
         return $object;
     }
 
-    public static function  saveFile(Request $request)
+    public static function saveFile(Request $request)
     {
         $dir = public_path("assets/" . $request->type);
 
