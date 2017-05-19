@@ -2,7 +2,7 @@
 @section('title', 'Welcome')
 @section('content')
 
-    <div id="features-sec" class="container set-pad" >
+    <div id="features-sec" class="set-pad" >
         <div class="row text-center">
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
                 <h2>Welcome to Courtenay Gardens Primary School, the best school in the state!</h2>
@@ -35,7 +35,7 @@
                     <div class="card panel panel-default">
                       <div class="card-block panel-body">
                         <h3 class="card-title">Contact Us</h3>
-                        <p class="card-text">Wish to enquire more information about CGPS?</p>
+                        <p class="card-text">Wish to enquire more about CGPS?</p>
                         <a href="{{ url('/contact') }}" class="btn btn-primary">Click here</a>
                       </div>
                     </div>
