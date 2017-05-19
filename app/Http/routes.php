@@ -75,6 +75,7 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
     Route::resource("events", "EventController");
     Route::resource("assets", "AssetController");
     Route::resource("newsletter", "NewsletterController");
+    Route::resource("carousel", "CarouselController");
 
     // custom method for retrieving a templates section
     Route::get("templates/sections", [

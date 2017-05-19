@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'TEST')
+@section('title', 'Newsletter')
 @section('content')
     <a href="{{ route('admin.newsletter.create') }}" class="btn btn-primary">Upload Newsletters</a>
 @endsection
