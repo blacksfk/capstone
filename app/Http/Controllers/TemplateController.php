@@ -48,7 +48,7 @@ class TemplateController extends Controller
         // try to write the file first
         try
         {
-            Utility::save($request->name, $request->content, "templates");
+            Utility::createFile($request->name, $request->content, "templates");
         }
         catch (\Exception $e)   // Escape to global namespace with reverse slash
         {
@@ -108,7 +108,7 @@ class TemplateController extends Controller
         // now attempt to write to file and handle any exceptions
         try
         {
-            Utility::save($template->name, $request->content, "templates");
+            Utility::createFile($template->name, $request->content, "templates");
         }
         catch (\Exception $e)
         {

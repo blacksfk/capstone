@@ -13,6 +13,8 @@
  ============================================================ */
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 
 html {
     width: 100%;
@@ -378,10 +380,42 @@ h1::after {
 /*=====================================
   CAROUSEL
   ===================================*/
-.carousel-inner {
-    height: 25%;
-    width: auto;
+.carousel-inner{
+  width:100%;
+  max-height: 550px !important;
 }
+
+
+.full-screen {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.item {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+#mycarousel .carousel-caption {
+    background-color: #282828;
+    opacity: 0.70;    
+    color: #fff;
+    right: 70%;
+    text-align: left;
+    max-width: auto;
+    padding-left: 3%;
+    padding-right: 3%;
+    left: auto;
+    /*top: auto;*/
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
 
 /*=====================================
   FACULTY STYLES 
@@ -466,7 +500,7 @@ h1::after {
 
 #footer-header-links
 {
-    color: #DEDEDE;
+    color: #2d3d5a;
 }
 
 .centered-footer {
@@ -476,7 +510,7 @@ h1::after {
 
 .centered-footer a {
     text-decoration: none;
-    color: rgb(110,110,110);
+    color: #2d3d5a;
 }
 
 .centered-footer ul {
@@ -504,13 +538,9 @@ h1::after {
 }
 
 div.centered-footer {
-    background-color: #252525;
-    color: rgb(130,130,130);
+    background-color: #F5F5F5;
+    color: #2d3d5a;
 }
-/*=====================================
-  CONTACT 
-  ===================================*/
-
 
 /*=====================================
   FOR KIDS, DESCRIPTION LISTS
@@ -525,7 +555,6 @@ div.centered-footer {
 list-left > dd {
     width: auto;
 }
-
 
 /*=====================================
   FAQS
@@ -702,7 +731,7 @@ button.accordion.active:after {
 /*=====================================
   CUSTOM ANIMATIONS
   ===================================*/
-/* slide awayyyyyyyy baby */
+/* slide away */
 @keyframes slideLeftAndFade {
     0% {
         transform: translateX(0);

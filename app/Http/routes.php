@@ -28,7 +28,7 @@ Route::group(["prefix" => "curriculum"], function() {
     Route::get("multimedia", function() {return view("curriculum.multimedia");});
     Route::get("esmart", function() {return view("curriculum.esmart");});
     Route::get('/enrolment', function() {return view("curriculum.enrolment");});
-    Route::get('/newsletters', function() {return view("curriculum.newsletters");});
+    Route::get('newsletters', "Controller@newsletters");
 });
 
 // Under the 'About Us' dropdown
@@ -47,8 +47,6 @@ Route::group(["prefix" => "involve"], function() {
 });
 
 Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], function() {
-    Route::get("/", function() { return view("admin.dashboard"); });
-    
     // custom routes for events for batch upload
     Route::get("events/uploadFile", function() {
         return view("admin.events.uploadFile");

@@ -5,16 +5,20 @@
 <div id="features-sec" class="container set-pad">
 	<div class="row">
 		<h1 class="header-line text-center">Principal: Loretta Hamilton</h1>
+    	<div class="col-md-8">
+			<h3>Congratulations to Miss Hamilton for winning the 2012 Australian Principal of the Year!</h3>
+			<p><em>BEd, Grad. Dip. Ed. Admin., Grad Dip Comp. Edu., Dip. Tching Prim., I.T.F.</em></p>
+	
+			<p>Loretta is currently Principal of Courtenay Gardens Primary School, in Cranbourne North, Victoria. Courtenay Gardens opened with 399 students in 1995 and through the years peaked as high as 870 students. The school has approximately 820 students this year.
 
-		<h3 class="header-line text-center">Congratulations to Miss Hamilton for winning the 2012 Australian Principal of the Year!</h3>
-		<img class="rounded float-right" height="20%" width="20%" src="{{ asset('assets/img/principal.jpg') }}" alt="principal">
-		<p><em>BEd, Grad. Dip. Ed. Admin., Grad Dip Comp. Edu., Dip. Tching Prim., I.T.F.</em></p>
-	</div>
-	<p>Loretta is currently Principal of Courtenay Gardens Primary School, in Cranbourne North, Victoria. Courtenay Gardens opened with 399 students in 1995 and through the years peaked as high as 870 students. The school has approximately 820 students this year.
+			Over the past twenty-one years, through the hard work of the leadership team and staff, School Council and parents, the community and most importantly our children, we have become a centre of excellence where we constantly strive to be the BEST School in Victoria.</p>		
+		</div>        
+    
+    	<div class="col-md-4">
+        	<img class="img-responsive" src="{{ asset('assets/img/principal.jpg') }}" alt="principal">
+    	</div>
 
-	Over the past twenty-one years, through the hard work of the leadership team and staff, School Council and parents, the community and most importantly our children, we have become a centre of excellence where we constantly strive to be the BEST School in Victoria.</p>
-	<div class="row">
-		<h1 class="header-line text-center">Personal Profile</h1>
+	<h1 class="header-line text-center">Personal Profile</h1>
 	</div>
 	<p>Loretta has been an educator for over 42 years and in that time has held a number of roles including as a classroom teacher, teacher of the gifted, computer teacher and finally Principal. One early highlight in Loretta’s Principal career was the awarding of an International Teaching Fellowship – Principal Exchange to Pittsburgh, Pennsylvania, U.S.A in 1998. For an entire year she was Principal of Peebles Elementary School whilst her U.S. counterpart was Principal at Courtenay Gardens Primary School.</p>
 

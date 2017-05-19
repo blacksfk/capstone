@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\Page;
+use App\Asset;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -42,5 +43,12 @@ class Controller extends BaseController
         }
 
         return view("dynamic")->with("page", $page);
+    }
+
+    public function newsletters()
+    {
+        $newsletters = Asset::where("type", "pdf")->get();
+
+        return view("curriculum.newsletters")->with("newsletters", $newsletters);
     }
 }

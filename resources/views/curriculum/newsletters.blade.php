@@ -11,7 +11,7 @@
     <div class="row text-center">
         <div class="well col-sm-2">
             @foreach ($newsletters as $newsletter)
-                <a id="pdfLink" href="assets/pdf/{{ $newsletter->name }}">{{ $newsletter->name }}</a>
+                <a id="pdfLink" href="assets/pdf/{{ $newsletter->name }}">{{ $newsletter }}</a>
             @endforeach
             <a id="pdfLink" href="{{ asset('assets/pdf/enrol.pdf') }}">Click me pls</a>
         </div>
