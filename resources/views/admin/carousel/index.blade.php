@@ -5,6 +5,7 @@
 @section('table')
     <div class="table-responsive">
         <table class="table table-hover">
+            <input type="hidden" class="path" value="{{asset('assets/img')}}">
             <thead>
             <tr>
                 <th>Name</th>
@@ -15,17 +16,26 @@
             <tbody>
                 <tr>
                     <td>
-                        <select>
+                        <select class="trigger">
                         @foreach ($assets as $asset)
                                 <option value={{$asset->name}}>{{$asset->name}}</option>
                         @endforeach
                         </select>
                     </td>
-                    <td></td>
+                    <td>
+                        <img src="" class="target" />
+                    </td>
                     <td></td>
                 </tr>
 
             </tbody>
         </table>
     </div>
+    <script>
+        $( ".trigger" ).change(function() {
+            var str = $(".path").val() +'/'+ $( ".trigger option:selected" ).text();
+            alert (str);
+            $(".target").prop('src',str);
+        });
+    </script>
 @endsection

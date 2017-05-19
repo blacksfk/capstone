@@ -168,3 +168,4 @@ $("#template_id").change(function() {
 
 var flask = new CodeFlask;
 flask.runAll(".code-editor");
+
