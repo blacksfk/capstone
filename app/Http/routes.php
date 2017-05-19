@@ -12,7 +12,7 @@
 */
 Auth::routes();
 
-Route::get('/', function () { return view("home"); });
+Route::get('/', function () { return view("home");})->name('index');
 Route::get("/curriculum", function() {return view("curriculum");});
 Route::get("/events", "Controller@events");
 Route::get("/contact", function() {return view("contact");});
@@ -25,7 +25,8 @@ Route::group(["prefix" => "curriculum"], function() {
     Route::get("literacy", function() {return view("curriculum.literacy");});
     Route::get("numeracy", function() {return view("curriculum.numeracy");});
 
-    Route::get('newsletters', "Controller@newsletters");
+    Route::get('/enrolment', function() {return view("curriculum.enrolment");});
+    Route::get('newsletters', "NewsletterController@show");
 });
 
 //Under the 'Digital Tech' dropdown
@@ -69,6 +70,7 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
 
     Route::resource("events", "EventController");
     Route::resource("assets", "AssetController");
+    Route::resource("newsletter", "NewsletterController");
 
     // custom method for retrieving a templates section
     Route::get("templates/sections", [
