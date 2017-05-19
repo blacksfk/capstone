@@ -12,7 +12,7 @@
 */
 Auth::routes();
 
-Route::get('/', function () { return view("home"); });
+Route::get('/', function () { return view("home");})->name('index');
 Route::get("/curriculum", function() {return view("curriculum");});
 Route::get("/events", "Controller@events");
 Route::get("/contact", function() {return view("contact");});
