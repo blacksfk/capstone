@@ -7,6 +7,7 @@
     <?php
     unset($newsletters[0]);
     unset($newsletters[1]);
+    natsort($newsletters);
     ?>
     <div class="table-responsive">
         <table class="table table-hover">
