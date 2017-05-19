@@ -45,8 +45,8 @@
                 </div>
 
                 <p class="text-muted"><strong>*</strong> These fields are required.</p>
-
-                <h2><strong>We are here: </strong></h2><hr>
+                <hr>
+                <h2><strong>We are here: </strong></h2>
 
                 <div class="view hm-zoom">
 

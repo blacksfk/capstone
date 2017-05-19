@@ -17,11 +17,8 @@
     	<div class="col-md-4">
         	<img class="img-responsive" src="{{ asset('assets/img/principal.jpg') }}" alt="principal">
     	</div>
-	</div>
 
-
-	<div class="row">
-		<h1 class="header-line text-center">Personal Profile</h1>
+	<h1 class="header-line text-center">Personal Profile</h1>
 	</div>
 	<p>Loretta has been an educator for over 42 years and in that time has held a number of roles including as a classroom teacher, teacher of the gifted, computer teacher and finally Principal. One early highlight in Loretta’s Principal career was the awarding of an International Teaching Fellowship – Principal Exchange to Pittsburgh, Pennsylvania, U.S.A in 1998. For an entire year she was Principal of Peebles Elementary School whilst her U.S. counterpart was Principal at Courtenay Gardens Primary School.</p>
 

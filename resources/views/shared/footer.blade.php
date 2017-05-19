@@ -1,3 +1,5 @@
+<br>
+<br>
 <div class="centered-footer">
     <div class="row set-row-pad"  >
         <div class="col-lg-4 col-md-4 col-sm-4  ">
@@ -37,12 +39,12 @@
                     <a id="footer-header-links" href="">Curriculum</a>
                     <ul>    
                         <li><a href="{{ url('/curriculum/literacy') }}">Literacy</a></li>
-                        <li><a href="http://slack.scotch.io">Enrolment</a></li>
+                        <li><a href="{{ url('/curriculum/enrolment') }}">Enrolment</a></li>
                     </ul>
                     <div>
-                    <li><a id="footer-header-links" href="#">Events</a></li>
-                    <li><a id="footer-header-links" href="#">Contact Us</a></li>
-                    <li><a id="footer-header-links" href="#">Faqs</a></li>
+                    <li><a id="footer-header-links" href="{{ url('/events') }}">Events</a></li>
+                    <li><a id="footer-header-links" href="{{ url('/contact') }}">Contact Us</a></li>
+                    <li><a id="footer-header-links" href="{{ url('/faq') }}">Faq</a></li>
                     </div>
                 
             </ul>
