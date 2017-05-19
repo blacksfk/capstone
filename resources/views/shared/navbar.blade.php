@@ -7,7 +7,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     <span>MENU</span>
                 </button>
-                <a class="navbar-brand" href="#">CGPS</a>
+                <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('assets/img/primary_logo.png') }}" width="100px" height="40px" alt="school logo"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

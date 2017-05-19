@@ -12,3 +12,5 @@
 <script src="{{ asset('assets/js/changeActiveLink.js') }}"></script>
 <!-- Accordion -->
 <script src="{{ asset('assets/js/accordion.js') }}"></script>
+<!-- random carousel image -->
+<script src="{{ asset('assets/js/carousel-dynamic.js') }}"></script>
