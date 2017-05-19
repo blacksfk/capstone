@@ -6,14 +6,10 @@ use App\Utility;
 use App\Page;
 use App\Template;
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use App\Http\Requests\TemplatePost;
 
 class TemplateController extends Controller
 {
-    private static $validation = [
-        "name" => "required|max:255|unique:templates",
-        "content" => "required|max:3000"
-    ];
 
     /**
      * Display a listing of the resource.
@@ -41,9 +37,8 @@ class TemplateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TemplatePost $request)
     {
-        $this->validate($request, self::$validation);
 
         // try to write the file first
         try
@@ -95,14 +90,10 @@ class TemplateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TemplatePost $request, $id)
     {
         /* repeated validation until i figure if it's worth 
             creating request based validation */
-        $this->validate($request, [
-            "name" => "required|max:255",
-            "content" => "required|max:3000"
-        ]);
         $template = Template::findOrFail($id);
         
         // now attempt to write to file and handle any exceptions

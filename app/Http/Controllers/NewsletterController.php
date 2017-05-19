@@ -4,14 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Utility;
-use App\Http\Requests;
+use App\Http\Requests\IssuePost;
 
 class NewsletterController extends Controller
 {
-    private static $validation = [
-        "asset" => "required",
-        "issue" => "required"
-    ];
     /**
      * Display a listing of the resource.
      *
@@ -42,9 +38,8 @@ class NewsletterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(IssuePost $request)
     {
-        $this->validate($request, self::$validation);
         $dir = public_path("assets/pdf/newsletters");
         $name = "issue". $request->input('issue') . ".pdf";
         $check = $dir ."/". $name;

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Utility;
+use App\Http\Requests\EventPost;
 
 class EventController extends Controller
 {
@@ -37,12 +37,8 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventPost $request)
     {
-        $this->validate($request, [
-            "name" => "required",
-            "date" => "required",
-        ]);
 
         Event::create($request->all());
 
@@ -69,12 +65,9 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventPost $request, $id)
     {
-        $this->validate($request, [
-            "name" => "required",
-            "date" => "required",
-        ]);
+
 
         Event::find($id)->update($request->all());
 
