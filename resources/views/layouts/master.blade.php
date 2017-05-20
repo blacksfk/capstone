@@ -10,7 +10,7 @@
     <span id="error-float" >
         @include('shared.messages')
     </span>
-    <div  class="tag-line" >
+    <div class="tag-line" >
         <div class="container">
             <div class="row  text-center" >
                 <div class="col-lg-12  col-md-12 col-sm-12">      
