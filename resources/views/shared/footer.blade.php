@@ -23,7 +23,7 @@
 
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
-            <h2><strong>Links:</strong></strong></h2>
+            <h2><strong>Links:</strong></h2>
             <hr>
             <ul>
                 <li>
