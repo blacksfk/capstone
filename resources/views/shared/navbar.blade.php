@@ -1,6 +1,6 @@
 <div class="background-nav">
     <nav class="navbar navbar-inverse" id="menu">
-        <div class="container-fluid">
+        <div>
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -22,22 +22,16 @@
                             <li><a href="{{ url('/about/policies') }}">Policies</a></li>
                         </ul>
                     </li>
-{{--                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CURRICULUM<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ url('/curriculum/literacy') }}">Literacy</a></li>
-                            <li><a href="{{ url('/curriculum/numeracy') }}">Numeracy</a></li>
-                        </ul>
-                    </li> --}}
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DIGITAL TECH<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('/digital-tech/multimedia') }}">Multimedia</a></li>
                             <li><a href="{{ url('/digital-tech/esmart') }}">eSmart</a></li>
                             <li><a href="{{ url('/digital-tech/tms') }}">The Morning Show</a></li>
-                            
                         </ul>
                     </li>
+
                     <li><a href="{{ url('/enrolment') }}">ENROLMENT</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PARENTS INFO<span class="caret"></span></a>

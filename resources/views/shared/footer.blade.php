@@ -1,8 +1,8 @@
 <br>
 <br>
 <div class="centered-footer">
-    <div class="row set-row-pad"  >
-        <div class="col-lg-4 col-md-4 col-sm-4  ">
+    <div class="row set-row-pad">
+        <div class="col-lg-4 col-md-4 col-sm-4">
 
             <h2><strong>Our Location: </strong></h2>
             <hr />
