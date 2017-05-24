@@ -9,17 +9,17 @@
 			<h1 class="header-line text-center">Frequently Asked Questions (FAQ's)</h1>
 			<button class="accordion">Are you eligible for CGPS?</button>
 			<div class="panel">
-				<p>No you spastic</p>
+				<p></p>
 			</div>
 
-			<button class="accordion">open this</button>
+			<button class="accordion"></button>
 			<div class="panel">
-				<p>you just wasted 3 seconds of your life reading this</p>
+				
 			</div>
 
-			<button class="accordion">Don't open this</button>
+			<button class="accordion"></button>
 			<div class="panel">
-				<p>You must be wondering what is in this box, well you guessed it, nothing</p>
+				
 			</div>
 
 		</div>
