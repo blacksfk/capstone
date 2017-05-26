@@ -3,7 +3,7 @@
 @section('content')
 
 <div id="features-sec" class="container set-pad" >
-    <div class="row text-left">
+    <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
             <h1 class="header-line text-center">Multimedia Program</h1>
             <p><strong>The Morning Show</strong></p>
@@ -34,18 +34,15 @@
             <p>If you have any further questions about the multimedia program, please feel free to send an email to <a href="mailto:balliet.scott.t@edumail.vic.gov.au">balliet.scott.t@edumail.vic.gov.au</a></p>
 
             <p><strong>eSmart</strong></p>
-            <p>Courtenay Gardens Primary is committed to teaching our students to be responsible citizens and making great choices, especially when online.
+            <p>Courtenay Gardens Primary is committed to teaching our students to be responsible citizens and making great choices, especially when online.</p>
 
 			<p>In 2012, we volunteered to be part of a pilot program run by the Alannah and Madeline Foundation called eSmart Schools. This whole-school inniative is designed to help promote the safe, smart and responsible use of technology inside and outside of school and eliminate cyberbullying in all its forms.</p>
 
 			<p>An eSmart Committe was formed, comprised of teachers, students and parents and we meet monthly to discuss ways to help our school become more eSmart and cybersafe. We have updated our school's Cyberbullying Policy which was approved by the school council</p>
 
-			<p><a href="{{ url('/curriculum/esmart') }}">Click to see our eSmart page</a></p>
-			
-			<div class="flex">
-				<img src="{{asset('assets/img/multimedia_pic1.jpg')}}">
-				<img src="{{asset('assets/img/multimedia_pic2.jpg')}}">
-			</div>
+			<p><a href="{{ url('/digital-tech/esmart') }}">Click to see our eSmart page</a></p>
+            </div>
 		</div>
 	</div>
+</div>   
 @endsection
