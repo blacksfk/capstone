@@ -11,7 +11,7 @@ Project setup
 6. Run: `php path/to/composer.phar install --prefer-dist`
 7. Create your database; for SQLite recommended location is: `storage/db.sqlite`
 8. Assuming SQLite has been chosen append the following to your `.env` (other configurations will require different environment variables):  
-  `DB_CONNECTION=sqlite`
+  `DB_CONNECTION=sqlite`  
   `DB_DATABASE=/absolute/path/to/db.sqlite`
 9. Create the following directories in `storage/`:  
   `/framework/`  
