@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Asset;
+use App\CarouselItem;
 
 class CarouselController extends Controller
 {
@@ -14,10 +15,8 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        $assets = Asset::where("type","img")->get();
-
         return view("admin.carousel.index")
-            ->with("assets", $assets);
+            ->with("carouselItems", CarouselItem::all());
     }
 
     /**
@@ -27,7 +26,17 @@ class CarouselController extends Controller
      */
     public function create()
     {
-        //
+        $assets = Asset::where("type", "img")->get();
+
+        if (!count($assets))
+        {
+            return redirect()->route("admin.assets.create")
+                ->with("No images exist, upload some here");
+        }
+        
+        return view("admin.carousel.create")
+            ->with("assets", Asset::where("type", "img")->get())
+            ->with("carouselItems", CarouselItem::all());
     }
 
     /**
@@ -38,7 +47,22 @@ class CarouselController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // overwrite the current carousel
+        CarouselItem::all()->delete();
+        $success = [];
+
+        foreach ($request->items as $item)
+        {
+            $carouselItem = new CarouselItem();
+            
+            $carouselItem->asset_id = $item->asset_id;
+            $carouselItem->caption = $item->caption;
+
+            $carouselItem->save();
+            $success[] = $carouselItem->asset->name . " is now part of the carousel";
+        }
+
+        return redirect()->route("admin.carousel.index")->with("success", $success);
     }
 
     /**
@@ -83,6 +107,9 @@ class CarouselController extends Controller
      */
     public function destroy($id)
     {
-        //
+        CarouselItem::destroy($id);
+
+        return view("admin.carousel.index")
+            ->with("success", "Carousel item removed");
     }
 }
