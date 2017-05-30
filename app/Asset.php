@@ -8,4 +8,9 @@ class Asset extends Model
 {
     protected $fillable = ["name", "type"];
     public static $assetTypes = ["img" => "Image", "video" => "Video", "pdf" => "PDF"];
+
+    public function carouselItem()
+    {
+        return $this->hasMany("app\CarouselItem");
+    }
 }
