@@ -142,6 +142,23 @@ function appendToForm(event, formID, selector) {
     $(formID).submit();
 }
 
+function appendToCarousel(event, tableSelector) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    var html = "" +
+        "<tr>" +
+            "<td>" + $("#carousel-select").val() + "</td>" +
+            "<td>" + $("#carousel-select :selected").text() + "</td>" +
+            "<td>" + $("#carousel-caption").val() + "</td>" +
+            "<td><img src='" + $("#_asset_path").val() + "/" + $("#carousel-select :selected").text() + "' height='200px' width='200px' class='img-thumbnail'></td>" +
+            "<td><span class='fa fa-arrow-circle-up'></span><span class='fa fa-arrow-circle-down'></span></td>" +
+            "<td><span class='fa fa-times'></span></td>" +
+        "</tr>"
+
+    $(html).hide().appendTo(tableSelector).fadeIn(SLIDE_TIME);
+}
+
 
 /*================================================================
     EVENT HANDLERS
@@ -165,6 +182,11 @@ $("#template_id").change(function() {
         "json"
     );
 });
+
+// change the image source for previewing carousel items
+$("#carousel-select").change(function() {
+    $("#carousel-preview").prop("src", $("#_asset_path").val() + "/" + $("#carousel-select :selected").text());
+})
 
 var flask = new CodeFlask;
 flask.runAll(".code-editor");
