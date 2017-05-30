@@ -83,5 +83,4 @@
 </div>
 <noscript>
     <meta http-equiv="refresh" content="0;{{ url('noscript') }}">
-    <!--<h1 class="text-center" style="color:red;" >TURN ON JAVASCRIPT OR GTFO </h1> -->
 </noscript>
