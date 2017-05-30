@@ -15,10 +15,11 @@ class CreateCarouselsTable extends Migration
     {
         Schema::create('carousels', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("name")->unsigned()->nullable();
-            $table->foreign("name")->references("name")->on("assets");
-            $table->string("caption")->unsigned()->nullable();
+            $table->integer("asset_id")->unsigned();
+            $table->string("caption")->nullable();
             $table->timestamps();
+
+            $table->foreign("asset_id")->references("id")->on("assets");
         });
     }
 
