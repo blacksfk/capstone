@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Carousel extends Model
+class CarouselItem extends Model
 {
     protected $fillable = ["asset_id", "caption"];
 
