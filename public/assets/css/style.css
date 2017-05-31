@@ -168,7 +168,7 @@ body {
     border-color: #FFF;
 }
 
-.sliding-middle-out {
+/*.sliding-middle-out {
     display: inline-block;
     position: relative;
     padding-bottom: 3px;
@@ -185,7 +185,7 @@ body {
 .sliding-middle-out:hover:after {
     width: 100%;
     background: white;
-}
+}*/
 
 .static-sliding{
     color: blue;
@@ -395,14 +395,26 @@ h1::after {
   CAROUSEL
   ===================================*/
 .carousel-inner{
-  width:100%;
-  max-height: 380px !important;
+  
+  max-height: 500px;
+  width: 100%;
+
+}
+
+.carousel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  max-width: none;
+  height: 40%;
 }
 
 .full-screen {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  
 }
 
 .item {
@@ -423,7 +435,7 @@ h1::after {
     padding-left: 3%;
     padding-right: 3%;
     left: auto;
-    top: 30%;
+    top: 20%;
     transform: translateY(-50%);
     bottom: initial;
     font-family: 'Montserrat', sans-serif;
@@ -563,7 +575,6 @@ div.centered-footer {
   ===================================*/
 .list-left > dt{
     text-align: left;
-    width: 260px;
     padding-left: auto;
     padding-right: auto;
     line-height: 2;
