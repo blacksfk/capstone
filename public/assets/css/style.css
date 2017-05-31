@@ -63,6 +63,17 @@ body {
     padding-right: 5px;
 }
 
+.quote {
+    quotes: "\201C""\201D""\2018""\2019";
+}
+
+.quote:before {
+    content: open-quote;
+}
+
+.quote:after {
+    content: close-quote;
+}
 /* =============================================================
    IMAGE WALL
  ============================================================ */
@@ -119,7 +130,6 @@ body {
     background-color: #2d3d5a;
     color: #fff;
 }
-
 
 #menu {
     background-color: rgba(28, 43, 75, 1);
@@ -435,52 +445,12 @@ h1::after {
     padding-left: 3%;
     padding-right: 3%;
     left: auto;
-    top: 20%;
+    top: 10%;
     transform: translateY(-50%);
     bottom: initial;
     font-family: 'Montserrat', sans-serif;
     }
 }
-
-
-
-/*=====================================
-  FACULTY STYLES 
-  ===================================*/
-#faculty-sec {
-    background-color: #000;
-    color: #fff;
-}
-
-    #faculty-sec .header-line {
-        color: #fff;
-    }
-.faculty-div h4 {
-    line-height:30px;
-    font-weight:700;
-}
-.faculty-div {
-    padding: 30px;
-}
-
-    .faculty-div hr {
-        border: 1px solid #1A94C4;
-    }
-
-    .faculty-div h3 {
-        font-size: 25px;
-        font-weight: 700;
-        text-transform: uppercase;
-    }
-
-    .faculty-div p {
-        padding-top: 10px;
-        padding-bottom: 15px;
-    }
-
-    .faculty-div img {
-        border: 10px double #fff;
-    }
 
 /*=====================================
   CONTACT STYLES 

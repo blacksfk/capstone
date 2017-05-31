@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="item">
-        <img src="{{ asset('assets/img/CGPS_18.jpg') }}" alt="Second Image">
+        <img src="{{ asset('assets/img/CGPS_002.jpg') }}" alt="Second Image">
         <div class="carousel-caption">
             <h2>Resilience</h2>
         </div>

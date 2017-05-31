@@ -113,8 +113,6 @@
 
 </table>
 </div>
-
-<hr>
 </div>
 </div>
 

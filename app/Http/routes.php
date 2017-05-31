@@ -26,18 +26,19 @@ Route::group(["prefix" => "curriculum"], function() {
     Route::get("numeracy", function() {return view("curriculum.numeracy");});
     Route::get('/enrolment', function() {return view("curriculum.enrolment");});
     Route::get('newsletters', "NewsletterController@show");
+    Route::get("multimedia", function() {return view("curriculum.multimedia");});
+    Route::get("esmart", function() {return view("curriculum.esmart");});
+    Route::get("tms", function() {return view("curriculum.tms");});
+    Route::get("integrated", function() {return view("curriculum.integrated");});
+    Route::get("digital-tech", function() {return view("curriculum.digital-tech");});  
 });
 
 // Under the 'parents info' dropdown
 Route::group(["prefix" => "parents-info"], function() {
-    Route::get("canteen", function() {return view("parents-info.canteen");});   
-});
-
-//Under the 'Digital Tech' dropdown
-Route::group(["prefix" => "digital-tech"], function() {
-    Route::get("multimedia", function() {return view("digital-tech.multimedia");});
-    Route::get("esmart", function() {return view("digital-tech.esmart");});
-    Route::get("tms", function() {return view("digital-tech.tms");});    
+    Route::get("newsletters", function() {return view("parents-info.newsletters");});
+    Route::get("policies", function() {return view("parents-info.policies");}); 
+    Route::get("uniform", function() {return view("parents-info.uniform");}); 
+    Route::get("canteen", function() {return view("parents-info.canteen");});    
 });
 
 // Under the 'About Us' dropdown
