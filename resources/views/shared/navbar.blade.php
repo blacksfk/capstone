@@ -41,7 +41,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PARENTS INFO<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('/parents-info/newsletter') }}">Newsletter</a></li>
+                            <li><a href="{{ url('/parents-info/newsletters') }}">Newsletter</a></li>
                             <li><a href="{{ url('/parents-info/policies') }}">Policies</a></li>
                             <li><a href="{{ url('/parents-info/uniform') }}">Uniform</a></li>
                             <li><a href="{{ url('/parents-info/canteen') }}">Canteen Menu</a></li>
