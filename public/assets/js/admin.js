@@ -142,21 +142,60 @@ function appendToForm(event, formID, selector) {
     $(formID).submit();
 }
 
+/**
+ * Appends the selected image to the carousel table
+ * @param  JSEvent event
+ * @param  string tableSelector what to select and append
+ * @return void
+ */
 function appendToCarousel(event, tableSelector) {
     event.stopPropagation();
     event.preventDefault();
 
+    var count = $(tableSelector + "> tr").length;
+    var index = count + 1;
     var html = "" +
         "<tr>" +
-            "<td>" + $("#carousel-select").val() + "</td>" +
-            "<td>" + $("#carousel-select :selected").text() + "</td>" +
-            "<td>" + $("#carousel-caption").val() + "</td>" +
+            "<td>&#35;" + index + "</td>" +
+            "<td><input type='text' name='items[" + count + "][asset_id]' value='" + $("#carousel-select").val() + "' readonly></td>" + 
+            "<td><input type='text' name='items[" + count + "][caption]' value='" + $("#carousel-caption").val() + "'></td>" +
             "<td><img src='" + $("#_asset_path").val() + "/" + $("#carousel-select :selected").text() + "' height='200px' width='200px' class='img-thumbnail'></td>" +
-            "<td><span class='fa fa-arrow-circle-up'></span><span class='fa fa-arrow-circle-down'></span></td>" +
-            "<td><span class='fa fa-times'></span></td>" +
+            "<td>" +
+                "<button class='btn btn-default'><span class='fa fa-arrow-circle-up'></span></button>" +
+                "<button class='btn btn-default'><span class='fa fa-arrow-circle-down'></span></button>" +
+            "</td>" +
+            "<td><button class='btn btn-default' onclick='deleteRow(this, event)'><span class='fa fa-times'></span></button></td>" +
         "</tr>"
 
     $(html).hide().appendTo(tableSelector).fadeIn(SLIDE_TIME);
+}
+
+/**
+ * Shifts the table row up one
+ * @param  button caller
+ * @param  JSEvent event
+ * @return void
+ */
+function shiftUp(caller, event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    var row = $(caller).parents("tr:first");
+    row.insertBefore(row.prev());
+}
+
+/**
+ * Shifts the table row down one
+ * @param  button caller
+ * @param  JSevent event
+ * @return void
+ */
+function shiftDown(caller, event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    var row = $(caller).parents("tr:first");
+    row.insertAfter(row.next());
 }
 
 
