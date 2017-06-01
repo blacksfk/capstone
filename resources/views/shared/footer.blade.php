@@ -18,7 +18,7 @@
             <h2><strong>Our opening hours: </strong></h2>
             <hr />
             <div>
-                <h4>Monday - Friday: 9am - 5pm</h4>
+                <h4>Monday - Friday: 8.30am - 4.00pm</h4>
             </div>
 
         </div>

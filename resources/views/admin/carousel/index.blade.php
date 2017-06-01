@@ -9,7 +9,8 @@
         <tr>
             <th>Name</th>
             <th>Caption</th>
-            <th>Preview</th>
+            <th>Image</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
             <td>{{ $item->asset->name }}</td>
             <td>{{ $item->caption }}</td>
             <td><img src="{{ asset('assets/' . $item->asset->type . '/' . $item->asset->name) }}" alt="" class="img-thumbnail" height="200px" width="200px"></td>
+            <td><a href="{{ route('admin.carousel.edit', $item->id) }}">Edit</a></td>
         </tr>
         @endforeach
     </tbody>
