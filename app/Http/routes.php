@@ -57,40 +57,34 @@ Route::group(["prefix" => "involve"], function() {
 });
 
 Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], function() {
+
+    /* =================================================
+        Custom resource controller methods
+        Must be declared before resource() declaration
+    ==================================================*/
+
     // custom routes for events for batch upload
     Route::get("events/uploadFile", function() {
         return view("admin.events.uploadFile");
     })->name("events.uploadFile");
 
+    // preview events before inserting
     Route::post("events/previewFile", [
         "as" => "events.previewFile",
         "uses" => "EventController@previewFile"
     ]);
 
+    // upload events from file
     Route::post("events/batchUpload", [
         "as" => "events.batchUpload",
         "uses" => "EventController@batchUpload"
     ]);
-
-    Route::resource("events", "EventController");
-    Route::resource("assets", "AssetController");
-    Route::resource("newsletter", "NewsletterController");
-    Route::resource("carousel", "CarouselController");
-
-    // custom method for retrieving a templates section
-    Route::get("templates/sections", [
-        "as" => "templates.sections",
-        "middleware" => "ajax",
-        "uses" => "TemplateController@getSections"
-    ]);
-    Route::resource("templates", "TemplateController");
 
     // custom controller method - put before resource!
     Route::post("admin/links/toggle", [
         "as" => "links.toggle",
         "uses" => "LinkController@toggle"
     ]);
-    Route::resource("links", "LinkController");
 
     // custom route for previewing a page
     Route::get("pages/preview", [
@@ -98,7 +92,25 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
         "middleware" => "ajax",
         "uses" => "PageController@preview"
     ]);
+
+    // custom method for retrieving a templates section
+    Route::get("templates/sections", [
+        "as" => "templates.sections",
+        "middleware" => "ajax",
+        "uses" => "TemplateController@getSections"
+    ]);    
+
+
+    /* ==============================================
+        Resource controllers
+    ===============================================*/
+    Route::resource("assets", "AssetController");
+    Route::resource("carousel", "CarouselController");
+    Route::resource("events", "EventController");
+    Route::resource("links", "LinkController");
     Route::resource("pages", "PageController");
+    Route::resource("newsletter", "NewsletterController");
+    Route::resource("templates", "TemplateController");
 });
 
 // Dynamic routing to custom pages

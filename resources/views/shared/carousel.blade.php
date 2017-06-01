@@ -11,7 +11,7 @@
   <div class="carousel-inner" role="listbox">
     <div class="item">
         <img src="{{ asset('assets/img/CGPS_26.jpg') }}" width="30" height="30" alt="CGPS logo">
-        <div class="carousel-caption">
+        <div class="col-sm-3 carousel-caption">
             <h2>Responsibility</h2>
         </div>
     </div>
