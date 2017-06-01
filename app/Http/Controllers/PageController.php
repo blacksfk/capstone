@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use App\Page;
 use App\Link;
 use App\Template;
@@ -29,8 +28,8 @@ class PageController extends Controller
      */
     public function create()
     {
-        // send all the links to the view for dropdown population
-        $links = $this->getOrphanLinks();
+        // get links which are not bound
+        $links = Link::getOrphanLinks();
 
         if (count($links) === 0)
         {
@@ -68,7 +67,7 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::find($id);
-        $links = $this->getOrphanLinks();
+        $links = Link::getOrphanLinks();
         $templates = Template::all();
 
         return view("admin.pages.edit")
@@ -126,17 +125,6 @@ class PageController extends Controller
         return redirect()->route("admin.pages.index")
             ->with("success", "Page deleted successfully")
             ->with("update", $update);
-    }
-
-    /**
-     * Get all links which aren't bound to pages
-     * @return array Collection of link objects
-     */
-    private function getOrphanLinks()
-    {
-        return DB::table("links")->whereNotIn("id", function($query) {
-            $query->select(DB::raw("link_id"))->from("pages");
-        })->get();   
     }
 
     /**
