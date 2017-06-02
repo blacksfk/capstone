@@ -225,7 +225,20 @@ $("#template_id").change(function() {
 // change the image source for previewing carousel items
 $("#carousel-select").change(function() {
     $("#carousel-preview").prop("src", $("#_asset_path").val() + "/" + $("#carousel-select :selected").text());
-})
+});
+
+// asset management index filtering
+$("#asset_filter").change(function() {
+    $.each($("tbody tr"), function(index, element) {
+        var td = $(element).children("td").get(1);
+        if ($(td).text() === $("#asset_filter").val() || $("#asset_filter").val() === "") {
+            $(element).show();
+        }
+        else {
+            $(element).hide();
+        }
+    });
+});
 
 var flask = new CodeFlask;
 flask.runAll(".code-editor");
