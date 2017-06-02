@@ -39,7 +39,7 @@
             <div id="title">
                 Address Lookup
             </div>
-            <div id="type-selector" class="pac-controls">
+            <div id="type-selector" class="pac-controls" style="overflow:hidden;">
                 <input type="radio" name="type" id="changetype-all" checked="checked">
                 <label for="changetype-all">All</label>
 
@@ -139,7 +139,7 @@
             {lat: -38.074546, lng: 145.335409},
             {lat: -38.089474, lng: 145.332785}
             ];
-            
+            /* <<This is the previous priority zone>>
             var priorityZoneA = new google.maps.Polygon({
               paths: zoneACoordinates,
               strokeColor: '#ee1717',
@@ -148,7 +148,7 @@
               fillColor: '#ee1717',
               fillOpacity: 0.35
           });
-            
+            */
             var priorityZoneB = new google.maps.Polygon({
               paths: zoneBCoordinates,
               strokeColor: '#2917ee',
@@ -157,7 +157,7 @@
               fillColor: '#2917ee',
               fillOpacity: 0.35
           });
-            priorityZoneA.setMap(zone);
+            //priorityZoneA.setMap(zone);
             priorityZoneB.setMap(zone);          
             var card = document.getElementById('pac-card');
             var input = document.getElementById('pac-input');
