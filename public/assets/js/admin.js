@@ -15,16 +15,14 @@
  * @param  String formID    The deletion form that will be submitted
  * @return void
  */
-function confirmDelete(event, formID) {
+function confirmDelete(event, formID, name) {
     event.stopPropagation();
     event.preventDefault();
-    
-    var name = $(formID).find("input[name='record']");
 
     $("#adminModal .modal-header").text("Confirm deletion");
     $("#adminModal .modal-body").text(
         "Are you sure you want to delete " +
-        $(name).val() +
+        name +
         "? This action cannot be undone!"
     );
     $("#modalConfirm").addClass("btn-danger");
