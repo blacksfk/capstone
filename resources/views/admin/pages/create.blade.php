@@ -24,9 +24,7 @@
         <input type="hidden" name="_template_route" value="{{ route('admin.templates.sections') }}">
         <label for="template_id">Template</label>
         <select name="template_id" id="template_id" class="form-control">
-            @foreach ($templates as $template)
-                <option value="{{ $template->id }}">{{ $template->name }}</option>
-            @endforeach
+
         </select>
     </div>
     -->
@@ -40,7 +38,6 @@
                         <textarea name="content" cols="30" rows="10" class="form-control"></textarea>
                     </div>
                 </div>
-            @endforeach
         </div>
     </div>
 </form>

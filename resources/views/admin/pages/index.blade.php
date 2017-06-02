@@ -10,7 +10,6 @@
             <tr>
                 <th>Name</th>
                 <th>Link</th>
-                <th>Template</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -23,7 +22,6 @@
                         {{ $page->link->name }}
                     @endif
                 </td>
-                <td>{{ $page->template->name }}</td>
                 <td><a href="{{ route('admin.pages.edit', $page->id) }}">Edit</a></td>
             </tr>
         @endforeach
