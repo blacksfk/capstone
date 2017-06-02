@@ -18,7 +18,8 @@ class AssetController extends Controller
     public function index()
     {
         return view("admin.assets.index")
-            ->with("assets", Asset::all());
+            ->with("assets", Asset::all())
+            ->with("types", Asset::TYPES);
     }
 
     /**

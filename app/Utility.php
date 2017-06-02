@@ -108,12 +108,11 @@ class Utility
 
     /**
      * Scans a directory and returns all of the file names
-     * Currently defaults to assets/pdf/newsletters for compatibility
      * 
-     * @param  string $path 
+     * @param  string $path
      * @return array 
      */
-    public static function scanDirectory($path = public_path("assets/pdf/newsletters"))
+    public static function scanDirectory($path)
     {
         if (is_dir($path))
         {

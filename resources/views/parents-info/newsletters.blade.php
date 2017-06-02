@@ -3,11 +3,6 @@
 @section('content')
 
 <script src="{{ asset('assets/js/newsletters.js') }}"></script>
-<?php
-unset($newsletters[0]);
-unset($newsletters[1]);
-natsort($newsletters);
-?>
 
 <div class="container set-pad">
     <div class="row text-center">
@@ -17,7 +12,7 @@ natsort($newsletters);
     <div class="row text-center">
         <div class="well col-sm-2">
             @foreach ($newsletters as $newsletter)
-                <a class="pdfLink" href="{{ asset('assets/pdf/newsletters/'.$newsletter) }}">{{ $newsletter }}</a><br>
+                <a class="pdfLink" href="{{ asset('assets/' . $newsletter->type . '/' . $newsletter->name) }}">{{ $newsletter->name }}</a><br>
             @endforeach
         </div>
         
