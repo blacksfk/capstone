@@ -19,7 +19,7 @@
             @endforeach
         </select>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         {{-- This hidden field is required if the JS is going to be external --}}
         <input type="hidden" name="_template_route" value="{{ route('admin.templates.sections') }}">
         <label for="template_id">Template</label>
@@ -29,16 +29,15 @@
             @endforeach
         </select>
     </div>
+    -->
     <div class="form-group">
-        <label>Template sections</label>
+        <label>Content</label>
         <hr>
         <div id="inputs">
-            {{-- This should display the default templates sections --}}
-            @foreach ($templates->find(1)->sections as $section)
                 <div class="form-group">
-                    <label for="content[{{ $section }}]">{{ $section }}</label>
+                    <label for="content">Content</label>
                     <div class="code-editor" data-language="php">
-                        <textarea name="content[{{ $section }}]" cols="30" rows="10" class="form-control"></textarea>
+                        <textarea name="content" cols="30" rows="10" class="form-control"></textarea>
                     </div>
                 </div>
             @endforeach

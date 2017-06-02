@@ -121,7 +121,7 @@ class PageController extends Controller
         }
 
         $page->delete();
-
+    
         return redirect()->route("admin.pages.index")
             ->with("success", "Page deleted successfully")
             ->with("update", $update);

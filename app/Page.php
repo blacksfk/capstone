@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
-    protected $fillable = ["name", "link_id", "template_id", "content"];
+    protected $fillable = ["name", "link_id", "content"];
 
     /**
      * One to one relationship between a link and a page
