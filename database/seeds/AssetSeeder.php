@@ -85,58 +85,62 @@ class AssetSeeder extends Seeder
 
         DB::table("assets")->insert([
             "id" => 13,
-            "name" => "CGPS_19.jpg",
+            "name" => "CGPS_002.jpg",
             "type" => "img"
         ]);
 
         DB::table("assets")->insert([
             "id" => 14,
-            "name" => "CGPS_maps.png",
+            "name" => "CGPS_19.jpg",
             "type" => "img"
         ]);
 
         DB::table("assets")->insert([
             "id" => 15,
-            "name" => "IMG_3378.jpg",
+            "name" => "CGPS_maps.png",
             "type" => "img"
         ]);
 
         DB::table("assets")->insert([
             "id" => 16,
-            "name" => "digilearn_screen.jpg",
+            "name" => "IMG_3378.jpg",
             "type" => "img"
         ]);
 
         DB::table("assets")->insert([
             "id" => 17,
-            "name" => "epotential_screen.jpg",
+            "name" => "digilearn_screen.jpg",
             "type" => "img"
         ]);
 
         DB::table("assets")->insert([
             "id" => 18,
-            "name" => "kids_group.jpg",
+            "name" => "epotential_screen.jpg",
             "type" => "img"
         ]);
 
         DB::table("assets")->insert([
             "id" => 19,
-            "name" => "writing_fun_screen.jpg",
+            "name" => "kids_group.jpg",
             "type" => "img"
         ]);
 
         DB::table("assets")->insert([
             "id" => 20,
-            "name" => "priority_zones.jpg",
+            "name" => "writing_fun_screen.jpg",
             "type" => "img"
         ]);
 
         DB::table("assets")->insert([
             "id" => 21,
-            "name" => "CGPS_18.jpg",
+            "name" => "priority_zones.jpg",
             "type" => "img"
         ]);
 
-
+        DB::table("assets")->insert([
+            "id" => 22,
+            "name" => "CGPS_18.jpg",
+            "type" => "img"
+        ]);
     }
 }

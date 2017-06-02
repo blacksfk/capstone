@@ -40,7 +40,7 @@ Route::group(["prefix" => "curriculum"], function() {
 
 // Under the 'parents info' dropdown
 Route::group(["prefix" => "parents-info"], function() {
-    Route::get("newsletters", function() {return view("parents-info.newsletters");});
+    Route::get("newsletters", "NewsletterController@show");
     Route::get("policies", function() {return view("parents-info.policies");}); 
     Route::get("uniform", function() {return view("parents-info.uniform");}); 
     Route::get("canteen", function() {return view("parents-info.canteen");});    

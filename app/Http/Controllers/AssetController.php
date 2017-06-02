@@ -28,7 +28,7 @@ class AssetController extends Controller
      */
     public function create()
     {
-        return view("admin.assets.create")->with("types", Asset::$assetTypes);
+        return view("admin.assets.create")->with("types", Asset::TYPES);
     }
 
     /**
@@ -75,7 +75,7 @@ class AssetController extends Controller
     {
         return view("admin.assets.edit")
             ->with("asset", Asset::find($id))
-            ->with("types", Asset::$assetTypes);
+            ->with("types", Asset::TYPES);
     }
 
     /**
@@ -120,7 +120,6 @@ class AssetController extends Controller
 
         // if succesful, now delete the model
         $asset->delete();
-
 
         return redirect()->route("admin.assets.index")
             ->with("success", "Asset deleted successfully")

@@ -86,7 +86,7 @@ class NewsletterController extends Controller
     {
         $newsletters =  Utility::scanDirectory();
 
-        return view("curriculum.newsletters")
+        return view("parents-info.newsletters")
             ->with("newsletters", $newsletters);
     }
 

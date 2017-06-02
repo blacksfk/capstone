@@ -106,52 +106,21 @@ class Utility
         return $object;
     }
 
-    public static function saveFile(Request $request)
+    /**
+     * Scans a directory and returns all of the file names
+     * Currently defaults to assets/pdf/newsletters for compatibility
+     * 
+     * @param  string $path 
+     * @return array 
+     */
+    public static function scanDirectory($path = public_path("assets/pdf/newsletters"))
     {
-        $dir = public_path("assets/" . $request->type);
-
-        // check if an extension was given in the file name
-        if (preg_match("/\.(.+)$/", $request->name))
+        if (is_dir($path))
         {
-            $name = $request->name;
+            return scandir($path);
         }
-        else
-        {
-            // no extension given in name field so get it from the file
-            $name = $request->name . "." . $request->file("asset")->guessExtension();
-        }
-
-        if (!file_exists($dir))
-        {
-            $result = mkdir($dir, 0755);
-
-            if (!$result)
-            {
-                return back()->withInput()
-                    ->with("errors", "Unable to create directory");
-            }
-        }
-
-        // change the file name to the name and move to assets directory
-        try
-        {
-            $request->file("asset")->move($dir, $name);
-        }
-        catch (FileException $e)
-        {
-            return back()->withInput()
-                ->with("errors", "Could not move file: " . $e->getMessage());
-        }
-
-        return $name;
-    }
-
-    public static function scanDirectory(){
-        $dir = public_path("assets/pdf/newsletters");
-
-        $output = scandir($dir);
-
-        return $output;
+        
+        throw new \Exception("Not a valid directory");
     }
 
 }

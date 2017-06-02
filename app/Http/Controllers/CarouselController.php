@@ -26,7 +26,7 @@ class CarouselController extends Controller
      */
     public function create()
     {
-        $assets = Asset::where("type", "img")->get();
+        $assets = Asset::where("type", Asset::TYPE_IMAGE)->get();
 
         if (!count($assets))
         {
@@ -35,28 +35,33 @@ class CarouselController extends Controller
         }
         
         return view("admin.carousel.create")
-            ->with("assets", Asset::where("type", "img")->get())
+            ->with("assets", $assets)
             ->with("carouselItems", CarouselItem::all());
     }
 
     /**
-     * Store a newly created resource in storage.
+     * This removes the existing items and creates new 
+     * items in the order specified
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        // overwrite the current carousel
-        CarouselItem::all()->delete();
         $success = [];
+
+        // overwrite the current carousel
+        foreach (CarouselItem::all() as $item)
+        {
+            $item->delete();
+        }
 
         foreach ($request->items as $item)
         {
             $carouselItem = new CarouselItem();
             
-            $carouselItem->asset_id = $item->asset_id;
-            $carouselItem->caption = $item->caption;
+            $carouselItem->asset_id = $item["asset_id"];
+            $carouselItem->caption = $item["caption"];
 
             $carouselItem->save();
             $success[] = $carouselItem->asset->name . " is now part of the carousel";
@@ -84,7 +89,9 @@ class CarouselController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view("admin.carousel.edit")
+            ->with("item", CarouselItem::find($id))
+            ->with("assets", Asset::where("type", Asset::TYPE_IMAGE)->get());
     }
 
     /**
@@ -96,7 +103,13 @@ class CarouselController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $carouselItem = CarouselItem::find($id);
+        $carouselItem->asset_id = $request->asset_id;
+        $carouselItem->caption = $request->caption;
+        $carouselItem->save();
+
+        return redirect()->route("admin.carousel.index")
+            ->with("success", $carouselItem->asset->name . " updated successfully");
     }
 
     /**
@@ -109,7 +122,7 @@ class CarouselController extends Controller
     {
         CarouselItem::destroy($id);
 
-        return view("admin.carousel.index")
+        return redirect()->route("admin.carousel.index")
             ->with("success", "Carousel item removed");
     }
 }

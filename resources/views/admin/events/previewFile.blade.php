@@ -64,7 +64,7 @@
                 <td><input type="time" name="events[{{ $index }}][start_time]" id="events[{{ $index }}][start_time]" value="{{ $event->start_time }}"></td>
                 <td><input type="time" name="events[{{ $index }}][end_time]" id="events[{{ $index }}][end_time]" value="{{ $event->end_time }}"></td>
                 <td><input type="text" name="events[{{ $index }}][notes]" id="events[{{ $index }}][notes]" value="{{ $event->notes }}"></td>
-                <td><button type="button" class="close" onclick="deleteRow(this, event)">&times;</button></td>
+                <td><button onclick="deleteRow(this, event)" class="btn btn-default"><span class="fa fa-times"></span></button></td>
             </tr>
         @endforeach
         <tbody>

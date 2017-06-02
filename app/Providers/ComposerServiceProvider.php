@@ -14,6 +14,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer("shared.navbar", "App\Http\ViewComposers\NavbarComposer");
+        view()->composer("shared.carousel", "App\Http\ViewComposers\CarouselComposer");
     }
 
     /**
