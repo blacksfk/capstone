@@ -30,7 +30,12 @@ Route::group(["prefix" => "curriculum"], function() {
     Route::get("esmart", function() {return view("curriculum.esmart");});
     Route::get("tms", function() {return view("curriculum.tms");});
     Route::get("integrated", function() {return view("curriculum.integrated");});
-    Route::get("digital-tech", function() {return view("curriculum.digital-tech");});  
+    Route::get("digital-tech", function() {return view("curriculum.digital-tech");}); 
+    Route::get("lote", function() {return view("curriculum.lote");});
+    Route::get("arts", function() {return view("curriculum.arts");});  
+    Route::get("sports", function() {return view("curriculum.sports");});
+    Route::get("disabilities", function() {return view("curriculum.disabilities");});
+
 });
 
 // Under the 'parents info' dropdown
