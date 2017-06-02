@@ -6,7 +6,7 @@
     <div class="row text-center">
         <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
             <h2>Welcome to Courtenay Gardens Primary School</h2><br>
-            <h3 class="quote"><em>The Best School in The State! </em></h3>
+            <h4 class="quote"><em>The Best School in The State! </em></h4>
             <br>
 
             <div class="row">
