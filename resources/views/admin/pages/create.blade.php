@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @section('title', 'Create new Page')
-@section('back_link', route('admin.pages.index'))
 @section('content')
 <a href="{{ route('admin.pages.index') }}" class="btn btn-warning">Cancel</a>
 <hr>
