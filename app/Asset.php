@@ -10,12 +10,14 @@ class Asset extends Model
     const TYPE_IMAGE = "img";
     const TYPE_VIDEO = "video";
     const TYPE_PDF = "pdf";
+    const TYPE_NEWSLETTER = "newsletters";
     
     // stores all of the types for selection, Asset::TYPES
     const TYPES = [
         self::TYPE_IMAGE => "Image", 
         self::TYPE_VIDEO => "Video", 
-        self::TYPE_PDF => "PDF"
+        self::TYPE_PDF => "PDF",
+        self::TYPE_NEWSLETTER => "Newsletter"
     ];
 
     
