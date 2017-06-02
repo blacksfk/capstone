@@ -43,7 +43,7 @@
                         <form action="{{ route('admin.assets.destroy', $asset->id) }}" method="post" id="delete-form">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="_method" value="DELETE">
-                            <input type="submit" value="Delete {{ $asset->name }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form')">
+                            <input type="submit" value="Delete {{ $asset->name }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form', '{{ $asset->name }}')">
                         </form>
                     </td>
                 </tr>

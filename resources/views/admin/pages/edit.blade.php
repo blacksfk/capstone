@@ -6,7 +6,6 @@
 <form action="{{ route('admin.pages.destroy', $page->id) }}" method="post" id="delete-form">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <input type="hidden" name="record" value="{{ $page->name }}">
 </form>
 <form action="{{ route('admin.pages.update', $page->id) }}" method="post" id="edit-form">
     <input type="hidden" name="_method" value="PATCH">
@@ -36,7 +35,7 @@
 </form>
 @endsection
 @section('form_nav')
-<a href="{{ route('admin.pages.destroy', $page->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form')">Delete {{ $page->name }}</a>
+<a href="{{ route('admin.pages.destroy', $page->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form', '{{ $page->name }}')">Delete {{ $page->name }}</a>
 <a href="{{ route('admin.pages.preview') }}" class="btn btn-primary" onclick="previewPage(this, event)">Preview</a>
 <a class="btn btn-success pull-right" onclick="event.preventDefault();$('#edit-form').submit();">Update {{ $page->name }}</a>
 @endsection

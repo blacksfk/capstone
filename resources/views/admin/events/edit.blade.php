@@ -1,13 +1,11 @@
 @extends('layouts.admin')
 @section('title', 'Edit ' . $event->name)
-@section('back_link', route('admin.events.index'))
 @section('content')
 <a href="{{ route('admin.events.index') }}" class="btn btn-warning">Cancel</a>
 <hr>
 <form action="{{ route('admin.events.destroy', $event->id) }}" method="post" id="delete-form">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <input type="hidden" name="record" value="{{ $event->name }}">
 </form>
 <form action="{{ route('admin.events.update', $event->id) }}" method="post" id="edit-form">
     <input type="hidden" name="_method" value="PATCH">
@@ -35,6 +33,6 @@
 </form>
 @endsection
 @section('form_nav')
-<a href="{{ route('admin.events.destroy', $event->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form')">Delete {{ $event->name }}</a>
+<a href="{{ route('admin.events.destroy', $event->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form', '{{ $event->name }}')">Delete {{ $event->name }}</a>
 <a class="btn btn-success pull-right" onclick="event.preventDefault();$('#edit-form').submit();">Update {{ $event->name }}</a>
 @endsection
