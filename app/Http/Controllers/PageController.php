@@ -50,10 +50,16 @@ class PageController extends Controller
      */
     public function store(PagePost $request)
     {
+        $content = "@extends('layouts.master')\n";
+        $content .= "@section('title', " . $request->name . ")\n";
+        $content .= "@section('content')\n";
+        $content .= $request->content . "\n";
+        $content .= "@endsection\n";
+
         // first try to write the file
         try
         {
-            Utility::createFile($request->name, $request->contents, resource_path("views"));
+            Utility::createFile($request->name, $content, resource_path("views"));
         }
         catch (\Exception $e)
         {
@@ -80,7 +86,16 @@ class PageController extends Controller
     {
         $page = Page::find($id);
         $links = Link::getOrphanLinks();
-        $content = file_get_contents(resource_path("views/" . $page->name . ".blade.php"));
+        $content = null;
+
+        try
+        {
+            $content = file_get_contents(resource_path("views/" . $page->name . ".blade.php"));
+        }
+        catch (\Exception $e)
+        {
+            return redirect()->route("admin.pages.index")->with("errors", "Unable open file: " . $e->getMessage());
+        }
 
         return view("admin.pages.edit")
             ->with("page", $page)
@@ -99,7 +114,16 @@ class PageController extends Controller
     {
         $page = Page::find($id);
         $update = [];
-        $oldContent = file_get_contents(resource_path("views/" . $page->name . ".blade.php"));
+        $oldContent = null;
+
+        try
+        {
+            $oldContent = file_get_contents(resource_path("views/" . $page->name . ".blade.php"));
+        }
+        catch (\Exception $e)
+        {
+            return back()->withInput()->with("errors", "Unable to open file: " . $e->getMessage());
+        }
 
         if ($oldContent !== $request->content)
         {
@@ -139,6 +163,16 @@ class PageController extends Controller
     {
         $page = Page::find($id);
         $update = [];
+
+        // try to delete the file on disk
+        try
+        {
+            Utility::delete(resource_path("views/" . $page->name . ".blade.php"));
+        }
+        catch (\Exception $e)
+        {
+            return back()->with("errors", "Unable to delete file: " . $e->getMessage());
+        }
 
         // disable link the page is bound to
         if (isset($page->link))
