@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use App\Link;
-use App\Template;
 use App\Utility;
 use Illuminate\Http\Request;
 use App\Http\Requests\PagePost;
@@ -37,11 +36,10 @@ class PageController extends Controller
                 ->with("errors", "No links found, please create one here");
         }
 
-        /* give the page both links and templates
+        /* give the page both links
             to populate the dropdowns with */
         return view("admin.pages.create")
-            ->with("links", $links)
-            ->with("templates", Template::all());
+            ->with("links", $links);
     }
 
     /**
@@ -55,7 +53,6 @@ class PageController extends Controller
         $page = new Page;
         $page->name = $request->name;
         $page->link_id = $request->link_id;
-        $page->template_id = $request->template_id;
         $page->content = $request->content;
         $page->save();
 
@@ -73,12 +70,10 @@ class PageController extends Controller
     {
         $page = Page::find($id);
         $links = Link::getOrphanLinks();
-        $templates = Template::all();
 
         return view("admin.pages.edit")
             ->with("page", $page)
-            ->with("links", $links)
-            ->with("templates", $templates);
+            ->with("links", $links);
     }
 
     /**
@@ -139,9 +134,7 @@ class PageController extends Controller
      */
     public function preview(Request $request)
     {
-        $template = Template::find($request->id);
         $view = view("admin.pages.preview")
-            ->with("template", $template)
             ->with("name", $request->name)
             ->with("content", json_decode($request->content)) // should be a json string
             ->render();
