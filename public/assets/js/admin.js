@@ -63,28 +63,22 @@ function confirmOverwrite(event, formID, callback, selector) {
  * @param  JSEvent    event
  * @return void
  */
-/*
+
 function previewPage(caller, event) {
     event.stopPropagation();
     event.preventDefault();
 
-    var contentArray = {};
-
-    $("input[name^='content']").each(function(index, element) {
-        contentArray[element.id] = element.value;
-    });
-
     $.get($(caller).prop("href"), {
         id: $("#template_id").val(), 
         name: $("#name").val(), 
-        content: JSON.stringify(contentArray)
+        content: $("#content").val()
     }, 
     function(data) {
         var wdw = window.open();
         wdw.document.write(data);
     });
 }
-*/
+
 /**
  * Appends the data received to the html object specified 
  * (to be used with templates)
@@ -208,21 +202,7 @@ $(".alert").on("close.bs.alert", function(event) {
     event.preventDefault();
     $(this).slideUp();
 });
-/*
-// get all the sections for a template
-$("#template_id").change(function() {
-    if ($("#inputs").html() !== "") {
-        $("#inputs").html("");
-    }
 
-    // hidden field in the form to store the dynamic route to the template
-    $.get($("input[name='_template_route']").val(), 
-        {id: $("#template_id").val()}, 
-        appendSections, 
-        "json"
-    );
-});
-*/
 // change the image source for previewing carousel items
 $("#carousel-select").change(function() {
     $("#carousel-preview").prop("src", $("#_asset_path").val() + "/" + $("#carousel-select :selected").text());
