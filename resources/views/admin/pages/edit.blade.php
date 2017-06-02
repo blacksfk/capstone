@@ -28,14 +28,9 @@
         </select>
     </div>
     <div class="form-group">
-        <hr>
-        <div id="inputs">
-                <div class="form-group">
-                    <label for="content">Content</label>
-                    <div class="code-editor" data-language="php">
-                        <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{ $page->content[$section] }}</textarea>
-                    </div>
-                </div>
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{ $content }}</textarea>
         </div>
     </div>
 </form>
