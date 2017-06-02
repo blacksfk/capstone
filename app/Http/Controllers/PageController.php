@@ -195,9 +195,11 @@ class PageController extends Controller
      */
     public function preview(Request $request)
     {
+        // extract only the html between the blade section tags for previewing
+        preg_match("/@section\('.+'\)(?P<content>[\s\S]*)@endsection/", $request->content, $matches);
         $view = view("admin.pages.preview")
             ->with("name", $request->name)
-            ->with("content", $request->content)
+            ->with("content", $matches["content"])
             ->render();
 
         return $view;
