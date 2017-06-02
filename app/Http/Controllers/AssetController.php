@@ -18,7 +18,8 @@ class AssetController extends Controller
     public function index()
     {
         return view("admin.assets.index")
-            ->with("assets", Asset::all());
+            ->with("assets", Asset::all())
+            ->with("types", Asset::TYPES);
     }
 
     /**
@@ -62,7 +63,7 @@ class AssetController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -73,9 +74,8 @@ class AssetController extends Controller
      */
     public function edit($id)
     {
-        return view("admin.assets.edit")
-            ->with("asset", Asset::find($id))
-            ->with("types", Asset::TYPES);
+
+        abort(404);
     }
 
     /**
@@ -87,7 +87,11 @@ class AssetController extends Controller
      */
     public function update(AssetPost $request, $id)
     {
-        Asset::find($id)->update($request->all());
+
+        $asset = Asset::find($id);
+        $asset->name = $request->asset->getClientOriginalName();
+        $asset->type = $request->type;
+        $asset->save();
 
         return redirect()->route("admin.assets.index")
             ->with("success", "Asset updated successfully");

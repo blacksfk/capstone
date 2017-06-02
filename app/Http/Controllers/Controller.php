@@ -45,4 +45,26 @@ class Controller extends BaseController
         return view("dynamic")->with("page", $page);
     }
 
+    /**
+     * Shows all of the newsletters in the database to the user ordered by name
+     * 
+     * @return View
+     */
+    public function newsletters()
+    {
+        $nl = Asset::where("type", Asset::TYPE_NEWSLETTER)->orderBy("name")->get();
+
+        return view("parents-info.newsletters")->with("newsletters", $nl);
+    }
+
+    /**
+     * Retrieves the canteen menu from the database
+     * 
+     * @return View
+     */
+    public function canteenMenu()
+    {
+        //
+    }
+
 }

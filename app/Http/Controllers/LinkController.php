@@ -70,7 +70,11 @@ class LinkController extends Controller
      */
     public function update(LinkPost $request, $id)
     {
-        Link::find($id)->update($request->all());
+        $link = Link::find($id);
+        $link->name = $request->name;
+        $link->active = $request->active;
+        $link->parent_id = $request->parent_id;
+        $link->save();
 
         return redirect()->route("admin.links.index")
             ->with("success", "Link successfully updated");

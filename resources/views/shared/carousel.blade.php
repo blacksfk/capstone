@@ -1,10 +1,9 @@
 <div id="mycarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        <li data-target="#mycarousel" data-slide-to="0"></li>
-        <li data-target="#mycarousel" data-slide-to="1"></li>
-        <li data-target="#mycarousel" data-slide-to="2"></li>
-        <li data-target="#mycarousel" data-slide-to="3"></li>
+        @for ($i =0;$i<count($items);$i++)
+        <li data-target="#mycarousel" data-slide-to="{{$i}}"></li>
+        @endfor
     </ol>
   
     <!-- Wrapper for slides -->
