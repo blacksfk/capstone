@@ -1,11 +1,10 @@
+@extends('layouts.master')
 @section('title', 'Preview ' . $name)
-@foreach ($content as $section => $input)
-    @section($section)
-        {{ $input }}
-    @endsection
-@endforeach
+@section('content')
+    {{ $content }}
 <script>
     $("a, button, input[type='submit']").click(function(event) {
         event.preventDefault();
     });
 </script>
+@endsection
