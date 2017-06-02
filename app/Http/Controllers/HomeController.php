@@ -27,13 +27,4 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function output()
-    {
-        $results =  Utility::scanDirectory();
-
-
-
-        return view("test")
-            ->with("results", $results);
-    }
 }

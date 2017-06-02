@@ -52,7 +52,12 @@ class PageController extends Controller
      */
     public function store(PagePost $request)
     {
-        Page::create($request->all());
+        $page = new Page;
+        $page->name = $request->name;
+        $page->link_id = $request->link_id;
+        $page->template_id = $request->template_id;
+        $page->content = $request->content;
+        $page->save();
 
         return redirect()->route("admin.pages.index")
             ->with("success", "Page created successfully");
