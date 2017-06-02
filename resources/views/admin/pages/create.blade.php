@@ -19,16 +19,9 @@
             @endforeach
         </select>
     </div>
-
     <div class="form-group">
-        <div id="inputs">
-                <div class="form-group">
-                    <label for="content">Content</label>
-                    <div class="code-editor" data-language="php">
-                        <textarea name="content" cols="30" rows="10" class="form-control"></textarea>
-                    </div>
-                </div>
-        </div>
+        <label for="content">Content</label>
+        <textarea name="content" cols="30" rows="10" class="form-control" id="content"></textarea>
     </div>
 </form>
 @endsection
