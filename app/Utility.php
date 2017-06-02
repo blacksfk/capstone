@@ -8,15 +8,15 @@ use App\Http\Requests;
 class Utility
 {
     /**
-     * Saves a files to the views directory (blade.php only for now)
-     * @param  string $name     name of the file
-     * @param  string $contents the file's contents
-     * @param  string $category directory path
+     * Saves a file to the specified directory (views only)
+     * @param  string $name     The file name
+     * @param  string $contents The file content
+     * @param  string $path     The directory to save into
+     * @return void
      */
-    public static function createFile($name, $contents, $category=null)
+    public static function createFile($name, $contents, $path)
     {
-        // compiles the path, leads to views folder (specifiy the folder), (specify the name)
-        $filename = resource_path()."/views/".$category."/".$name.'.blade.php';
+        $filename = $path . "/" . $name . ".blade.php";
         $myfile = null;
 
         // attempt to open the file
@@ -121,5 +121,4 @@ class Utility
         
         throw new \Exception("Not a valid directory");
     }
-
 }
