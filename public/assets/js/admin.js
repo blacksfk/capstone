@@ -206,8 +206,4 @@ $(".alert").on("close.bs.alert", function(event) {
 // change the image source for previewing carousel items
 $("#carousel-select").change(function() {
     $("#carousel-preview").prop("src", $("#_asset_path").val() + "/" + $("#carousel-select :selected").text());
-})
-
-var flask = new CodeFlask;
-flask.runAll(".code-editor");
-
+});
