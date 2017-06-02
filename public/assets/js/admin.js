@@ -63,6 +63,7 @@ function confirmOverwrite(event, formID, callback, selector) {
  * @param  JSEvent    event
  * @return void
  */
+/*
 function previewPage(caller, event) {
     event.stopPropagation();
     event.preventDefault();
@@ -83,7 +84,7 @@ function previewPage(caller, event) {
         wdw.document.write(data);
     });
 }
-
+*/
 /**
  * Appends the data received to the html object specified 
  * (to be used with templates)
@@ -207,7 +208,7 @@ $(".alert").on("close.bs.alert", function(event) {
     event.preventDefault();
     $(this).slideUp();
 });
-
+/*
 // get all the sections for a template
 $("#template_id").change(function() {
     if ($("#inputs").html() !== "") {
@@ -221,7 +222,7 @@ $("#template_id").change(function() {
         "json"
     );
 });
-
+*/
 // change the image source for previewing carousel items
 $("#carousel-select").change(function() {
     $("#carousel-preview").prop("src", $("#_asset_path").val() + "/" + $("#carousel-select :selected").text());

@@ -53,7 +53,6 @@ class PageController extends Controller
         $page = new Page;
         $page->name = $request->name;
         $page->link_id = $request->link_id;
-        $page->content = $request->content;
         $page->save();
 
         return redirect()->route("admin.pages.index")
