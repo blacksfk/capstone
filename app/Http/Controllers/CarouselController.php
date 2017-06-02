@@ -26,7 +26,7 @@ class CarouselController extends Controller
      */
     public function create()
     {
-        $assets = Asset::where("type", "img")->get();
+        $assets = Asset::where("type", Asset::TYPE_IMAGE)->get();
 
         if (!count($assets))
         {
@@ -35,12 +35,13 @@ class CarouselController extends Controller
         }
         
         return view("admin.carousel.create")
-            ->with("assets", Asset::where("type", "img")->get())
+            ->with("assets", $assets)
             ->with("carouselItems", CarouselItem::all());
     }
 
     /**
-     * Store a newly created resource in storage.
+     * This removes the existing items and creates new 
+     * items in the order specified
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -90,7 +91,7 @@ class CarouselController extends Controller
     {
         return view("admin.carousel.edit")
             ->with("item", CarouselItem::find($id))
-            ->with("assets", Asset::where("type", "img")->get());
+            ->with("assets", Asset::where("type", Asset::TYPE_IMAGE)->get());
     }
 
     /**

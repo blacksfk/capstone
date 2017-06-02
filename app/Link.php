@@ -45,4 +45,34 @@ class Link extends Model
         $this->attributes["active"] = $value;
         $this->save();
     }
+
+    /**
+     * Toggles the link only if it is bound, or has active children
+     * @param  Boolean $value
+     * @return Boolean
+     */
+    public function toggle($value)
+    {
+        if ($value === false ||
+            isset($this->page) || 
+            count($this->children->where("active", true)))
+        {
+            $this->active = $value;
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Returns links which have no children or bound pages
+     * @return Collection
+     */
+    public static function getOrphanLinks()
+    {
+        $noPages = self::has("page", "<", 1)->get();
+        $noChildren = self::has("children", "<", 1)->get();
+
+        return $noPages->intersect($noChildren);
+    }
 }

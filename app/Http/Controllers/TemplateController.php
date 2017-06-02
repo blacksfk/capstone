@@ -50,11 +50,12 @@ class TemplateController extends Controller
             return back()->withInput()->with("errors", "Unable to create file: " . $e->getMessage());
         }
 
-        $sections = $this->extract($request->content);
-        //dd(gettype($sections));
-
         // save only if writing was successful
-        Template::create(['name' => $request->name,'content'=>$request->content,'sections'=>$sections]);
+        $template = new Template();
+        $template->name = $request->name;
+        $template->content = $request->content;
+        $template->sections = $this->extract($request->content);
+        $template->save();
 
         return redirect()->route("admin.templates.index")->with("success", "Template created successfully");
     }
@@ -106,10 +107,10 @@ class TemplateController extends Controller
             return back()->withInput()->with("errors", "Unable to write file: " . $e->getMessage());
         }
 
-        $sections = $this->extract($request->content);
-
         // only update the record if file writing was successful
-        $template->update(['name' => $request->name,'content'=>$request->content,'sections'=>$sections]);
+        $template->name = $request->name;
+        $template->content = $request->content;
+        $template->sections = $this->extract($request->content);
 
         return redirect()->route("admin.templates.index")->with("success", $request->name . " updated successfully");
     }
@@ -125,14 +126,11 @@ class TemplateController extends Controller
         /* get the default template and replace any page
         that uses the template to be deleted with the default */
         $template = Template::findOrFail($id);
-        $default = Template::where("name", "default")->first();
-        $update = [];
 
-        foreach ($template->pages as $page)
+        if (!is_null($template->pages))
         {
-            $page->template_id = $default->id;
-            $page->save();
-            $update[] = $page->name . " was updated with the default template";
+            return redirect()->route("admin.pages.index")
+                ->with("errors", $template->name . " is used by " . count($template->pages) . " page(s) and cannot be deleted";
         }
 
         try
@@ -150,11 +148,14 @@ class TemplateController extends Controller
         $template->delete();
 
         return redirect()->route("admin.templates.index")
-            ->with("success", "Template deleted successfully")
-            ->with("update", $update);
+            ->with("success", "Template deleted successfully");
     }
 
-    // Ajax only method to retrieve all the sections for page editing
+    /**
+     * AJAX only method to retrieve all the sections for page editing
+     * @param  Request $request HTTP Request
+     * @return JSON
+     */
     public function getSections(Request $request)
     {
         $template = Template::find($request->id);
@@ -162,12 +163,19 @@ class TemplateController extends Controller
         return json_encode($template->sections);
     }
 
+    /**
+     * Extracts and returns the name of each yield in the template
+     * @param  string $contents
+     * @return array
+     */
     private function extract($contents)
     {
         preg_match_all(
             '/@yield\(\'(?<section>.*)\'\)/',
             $contents,
-            $matches);
+            $matches
+        );
+
         return $matches["section"];
     }
 }

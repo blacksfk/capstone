@@ -658,6 +658,34 @@ button.accordion.active:after {
     padding: 6px 12px;
 }
 
+@media only screen and (max-width: 435px) {
+    .pac-card {
+        margin: 10px 10px 0 10px;
+    }
+    
+    #pac-input {
+        width: 300px;
+    }
+    
+    .gm-style-mtc {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    #pac-input {
+        width: 220px;
+    }
+    
+    #title {
+        font-size: 20px;
+    }
+    
+    .pac-controls label {
+    font-size: 14px;
+    }
+}
+
 /*=====================================
   IMAGE GALLERY
   ===================================*/  

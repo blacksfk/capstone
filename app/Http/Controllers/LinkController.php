@@ -38,7 +38,6 @@ class LinkController extends Controller
      */
     public function store(LinkPost $request)
     {
-
         $link = new Link();
         $link->name = $request->name;
         $link->active = $request->active;
@@ -119,19 +118,18 @@ class LinkController extends Controller
      */
     public function toggle(Request $request)
     {
-        $enable = $request->_enable;
+        $enable = $request->_enable;    // set this before filtering
         $linksToEnable = Utility::filterOutInvalidKeys($request->all());
         $errors = [];
         $success = [];
 
-        foreach ($linksToEnable as $id => $val)
+        foreach (array_keys($linksToEnable) as $id)
         {
             $link = Link::find($id);
+            $result = $link->toggle($enable);
 
-            // only enable links that are bound or have children links
-            if (isset($link->page) || count($link->children->where("active", true)))
+            if ($result)
             {
-                $link->active = $enable;
                 $success[] = $link->name . 
                     ($enable ? " enabled" : " disabled") . " successfully";
             }
