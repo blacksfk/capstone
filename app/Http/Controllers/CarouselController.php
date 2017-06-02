@@ -78,7 +78,7 @@ class CarouselController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**

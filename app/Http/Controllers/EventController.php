@@ -40,7 +40,13 @@ class EventController extends Controller
     public function store(EventPost $request)
     {
 
-        Event::create($request->all());
+        $event = new Event;
+        $event->name = $request->name;
+        $event->date = $request->date;
+        $event->start_time = $request->start_time;
+        $event->end_time = $request->end_time;
+        $event->notes = $request->notes;
+        $event->save();
 
         return redirect()->route("admin.events.index")->with("success", "Event created successfully");
     }
@@ -68,8 +74,14 @@ class EventController extends Controller
     public function update(EventPost $request, $id)
     {
 
+        $event = Event::find($id);
+        $event->name = $request->name;
+        $event->date = $request->date;
+        $event->start_time = $request->start_time;
+        $event->end_time = $request->end_time;
+        $event->notes = $request->notes;
+        $event->save();
 
-        Event::find($id)->update($request->all());
 
         return redirect()->route("admin.events.index")->with("success", "Event updated successfully");
     }
