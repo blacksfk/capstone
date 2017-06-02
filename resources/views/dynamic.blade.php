@@ -1,4 +1,4 @@
-@extends('templates.' . $page->template->name)
+
 @section('title', $page->name)
 @foreach ($page->content as $section => $content)
     @section($section)

@@ -25,7 +25,6 @@ class PagePost extends FormRequest
     {
         return [
             "name" => "required",
-            "content" => "required"
         ];
     }
 }
