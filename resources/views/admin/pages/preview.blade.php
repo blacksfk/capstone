@@ -1,4 +1,3 @@
-@extends('templates.' . $template->name)
 @section('title', 'Preview ' . $name)
 @foreach ($content as $section => $input)
     @section($section)

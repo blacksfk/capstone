@@ -28,22 +28,6 @@
         </select>
     </div>
     <div class="form-group">
-        {{-- This hidden field is required if the JS is going to be external --}}
-        {{--<label for="template_id">Template</label>--}}
-
-            {{--
-        <select name="template_id" id="template_id" class="form-control">
-            @foreach ($templates as $template)
-                @if ($page->template_id === $template->id)
-                    <option value="{{ $page->template_id }}" selected>{{ $page->template->name }}</option>
-                @else
-                    <option value="{{ $template->id }}">{{ $template->name }}</option>
-                @endif
-            @endforeach
-        </select>
-            --}}
-    </div>
-    <div class="form-group">
         <hr>
         <div id="inputs">
                 <div class="form-group">
