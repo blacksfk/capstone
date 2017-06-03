@@ -116,6 +116,11 @@ body {
     display: flex;
 }
 
+.sortable:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 /*=====================================
   NAVBAR STYLES 
     ===================================*/
