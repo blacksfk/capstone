@@ -42,7 +42,7 @@ class Controller extends BaseController
             abort(404);
         }
 
-        return view("dynamic")->with("page", $page);
+        return view($page->name);
     }
 
     /**
