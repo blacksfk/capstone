@@ -57,7 +57,7 @@ class LinkController extends Controller
     public function edit($id)
     {
         return view("admin.links.edit")
-            ->with("link", Link::find($id))
+            ->with("link", Link::findOrFail($id))
             ->with("links", Link::all());
     }
 

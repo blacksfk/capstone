@@ -90,7 +90,7 @@ class CarouselController extends Controller
     public function edit($id)
     {
         return view("admin.carousel.edit")
-            ->with("item", CarouselItem::find($id))
+            ->with("item", CarouselItem::findOrFail($id))
             ->with("assets", Asset::where("type", Asset::TYPE_IMAGE)->get());
     }
 
