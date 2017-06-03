@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Asset;
 use App\CarouselItem;
+use App\Messages;
 
 class CarouselController extends Controller
 {
@@ -56,6 +57,8 @@ class CarouselController extends Controller
             $item->delete();
         }
 
+        $success[] = Messages::CAROUSEL[Messages::CREATED];
+
         foreach ($request->items as $item)
         {
             $carouselItem = new CarouselItem();
@@ -67,7 +70,8 @@ class CarouselController extends Controller
             $success[] = $carouselItem->asset->name . " is now part of the carousel";
         }
 
-        return redirect()->route("admin.carousel.index")->with("success", $success);
+        return redirect()->route("admin.carousel.index")
+            ->with(Messages::SUCCESS, $success);
     }
 
     /**
@@ -109,7 +113,7 @@ class CarouselController extends Controller
         $carouselItem->save();
 
         return redirect()->route("admin.carousel.index")
-            ->with("success", $carouselItem->asset->name . " updated successfully");
+            ->with(Messages::SUCCESS, Messages::CAROUSEL[Messages::UPDATED]);
     }
 
     /**
@@ -124,6 +128,6 @@ class CarouselController extends Controller
         $carouselItem->delete();
 
         return redirect()->route("admin.carousel.index")
-            ->with("success", "Carousel item removed");
+            ->with(Messages::SUCCESS, Messages::CAROUSEL[Messages::DELETED]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Page;
 use App\Link;
 use App\Utility;
+use App\Messages;
 use Illuminate\Http\Request;
 use App\Http\Requests\PagePost;
 
@@ -33,7 +34,7 @@ class PageController extends Controller
         if (count($links) === 0)
         {
             return redirect()->route("admin.links.create")
-                ->with("errors", "No links found, please create one here");
+                ->with(Messages::ERRORS, "No links found, please create one here");
         }
 
         /* give the page both links
@@ -63,7 +64,7 @@ class PageController extends Controller
         }
         catch (\Exception $e)
         {
-            return back()->withInput()->with("errors", "Unable to create file: " . $e->getMessage());
+            return back()->withInput()->with(Messages::ERRORS, "Unable to create file: " . $e->getMessage());
         }
 
         // if successful, create the object in the db
@@ -73,7 +74,7 @@ class PageController extends Controller
         $page->save();
 
         return redirect()->route("admin.pages.index")
-            ->with("success", "Page created successfully");
+            ->with(Messages::SUCCESS, Messages::PAGE[Messages::CREATED]);
     }
 
     /**
@@ -87,7 +88,7 @@ class PageController extends Controller
         $page = Page::findOrFail($id);
         $links = Link::getOrphanLinks();
         $content = null;
-        $warnings = [];
+        $warnings = "";
 
         try
         {
@@ -95,10 +96,10 @@ class PageController extends Controller
         }
         catch (\Exception $e)
         {
-            $warnings[] = $e->getMessage();
+            $warnings = $e->getMessage();
         }
 
-        session()->flash("warnings", $warnings);
+        session()->flash(Messages::WARNINGS, $warnings);
 
         return view("admin.pages.edit")
             ->with("page", $page)
@@ -116,18 +117,20 @@ class PageController extends Controller
     public function update(PagePost $request, $id)
     {
         $page = Page::findOrFail($id);
-        $update = [];
+        $update = "";
         $oldContent = null;
 
+        // first read the file to compare the new input against the old
         try
         {
             $oldContent = file_get_contents(resource_path("views/" . $page->name . ".blade.php"));
         }
         catch (\Exception $e)
         {
-            return back()->withInput()->with("errors", "Unable to open file: " . $e->getMessage());
+            return back()->withInput()->with(Messages::ERRORS, "Unable to open file: " . $e->getMessage());
         }
 
+        // only write if the content has changed
         if ($oldContent !== $request->content)
         {
             try 
@@ -136,7 +139,7 @@ class PageController extends Controller
             } 
             catch (\Exception $e)
             {
-                return back()->withInput()->with("errors", "Unable to update file: " . $e->getMessage());
+                return back()->withInput()->with(Messages::ERRORS, "Unable to update file: " . $e->getMessage());
             }
         }
 
@@ -144,7 +147,7 @@ class PageController extends Controller
         if (isset($page->link) && $page->link_id !== $request->link_id)
         {
             Link::find($page->link_id)->active = false;
-            $update[] = $page->link->name . " has been disabled";
+            $update = $page->link->name . " has been disabled";
         }
 
         $page->name = $request->name;
@@ -152,8 +155,8 @@ class PageController extends Controller
         $page->save();
 
         return redirect()->route("admin.pages.index")
-            ->with("success", "Page updated successfully")
-            ->with("update", $update);
+            ->with(Messages::SUCCESS, Messages::PAGE[Messages::UPDATED])
+            ->with(Messages::UPDATED, $update);
     }
 
     /**
@@ -165,8 +168,8 @@ class PageController extends Controller
     public function destroy($id)
     {
         $page = Page::findOrFail($id);
-        $update = [];
-        $warnings = [];
+        $update = "";
+        $warnings = "";
 
         // try to delete the file on disk
         try
@@ -175,22 +178,22 @@ class PageController extends Controller
         }
         catch (\Exception $e)
         {
-            $warnings[] = $e->getMessage();
+            $warnings = $e->getMessage();
         }
 
         // disable link the page is bound to
         if (isset($page->link))
         {
             Link::find($page->link_id)->active = false;
-            $update[] = $page->link->name . " is no longer active";
+            $update = $page->link->name . " is no longer active";
         }
 
         $page->delete();
 
         return redirect()->route("admin.pages.index")
-            ->with("success", "Page deleted successfully")
-            ->with("update", $update)
-            ->with("warnings", $warnings);
+            ->with(Messages::SUCCESS, Messages::PAGE[Messages::DELETED])
+            ->with(Messages::UPDATED, $update)
+            ->with(Messages::WARNINGS, $warnings);
     }
 
     /**
