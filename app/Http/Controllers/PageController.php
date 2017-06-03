@@ -87,6 +87,7 @@ class PageController extends Controller
         $page = Page::findOrFail($id);
         $links = Link::getOrphanLinks();
         $content = null;
+        $warnings = [];
 
         try
         {
@@ -94,8 +95,10 @@ class PageController extends Controller
         }
         catch (\Exception $e)
         {
-            return redirect()->route("admin.pages.index")->with("errors", "Unable open file: " . $e->getMessage());
+            $warnings[] = $e->getMessage();
         }
+
+        session()->flash("warnings", $warnings);
 
         return view("admin.pages.edit")
             ->with("page", $page)
@@ -163,6 +166,7 @@ class PageController extends Controller
     {
         $page = Page::findOrFail($id);
         $update = [];
+        $warnings = [];
 
         // try to delete the file on disk
         try
@@ -171,7 +175,7 @@ class PageController extends Controller
         }
         catch (\Exception $e)
         {
-            return back()->with("errors", "Unable to delete file: " . $e->getMessage());
+            $warnings[] = $e->getMessage();
         }
 
         // disable link the page is bound to
@@ -185,7 +189,8 @@ class PageController extends Controller
 
         return redirect()->route("admin.pages.index")
             ->with("success", "Page deleted successfully")
-            ->with("update", $update);
+            ->with("update", $update)
+            ->with("warnings", $warnings);
     }
 
     /**
