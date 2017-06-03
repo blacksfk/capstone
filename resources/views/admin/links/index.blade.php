@@ -16,7 +16,7 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Name</th>
+                <th class="sortable">Name</th>
                 <th>Active</th>
                 <th>Parent</th>
                 <th>Page</th>

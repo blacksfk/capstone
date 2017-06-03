@@ -9,7 +9,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Name</th>
+                <th class="sortable">Name</th>
                 <th>Date</th>
                 <th>Start time</th>
                 <th>End time</th>

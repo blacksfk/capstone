@@ -17,7 +17,7 @@
 <div class="table-responsive" id="assets_table">
     <table class="table table-hover">
         <thead>
-            <th>Name</th>
+            <th class="sortable">Name</th>
             <th>Type</th>
             <th>Preview</th>
             <th>Delete</th>
