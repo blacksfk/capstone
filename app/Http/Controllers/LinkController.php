@@ -70,7 +70,7 @@ class LinkController extends Controller
      */
     public function update(LinkPost $request, $id)
     {
-        $link = Link::find($id);
+        $link = Link::findOrFail($id);
         $link->name = $request->name;
         $link->active = $request->active;
         $link->parent_id = $request->parent_id;
@@ -88,7 +88,7 @@ class LinkController extends Controller
      */
     public function destroy($id)
     {
-        $link = Link::find($id);
+        $link = Link::findOrFail($id);
         $update = [];
 
         if (isset($link->page))
@@ -129,7 +129,7 @@ class LinkController extends Controller
 
         foreach (array_keys($linksToEnable) as $id)
         {
-            $link = Link::find($id);
+            $link = Link::findOrFail($id);
             $result = $link->toggle($enable);
 
             if ($result)

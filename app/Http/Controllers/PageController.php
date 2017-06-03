@@ -84,7 +84,7 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        $page = Page::find($id);
+        $page = Page::findOrFail($id);
         $links = Link::getOrphanLinks();
         $content = null;
 
@@ -112,7 +112,7 @@ class PageController extends Controller
      */
     public function update(PagePost $request, $id)
     {
-        $page = Page::find($id);
+        $page = Page::findOrFail($id);
         $update = [];
         $oldContent = null;
 
@@ -161,7 +161,7 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        $page = Page::find($id);
+        $page = Page::findOrFail($id);
         $update = [];
 
         // try to delete the file on disk

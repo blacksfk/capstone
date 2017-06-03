@@ -103,7 +103,7 @@ class CarouselController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $carouselItem = CarouselItem::find($id);
+        $carouselItem = CarouselItem::findOrFail($id);
         $carouselItem->asset_id = $request->asset_id;
         $carouselItem->caption = $request->caption;
         $carouselItem->save();
@@ -120,7 +120,8 @@ class CarouselController extends Controller
      */
     public function destroy($id)
     {
-        CarouselItem::destroy($id);
+        $carouselItem = CarouselItem::findOrFail($id);
+        $carouselItem->delete();
 
         return redirect()->route("admin.carousel.index")
             ->with("success", "Carousel item removed");

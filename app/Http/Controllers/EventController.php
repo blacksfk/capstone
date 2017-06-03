@@ -59,7 +59,7 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::find($id);
+        $event = Event::findOrFail($id);
 
         return view("admin.events.edit")->with("event", $event);
     }
@@ -74,7 +74,7 @@ class EventController extends Controller
     public function update(EventPost $request, $id)
     {
 
-        $event = Event::find($id);
+        $event = Event::findOrFail($id);
         $event->name = $request->name;
         $event->date = $request->date;
         $event->start_time = $request->start_time;
@@ -94,7 +94,8 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        Event::find($id)->delete();
+        $event = Event::findOrFail($id)
+        $event->delete();
 
         return redirect()->route("admin.events.index")->with("success", "Event deleted successfully");
     }

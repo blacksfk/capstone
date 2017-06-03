@@ -74,7 +74,6 @@ class AssetController extends Controller
      */
     public function edit($id)
     {
-
         abort(404);
     }
 
@@ -88,7 +87,7 @@ class AssetController extends Controller
     public function update(AssetPost $request, $id)
     {
 
-        $asset = Asset::find($id);
+        $asset = Asset::findOrFail($id);
         $asset->name = $request->asset->getClientOriginalName();
         $asset->type = $request->type;
         $asset->save();
@@ -105,7 +104,7 @@ class AssetController extends Controller
      */
     public function destroy($id)
     {
-        $asset = Asset::find($id);
+        $asset = Asset::findOrFail($id);
         $errors = "";
 
         // first try to delete the asset
