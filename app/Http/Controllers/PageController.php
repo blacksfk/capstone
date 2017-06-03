@@ -51,7 +51,7 @@ class PageController extends Controller
     public function store(PagePost $request)
     {
         $content = "@extends('layouts.master')\n";
-        $content .= "@section('title', " . $request->name . ")\n";
+        $content .= "@section('title', '" . $request->name . "')\n";
         $content .= "@section('content')\n";
         $content .= $request->content . "\n";
         $content .= "@endsection\n";
