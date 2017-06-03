@@ -11,14 +11,12 @@ namespace App;
  */
 class Messages
 {
-    const UPDATE = "update";
     const ERRORS = "errors";
     const SUCCESS = "success";
-    const WARNINGS = "warnings";
-
     const CREATED = "created";
     const UPDATED = "updated";
     const DELETED = "deleted";
+    const WARNINGS = "warnings";
 
     const ASSET = [
         self::CREATED => "Asset uploaded successfully",
