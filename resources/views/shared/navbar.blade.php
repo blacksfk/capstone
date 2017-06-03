@@ -92,6 +92,3 @@
         </div>
     </nav>
 </div>
-<noscript>
-    <meta http-equiv="refresh" content="0;{{ url('noscript') }}">
-</noscript>
