@@ -84,25 +84,18 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
         "uses" => "EventController@batchUpload"
     ]);
 
-    // custom controller method - put before resource!
+    // toggle links
     Route::post("admin/links/toggle", [
         "as" => "links.toggle",
         "uses" => "LinkController@toggle"
     ]);
 
-    // custom route for previewing a page
+    // preview a page - AJAX only
     Route::get("pages/preview", [
         "as" => "pages.preview",
         "middleware" => "ajax",
         "uses" => "PageController@preview"
     ]);
-
-    // custom method for retrieving a templates section
-    Route::get("templates/sections", [
-        "as" => "templates.sections",
-        "middleware" => "ajax",
-        "uses" => "TemplateController@getSections"
-    ]);    
 
 
     /* ==============================================
@@ -113,8 +106,6 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
     Route::resource("events", "EventController");
     Route::resource("links", "LinkController");
     Route::resource("pages", "PageController");
-    Route::resource("newsletter", "NewsletterController");
-    Route::resource("templates", "TemplateController");
 });
 
 // Dynamic routing to custom pages

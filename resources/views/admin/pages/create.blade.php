@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @section('title', 'Create new Page')
-@section('back_link', route('admin.pages.index'))
 @section('content')
 <a href="{{ route('admin.pages.index') }}" class="btn btn-warning">Cancel</a>
 <hr>
@@ -20,29 +19,8 @@
         </select>
     </div>
     <div class="form-group">
-        {{-- This hidden field is required if the JS is going to be external --}}
-        <input type="hidden" name="_template_route" value="{{ route('admin.templates.sections') }}">
-        <label for="template_id">Template</label>
-        <select name="template_id" id="template_id" class="form-control">
-            @foreach ($templates as $template)
-                <option value="{{ $template->id }}">{{ $template->name }}</option>
-            @endforeach
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Template sections</label>
-        <hr>
-        <div id="inputs">
-            {{-- This should display the default templates sections --}}
-            @foreach ($templates->find(1)->sections as $section)
-                <div class="form-group">
-                    <label for="content[{{ $section }}]">{{ $section }}</label>
-                    <div class="code-editor" data-language="php">
-                        <textarea name="content[{{ $section }}]" cols="30" rows="10" class="form-control"></textarea>
-                    </div>
-                </div>
-            @endforeach
-        </div>
+        <label for="content">Content</label>
+        <textarea name="content" cols="30" rows="10" class="form-control" id="content"></textarea>
     </div>
 </form>
 @endsection

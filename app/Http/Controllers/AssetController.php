@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Asset;
 use App\Utility;
+use App\Messages;
 use Illuminate\Http\Request;
 use App\Http\Requests\AssetPost;
 
@@ -52,7 +53,7 @@ class AssetController extends Controller
         $asset->save();
 
         return redirect()->route("admin.assets.index")
-            ->with("success", "Asset uploaded successfully");
+            ->with(Messages::SUCCESS, Messages::ASSET[Messages::CREATED]);
     }
 
     /**
@@ -74,7 +75,6 @@ class AssetController extends Controller
      */
     public function edit($id)
     {
-
         abort(404);
     }
 
@@ -88,13 +88,13 @@ class AssetController extends Controller
     public function update(AssetPost $request, $id)
     {
 
-        $asset = Asset::find($id);
+        $asset = Asset::findOrFail($id);
         $asset->name = $request->asset->getClientOriginalName();
         $asset->type = $request->type;
         $asset->save();
 
         return redirect()->route("admin.assets.index")
-            ->with("success", "Asset updated successfully");
+            ->with(Messages::SUCCESS, Messages::ASSET[Messages::UPDATED]);
     }
 
     /**
@@ -105,8 +105,8 @@ class AssetController extends Controller
      */
     public function destroy($id)
     {
-        $asset = Asset::find($id);
-        $errors = "";
+        $asset = Asset::findOrFail($id);
+        $warnings = "";
 
         // first try to delete the asset
         try
@@ -119,14 +119,14 @@ class AssetController extends Controller
         }
         catch (\Exception $e)
         {
-            $errors = "Unable to delete " . $asset->name . " from disk. " . $e->getMessage();
+            $warnings = "Unable to delete " . $asset->name . " from disk. " . $e->getMessage();
         }
 
         // if succesful, now delete the model
         $asset->delete();
 
         return redirect()->route("admin.assets.index")
-            ->with("success", "Asset deleted successfully")
-            ->with("errors", $errors);
+            ->with(Messages::SUCCESS, Messages::ASSET[Messages::DELETED])
+            ->with(Messages::WARNINGS, $warnings);
     }
 }

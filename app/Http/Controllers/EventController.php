@@ -6,6 +6,7 @@ use App\Event;
 use Illuminate\Http\Request;
 use App\Utility;
 use App\Http\Requests\EventPost;
+use App\Messages;
 
 class EventController extends Controller
 {
@@ -40,7 +41,7 @@ class EventController extends Controller
     public function store(EventPost $request)
     {
 
-        $event = new Event;
+        $event = new Event();
         $event->name = $request->name;
         $event->date = $request->date;
         $event->start_time = $request->start_time;
@@ -48,7 +49,8 @@ class EventController extends Controller
         $event->notes = $request->notes;
         $event->save();
 
-        return redirect()->route("admin.events.index")->with("success", "Event created successfully");
+        return redirect()->route("admin.events.index")
+            ->with(Messages::SUCCESS, Messages::EVENT[Messages::CREATED]);
     }
 
     /**
@@ -59,9 +61,7 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::find($id);
-
-        return view("admin.events.edit")->with("event", $event);
+        return view("admin.events.edit")->with("event", Event::findOrFail($id));
     }
 
     /**
@@ -74,7 +74,7 @@ class EventController extends Controller
     public function update(EventPost $request, $id)
     {
 
-        $event = Event::find($id);
+        $event = Event::findOrFail($id);
         $event->name = $request->name;
         $event->date = $request->date;
         $event->start_time = $request->start_time;
@@ -83,7 +83,8 @@ class EventController extends Controller
         $event->save();
 
 
-        return redirect()->route("admin.events.index")->with("success", "Event updated successfully");
+        return redirect()->route("admin.events.index")
+            ->with(Messages::SUCCESS, Messages::EVENT[Messages::UPDATED]);
     }
 
     /**
@@ -94,9 +95,11 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        Event::find($id)->delete();
+        $event = Event::findOrFail($id);
+        $event->delete();
 
-        return redirect()->route("admin.events.index")->with("success", "Event deleted successfully");
+        return redirect()->route("admin.events.index")
+            ->with(Messages::SUCCESS, Messages::EVENT[Messages::DELETED]);
     }
 
     /**
@@ -147,11 +150,10 @@ class EventController extends Controller
         /* errors are found via the session, and since this route returns
             a view, session variables cannot be set using the ->with()
             syntax, so flash() them instead */
-        $request->session()->flash("errors", $errors);
-        $request->session()->flash("warnings", $warnings);
+        $request->session()->flash(Messages::ERRORS, $errors);
+        $request->session()->flash(Messages::WARNINGS, $warnings);
 
-        return view("admin.events.previewFile")
-            ->with("events", $events);
+        return view("admin.events.previewFile")->with("events", $events);
     }
 
     /**
@@ -166,7 +168,7 @@ class EventController extends Controller
         if (!count($request->events))
         {
             return redirect()->route("admin.events.index")
-                ->with("errors", "No events to upload");
+                ->with(Messages::ERRORS, "No events to upload");
         }
 
         $success = [];
@@ -185,6 +187,6 @@ class EventController extends Controller
         }
 
         return redirect()->route("admin.events.index")
-            ->with("success", $success);
+            ->with(Messages::SUCCESS, $success);
     }
 }

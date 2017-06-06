@@ -6,7 +6,6 @@
 <form action="{{ route('admin.pages.destroy', $page->id) }}" method="post" id="delete-form">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <input type="hidden" name="record" value="{{ $page->name }}">
 </form>
 <form action="{{ route('admin.pages.update', $page->id) }}" method="post" id="edit-form">
     <input type="hidden" name="_method" value="PATCH">
@@ -28,40 +27,15 @@
         </select>
     </div>
     <div class="form-group">
-        {{-- This hidden field is required if the JS is going to be external --}}
-        <input type="hidden" name="_template_route" value="{{ route('admin.templates.sections') }}">
-        {{--<label for="template_id">Template</label>--}}
-        
-        <input type="hidden" name="template_id" value="{{ $page->template_id }}">
-            {{--
-        <select name="template_id" id="template_id" class="form-control">
-            @foreach ($templates as $template)
-                @if ($page->template_id === $template->id)
-                    <option value="{{ $page->template_id }}" selected>{{ $page->template->name }}</option>
-                @else
-                    <option value="{{ $template->id }}">{{ $template->name }}</option>
-                @endif
-            @endforeach
-        </select>
-            --}}
-    </div>
-    <div class="form-group">
-        <label>Template sections</label>
-        <hr>
-        <div id="inputs">
-            @foreach ($page->template->sections as $section)
-                <div class="form-group">
-                    <label for="content[{{ $section }}]">{{ $section }}</label>
-                    <div class="code-editor" data-language="php">
-                        <textarea name="content[{{ $section }}]" id="content[{{ $section }}]" cols="30" rows="10" class="form-control">{{ $page->content[$section] }}</textarea>
-                    </div>
-                </div>
-            @endforeach
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{ $content }}</textarea>
         </div>
     </div>
 </form>
 @endsection
 @section('form_nav')
-<a href="{{ route('admin.pages.destroy', $page->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form')">Delete {{ $page->name }}</a>
+<a href="{{ route('admin.pages.destroy', $page->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form', '{{ $page->name }}')">Delete {{ $page->name }}</a>
+<a href="{{ route('admin.pages.preview') }}" class="btn btn-primary" onclick="previewPage(this, event)">Preview</a>
 <a class="btn btn-success pull-right" onclick="event.preventDefault();$('#edit-form').submit();">Update {{ $page->name }}</a>
 @endsection

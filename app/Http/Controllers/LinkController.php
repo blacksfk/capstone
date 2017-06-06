@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Link;
 use App\Utility;
+use App\Messages;
 use Illuminate\Http\Request;
 use App\Http\Requests\LinkPost;
 
@@ -45,7 +46,7 @@ class LinkController extends Controller
         $link->save();
 
         return redirect()->route("admin.links.index")
-            ->with("success", "Link successfully created");
+            ->with(Messages::SUCCESS, Messages::LINK[Messages::CREATED]);
     }
 
     /**
@@ -57,7 +58,7 @@ class LinkController extends Controller
     public function edit($id)
     {
         return view("admin.links.edit")
-            ->with("link", Link::find($id))
+            ->with("link", Link::findOrFail($id))
             ->with("links", Link::all());
     }
 
@@ -70,14 +71,14 @@ class LinkController extends Controller
      */
     public function update(LinkPost $request, $id)
     {
-        $link = Link::find($id);
+        $link = Link::findOrFail($id);
         $link->name = $request->name;
         $link->active = $request->active;
         $link->parent_id = $request->parent_id;
         $link->save();
 
         return redirect()->route("admin.links.index")
-            ->with("success", "Link successfully updated");
+            ->with(Messages::SUCCESS, Messages::LINK[Messages::UPDATED]);
     }
 
     /**
@@ -88,14 +89,14 @@ class LinkController extends Controller
      */
     public function destroy($id)
     {
-        $link = Link::find($id);
+        $link = Link::findOrFail($id);
         $update = [];
 
         if (isset($link->page))
         {
             return redirect()->route("admin.pages.edit", $link->page->id)
                 ->with("page", $link->page)
-                ->with("errors", $link->name . " is bound to " . $link->page->name .
+                ->with(Messages::ERRORS, $link->name . " is bound to " . $link->page->name .
                         " and cannot be deleted until it is unbound");
         }
 
@@ -110,8 +111,8 @@ class LinkController extends Controller
         $link->delete();
 
         return redirect()->route("admin.links.index")
-            ->with("success", "Link successfully deleted")
-            ->with("update", $update);
+            ->with(Messages::SUCCESS, Messages::LINK[Messages::DELETED])
+            ->with(Messages::UPDATED, $update);
     }
 
     /**
@@ -129,7 +130,7 @@ class LinkController extends Controller
 
         foreach (array_keys($linksToEnable) as $id)
         {
-            $link = Link::find($id);
+            $link = Link::findOrFail($id);
             $result = $link->toggle($enable);
 
             if ($result)
@@ -145,7 +146,7 @@ class LinkController extends Controller
         }
 
         return redirect()->route("admin.links.index")
-            ->with("success", $success)
-            ->with("errors", $errors);
+            ->with(Messages::SUCCESS, $success)
+            ->with(Messages::ERRORS, $errors);
     }
 }

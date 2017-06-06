@@ -2,6 +2,9 @@
 <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" /> 
 <meta name="description" content="" />
 <meta name="author" content="" />
+<noscript>
+    <meta http-equiv="refresh" content="0;{{ url('noscript') }}">
+</noscript>
 <title>@yield('title')</title>
 <!-- BOOTSTRAP CORE STYLE CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">

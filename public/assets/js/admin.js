@@ -1,8 +1,13 @@
 /*================================================================
     CONSTANTS
   ==============================================================*/
- const SLIDE_TIME = 700;
+const SLIDE_TIME = 700;
 
+
+/*================================================================
+    GLOBALS
+  ==============================================================*/
+var column; // stores which th was clicked when sorting tables
 
  /*================================================================
     FUNCTIONS
@@ -15,16 +20,14 @@
  * @param  String formID    The deletion form that will be submitted
  * @return void
  */
-function confirmDelete(event, formID) {
+function confirmDelete(event, formID, name) {
     event.stopPropagation();
     event.preventDefault();
-    
-    var name = $(formID).find("input[name='record']");
 
     $("#adminModal .modal-header").text("Confirm deletion");
     $("#adminModal .modal-body").text(
         "Are you sure you want to delete " +
-        $(name).val() +
+        name +
         "? This action cannot be undone!"
     );
     $("#modalConfirm").addClass("btn-danger");
@@ -63,20 +66,15 @@ function confirmOverwrite(event, formID, callback, selector) {
  * @param  JSEvent    event
  * @return void
  */
+
 function previewPage(caller, event) {
     event.stopPropagation();
     event.preventDefault();
 
-    var contentArray = {};
-
-    $("input[name^='content']").each(function(index, element) {
-        contentArray[element.id] = element.value;
-    });
-
     $.get($(caller).prop("href"), {
         id: $("#template_id").val(), 
         name: $("#name").val(), 
-        content: JSON.stringify(contentArray)
+        content: $("#content").val()
     }, 
     function(data) {
         var wdw = window.open();
@@ -157,12 +155,12 @@ function appendToCarousel(event, tableSelector) {
     var html = "" +
         "<tr>" +
             "<td>&#35;" + index + "</td>" +
-            "<td><input type='text' name='items[" + count + "][asset_id]' value='" + $("#carousel-select").val() + "' readonly></td>" + 
-            "<td><input type='text' name='items[" + count + "][caption]' value='" + $("#carousel-caption").val() + "'></td>" +
+            "<td><input type='text' name='items[" + count + "][asset_id]' class='form-control' value='" + $("#carousel-select").val() + "' readonly></td>" + 
+            "<td><input type='text' name='items[" + count + "][caption]' class='form-control' value='" + $("#carousel-caption").val() + "'></td>" +
             "<td><img src='" + $("#_asset_path").val() + "/" + $("#carousel-select :selected").text() + "' height='200px' width='200px' class='img-thumbnail'></td>" +
             "<td>" +
-                "<button class='btn btn-default'><span class='fa fa-arrow-circle-up'></span></button>" +
-                "<button class='btn btn-default'><span class='fa fa-arrow-circle-down'></span></button>" +
+                "<button class='btn btn-default' onclick='shiftUp(this, event)'><span class='fa fa-arrow-circle-up'></span></button>" +
+                "<button class='btn btn-default' onclick='shiftDown(this, event)'><span class='fa fa-arrow-circle-down'></span></button>" +
             "</td>" +
             "<td><button class='btn btn-default' onclick='deleteRow(this, event)'><span class='fa fa-times'></span></button></td>" +
         "</tr>"
@@ -198,6 +196,45 @@ function shiftDown(caller, event) {
     row.insertAfter(row.next());
 }
 
+/**
+ * Comparsion function for sorting tables
+ * @param  Table row x
+ * @param  Table row y
+ * @return int
+ */
+function tdCompare(x, y) {
+    var $x = $($(x).children("td").get(col));
+    var $y = $($(y).children("td").get(col));
+
+    if ($x.html().toUpperCase() < $y.html().toUpperCase()) {
+        return -1;
+    }
+    else if($x.html().toUpperCase() === $y.html().toUpperCase()) {
+        return 0;
+    }
+
+    return 1;
+}
+
+/**
+ * Comparsion function that sorts the table in reverse
+ * @param  Table row x
+ * @param  Table row y
+ * @return int
+ */
+function tdCompareInverse(x, y) {
+    var $x = $($(x).children("td").get(col));
+    var $y = $($(y).children("td").get(col));
+
+    if ($x.html().toUpperCase() < $y.html().toUpperCase()) {
+        return 1;
+    }
+    else if($x.html().toUpperCase() === $y.html().toUpperCase()) {
+        return 0;
+    }
+
+    return -1;
+}
 
 /*================================================================
     EVENT HANDLERS
@@ -208,25 +245,33 @@ $(".alert").on("close.bs.alert", function(event) {
     $(this).slideUp();
 });
 
-// get all the sections for a template
-$("#template_id").change(function() {
-    if ($("#inputs").html() !== "") {
-        $("#inputs").html("");
-    }
-
-    // hidden field in the form to store the dynamic route to the template
-    $.get($("input[name='_template_route']").val(), 
-        {id: $("#template_id").val()}, 
-        appendSections, 
-        "json"
-    );
-});
-
 // change the image source for previewing carousel items
 $("#carousel-select").change(function() {
     $("#carousel-preview").prop("src", $("#_asset_path").val() + "/" + $("#carousel-select :selected").text());
-})
+});
 
-var flask = new CodeFlask;
-flask.runAll(".code-editor");
+// asset management index filtering
+$("#asset_filter").change(function() {
+    $.each($("tbody tr"), function(index, element) {
+        var td = $(element).children("td").get(1);
+        if ($(td).text() === $("#asset_filter").val() || $("#asset_filter").val() === "") {
+            $(element).show();
+        }
+        else {
+            $(element).hide();
+        }
+    });
+});
 
+// table sorting handler
+$(".sortable").click(function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    col = $(this).index();
+    var $table = $($(this).parents("table").first());
+    var array = $table.find("tbody > tr");
+
+    sort.quick(array, 0, array.length - 1, tdCompare);
+    $table.find("tbody").html(array);
+});

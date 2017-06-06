@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use App\Link;
-use App\Template;
 use App\Utility;
+use App\Messages;
 use Illuminate\Http\Request;
 use App\Http\Requests\PagePost;
 
@@ -34,14 +34,13 @@ class PageController extends Controller
         if (count($links) === 0)
         {
             return redirect()->route("admin.links.create")
-                ->with("errors", "No links found, please create one here");
+                ->with(Messages::ERRORS, "No links found, please create one here");
         }
 
-        /* give the page both links and templates
+        /* give the page both links
             to populate the dropdowns with */
         return view("admin.pages.create")
-            ->with("links", $links)
-            ->with("templates", Template::all());
+            ->with("links", $links);
     }
 
     /**
@@ -52,15 +51,30 @@ class PageController extends Controller
      */
     public function store(PagePost $request)
     {
-        $page = new Page;
+        $content = "@extends('layouts.master')\n";
+        $content .= "@section('title', '" . $request->name . "')\n";
+        $content .= "@section('content')\n";
+        $content .= $request->content . "\n";
+        $content .= "@endsection\n";
+
+        // first try to write the file
+        try
+        {
+            Utility::createFile($request->name, $content, resource_path("views"));
+        }
+        catch (\Exception $e)
+        {
+            return back()->withInput()->with(Messages::ERRORS, "Unable to create file: " . $e->getMessage());
+        }
+
+        // if successful, create the object in the db
+        $page = new Page();
         $page->name = $request->name;
         $page->link_id = $request->link_id;
-        $page->template_id = $request->template_id;
-        $page->content = $request->content;
         $page->save();
 
         return redirect()->route("admin.pages.index")
-            ->with("success", "Page created successfully");
+            ->with(Messages::SUCCESS, Messages::PAGE[Messages::CREATED]);
     }
 
     /**
@@ -71,14 +85,26 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        $page = Page::find($id);
+        $page = Page::findOrFail($id);
         $links = Link::getOrphanLinks();
-        $templates = Template::all();
+        $content = null;
+        $warnings = "";
+
+        try
+        {
+            $content = file_get_contents(resource_path("views/" . $page->name . ".blade.php"));
+        }
+        catch (\Exception $e)
+        {
+            $warnings = $e->getMessage();
+        }
+
+        session()->flash(Messages::WARNINGS, $warnings);
 
         return view("admin.pages.edit")
             ->with("page", $page)
             ->with("links", $links)
-            ->with("templates", $templates);
+            ->with("content", $content);
     }
 
     /**
@@ -90,21 +116,47 @@ class PageController extends Controller
      */
     public function update(PagePost $request, $id)
     {
-        $page = Page::find($id);
-        $update = [];
+        $page = Page::findOrFail($id);
+        $update = "";
+        $oldContent = null;
+
+        // first read the file to compare the new input against the old
+        try
+        {
+            $oldContent = file_get_contents(resource_path("views/" . $page->name . ".blade.php"));
+        }
+        catch (\Exception $e)
+        {
+            return back()->withInput()->with(Messages::ERRORS, "Unable to open file: " . $e->getMessage());
+        }
+
+        // only write if the content has changed
+        if ($oldContent !== $request->content)
+        {
+            try 
+            {
+                Utility::createFile($page->name, $request->content, resource_path("views/"));       
+            } 
+            catch (\Exception $e)
+            {
+                return back()->withInput()->with(Messages::ERRORS, "Unable to update file: " . $e->getMessage());
+            }
+        }
 
         // set the old link to inactive if link has changed
         if (isset($page->link) && $page->link_id !== $request->link_id)
         {
             Link::find($page->link_id)->active = false;
-            $update[] = $page->link->name . " has been disabled";
+            $update = $page->link->name . " has been disabled";
         }
 
-        $page->update($request->all());
+        $page->name = $request->name;
+        $page->link_id = $request->link_id;
+        $page->save();
 
         return redirect()->route("admin.pages.index")
-            ->with("success", "Page updated successfully")
-            ->with("update", $update);
+            ->with(Messages::SUCCESS, Messages::PAGE[Messages::UPDATED])
+            ->with(Messages::UPDATED, $update);
     }
 
     /**
@@ -115,21 +167,33 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        $page = Page::find($id);
-        $update = [];
+        $page = Page::findOrFail($id);
+        $update = "";
+        $warnings = "";
+
+        // try to delete the file on disk
+        try
+        {
+            Utility::delete(resource_path("views/" . $page->name . ".blade.php"));
+        }
+        catch (\Exception $e)
+        {
+            $warnings = $e->getMessage();
+        }
 
         // disable link the page is bound to
         if (isset($page->link))
         {
             Link::find($page->link_id)->active = false;
-            $update[] = $page->link->name . " is no longer active";
+            $update = $page->link->name . " is no longer active";
         }
 
         $page->delete();
 
         return redirect()->route("admin.pages.index")
-            ->with("success", "Page deleted successfully")
-            ->with("update", $update);
+            ->with(Messages::SUCCESS, Messages::PAGE[Messages::DELETED])
+            ->with(Messages::UPDATED, $update)
+            ->with(Messages::WARNINGS, $warnings);
     }
 
     /**
@@ -139,11 +203,11 @@ class PageController extends Controller
      */
     public function preview(Request $request)
     {
-        $template = Template::find($request->id);
+        // extract only the html between the blade section tags for previewing
+        preg_match("/@section\('.+'\)(?P<content>[\s\S]*)@endsection/", $request->content, $matches);
         $view = view("admin.pages.preview")
-            ->with("template", $template)
             ->with("name", $request->name)
-            ->with("content", json_decode($request->content)) // should be a json string
+            ->with("content", $matches["content"])
             ->render();
 
         return $view;

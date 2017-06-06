@@ -6,7 +6,6 @@
 <form action="{{ route('admin.links.destroy', $link->id) }}" method="post" id="delete-form">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <input type="hidden" name="record" value="{{ $link->name }}">
 </form>
 <form action="{{ route('admin.links.update', $link->id) }}" method="post" id="edit-form">
     <input type="hidden" name="_method" value="PATCH">
@@ -39,6 +38,6 @@
 </form>
 @endsection
 @section('form_nav')
-<a href="{{ route('admin.links.destroy', $link->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form')">Delete {{ $link->name }}</a>
+<a href="{{ route('admin.links.destroy', $link->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form', '{{ $link->name }}')">Delete {{ $link->name }}</a>
 <a class="btn btn-success pull-right" onclick="event.preventDefault();$('#edit-form').submit();">Update {{ $link->name }}</a>
 @endsection

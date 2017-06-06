@@ -3,8 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     @include('shared.head')
-    <link rel="stylesheet" href="{{ asset('assets/css/prism.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/codeflask.css') }}">
 </head>
 <body>
     @include('shared.modal')
@@ -27,8 +25,7 @@
     </div>
     @include('shared.footer')
     @include('shared.scripts')
-    <script src="{{ asset('assets/js/prism.js') }}"></script>
-    <script src="{{ asset('assets/js/codeflask.js') }}"></script>
+    <script src="{{ asset('assets/js/sort.js') }}"></script>
     <script src="{{ asset('assets/js/admin.js') }}"></script>
 </body>
 </html>

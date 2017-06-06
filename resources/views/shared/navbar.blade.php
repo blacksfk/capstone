@@ -80,7 +80,6 @@
                             <li><a href="{{ route('admin.events.index') }}">Event management</a></li>
                             <li><a href="{{ route('admin.links.index') }}">Link management</a></li>
                             <li><a href="{{ route('admin.pages.index') }}">Page management</a></li>
-                            <li><a href="{{ route('admin.templates.index') }}">Template management</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">LOGOUT</a></li>
@@ -93,6 +92,3 @@
         </div>
     </nav>
 </div>
-<noscript>
-    <meta http-equiv="refresh" content="0;{{ url('noscript') }}">
-</noscript>

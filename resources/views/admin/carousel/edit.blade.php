@@ -6,7 +6,6 @@
 <form action="{{ route('admin.carousel.destroy', $item->id) }}" method="post" id="delete-form">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="record" value="{{ $item->asset->name }}">
 </form>
 <form action="{{ route('admin.carousel.update', $item->id) }}" method="post" id="edit-form">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -30,5 +29,5 @@
 </form>
 @endsection
 @section('form_nav')
-<a href="{{ route('admin.carousel.destroy', $item->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form')">Delete {{ $item->asset->name }}</a><a href="{{ route('admin.carousel.update', $item->id) }}" class="btn btn-success pull-right" onclick="event.preventDefault();$('#edit-form').submit();">Update {{ $item->asset->name }}</a>
+<a href="{{ route('admin.carousel.destroy', $item->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form', '{{ $item->asset->name }}')">Delete {{ $item->asset->name }}</a><a href="{{ route('admin.carousel.update', $item->id) }}" class="btn btn-success pull-right" onclick="event.preventDefault();$('#edit-form').submit();">Update {{ $item->asset->name }}</a>
 @endsection

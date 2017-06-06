@@ -33,16 +33,16 @@ class Controller extends BaseController
      * @param  string $page_name
      * @return View
      */
-    public function dynamic($page_name = "home")
+    public function dynamic($page_name)
     {
         $page = Page::where("name", $page_name)->first();
 
         if (!isset($page))
         {
-            return redirect("/");
+            abort(404);
         }
 
-        return view("dynamic")->with("page", $page);
+        return view($page->name);
     }
 
     /**

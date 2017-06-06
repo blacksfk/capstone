@@ -1,5 +1,5 @@
 <div class="container set-pad">
-    @if ($success = Session::get("success"))
+    @if ($success = Session::get(App\Messages::SUCCESS))
         <div class="row">
             <div class="alert alert-success">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -21,7 +21,7 @@
         </div>
     @endif
 
-    @if ($update = Session::get("update"))
+    @if ($update = Session::get(App\Messages::UPDATED))
         <div class="row">
             <div class="alert alert-info alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -43,7 +43,7 @@
         </div>
     @endif
 
-    @if ($warnings = Session::get("warnings"))
+    @if ($warnings = Session::get(App\Messages::WARNINGS))
         <div class="row">
             <div class="alert alert-warning alert-dismissable">
                 <button class="close" data-dismiss="alert" aria-label="Close">
@@ -65,7 +65,7 @@
         </div>
     @endif
 
-    @if ($errors = Session::get("errors"))
+    @if ($errors = Session::get(App\Messages::ERRORS))
         <div class="row">
             <div class="alert alert-danger alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
