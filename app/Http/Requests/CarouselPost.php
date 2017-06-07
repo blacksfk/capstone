@@ -24,7 +24,7 @@ class CarouselPost extends FormRequest
     public function rules()
     {
         return [
-            "asset_id" => "required|unique",
+            "asset_id" => "required",
             "caption" => "required",
         ];
     }
