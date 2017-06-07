@@ -1,9 +1,9 @@
 <div id="mycarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        @for ($i =0;$i<count($items);$i++)
-        <li data-target="#mycarousel" data-slide-to="{{$i}}"></li>
-        @endfor
+    @for ($i = 0; $i < count($items); $i++)
+        <li data-target="#mycarousel" data-slide-to="{{ $i }}"></li>
+    @endfor
     </ol>
   
     <!-- Wrapper for slides -->
