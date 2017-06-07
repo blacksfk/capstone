@@ -29,13 +29,12 @@ Default administration login details
 * username: `admin@admin.com`
 * password: `secret`
 
-API KEY.
+API KEY
 --------------------------------------
-Append 'API_KEY=AIzaSyA1GEg7gRkcV2id4F8yoC0TtaW9Ok7jhx4' to your .env file
-
-run php artisan config:clear
-run php artisan cache:clear
-composer dump-autoload
+*Append __API_KEY=AIzaSyA1GEg7gRkcV2id4F8yoC0TtaW9Ok7jhx4__ to your .env file
+*run php artisan config:clear
+*run php artisan cache:clear
+*composer dump-autoload
 
 
 
