@@ -36,7 +36,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        return redirect()->route("index")->with("errors", "Unauthorized Access");
+        abort('404');
     }
 
     public function __construct()
