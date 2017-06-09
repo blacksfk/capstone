@@ -40,13 +40,13 @@ class HomeController extends Controller
      * @param  string $page_name
      * @return View
      */
-    public function dynamic($category, $page_name)
+    public function dynamic($page_name)
     {
         $page = Page::where("name", $page_name)->first();
 
-        if (isset($page) && View::exists($category . "/" . $page->name))
+        if (isset($page) && View::exists($page->name))
         {
-            return view($category . "/" . $page->name);
+            return view($page->name);
         }
 
         abort(404);
@@ -61,7 +61,7 @@ class HomeController extends Controller
     {
         $nl = Asset::where("type", Asset::TYPE_NEWSLETTER)->orderBy("name")->get();
 
-        return view("parents-info.newsletters")->with("newsletters", $nl);
+        return view("newsletters")->with("newsletters", $nl);
     }
 
     /**
