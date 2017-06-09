@@ -23,16 +23,6 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('home');
-    }
-
-    /**
      * Show all of the events in the database to the user ordered by date
      * 
      * @return View
@@ -50,13 +40,13 @@ class HomeController extends Controller
      * @param  string $page_name
      * @return View
      */
-    public function dynamic($page_name)
+    public function dynamic($category, $page_name)
     {
         $page = Page::where("name", $page_name)->first();
 
-        if (isset($page) && View::exists("custom." . $page->name))
+        if (isset($page) && View::exists($category . "/" . $page->name))
         {
-            return view("custom." . $page->name);
+            return view($category . "/" . $page->name);
         }
 
         abort(404);
