@@ -9,7 +9,7 @@
 			<h1 class="header-line text-center">Frequently Asked Questions (FAQ's)</h1>
 			<button class="accordion">Are you eligible for CGPS?</button>
 			<div class="panel">
-				<p></p>
+				<p>Never</p>
 			</div>
 
 			<button class="accordion"></button>
@@ -21,9 +21,7 @@
 			<div class="panel">
 				
 			</div>
-
 		</div>
 	</div>
-</div>
 </div>	
 @endsection

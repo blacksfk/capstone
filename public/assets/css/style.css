@@ -582,6 +582,15 @@ button.accordion.active, button.accordion:hover {
     background-color: #ddd;
 }
 
+div.panel {
+    padding: 0px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    margin-bottom: 0px;
+    transition: max-height 0.2s ease-out;
+}
+
 button.accordion:after {
     content: '\002B';
     color: #777;
@@ -593,6 +602,7 @@ button.accordion:after {
 button.accordion.active:after {
     content: "\2212";
 }
+
 
 /*=====================================
   ENROLMENT ZONE MAP
