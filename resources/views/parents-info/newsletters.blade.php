@@ -2,8 +2,6 @@
 @section('title', 'Newsletters')
 @section('content')
 
-<script src="{{ asset('assets/js/newsletters.js') }}"></script>
-
 <div class="container set-pad">
     <div class="row text-center">
         <p>The Courtenay Gardens newsletter, known as 'Courtenay News', is produced fortnightly on a Thursday. 
