@@ -517,6 +517,10 @@ h1::after {
     font-size: 16px;
 }
 
+#footer-link {
+    text-decoration: underline;
+}
+
 .centered-footer {
     padding: 0;
     text-decoration: none;

@@ -11,7 +11,7 @@
                 <h4>Cranbourne North, VIC 3977 Australia</h4>
                 <h4><strong>Phone: </strong>(03) 5995 7139</h4>
                 <h4><strong>Fax: </strong>(03) 5995 7148</h4>
-                <h4><strong>Email: </strong>courtenay.gardens.ps@edumail.vic.gov.au</h4>
+                <h4><strong>Email: </strong><a id="footer-link" href="mailto:courtenay.gardens.ps@edumail.vic.gov.au">courtenay.gardens.ps@edumail.vic.gov.au</a></h4>
             </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
