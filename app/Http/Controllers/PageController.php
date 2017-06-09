@@ -62,7 +62,7 @@ class PageController extends Controller
         // first try to write the file
         try
         {
-            Utility::createFile($request->name, $content, resource_path("views/custom"));
+            Utility::createFile($request->name, $content, resource_path("views"));
         }
         catch (\Exception $e)
         {
@@ -94,7 +94,7 @@ class PageController extends Controller
 
         try
         {
-            $content = file_get_contents(resource_path("views/custom/" . $page->name . ".blade.php"));
+            $content = file_get_contents(resource_path("views/" . $page->name . ".blade.php"));
         }
         catch (\Exception $e)
         {
@@ -125,7 +125,7 @@ class PageController extends Controller
         // first read the file to compare the new input against the old
         try
         {
-            $oldContent = file_get_contents(resource_path("views/custom/" . $page->name . ".blade.php"));
+            $oldContent = file_get_contents(resource_path("views/" . $page->name . ".blade.php"));
         }
         catch (\Exception $e)
         {
@@ -137,7 +137,7 @@ class PageController extends Controller
         {
             try 
             {
-                Utility::createFile($page->name, $request->content, resource_path("views/custom"));       
+                Utility::createFile($page->name, $request->content, resource_path("views"));       
             } 
             catch (\Exception $e)
             {
