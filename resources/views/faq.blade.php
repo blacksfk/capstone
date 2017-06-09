@@ -7,20 +7,22 @@
 		<div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
 			
 			<h1 class="header-line text-center">Frequently Asked Questions (FAQ's)</h1>
-			<button class="accordion">Are you eligible for CGPS?</button>
-			<div class="panel">
-				<p>Never</p>
-			</div>
+			
+				<button class="accordion">Are you eligible for CGPS?</button>
+				<div class="panel faq-panels">
+					<p>Never</p>
+				</div>
 
-			<button class="accordion"></button>
-			<div class="panel">
-				
-			</div>
+				<button class="accordion"></button>
+				<div class="panel faq-panels">
+					
+				</div>
 
-			<button class="accordion"></button>
-			<div class="panel">
-				
-			</div>
+				<button class="accordion"></button>
+				<div class="panel faq-panels">
+					
+				</div>
+			
 		</div>
 	</div>
 </div>	
