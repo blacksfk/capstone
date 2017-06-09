@@ -17,7 +17,7 @@ class Utility
         $myfile = null;
 
         // create the directory if it doesn't exist
-        if (!mkdir($path, 0644))
+        if (!file_exists($path) && !mkdir($path, 0755))
         {
             throw new \Exception("Could not create directory: " . $path);
         }        
