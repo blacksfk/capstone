@@ -7,6 +7,7 @@ use App\Asset;
 use App\CarouselItem;
 use App\Messages;
 use App\Http\Requests\CarouselPost;
+use App\Http\Requests\ArrayPost;
 
 class CarouselController extends Controller
 {
@@ -48,8 +49,9 @@ class CarouselController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArrayPost $request)
     {
+
         $success = [];
 
         // overwrite the current carousel
