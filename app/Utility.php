@@ -16,6 +16,12 @@ class Utility
         $filename = $path . "/" . $name . ".blade.php";
         $myfile = null;
 
+        // create the directory if it doesn't exist
+        if (!mkdir($path, 0644))
+        {
+            throw new \Exception("Could not create directory: " . $path);
+        }        
+
         // attempt to open the file
         try
         {
