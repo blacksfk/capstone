@@ -239,6 +239,7 @@
     }
 }
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{env('API_KEY')}}&callback=initMap&libraries=places&cal"
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1GEg7gRkcV2id4F8yoC0TtaW9Ok7jhx4
+&callback=initMap&libraries=places&cal"
 type="text/javascript"></script>
 @endsection
