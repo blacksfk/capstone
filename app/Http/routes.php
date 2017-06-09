@@ -13,7 +13,7 @@
 Auth::routes();
 
 Route::get('/', function () { return view("home");})->name('index');
-Route::get("/events", "Controller@events");
+Route::get("/events", "HomeController@events");
 Route::get("/contact", function() {return view("contact");});
 Route::get("/faq", function() {return view("faq");});
 Route::get("/noscript", function() {return view("noscript");});
@@ -39,7 +39,7 @@ Route::group(["prefix" => "curriculum"], function() {
 
 // Under the 'parents info' dropdown
 Route::group(["prefix" => "parents-info"], function() {
-    Route::get("newsletters", "Controller@newsletters");
+    Route::get("newsletters", "HomeController@newsletters");
     Route::get("policies", function() {return view("parents-info.policies");}); 
     Route::get("uniform", function() {return view("parents-info.uniform");}); 
     Route::get("canteen", function() {return view("parents-info.canteen");});    
@@ -109,4 +109,4 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
 });
 
 // Dynamic routing to custom pages
-Route::get("/{page_name}", "Controller@dynamic")->name("dynamic.show");
+Route::get("/{page_name}", "HomeController@dynamic")->name("dynamic.show");
