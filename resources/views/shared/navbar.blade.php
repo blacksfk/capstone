@@ -13,7 +13,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">HOME<span class="sr-only">(current)</span></a></li>
+                    {{-- <li><a href="{{ url('/') }}">HOME<span class="sr-only">(current)</span></a></li>
 
                     <!-- About us -->
                     <li class="dropdown">
@@ -52,7 +52,7 @@
                         </ul>
                     </li>
                     <li><a href="{{ url('events') }}">EVENTS</a></li>
-                    <li><a href="{{ url('contact') }}">CONTACT US</a></li>
+                    <li><a href="{{ url('contact') }}">CONTACT US</a></li> --}}
                 {{-- Dynamic links go here!! --}}
             @foreach ($dynLinks as $link)
                 @if ($link->getChildren()->count())
@@ -60,12 +60,12 @@
                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">{{ strtoupper($link->getLink()->name) }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                     @foreach ($link->getChildren() as $child)
-                            <li><a href="{{ url($child->page->name) }}">{{ strtoupper($child->page->name) }}</a></li>
+                            <li><a href="{{ url(strtolower($child->page->name)) }}">{{ $child->page->name }}</a></li>
                     @endforeach
                         </ul>
                     </li>
                 @else
-                    <li><a href="{{ url($link->getLink()->page->name) }}">{{ strtoupper($link->getLink()->page->name) }}</a></li>
+                    <li><a href="{{ url(strtolower($link->getLink()->page->name)) }}">{{ strtoupper($link->getLink()->page->name) }}</a></li>
                 @endif
             @endforeach
                 <!-- Authentication Links -->
