@@ -446,27 +446,15 @@ h1::after {
 }
 
 #mycarousel {
-    height: 80%;
+    height: auto;
 }
 
-@media screen and (min-width: 1050px) {
 .carousel-caption {
-    background-color: #282828;
-    opacity: 0.7;    
-    color: #fff;
-    right: 70%;
-    text-align: left;
-    max-width: auto;
-    padding-left: 3%;
-    padding-right: 3%;
-    left: auto;
-    top: 10%;
+    top: 85%;
     transform: translateY(-50%);
+    text-align: center;
     bottom: initial;
-    font-family: 'Montserrat', sans-serif;
-    border-radius: 5px;
     }
-}
 
 /*=====================================
   CONTACT STYLES 
