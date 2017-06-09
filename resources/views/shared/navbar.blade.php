@@ -29,14 +29,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CURRICULUM<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('/curriculum/digital-tech') }}">Digital Tech</a></li>
-                            <li><a href="{{ url('/curriculum/esmart') }}">eSmart</a></li>
                             <li><a href="{{ url('/curriculum/literacy') }}">Literacy</a></li>
                             <li><a href="{{ url('/curriculum/numeracy') }}">Numeracy</a></li>
                             <li><a href="{{ url('/curriculum/lote') }}">LOTE</a></li>
                             <li><a href="{{ url('/curriculum/arts') }}">The Arts</a></li>
                             <li><a href="{{ url('/curriculum/sports') }}">Sports Program</a></li>
                             <li><a href="{{ url('/curriculum/disabilities') }}">Programs for Students with Disabilities</a></li>
-                            <li><a href="{{ url('/curriculum/tms') }}">The Morning Show</a></li>
                         </ul>
                     </li>
                     
