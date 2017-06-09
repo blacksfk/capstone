@@ -36,7 +36,6 @@
                     </li>
                     <li><a id="footer-header-links" href="{{ url('/events') }}">Events</a></li>
                     <li><a id="footer-header-links" href="{{ url('/contact') }}">Contact Us</a></li>
-                    <li><a id="footer-header-links" href="{{ url('/faq') }}">FAQ</a></li>
                     </div>
                 </li>
             </ul>
