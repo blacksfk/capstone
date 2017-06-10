@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Link;
 use App\Utility;
 use App\Messages;
+use App\ParentLink;
 use Illuminate\Http\Request;
 use App\Http\Requests\LinkPost;
 
@@ -18,7 +19,15 @@ class LinkController extends Controller
      */
     public function index()
     {
-        return view("admin.links.index")->with("links", Link::all());
+        $categories = Link::where("parent_id", "")->get();
+        $links = [];
+
+        foreach ($categories as $link)
+        {
+            $links[] = new ParentLink($link, false);
+        }
+
+        return view("admin.links.index")->with("links", $links);
     }
 
     /**
