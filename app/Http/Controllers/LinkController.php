@@ -19,15 +19,7 @@ class LinkController extends Controller
      */
     public function index()
     {
-        $categories = Link::where("parent_id", "")->get();
-        $links = [];
-
-        foreach ($categories as $link)
-        {
-            $links[] = new ParentLink($link, false);
-        }
-
-        return view("admin.links.index")->with("links", $links);
+        return view("admin.links.index")->with("links", Link::all());
     }
 
     /**
