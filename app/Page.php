@@ -16,10 +16,16 @@ class Page extends Model
     {
         return $this->belongsTo("App\Link");
     }
-
+    
     /**
-     * One to many relationship between templates and pages
-     * @return Template The template object that this page uses
+     * Extracts the HTML from the string
+     * @param  string $string
+     * @return string         The HTML extracted
      */
+    public static function extractHTML($string)
+    {
+        preg_match("/\@extends\('[\w|\.]+'\)@section\(['|\w|,|\s]+\)\@section\('content'\)(?P<content>.*)\@endsection/", $string, $matches);
 
+        return $matches["content"];   
+    }
 }
