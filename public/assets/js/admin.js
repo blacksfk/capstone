@@ -8,7 +8,7 @@ const SLIDE_TIME = 700;
     GLOBALS
   ==============================================================*/
 var col; // index of th was clicked when sorting tables
-var sortedElements = {}; // elements which have been sorted
+var sortedElements = []; // elements which have been sorted
 
  /*================================================================
     FUNCTIONS
@@ -207,10 +207,10 @@ function tdCompare(x, y) {
     var $x = $($(x).children("td").get(col));
     var $y = $($(y).children("td").get(col));
 
-    if ($x.html().toUpperCase() < $y.html().toUpperCase()) {
+    if ($x.text().toUpperCase() < $y.text().toUpperCase()) {
         return -1;
     }
-    else if($x.html().toUpperCase() === $y.html().toUpperCase()) {
+    else if($x.text().toUpperCase() === $y.text().toUpperCase()) {
         return 0;
     }
 
@@ -227,10 +227,10 @@ function tdCompareInverse(x, y) {
     var $x = $($(x).children("td").get(col));
     var $y = $($(y).children("td").get(col));
 
-    if ($x.html().toUpperCase() < $y.html().toUpperCase()) {
+    if ($x.text().toUpperCase() < $y.text().toUpperCase()) {
         return 1;
     }
-    else if($x.html().toUpperCase() === $y.html().toUpperCase()) {
+    else if($x.text().toUpperCase() === $y.text().toUpperCase()) {
         return 0;
     }
 
@@ -291,13 +291,13 @@ $(".sortable").click(function(event) {
     var array = $table.find("tbody > tr");
     var cmp = null;
 
-    if (!($(this) in sortedElements) || sortedElements[$(this)] === false) {
-        cmp = tdCompare;
-        sortedElements[$(this)] = true;
+    if (sortedElements[col] === true) {
+        cmp = tdCompareInverse;
+        sortedElements[col] = false;
     }
     else {
-        cmp = tdCompareInverse;
-        sortedElements[$(this)] = false;
+        cmp = tdCompare;
+        sortedElements[col] = true;
     }
 
     sort.quick(array, 0, array.length - 1, cmp);
