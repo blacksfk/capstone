@@ -13,16 +13,6 @@ use Illuminate\Support\Facades\View;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
-    /**
      * Show all of the events in the database to the user ordered by date
      * 
      * @return View
