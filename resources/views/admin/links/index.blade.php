@@ -16,10 +16,10 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th class="sortable">Name</th>
+                <th class="sortable">Name <span class="fa fa-sort"></span></th>
                 <th>Active</th>
-                <th>Parent</th>
-                <th>Page</th>
+                <th class="sortable">Parent <span class="fa fa-sort"></span></th>
+                <th class="sortable">Page <span class="fa fa-sort"></span></th>
                 <th>Select</th>
                 <th>Edit</th>
             </tr>

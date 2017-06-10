@@ -17,8 +17,8 @@
 <div class="table-responsive" id="assets_table">
     <table class="table table-hover">
         <thead>
-            <th class="sortable">Name</th>
-            <th>Type</th>
+            <th class="sortable">Name <span class="fa fa-sort"></span></th>
+            <th class="sortable">Type <span class="fa fa-sort"></span></th>
             <th>Preview</th>
             <th>Delete</th>
         </thead>
@@ -28,16 +28,15 @@
                     <td>{{ $asset->name }}</td>
                     <td>{{ $asset->type }}</td>
                     <td>
-                        @if ($asset->type === App\Asset::TYPE_IMAGE)
-                            <img src="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}" alt="{{ $asset->name }}" class="img-thumbnail" height="200" width="200">
-                        @elseif ($asset->type === App\Asset::TYPE_VIDEO)
-                            <video controls class="embed-responsive-item img-thumbnail">
-                                <source src="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}">
-                            </video>
-                            <object width='100%' height='400' data='" + link + "'></object>";
-                        @else
-                            <object data="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}" width="200px" height="200px"><a href="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}">{{ $asset->name }}</a></object>
-                        @endif
+                    @if ($asset->type === App\Asset::TYPE_IMAGE)
+                        <img src="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}" alt="{{ $asset->name }}" class="img-thumbnail" height="200" width="200">
+                    @elseif ($asset->type === App\Asset::TYPE_VIDEO)
+                        <video controls class="embed-responsive-item img-thumbnail">
+                            <source src="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}">
+                        </video>
+                    @else
+                        <object data="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}" width="200px" height="200px"><a href="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}">{{ $asset->name }}</a></object>
+                    @endif
                     </td>
                     <td>
                         <form action="{{ route('admin.assets.destroy', $asset->id) }}" method="post" id="{{ $asset->id }}-delete-form">

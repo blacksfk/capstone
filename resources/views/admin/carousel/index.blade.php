@@ -7,8 +7,8 @@
 <table class="table table-hover table-responsive">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Caption</th>
+            <th class="sortable">Name <span class="fa fa-sort"></span></th>
+            <th class="sortable">Caption <span class="fa fa-sort"></span></th>
             <th>Image</th>
             <th>Edit</th>
         </tr>

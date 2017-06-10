@@ -9,12 +9,12 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th class="sortable">Name</th>
-                <th>Date</th>
-                <th>Start time</th>
-                <th>End time</th>
-                <th>Notes</th>
-                <th>Action</th>
+                <th class="sortable">Name <span class="fa fa-sort"></span></th>
+                <th class="sortable">Date <span class="fa fa-sort"></span></th>
+                <th class="sortable">Start time <span class="fa fa-sort"></span></th>
+                <th class="sortable">End time <span class="fa fa-sort"></span></th>
+                <th class="sortable">Notes <span class="fa fa-sort"></span></th>
+                <th>Edit</th>
             </tr>
         </thead>
         <tbody>
