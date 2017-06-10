@@ -13,126 +13,126 @@ class LinkSeeder extends Seeder
     {
         DB::table("links")->insert([
             "id" => 1,
-            "name" => "home",
+            "name" => "Home",
             "active" => true,
             "parent_id" => ""
         ]);
 
         DB::table("links")->insert([
             "id" => 2,
-            "name" => "about us",
+            "name" => "About us",
             "active" => true,
             "parent_id" => ""
         ]);
 
         DB::table("links")->insert([
             "id" => 3,
-            "name" => "principal",
+            "name" => "Principal",
             "active" => true,
             "parent_id" => 2
         ]);
 
         DB::table("links")->insert([
             "id" => 4,
-            "name" => "history",
+            "name" => "History",
             "active" => true,
             "parent_id" => 2
         ]);
 
         DB::table("links")->insert([
             "id" => 5,
-            "name" => "curriculum",
+            "name" => "Curriculum",
             "active" => true,
             "parent_id" => ""
         ]);
 
         DB::table("links")->insert([
             "id" => 6,
-            "name" => "digital tech",
+            "name" => "Digital Tech",
             "active" => true,
             "parent_id" => 5
         ]);
 
         DB::table("links")->insert([
             "id" => 7,
-            "name" => "esmart",
+            "name" => "eSmart",
             "active" => true,
             "parent_id" => 5
         ]);
 
         DB::table("links")->insert([
             "id" => 8,
-            "name" => "literacy",
+            "name" => "Literacy",
             "active" => true,
             "parent_id" => 5
         ]);
 
         DB::table("links")->insert([
             "id" => 9,
-            "name" => "numeracy",
+            "name" => "Numeracy",
             "active" => true,
             "parent_id" => 5
         ]);
 
         DB::table("links")->insert([
             "id" => 10,
-            "name" => "lote",
+            "name" => "LOTE",
             "active" => true,
             "parent_id" => 5
         ]);
 
         DB::table("links")->insert([
             "id" => 11,
-            "name" => "arts",
+            "name" => "Arts",
             "active" => true,
             "parent_id" => 5
         ]);
 
         DB::table("links")->insert([
             "id" => 12,
-            "name" => "sports",
+            "name" => "Sports",
             "active" => true,
             "parent_id" => 5
         ]);
 
         DB::table("links")->insert([
             "id" => 13,
-            "name" => "disabilities",
+            "name" => "Disabilities",
             "active" => true,
             "parent_id" => 5
         ]);
 
         DB::table("links")->insert([
             "id" => 14,
-            "name" => "tms",
+            "name" => "TMS",
             "active" => true,
             "parent_id" => 5
         ]);
 
         DB::table("links")->insert([
             "id" => 15,
-            "name" => "enrolment",
+            "name" => "Enrolment",
             "active" => true,
             "parent_id" => ""
         ]);
 
         DB::table("links")->insert([
             "id" => 16,
-            "name" => "parents info",
+            "name" => "Parents Info",
             "active" => true,
             "parent_id" => ""
         ]);
 
         DB::table("links")->insert([
             "id" => 17,
-            "name" => "newsletters",
+            "name" => "Newsletters",
             "active" => true,
             "parent_id" => 16
         ]);
 
         DB::table("links")->insert([
             "id" => 18,
-            "name" => "policies",
+            "name" => "Policies",
             "active" => true,
             "parent_id" => 16
         ]);
@@ -146,21 +146,21 @@ class LinkSeeder extends Seeder
 
         DB::table("links")->insert([
             "id" => 20,
-            "name" => "canteen",
+            "name" => "Canteen",
             "active" => true,
             "parent_id" => 16
         ]);
 
         DB::table("links")->insert([
             "id" => 21,
-            "name" => "events",
+            "name" => "Events",
             "active" => true,
             "parent_id" => ""
         ]);
 
         DB::table("links")->insert([
             "id" => 22,
-            "name" => "contact",
+            "name" => "Contact",
             "active" => true,
             "parent_id" => ""
         ]);
