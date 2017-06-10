@@ -124,4 +124,25 @@ class Utility
         
         throw new \Exception("Not a valid directory");
     }
+
+    /**
+     * Capitalises the first letters of every word in the string
+     * @param  string $string
+     * @return string
+     */
+    public static function capitaliseFirstLetters($string)
+    {
+        $words = explode(" ", $string);
+        $returnString = "";
+
+        foreach ($words as $word)
+        {
+            $letters = str_split($word);
+            $letters[0] = strtoupper($letters[0]);
+            $returnString .= implode($letters) . " ";
+        }
+
+        // trim the trailing space
+        return trim($returnString);
+    }
 }
