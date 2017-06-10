@@ -7,7 +7,8 @@ const SLIDE_TIME = 700;
 /*================================================================
     GLOBALS
   ==============================================================*/
-var column; // stores which th was clicked when sorting tables
+var col; // index of th was clicked when sorting tables
+var sortedElements = {}; // elements which have been sorted
 
  /*================================================================
     FUNCTIONS
@@ -236,6 +237,23 @@ function tdCompareInverse(x, y) {
     return -1;
 }
 
+/**
+ * Checks if the element exists in the array
+ * @param  element
+ * @param  array
+ * @return boolean         True if exists, false if not
+ */
+function inArray(element, array) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === element) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
 /*================================================================
     EVENT HANDLERS
   ==============================================================*/
@@ -271,7 +289,17 @@ $(".sortable").click(function(event) {
     col = $(this).index();
     var $table = $($(this).parents("table").first());
     var array = $table.find("tbody > tr");
+    var cmp = null;
 
-    sort.quick(array, 0, array.length - 1, tdCompare);
+    if (!($(this) in sortedElements) || sortedElements[$(this)] === false) {
+        cmp = tdCompare;
+        sortedElements[$(this)] = true;
+    }
+    else {
+        cmp = tdCompareInverse;
+        sortedElements[$(this)] = false;
+    }
+
+    sort.quick(array, 0, array.length - 1, cmp);
     $table.find("tbody").html(array);
 });
