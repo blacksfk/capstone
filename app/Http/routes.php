@@ -22,7 +22,7 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
 
     /* =================================================
         Custom resource controller methods
-        Must be declared before resource() declaration
+        Must be declared before resource()
       ================================================*/
 
     // event batch upload
@@ -67,4 +67,4 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
 });
 
 // Dynamic routing to custom pages
-Route::get("/{page_name}", "HomeController@dynamic")->name("dynamic.show");
+Route::get("/{name}", "HomeController@dynamic")->name("dynamic.show");

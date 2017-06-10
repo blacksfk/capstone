@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Page;
+use App\Link;
 use App\Asset;
 use App\Event;
 use App\Utility;
@@ -17,10 +17,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show all of the events in the database to the user ordered by date
@@ -40,13 +40,13 @@ class HomeController extends Controller
      * @param  string $page_name
      * @return View
      */
-    public function dynamic($page_name)
+    public function dynamic($name)
     {
-        $page = Page::where("name", $page_name)->first();
+        $link = Link::where("name", $name)->first();
 
-        if (isset($page) && View::exists($page->name))
+        if (isset($link) && View::exists($link->page->name))
         {
-            return view($page->name);
+            return view($link->page->name);
         }
 
         abort(404);
