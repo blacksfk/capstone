@@ -13,7 +13,7 @@ class LinkSeeder extends Seeder
     {
         DB::table("links")->insert([
             "id" => 1,
-            "name" => "index",
+            "name" => "home",
             "active" => true,
             "parent_id" => ""
         ]);
