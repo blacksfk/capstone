@@ -30,7 +30,13 @@
                     <td>{{ $link->name }}</td>
                     <td>{{ ($link->active ? "True" : "False") }}</td>
                     <td>{{ (empty($link->parent_id) ? "None" : $link->parent->name) }}</td>
-                    <td>{{ (empty($link->page) ? "None" : $link->page->name) }}</td>
+                    <td>
+                    @if (empty($link->page))
+                        None
+                    @else
+                        <a href="{{ route('admin.pages.edit', $link->page->id) }}">{{ $link->page->name }}</a>
+                    @endif
+                    </td>
                     <td><input type="checkbox" name="{{ $link->id }}" value="1"></td>
                     <td><a href="{{ route('admin.links.edit', $link->id) }}">Edit</a></td>
                 </tr>
