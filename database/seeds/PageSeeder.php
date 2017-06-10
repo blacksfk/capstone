@@ -31,7 +31,7 @@ class PageSeeder extends Seeder
 
         DB::table("pages")->insert([
             "id" => 4,
-            "name" => "Digital tech",
+            "name" => "digital-tech",
             "link_id" => 6
         ]);
 
