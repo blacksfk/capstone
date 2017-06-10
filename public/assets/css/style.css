@@ -446,11 +446,11 @@ h1::after {
 }
 
 #mycarousel {
-    height: auto;
+    height: 65%;
 }
 
 .carousel-caption {
-    top: 85%;
+    top: 45%;
     transform: translateY(-50%);
     text-align: center;
     bottom: initial;
