@@ -73,7 +73,6 @@ function previewPage(caller, event) {
     event.preventDefault();
 
     $.get($(caller).prop("href"), {
-        id: $("#template_id").val(), 
         name: $("#name").val(), 
         content: $("#content").val()
     }, 
