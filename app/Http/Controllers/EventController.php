@@ -54,6 +54,17 @@ class EventController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        abort(404);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
