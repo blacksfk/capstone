@@ -20,7 +20,7 @@
                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">{{ strtoupper($link->getLink()->name) }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                     @foreach ($link->getChildren() as $child)
-                            <li><a href="{{ url(strtolower($child->name)) }}">{{ App\Utility::capitaliseFirstLetters($child->name) }}</a></li>
+                            <li><a href="{{ url(strtolower($child->name)) }}">{{ $child->name }}</a></li>
                     @endforeach
                         </ul>
                     </li>
