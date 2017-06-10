@@ -80,6 +80,19 @@ class PageController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $page = Page::findOrFail($id);
+
+        return view($page->name);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -205,11 +218,9 @@ class PageController extends Controller
      */
     public function preview(Request $request)
     {
-        // extract only the html between the blade section tags for previewing
-        preg_match("/@section\('.+'\)(?P<content>[\s\S]*)@endsection/", $request->content, $matches);
         $view = view("admin.pages.preview")
             ->with("name", $request->name)
-            ->with("content", $matches["content"])
+            ->with("content", $request->content)
             ->render();
 
         return $view;
