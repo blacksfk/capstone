@@ -13,61 +13,19 @@
 Auth::routes();
 
 Route::get('/', function () { return view("home");})->name('index');
-Route::get("/events", "Controller@events");
-Route::get("/contact", function() {return view("contact");});
-Route::get("/faq", function() {return view("faq");});
+Route::get("events", "HomeController@events");
+Route::get("contact", function() {return view("contact");});
+Route::get("newsletters", "HomeController@newsletters");
 Route::get("/noscript", function() {return view("noscript");});
-Route::get('/enrolment', function() {return view("enrolment");});
-
-// Under the 'Curriculum' dropdown
-Route::group(["prefix" => "curriculum"], function() {
-    Route::get("literacy", function() {return view("curriculum.literacy");});
-    Route::get("numeracy", function() {return view("curriculum.numeracy");});
-    Route::get('/enrolment', function() {return view("curriculum.enrolment");});
-    Route::get('newsletters', "NewsletterController@show");
-    Route::get("multimedia", function() {return view("curriculum.multimedia");});
-    Route::get("esmart", function() {return view("curriculum.esmart");});
-    Route::get("tms", function() {return view("curriculum.tms");});
-    Route::get("integrated", function() {return view("curriculum.integrated");});
-    Route::get("digital-tech", function() {return view("curriculum.digital-tech");}); 
-    Route::get("lote", function() {return view("curriculum.lote");});
-    Route::get("arts", function() {return view("curriculum.arts");});  
-    Route::get("sports", function() {return view("curriculum.sports");});
-    Route::get("disabilities", function() {return view("curriculum.disabilities");});
-
-});
-
-// Under the 'parents info' dropdown
-Route::group(["prefix" => "parents-info"], function() {
-    Route::get("newsletters", "Controller@newsletters");
-    Route::get("policies", function() {return view("parents-info.policies");}); 
-    Route::get("uniform", function() {return view("parents-info.uniform");}); 
-    Route::get("canteen", function() {return view("parents-info.canteen");});    
-});
-
-// Under the 'About Us' dropdown
-Route::group(["prefix" => "about"], function() {
-    Route::get("principal", function() {return view("about.principal");});
-    Route::get("policies", function() {return view("about.policies");});
-    Route::get("history", function() {return view("about.history");});    
-});
-
-// Under the 'Get Involved' dropdown
-Route::group(["prefix" => "involve"], function() {
-    Route::get("kids", function() {return view("involve.kids");});
-    Route::get("parents", function() {return view("involve.parents");});
-    Route::get("teachers", function() {return view("involve.teachers");});
-    Route::get("enrolment", function() {return view("involve.enrolment");});
-});
 
 Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], function() {
 
     /* =================================================
         Custom resource controller methods
         Must be declared before resource() declaration
-    ==================================================*/
+      ================================================*/
 
-    // custom routes for events for batch upload
+    // event batch upload
     Route::get("events/uploadFile", function() {
         return view("admin.events.uploadFile");
     })->name("events.uploadFile");
@@ -100,7 +58,7 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
 
     /* ==============================================
         Resource controllers
-    ===============================================*/
+       ============================================*/
     Route::resource("assets", "AssetController");
     Route::resource("carousel", "CarouselController");
     Route::resource("events", "EventController");
@@ -109,4 +67,4 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
 });
 
 // Dynamic routing to custom pages
-Route::get("/{page_name}", "Controller@dynamic")->name("dynamic.show");
+Route::get("/{page_name}", "HomeController@dynamic")->name("dynamic.show");

@@ -14,9 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(AssetSeeder::class);
         $this->call(CarouselSeeder::class);
-        
-        // testing only
-        // $this->call(LinkSeeder::class);
-        // $this->call(EventSeeder::class);
+        $this->call(LinkSeeder::class);
+        $this->call(PageSeeder::class);
     }
 }

@@ -30,12 +30,14 @@ class PageController extends Controller
     {
         // get links which are not bound
         $links = Link::getOrphanLinks();
+        $warnings = "";
 
         if (count($links) === 0)
         {
-            return redirect()->route("admin.links.create")
-                ->with(Messages::ERRORS, "No links found, please create one here");
+            $warnings = "No links orphan links found, this page will not be displayed until a new link is created";
         }
+
+        session()->flash(Messages::WARNINGS, $warnings);
 
         /* give the page both links
             to populate the dropdowns with */
@@ -135,7 +137,7 @@ class PageController extends Controller
         {
             try 
             {
-                Utility::createFile($page->name, $request->content, resource_path("views/"));       
+                Utility::createFile($page->name, $request->content, resource_path("views"));       
             } 
             catch (\Exception $e)
             {
@@ -174,7 +176,7 @@ class PageController extends Controller
         // try to delete the file on disk
         try
         {
-            Utility::delete(resource_path("views/" . $page->name . ".blade.php"));
+            Utility::delete(resource_path("views/custom/" . $page->name . ".blade.php"));
         }
         catch (\Exception $e)
         {
