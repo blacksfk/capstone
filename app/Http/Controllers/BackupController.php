@@ -37,68 +37,12 @@ class BackupController extends Controller
             ->with("errors", $errors);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        abort(404);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        abort(404);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        abort(404);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function upload(Request $request)
     {
         //
     }
@@ -109,7 +53,7 @@ class BackupController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function backup()
+    public function backup(Request $request)
     {
         $now = new \Carbon\Carbon();
         $files = [];
@@ -126,7 +70,7 @@ class BackupController extends Controller
         {
             $array = Utility::createCSVArray($model);
             $files[] = Utility::createFile(
-                $now . $model,
+                $now . "_" . $model,
                 implode("\n", $array),
                 storage_path("backups/"),
                 ".csv"
@@ -134,7 +78,7 @@ class BackupController extends Controller
         }
 
         $zip = new ZipArchive();
-        $zip->open(storage_path("backups/") . $now . "_backup.zip", ZIPARCHIVE::CREATE);
+        $zip->open(storage_path("backups/") . $now . "_backup.zip", ZipArchive::CREATE);
         // $zip->addEmptyDir("assets");
         // $zip->addEmptyDir("pages");
 
@@ -160,5 +104,47 @@ class BackupController extends Controller
         $zip->close();
 
         return redirect()->route("admin.backups.index");
+    }
+
+    /**
+     * Preview the contents of the zip
+     * 
+     * @param  string $name The zip file name
+     * @return \Illuminate\Http\Response
+     */
+    public function preview($name)
+    {
+        $zip = new ZipArchive();
+        $files = [];
+
+        try
+        {
+            $zip->open(storage_path("backups/" . $name));
+        }
+        catch (\Exception $e)
+        {
+            return redirect()->route("admin.backups.index")->with("errors", $e);
+        }
+
+        for ($i = 0; $i < $zip->numFiles; $i++)
+        {
+            $files[] = $zip->statIndex($i, ZipArchive::FL_UNCHANGED);
+        }
+
+        $zip->close();
+
+        return view("admin.backups.preview")
+            ->with("backup", $name)
+            ->with("files", $files);
+    }
+
+    public function restore(Request $request, $name)
+    {
+        //
+    }
+
+    public function destroy(Request $request, $name)
+    {
+        //
     }
 }
