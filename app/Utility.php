@@ -111,6 +111,12 @@ class Utility
         return $object;
     }
 
+    /**
+     * Creates a CSV file of all records belonging to a model
+     * 
+     * @param  Class $model The model to backup
+     * @return array        Array of lines containing values
+     */
     public static function createCSVArray($model)
     {
         $objects = $model::all();
@@ -138,12 +144,61 @@ class Utility
     }
 
     /**
-     * Scans a directory and returns all of the file names
+     * Reads and creates objects of the model specified from the CSV file
      * 
-     * @param  string $path
-     * @return array 
+     * @param  string $path  Path to the CSV file
+     * @param  Class $model  Class to create objects of
+     * @return array         An associative array of objects created and any warnings
      */
-    public static function scanDirectory($path, $filter = false, $search = ".zip")
+    public static function readCSVFile($path, $model)
+    {
+        $file = null;
+        $objects = [];
+        $warnings = [];
+        $lc = 1;
+
+        try
+        {
+            $file = fopen($path, "r");
+        }
+        catch (\Exception $e)
+        {
+            throw $e;
+        }
+
+        while (!feof($file))
+        {
+            // prevent from reading invalid lines
+            if ($line = fgets($file)) 
+            {
+                try
+                {
+                    $objects[] = self::splitLinesIntoArray($model, $line, ",");
+                }
+                catch (\Exception $e)
+                {
+                    $warnings[] = "Line: " . $lc . ". " . $e->getMessage();
+                }
+
+                $lc++;
+            }
+        }
+
+        fclose($file);
+
+        return ["objects" => $objects, "warnings" => $warnings];
+    }
+
+    /**
+     * Scans a directory and optionally filters files files 
+     * not matching the pattern
+     * 
+     * @param  string  $path    Path to the directory
+     * @param  boolean $filter
+     * @param  string  $pattern The files must match this pattern to be accepted
+     * @return array           An array of file names
+     */
+    public static function scanDirectory($path, $filter = false, $pattern = "/\.zip$/")
     {
         $files = null;
 
@@ -161,7 +216,7 @@ class Utility
             $length = count($files);    // unset modifies the length of the array
             for ($i = 0; $i < $length; $i++)
             {
-                if (!preg_match("/\.zip$/", $files[$i]))
+                if (!preg_match($pattern, $files[$i]))
                 {
                     unset($files[$i]);
                 }
