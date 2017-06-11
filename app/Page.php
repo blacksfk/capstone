@@ -24,8 +24,8 @@ class Page extends Model
      */
     public static function extractHTML($string)
     {
-        preg_match("/\@extends\('[\w|\.]+'\)@section\(['|\w|,|\s]+\)\@section\('content'\)(?P<content>.*)\@endsection/", $string, $matches);
+        preg_match("/\@section\('\w+'\)(?P<content>[\s\S]*)\@endsection/", $string, $matches);
 
-        return $matches["content"];   
+        return $matches["content"];
     }
 }
