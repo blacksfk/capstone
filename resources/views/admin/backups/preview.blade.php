@@ -17,8 +17,8 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Size</th>
+                <th class="sortable">Name <span class="fa fa-sort"></span></th>
+                <th class="sortable">Size <span class="fa fa-sort"></span></th>
             </tr>
         </thead>
         <tbody>
