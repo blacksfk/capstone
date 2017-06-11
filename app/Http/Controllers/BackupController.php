@@ -58,6 +58,7 @@ class BackupController extends Controller
     {
         $now = new \Carbon\Carbon();
         $files = [];
+        $warnings = [];
         $models = [
             Asset::class,
             CarouselItem::class,
@@ -102,8 +103,22 @@ class BackupController extends Controller
 
         $zip->close();
 
+        // remove the csvs from disk once the zip is closed
+        foreach ($files as $file)
+        {
+            try
+            {
+                Utility::delete($file["path"]);
+            }
+            catch (\Exception $e)
+            {
+                $warnings[] = $e;
+            }
+        }
+
         return redirect()->route("admin.backups.index")
-            ->with(Messages::SUCCESS, Messages::BACKUP[Messages::CREATED]);
+            ->with(Messages::SUCCESS, Messages::BACKUP[Messages::CREATED])
+            ->with(Messages::WARNINGS, $warnings);
     }
 
     /**
@@ -139,9 +154,16 @@ class BackupController extends Controller
             ->with("files", $files);
     }
 
+    /**
+     * Destroys the entire database and inserts everything in the zip
+     * 
+     * @param  Request $request
+     * @param  string  $name    The zip file name
+     * @return \Illuminate\Http\Response
+     */
     public function restore(Request $request, $name)
     {
-        //
+        
     }
 
     public function destroy($name)
