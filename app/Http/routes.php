@@ -48,7 +48,7 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
     ]);
 
     // preview a page - AJAX only
-    Route::get("pages/preview", [
+    Route::post("pages/preview", [
         "as" => "pages.preview",
         "middleware" => "ajax",
         "uses" => "PageController@preview"
