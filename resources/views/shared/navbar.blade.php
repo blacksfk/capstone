@@ -36,6 +36,7 @@
                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">ADMINISTRATION<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('admin.assets.index') }}">Asset managment</a></li>
+                            <li><a href="{{ route('admin.backups.index') }}">Backup and Restore</a></li>
                             <li><a href="{{ route('admin.carousel.index') }}">Carousel management</a></li>
                             <li><a href="{{ route('admin.events.index') }}">Event management</a></li>
                             <li><a href="{{ route('admin.links.index') }}">Link management</a></li>
