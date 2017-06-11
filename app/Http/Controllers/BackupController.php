@@ -9,6 +9,7 @@ use App\Event;
 use App\Link;
 use App\Page;
 use App\Utility;
+use App\Messages;
 use Illuminate\Http\Request;
 
 class BackupController extends Controller
@@ -34,7 +35,7 @@ class BackupController extends Controller
 
         return view("admin.backups.index")
             ->with("backups", $files)
-            ->with("errors", $errors);
+            ->with(Messages::ERRORS, $errors);
     }
 
     public function create()
@@ -103,7 +104,8 @@ class BackupController extends Controller
 
         $zip->close();
 
-        return redirect()->route("admin.backups.index");
+        return redirect()->route("admin.backups.index")
+            ->with(Messages::SUCCESS, Messages::BACKUP[Messages::CREATED]);
     }
 
     /**
@@ -123,7 +125,8 @@ class BackupController extends Controller
         }
         catch (\Exception $e)
         {
-            return redirect()->route("admin.backups.index")->with("errors", $e);
+            return redirect()->route("admin.backups.index")
+                ->with(Messages::ERRORS, $e);
         }
 
         for ($i = 0; $i < $zip->numFiles; $i++)
@@ -143,8 +146,18 @@ class BackupController extends Controller
         //
     }
 
-    public function destroy(Request $request, $name)
+    public function destroy($name)
     {
-        //
+        try
+        {
+            Utility::delete(storage_path("backups/" . $name));
+        }
+        catch (\Exception $e)
+        {
+            return back()->with(Messages::ERRORS, $e);
+        }
+
+        return redirect()->route("admin.backups.index")
+            ->with(Messages::SUCCESS, Messages::BACKUP[Messages::DELETED]);
     }
 }
