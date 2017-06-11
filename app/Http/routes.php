@@ -54,11 +54,24 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
         "uses" => "PageController@preview"
     ]);
 
+    // creates a backup of all files and records
+    Route::post("backups/backup", [
+        "as" => "backups.backup",
+        "uses" => "BackupController@backup"
+    ]);
+
+    // restores the selected backup
+    Route::post("backups/restore", [
+        "as" => "backups.restore",
+        "uses" => "BackupController@restore"
+    ]);
+
 
     /* ==============================================
         Resource controllers
        ============================================*/
     Route::resource("assets", "AssetController");
+    Route::resource("backups", "BackupController");
     Route::resource("carousel", "CarouselController");
     Route::resource("events", "EventController");
     Route::resource("links", "LinkController");
