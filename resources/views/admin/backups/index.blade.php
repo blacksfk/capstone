@@ -17,28 +17,14 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Restore</th>
-                <th>Delete</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach ($backups as $backup)
             <tr>
                 <td>{{ $backup }}</td>
-                <td>
-                    <form action="{{ route('admin.backups.restore') }}" method="post">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="name" value="{{ $backup }}">
-                        <input type="submit" value="Restore {{ $backup }}" class="btn btn-primary">
-                    </form>
-                </td>
-                <td>
-                    <form action="{{ route('admin.backups.destroy', $backup) }}" method="post" id="{{ $backup }}-delete-form">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="submit" value="Delete {{ $backup }}" class="btn btn-danger" onclick="confirmDelete(event, '#{{ $backup }}-delete-form', '{{ $backup }}')">
-                    </form>
-                </td>
+                <td><a href="{{ route('admin.backups.preview', $backup) }}">Preview/Restore/Delete</a></td>
             </tr>
         @endforeach
         </tbody>
