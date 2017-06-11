@@ -19,9 +19,9 @@ Route::get("/noscript", function() {return view("noscript");});
 
 Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], function() {
 
-    /* =================================================
-        Custom resource controller methods
-        Must be declared before resource()
+    /*==================================================
+       CUSTOM RESOURCE CONTROLLER METHODS
+       Must be declared before resource()
       ================================================*/
 
     // event batch upload
@@ -54,6 +54,34 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
         "uses" => "PageController@preview"
     ]);
 
+    /*================================================
+       BACKUP CONTROLLER
+      ==============================================*/
+
+    // index function
+    Route::get("backups/index", [
+        "as" => "backups.index",
+        "uses" => "BackupController@index"
+    ]);
+
+    // show the form for upload a zip
+    Route::get("backups/create", [
+        "as" => "backups.create",
+        "uses" => "BackupController@create"
+    ]);
+
+    // upload and overwrite
+    Route::post("backups/upload", [
+        "as" => "backups.upload",
+        "uses" => "BackupController@upload"
+    ]);
+
+    // preview the contents of the zip
+    Route::get("backups/preview/{name}", [
+        "as" => "backups.preview",
+        "uses" => "BackupController@preview"
+    ]);
+
     // creates a backup of all files and records
     Route::post("backups/backup", [
         "as" => "backups.backup",
@@ -61,17 +89,22 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
     ]);
 
     // restores the selected backup
-    Route::post("backups/restore", [
+    Route::post("backups/restore/{name}", [
         "as" => "backups.restore",
         "uses" => "BackupController@restore"
     ]);
 
+    // delete the selected backup
+    Route::delete("backups/destroy/{name}", [
+        "as" => "backups.destroy",
+        "uses" => "BackupController@destroy"
+    ]);
 
-    /* ==============================================
-        Resource controllers
-       ============================================*/
+
+    /*==============================================
+       RESOURCE CONTROLLERS
+      ============================================*/
     Route::resource("assets", "AssetController");
-    Route::resource("backups", "BackupController");
     Route::resource("carousel", "CarouselController");
     Route::resource("events", "EventController");
     Route::resource("links", "LinkController");
