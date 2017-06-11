@@ -107,7 +107,7 @@ class PageController extends Controller
 
         try
         {
-            $content = file_get_contents(resource_path("views/" . $page->name . ".blade.php"));
+            $content = Page::extractHTML(file_get_contents(resource_path("views/" . $page->name . ".blade.php")));
         }
         catch (\Exception $e)
         {
@@ -138,19 +138,20 @@ class PageController extends Controller
         // first read the file to compare the new input against the old
         try
         {
-            $oldContent = file_get_contents(resource_path("views/" . $page->name . ".blade.php"));
+            $oldContent = Page::extractHTML(file_get_contents(resource_path("views/" . $page->name . ".blade.php")));
         }
         catch (\Exception $e)
         {
             return back()->withInput()->with(Messages::ERRORS, "Unable to open file: " . $e->getMessage());
         }
 
-        // only write if the content has changed
-        if ($oldContent !== $request->content)
+        // rewrite file or create a new file if name or content has changed
+        if ($oldContent !== $request->content || $request->name !== $page->name)
         {
             try 
             {
-                Utility::createFile($page->name, $request->content, resource_path("views"));       
+                Utility::delete(resource_path("views/" . $page->name));
+                Utility::createFile($request->name, $request->content, resource_path("views"));
             } 
             catch (\Exception $e)
             {
