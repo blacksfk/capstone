@@ -445,6 +445,12 @@ h1::after {
     background-size: cover;
 }
 
+@media only screen and (max-device-width: 1024px) {
+    .item {
+        background-attachment: scroll;
+    }
+}
+
 #mycarousel {
     height: 65%;
 }
@@ -454,7 +460,7 @@ h1::after {
     transform: translateY(-50%);
     text-align: center;
     bottom: initial;
-    }
+}
 
 /*=====================================
   CONTACT STYLES 
