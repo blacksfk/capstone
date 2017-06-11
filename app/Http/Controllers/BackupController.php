@@ -80,26 +80,24 @@ class BackupController extends Controller
 
         $zip = new ZipArchive();
         $zip->open(storage_path("backups/") . $now . "_backup.zip", ZipArchive::CREATE);
-        // $zip->addEmptyDir("assets");
-        // $zip->addEmptyDir("pages");
 
         // save necessary extra files
         foreach (Asset::all() as $asset)
         {
             $file = public_path("assets/" . $asset->type . "/" . $asset->name);
-            $zip->addFile($file);
+            $zip->addFile($file, "assets/" . $asset->type . "/" . $asset->name);
         }
 
         foreach (Page::all() as $page)
         {
             $file = resource_path("views/" . $page->name . ".blade.php");
-            $zip->addFile($file);
+            $zip->addFile($file, "views/" . $page->name . ".blade.php");
         }
 
         // add the csvs
         foreach ($files as $file)
         {
-            $zip->addFile($file);
+            $zip->addFile($file["path"], "csvs/" . $file["name"]);
         }
 
         $zip->close();
