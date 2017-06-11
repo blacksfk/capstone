@@ -125,7 +125,7 @@ class LinkSeeder extends Seeder
 
         DB::table("links")->insert([
             "id" => 17,
-            "name" => "Newsletters",
+            "name" => "newsletters",
             "active" => true,
             "parent_id" => 16
         ]);
@@ -153,7 +153,7 @@ class LinkSeeder extends Seeder
 
         DB::table("links")->insert([
             "id" => 21,
-            "name" => "Events",
+            "name" => "events",
             "active" => true,
             "parent_id" => ""
         ]);
