@@ -19,6 +19,7 @@ class Messages
     const WARNINGS = "warnings";
 
     const ASSET = [
+        self::ERRORS =>"Asset is not the selected type!",
         self::CREATED => "Asset uploaded successfully",
         self::UPDATED => "Asset updated successfully",
         self::DELETED => "Asset removed successfully"
