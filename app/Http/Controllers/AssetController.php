@@ -7,6 +7,7 @@ use App\Utility;
 use App\Messages;
 use Illuminate\Http\Request;
 use App\Http\Requests\AssetPost;
+use Illuminate\Http\Testing\MimeType;
 
 class AssetController extends Controller
 {
@@ -41,16 +42,27 @@ class AssetController extends Controller
      */
     public function store(AssetPost $request)
     {
-        $request->asset->storeAs(
-            $request->type,
-            $request->asset->getClientOriginalName(),
-            "public"
-        );
+        $valid = Utility::check($request);
 
-        $asset = new Asset();
-        $asset->name = $request->asset->getClientOriginalName();
-        $asset->type = $request->type;
-        $asset->save();
+        if($valid) {
+            $asset = new Asset();
+            $asset->name = $request->asset->getClientOriginalName();
+            $asset->type = $request->type;
+            $asset->save();
+
+            $request->asset->storeAs(
+                $request->type,
+                $request->asset->getClientOriginalName(),
+                "public"
+            );
+        }
+        else{
+            return redirect()->route("admin.assets.create")
+                ->with(Messages::ERRORS, Messages::ASSET[Messages::ERRORS]);
+        }
+
+
+
 
         return redirect()->route("admin.assets.index")
             ->with(Messages::SUCCESS, Messages::ASSET[Messages::CREATED]);
@@ -87,6 +99,7 @@ class AssetController extends Controller
      */
     public function update(AssetPost $request, $id)
     {
+
 
         $asset = Asset::findOrFail($id);
         $asset->name = $request->asset->getClientOriginalName();
