@@ -158,11 +158,12 @@ class Utility
 
         if ($filter)
         {
-            foreach ($files as $file)
+            $length = count($files);    // unset modifies the length of the array
+            for ($i = 0; $i < $length; $i++)
             {
-                if (strpos($file, $search) == false)
+                if (!preg_match("/\.zip$/", $files[$i]))
                 {
-                    unset($file);
+                    unset($files[$i]);
                 }
             }
         }
