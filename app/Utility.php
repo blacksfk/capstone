@@ -44,7 +44,7 @@ class Utility
 
         fclose($myfile);
 
-        return $filename;
+        return ["path" => $filename, "name" => $name . $ext];
     }
 
     /**
