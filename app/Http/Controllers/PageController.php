@@ -190,7 +190,7 @@ class PageController extends Controller
         // try to delete the file on disk
         try
         {
-            Utility::delete(resource_path("views/custom/" . $page->name . ".blade.php"));
+            Utility::delete(resource_path("views/" . $page->name . ".blade.php"));
         }
         catch (\Exception $e)
         {
