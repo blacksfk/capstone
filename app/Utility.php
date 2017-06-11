@@ -11,9 +11,9 @@ class Utility
      * @param  string $path     The directory to save into
      * @return void
      */
-    public static function createFile($name, $contents, $path)
+    public static function createFile($name, $contents, $path, $ext = ".blade.php")
     {
-        $filename = $path . "/" . $name . ".blade.php";
+        $filename = $path . "/" . $name . $ext;
         $myfile = null;
 
         // create the directory if it doesn't exist
@@ -43,6 +43,8 @@ class Utility
         }
 
         fclose($myfile);
+
+        return $filename;
     }
 
     /**
@@ -109,20 +111,64 @@ class Utility
         return $object;
     }
 
+    public static function createCSVArray($model)
+    {
+        $objects = $model::all();
+        $lines = [];
+
+        foreach ($objects as $object)
+        {
+            $fillables = $object->getFillable();
+            $line = "";
+
+            for ($i = 0; $i < count($fillables); $i++)
+            {
+                $line .= $object{$fillables[$i]};
+
+                if ($i < count($fillables) - 1)
+                {
+                    $line .= ",";
+                }
+            }
+
+            $lines[] = $line;
+        }
+
+        return $lines;
+    }
+
     /**
      * Scans a directory and returns all of the file names
      * 
      * @param  string $path
      * @return array 
      */
-    public static function scanDirectory($path)
+    public static function scanDirectory($path, $filter = false, $search = ".zip")
     {
+        $files = null;
+
         if (is_dir($path))
         {
-            return scandir($path);
+            $files = scandir($path);
         }
+        else
+        {
+            throw new \Exception("Not a valid directory");
+        }
+
+        if ($filter)
+        {
+            foreach ($files as $file)
+            {
+                if (strpos($file, $search) == false)
+                {
+                    unset($file);
+                }
+            }
+        }
+
+        return $files;
         
-        throw new \Exception("Not a valid directory");
     }
 
     /**
