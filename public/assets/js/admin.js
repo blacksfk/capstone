@@ -67,14 +67,14 @@ function confirmOverwrite(event, formID, callback, selector) {
  * @param  JSEvent    event
  * @return void
  */
-
 function previewPage(caller, event) {
     event.stopPropagation();
     event.preventDefault();
 
-    $.get($(caller).prop("href"), {
+    $.post($(caller).prop("href"), {
         name: $("#name").val(), 
-        content: $("#content").val()
+        content: $("#content").val(),
+        _token: $("input[name=_token]").val()
     }, 
     function(data) {
         var wdw = window.open();
