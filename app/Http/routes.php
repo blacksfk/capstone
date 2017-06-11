@@ -14,7 +14,6 @@ Auth::routes();
 
 Route::get('/', function () { return view("home");})->name('index');
 Route::get("events", "HomeController@events");
-Route::get("contact", function() {return view("contact");});
 Route::get("newsletters", "HomeController@newsletters");
 Route::get("/noscript", function() {return view("noscript");});
 
