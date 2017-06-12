@@ -53,11 +53,7 @@ class PageController extends Controller
      */
     public function store(PagePost $request)
     {
-        $content = "@extends('layouts.master')\n";
-        $content .= "@section('title', '" . $request->name . "')\n";
-        $content .= "@section('content')\n";
-        $content .= $request->content . "\n";
-        $content .= "@endsection\n";
+        $content = Page::insertBladeDirectives($request->name, $request->content);
 
         // first try to write the file
         try
@@ -150,8 +146,9 @@ class PageController extends Controller
         {
             try 
             {
-                Utility::delete(resource_path("views/" . $page->name));
-                Utility::createFile($request->name, $request->content, resource_path("views"));
+                $content = Page::insertBladeDirectives($request->name, $request->content);
+                Utility::delete(resource_path("views/" . $page->name . ".blade.php"));
+                Utility::createFile($request->name, $content, resource_path("views"));
             } 
             catch (\Exception $e)
             {
