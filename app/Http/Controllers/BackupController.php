@@ -26,26 +26,16 @@ class BackupController extends Controller
 
         try
         {
-            $files = Utility::scanDirectory(storage_path("backups"), true, ".zip");
+            $files = Utility::scanDirectory(storage_path("backups"), true);
         }
         catch (\Exception $e)
         {
-            $errors = $e;
+            $errors = $e->getMessage();
         }
 
         return view("admin.backups.index")
             ->with("backups", $files)
             ->with(Messages::ERRORS, $errors);
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function upload(Request $request)
-    {
-        //
     }
 
     /**
@@ -112,7 +102,7 @@ class BackupController extends Controller
             }
             catch (\Exception $e)
             {
-                $warnings[] = $e;
+                $warnings[] = $e->getMessage();
             }
         }
 
@@ -139,7 +129,7 @@ class BackupController extends Controller
         catch (\Exception $e)
         {
             return redirect()->route("admin.backups.index")
-                ->with(Messages::ERRORS, $e);
+                ->with(Messages::ERRORS, $e->getMessage());
         }
 
         for ($i = 0; $i < $zip->numFiles; $i++)
@@ -163,9 +153,101 @@ class BackupController extends Controller
      */
     public function restore(Request $request, $name)
     {
-        
+        // use truncate() to delete everything and reset id counter
+        Event::truncate();
+        CarouselItem::truncate();
+        Asset::truncate();
+        Page::truncate();
+        Link::truncate();
+
+        $ex_path = storage_path("backups/extracted/");
+        $zip = new ZipArchive();
+        $zip->open(storage_path("backups/" . $name));
+
+        if (!file_exists($ex_path) && !mkdir($ex_path, 0755))
+        {
+            return redirect()->route("admin.backups.index")
+                ->with(Messages::ERRORS, "Could not created directory: " . $path);
+        }
+
+        $zip->extractTo($ex_path);
+        $zip->close();
+        $csvs = [];
+        $warnings = [];
+
+        try
+        {
+            $csvs = Utility::scanDirectory($ex_path . "csvs/", true, "/\.csv$/");
+        }
+        catch (\Exception $e)
+        {
+            return redirect()->route("admin.backups.index")
+                ->with(Messages::ERRORS, $e->getMessage());
+        }
+
+        // loop through each csv and create each object
+        // if the object is an asset or model, then copy the resource too
+        foreach ($csvs as $csv)
+        {
+            // php requires at least two backslashes to escape and match a backslash
+            preg_match("/_(?P<model>[\w\\\]+).csv$/", $csv, $matches);
+            $data = Utility::readCSVFile($ex_path . "csvs/" . $csv, $matches["model"]);
+            $objects = $data["objects"];
+            $warnings = array_merge($warnings, $data["warnings"]);
+
+            foreach ($objects as $object)
+            {
+                $object->save();
+
+                // move the asset to the public directory
+                if (strtolower($matches["model"]) === "app\asset")
+                {
+                    try
+                    {
+                        Utility::move($ex_path . "assets/" . $object->type . "/" . $object->name, public_path("assets/" . $object->type . "/" . $object->name));
+                    }
+                    catch (\Exception $e)
+                    {
+                        $warnings[] = $e->getMessage();
+                    }
+                }
+                else if (strtolower($matches["model"]) === "app\page")
+                {
+                    // move the page to the views directory
+                    try
+                    {
+                        Utility::move($ex_path . "views/" . $object->name . ".blade.php", resource_path("views/" . $object->name . ".blade.php"));
+                    }
+                    catch (\Exception $e)
+                    {
+                        $warnings[] = $e->getMessage();
+                    }
+                }
+            }
+        }
+
+        // try to remove the extract files
+        try
+        {
+            Utility::deleteDirectory($ex_path);
+        }
+        catch (\Exception $e)
+        {
+            $warnings[] = $e->getMessage();
+            $warnings[] = "Extracted directory was not removed";
+        }
+
+        return redirect()->route("admin.backups.index")
+            ->with(Messages::WARNINGS, $warnings)
+            ->with(Messages::SUCCESS, "Backup restored");
     }
 
+    /**
+     * Delete the selected backup
+     * 
+     * @param  string $name Name of the backup
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($name)
     {
         try
@@ -174,7 +256,7 @@ class BackupController extends Controller
         }
         catch (\Exception $e)
         {
-            return back()->with(Messages::ERRORS, $e);
+            return back()->with(Messages::ERRORS, $e->getMessage());
         }
 
         return redirect()->route("admin.backups.index")
