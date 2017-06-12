@@ -247,4 +247,64 @@ class Utility
         // trim the trailing space
         return trim($returnString);
     }
+
+    /**
+     * Deletes the specified directory and contents recursively
+     * 
+     * @param  string $dir
+     * @return void
+     */
+    public static function deleteDirectory($dir)
+    {
+        $files = null;
+
+        try
+        {
+            // exclude . and ..
+            $files = self::scanDirectory($dir, true, "/^[\w\.]\w[\w\.]+/");
+        }
+        catch (\Exception $e)
+        {
+            throw $e;
+        }
+
+        foreach ($files as $file)
+        {
+            if (is_dir($file))
+            {
+                self::deleteDirectory($file);
+            }
+            else
+            {
+                try
+                {
+                    self::delete($file);
+                }
+                catch (\Exception $e)
+                {
+                    throw $e;
+                }
+            }
+        }
+
+        if (!rmdir($dir))
+        {
+            throw new \Exception("Could not remove directory: " . $dir);
+        }
+    }
+
+    /**
+     * Renames/moves files
+     * 
+     * @param  string $old Absolute path to the file
+     * @param  string $new Absolute path to the file
+     * @return void
+     */
+    public static function move($old, $new)
+    {
+        if (!rename($old, $new))
+        {
+            throw new \Exception("Could not move file from: " . $old . " to: " . $new);
+        }
+    }
 }
