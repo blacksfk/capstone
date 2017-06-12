@@ -25,6 +25,12 @@ class Messages
         self::DELETED => "Asset removed successfully"
     ];
 
+    const BACKUP = [
+        self::CREATED => "Backup uploaded successfully",
+        self::UPDATED => "Backup updated successfully",
+        self::DELETED => "Backup deleted successfully"
+    ];
+
     const CAROUSEL = [
         self::CREATED => "Carousel rewritten successfully",
         self::UPDATED => "Carousel item updated successfully",

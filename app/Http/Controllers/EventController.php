@@ -128,36 +128,40 @@ class EventController extends Controller
                 ->with("errors", "Invalid file");
         }
 
-        $file = fopen($request->file("events"), "r");
-        $events = [];
-        $errors = [];
-        $warnings = [];
-        $lc = 1;
+        $path = $request->events->store("temp");
+        $path = storage_path("app/" . $path);    // fucking quick hack to get this fucking error fixed
 
-        while (!feof($file))
+        $data = null;
+
+        try
         {
-            // prevent from reading invalid lines
-            if ($line = fgets($file)) 
-            {
-                try
-                {
-                    $events[] = Utility::splitLinesIntoArray("App\Event", $line, ",");
-                }
-                catch (\Exception $e)
-                {
-                    $warnings[] = "Line: " . $lc . ". " . $e->getMessage();
-                }
-
-                $lc++;
-            }
+            $data = Utility::readCSVFile($path, "App\Event");
+        }
+        catch (\Exception $e)
+        {
+            return redirect()->route("admin.events.index")
+                ->with(Messages::ERRORS, "Unable to open file: " . $e);
         }
 
-        fclose($file);
+        $events = $data["objects"];
+        $warnings = $data["warnings"];
+        $errors = "";
+
+        // remove teh temporary file
+        try
+        {
+            Utility::delete($path);
+        }
+        catch (\Exception $e)
+        {
+            $warnings[] = "Could not remove temporary events file: " . $e;
+        }
 
         if (!count($events))
         {
-            $errors[] = "No events loaded";
+            $errors = "No events loaded";
         }
+
         /* errors are found via the session, and since this route returns
             a view, session variables cannot be set using the ->with()
             syntax, so flash() them instead */

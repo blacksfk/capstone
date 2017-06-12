@@ -19,9 +19,9 @@ Route::get("/noscript", function() {return view("noscript");});
 
 Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], function() {
 
-    /* =================================================
-        Custom resource controller methods
-        Must be declared before resource()
+    /*==================================================
+       CUSTOM RESOURCE CONTROLLER METHODS
+       Must be declared before resource()
       ================================================*/
 
     // event batch upload
@@ -54,10 +54,44 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
         "uses" => "PageController@preview"
     ]);
 
+    /*================================================
+       BACKUP CONTROLLER
+      ==============================================*/
 
-    /* ==============================================
-        Resource controllers
-       ============================================*/
+    // index function
+    Route::get("backups/index", [
+        "as" => "backups.index",
+        "uses" => "BackupController@index"
+    ]);
+
+    // preview the contents of the zip
+    Route::get("backups/preview/{name}", [
+        "as" => "backups.preview",
+        "uses" => "BackupController@preview"
+    ]);
+
+    // creates a backup of all files and records
+    Route::post("backups/backup", [
+        "as" => "backups.backup",
+        "uses" => "BackupController@backup"
+    ]);
+
+    // restores the selected backup
+    Route::post("backups/restore/{name}", [
+        "as" => "backups.restore",
+        "uses" => "BackupController@restore"
+    ]);
+
+    // delete the selected backup
+    Route::delete("backups/destroy/{name}", [
+        "as" => "backups.destroy",
+        "uses" => "BackupController@destroy"
+    ]);
+
+
+    /*==============================================
+       RESOURCE CONTROLLERS
+      ============================================*/
     Route::resource("assets", "AssetController");
     Route::resource("carousel", "CarouselController");
     Route::resource("events", "EventController");
