@@ -31,7 +31,7 @@
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                     <li><a href="{{ route('login') }}">LOGIN</a></li>
-                @else
+                @elseif (Auth::user()->is_admin)
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">ADMINISTRATION<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -44,6 +44,8 @@
                             <li><a href="{{ route('admin.users.index') }}">User management</a></li>
                         </ul>
                     </li>
+                @endif
+                @if (Auth::user())
                     <li><a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">LOGOUT</a></li>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
