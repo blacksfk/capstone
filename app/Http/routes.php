@@ -55,9 +55,9 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
     ]);
 
     // change user's password
-    Route::patch("users/updatePassword", [
+    Route::patch("users/{user}/updatePassword", [
         "as" => "users.updatePassword",
-        "users" => "UserController@updatePassword"
+        "uses" => "UserController@updatePassword"
     ]);
 
     /*================================================
