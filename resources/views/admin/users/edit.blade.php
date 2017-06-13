@@ -19,7 +19,7 @@
         <label for="email">Email</label>
         <input type="email" name="email" id="email" class="form-control" value="{{ $user->email }}">
     </div>
-    <input type="submit" value="Update {{ $user->name }}'s details" class="btn btn-default">
+    <div class="text-right"><input type="submit" value="Update {{ $user->name }}'s details" class="btn btn-default"></div>
 </form>
 <hr>
 <h3>Change password</h3>
@@ -34,7 +34,21 @@
         <label for="password_confirm">Confirm Password</label>
         <input type="password" name="password_confirm" id="password_confirm" class="form-control">
     </div>
-    <input type="submit" value="Update {{ $user->name }}'s password" class="btn btn-default">
+    <div class="text-right"><input type="submit" value="Update {{ $user->name }}'s password" class="btn btn-default"></div>
+</form>
+<hr>
+<h3>Elevate Privileges</h3>
+<form action="{{ route('admin.users.elevatePrivileges', $user->id) }}" method="post">
+    <input type="hidden" name="_method" value="PATCH">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <label for="is_admin">Admin</label>
+    <div class="form-group">
+        <ul class="list-unstyled">
+            <li><input type="radio" name="is_admin" id="is_admin" value="1" {{ ($user->is_admin ? "checked" : "" ) }}> Admin</li>
+            <li><input type="radio" name="is_admin" id="is_admin" value="0" {{ ($user->is_admin ? "" : "checked" ) }}> Not admin</li>
+        </ul>
+    </div>
+    <div class="text-right"><input type="submit" value="Update {{ $user->name }}'s privileges" class="btn btn-default"></div>
 </form>
 @endsection
 @section('form_nav')
