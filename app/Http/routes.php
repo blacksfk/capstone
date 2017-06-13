@@ -42,7 +42,7 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
     ]);
 
     // toggle links
-    Route::post("admin/links/toggle", [
+    Route::post("links/toggle", [
         "as" => "links.toggle",
         "uses" => "LinkController@toggle"
     ]);
@@ -52,6 +52,12 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
         "as" => "pages.preview",
         "middleware" => "ajax",
         "uses" => "PageController@preview"
+    ]);
+
+    // change user's password
+    Route::patch("users/updatePassword", [
+        "as" => "users.updatePassword",
+        "users" => "UserController@updatePassword"
     ]);
 
     /*================================================
@@ -97,6 +103,7 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
     Route::resource("events", "EventController");
     Route::resource("links", "LinkController");
     Route::resource("pages", "PageController");
+    Route::resource("users", "UserController");
 });
 
 // Dynamic routing to custom pages
