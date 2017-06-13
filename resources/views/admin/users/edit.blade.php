@@ -2,7 +2,10 @@
 @section('title', 'Edit ' . $user->name)
 @section('content')
 <a href="{{ route('admin.users.index') }}" class="btn btn-warning">Cancel</a>
-<form action="{{ route('admin.users.destroy', $user->id) }}" method="post"><input type="hidden" name="_method" value="DELETE"><input type="hidden" name="_token" value="{{ csrf_token() }}"></form>
+<form action="{{ route('admin.users.destroy', $user->id) }}" method="post" id="delete-form">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+</form>
 <hr>
 <h3>Change details</h3>
 <form action="{{ route('admin.users.update', $user->id) }}" method="post">
