@@ -38,5 +38,5 @@
 </form>
 @endsection
 @section('form_nav')
-<a href="{{ route('admin.users.destroy', $user->id) }}" class="btn btn-danger" onclick="event.preventDefault();$('#delete-form').submit();">Delete {{ $user->name }}</a>
+<a href="{{ route('admin.users.destroy', $user->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form', '{{ $user->name }}')">Delete {{ $user->name }}</a>
 @endsection
