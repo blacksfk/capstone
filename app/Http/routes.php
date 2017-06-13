@@ -15,6 +15,12 @@ Auth::routes();
 Route::get('/', function () { return view("home");})->name('index');
 Route::get("events", "HomeController@events");
 Route::get("newsletters", "HomeController@newsletters");
+
+Route::post("/sendEmail", [
+    "as" => "sendEmail",
+    "uses" => "HomeController@sendEmail"
+]);
+
 Route::get("/noscript", function() {return view("noscript");});
 
 Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], function() {

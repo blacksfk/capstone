@@ -6,8 +6,8 @@
     <div class="row text-center">
         <h1 class="header-line">Contact Us</h1>
 
-        <form id="contact-form" method="get" action="mailto:mcwshupf@sharklasers.com" role="form" enctype="text/plain">
-
+            <form action="{{ route('sendEmail') }}" method="post" id="contact-form">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
                 <label for="form_name">Firstname *</label>
                 <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">

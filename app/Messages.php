@@ -48,4 +48,8 @@ class Messages
         self::UPDATED => "Page updated and rewritten successfully",
         self::DELETED => "Page deleted successfully"
     ];
+
+    const CONTACT = [
+        self::SUCCESS => "The email has been sent successfully!",
+    ];
 }

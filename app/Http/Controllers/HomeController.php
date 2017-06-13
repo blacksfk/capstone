@@ -6,6 +6,7 @@ use App\Link;
 use App\Asset;
 use App\Event;
 use App\Utility;
+use App\Messages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -64,4 +65,23 @@ class HomeController extends Controller
         //
     }
 
+
+    public function sendEmail(Request $request)
+    {
+
+        // The message
+        $message = "Line 1\r\nLine 2\r\nLine 3";
+
+        // In case any of our lines are larger than 70 characters, we should use wordwrap()
+        $message = wordwrap($message, 70, "\r\n");
+
+        // Send
+
+        $headers = 'From: test@sharklasers.com' . "\r\n";
+
+        mail('testpoop@sharklasers.com', 'My Subject', $message,$headers);
+
+        return redirect()->route("index")
+            ->with(Messages::SUCCESS, Messages::CONTACT[Messages::SUCCESS]);
+    }
 }
