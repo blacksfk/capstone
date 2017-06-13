@@ -60,6 +60,12 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
         "uses" => "UserController@updatePassword"
     ]);
 
+    // elevate user's privileges
+    Route::patch("users/{user}/elevatePrivileges", [
+        "as" => "users.elevatePrivileges",
+        "uses" => "UserController@elevatePrivileges"
+    ]);
+
     /*================================================
        BACKUP CONTROLLER
       ==============================================*/

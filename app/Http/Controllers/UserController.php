@@ -124,4 +124,28 @@ class UserController extends Controller
         return redirect()->route("admin.users.index")
             ->with("success", "User's password updated successfully");
     }
+
+    /**
+     * Change the role of a user (atm only admin exists)
+     * 
+     * @param  Request $request
+     * @param  int     $id
+     * @return \Illuminate\Http\Response
+     */
+    public function elevatePrivileges(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        if ($id == 1 && $request->is_admin == 0)
+        {
+            return redirect()->route("admin.users.index")
+                ->with("errors", "The default user must be an admin");
+        }
+
+        $user->is_admin = $request->is_admin;
+        $user->save();
+
+        return redirect()->route("admin.users.index")
+            ->with("success", $user->name . " had their privileges elevated");
+    }
 }
