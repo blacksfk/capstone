@@ -41,6 +41,7 @@
                             <li><a href="{{ route('admin.events.index') }}">Event management</a></li>
                             <li><a href="{{ route('admin.links.index') }}">Link management</a></li>
                             <li><a href="{{ route('admin.pages.index') }}">Page management</a></li>
+                            <li><a href="{{ route('admin.users.index') }}">User management</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">LOGOUT</a></li>
