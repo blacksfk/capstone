@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Asset;
 use App\Utility;
 use App\Messages;
-use Illuminate\Http\Request;
 use App\Http\Requests\AssetPost;
-use Illuminate\Http\Testing\MimeType;
 
 class AssetController extends Controller
 {
@@ -42,27 +40,16 @@ class AssetController extends Controller
      */
     public function store(AssetPost $request)
     {
-        $valid = Utility::check($request);
+        $asset = new Asset();
+        $asset->name = $request->asset->getClientOriginalName();
+        $asset->type = $request->type;
+        $asset->save();
 
-        if($valid) {
-            $asset = new Asset();
-            $asset->name = $request->asset->getClientOriginalName();
-            $asset->type = $request->type;
-            $asset->save();
-
-            $request->asset->storeAs(
-                $request->type,
-                $request->asset->getClientOriginalName(),
-                "public"
-            );
-        }
-        else{
-            return redirect()->route("admin.assets.create")
-                ->with(Messages::ERRORS, Messages::ASSET[Messages::ERRORS]);
-        }
-
-
-
+        $request->asset->storeAs(
+            $request->type,
+            $request->asset->getClientOriginalName(),
+            "public"
+        );
 
         return redirect()->route("admin.assets.index")
             ->with(Messages::SUCCESS, Messages::ASSET[Messages::CREATED]);
@@ -99,15 +86,7 @@ class AssetController extends Controller
      */
     public function update(AssetPost $request, $id)
     {
-
-
-        $asset = Asset::findOrFail($id);
-        $asset->name = $request->asset->getClientOriginalName();
-        $asset->type = $request->type;
-        $asset->save();
-
-        return redirect()->route("admin.assets.index")
-            ->with(Messages::SUCCESS, Messages::ASSET[Messages::UPDATED]);
+        abort(404);
     }
 
     /**

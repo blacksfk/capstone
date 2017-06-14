@@ -2,9 +2,6 @@
 
 namespace App;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Testing\MimeType;
-
 class Utility
 {
     /**
@@ -249,25 +246,6 @@ class Utility
 
         // trim the trailing space
         return trim($returnString);
-    }
-
-
-    public static function check(Request $request)
-    {
-        $type = MimeType::from($request->asset->getClientOriginalName());
-
-        if(($type == "image/png"||$type == "image/jpeg"||$type == "image/bmp")&&($request->type=='img')) {
-                return true;
-        }
-        elseif (($type == "video/mp4")&&($request->type=='video')){
-            return true;
-        }
-        elseif (($type == "application/pdf")&&($request->type=='newsletters'||$request->type=='pdf')){
-            return true;
-        }
-        else{
-            return false;
-        }
     }
 
     /**
