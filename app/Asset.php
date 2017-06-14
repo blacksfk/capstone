@@ -20,6 +20,10 @@ class Asset extends Model
         self::TYPE_NEWSLETTER => "Newsletter"
     ];
 
+    // supported formats
+    const TYPE_IMAGE_FORMATS = ["image/png", "image/jpeg", "image/bmp", "image/gif"];
+    const TYPE_VIDEO_FORMATS = ["video/mp4"];
+    const TYPE_PDF_FORMATS = ["application/pdf"];
     
     protected $fillable = ["name", "type"];
 
