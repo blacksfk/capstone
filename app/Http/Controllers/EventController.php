@@ -185,21 +185,49 @@ class EventController extends Controller
         }
 
         $success = [];
+        $updated = [];
+        $warnings = [];
 
         // delete all of the exisitng events
         foreach (Event::all() as $event)
         {
-            $success[] = $event->name . " deleted successfully";
+            $updated[] = $event->name . " deleted successfully";
             $event->delete();
         }
 
         foreach ($request->events as $event)
         {
-            $created = Event::create($event);
-            $success[] = $created->name . " inserted successfully";
+            if ($this->validateBatchEvent($event))
+            {
+                $created = Event::create($event);
+                $success[] = $created->name . " inserted successfully";
+            }
+            else
+            {
+                $warnings[] = $event["name"] . " did not pass validation";
+            }
         }
 
         return redirect()->route("admin.events.index")
-            ->with(Messages::SUCCESS, $success);
+            ->with(Messages::SUCCESS, $success)
+            ->with(Messages::UPDATED, $updated);
+    }
+
+    /**
+     * Because of the way I wrote the uploadFile and previewFile functions,
+     * it is impossible to validate with a form request, so use this quick
+     * hack of a function instead.
+     * 
+     * @param  array $event
+     * @return Boolean
+     */
+    private function validateBatchEvent($event)
+    {
+        if (!empty($event["name"]) && !empty($event["date"]))
+        {
+            return true;
+        }
+
+        return false;
     }
 }
