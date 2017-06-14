@@ -83,26 +83,6 @@ function previewPage(caller, event) {
 }
 
 /**
- * Appends the data received to the html object specified 
- * (to be used with templates)
- * 
- * @param  JSON data    A JSON object with sections
- * @return void            
- */
-function appendSections(data) {
-    $.each(data, function(index, section) {
-        htmlString = "" +
-            "<div class='form-group'>" +
-            "<label for='content[" + section + "]'>" + section + "</label>" +
-            "<div class='code-editor' data-language='php'>" +
-            "<textarea name='content[" + section + "]' id=" + section + " cols='30' rows='10' class='form-control'></textarea>" +
-            "</div></div>"
-        $(htmlString).hide().appendTo("#inputs").slideDown(SLIDE_TIME);
-    });
-    $(":animated").promise().done(function() {flask.runAll(".code-editor");});
-}
-
-/**
  * Deletes a row from a table with the slide away animation
  * 
  * @param  HTMLObject caller
@@ -142,6 +122,7 @@ function appendToForm(event, formID, selector) {
 
 /**
  * Appends the selected image to the carousel table
+ * 
  * @param  JSEvent event
  * @param  string tableSelector what to select and append
  * @return void
@@ -170,6 +151,7 @@ function appendToCarousel(event, tableSelector) {
 
 /**
  * Shifts the table row up one
+ * 
  * @param  button caller
  * @param  JSEvent event
  * @return void
@@ -184,6 +166,7 @@ function shiftUp(caller, event) {
 
 /**
  * Shifts the table row down one
+ * 
  * @param  button caller
  * @param  JSevent event
  * @return void
@@ -198,6 +181,7 @@ function shiftDown(caller, event) {
 
 /**
  * Comparsion function for sorting tables
+ * 
  * @param  Table row x
  * @param  Table row y
  * @return int
@@ -218,26 +202,18 @@ function tdCompare(x, y) {
 
 /**
  * Comparsion function that sorts the table in reverse
+ * 
  * @param  Table row x
  * @param  Table row y
  * @return int
  */
 function tdCompareInverse(x, y) {
-    var $x = $($(x).children("td").get(col));
-    var $y = $($(y).children("td").get(col));
-
-    if ($x.text().toUpperCase() < $y.text().toUpperCase()) {
-        return 1;
-    }
-    else if($x.text().toUpperCase() === $y.text().toUpperCase()) {
-        return 0;
-    }
-
-    return -1;
+    return tdCompare(y, x);
 }
 
 /**
  * Checks if the element exists in the array
+ * 
  * @param  element
  * @param  array
  * @return boolean         True if exists, false if not
