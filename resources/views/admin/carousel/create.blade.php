@@ -55,6 +55,6 @@
 @endsection
 @section('form_nav')
     <div class="text-right">
-        <a class="btn btn-success" onclick="confirmOverwrite(event, '#create-form', appendToForm, 'td > input')">Update Carousel</a>
+        <a class="btn btn-success" onclick="confirmOverwrite(event, '#create-form', 'td > input', appendToForm)">Update Carousel</a>
     </div>
 @endsection

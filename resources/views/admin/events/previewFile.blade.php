@@ -73,6 +73,6 @@
 @endsection
 @section('form_nav')
 <div class="text-right">
-    <a class="btn btn-success" onclick="event.preventDefault();$('#event-batch-form').submit();">Confirm</a>
+    <a class="btn btn-success" onclick="confirmOverwrite(event, '#event-batch-form', '', function(event, formID, selector) {$(formID).submit();})">Confirm</a>
 </div>
 @endsection

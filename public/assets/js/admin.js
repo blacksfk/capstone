@@ -46,7 +46,7 @@ function confirmDelete(event, formID, name) {
  * @param  string   selector    The inputs to append to the form
  * @return void            
  */
-function confirmOverwrite(event, formID, callback, selector) {
+function confirmOverwrite(event, formID, selector, callback) {
     event.stopPropagation();
     event.preventDefault();
 
