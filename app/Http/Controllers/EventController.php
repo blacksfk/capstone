@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use Illuminate\Http\Request;
 use App\Utility;
-use App\Http\Requests\EventPost;
 use App\Messages;
+use Illuminate\Http\Request;
+use App\Http\Requests\EventPost;
 
 class EventController extends Controller
 {
@@ -40,7 +40,6 @@ class EventController extends Controller
      */
     public function store(EventPost $request)
     {
-
         $event = new Event();
         $event->name = $request->name;
         $event->date = $request->date;
@@ -84,7 +83,6 @@ class EventController extends Controller
      */
     public function update(EventPost $request, $id)
     {
-
         $event = Event::findOrFail($id);
         $event->name = $request->name;
         $event->date = $request->date;
