@@ -11,6 +11,7 @@
 <form action="{{ route('admin.users.update', $user->id) }}" method="post">
     <input type="hidden" name="_method" value="PATCH">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="user_id" value="{{ $user->id }}">
     <div class="form-group">
         <label for="name">Name</label>
         <input type="text" name="name" id="name" class="form-control" value="{{ $user->name }}">
@@ -41,6 +42,7 @@
 <form action="{{ route('admin.users.elevatePrivileges', $user->id) }}" method="post">
     <input type="hidden" name="_method" value="PATCH">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="user_id" value="{{ $user->id }}">
     <label for="is_admin">Admin</label>
     <div class="form-group">
         <ul class="list-unstyled">
