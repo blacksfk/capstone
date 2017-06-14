@@ -14,9 +14,9 @@ class Utility
      * @param  string $path     The directory to save into
      * @return void
      */
-    public static function createFile($name, $contents, $path)
+    public static function createFile($name, $contents, $path, $ext = ".blade.php")
     {
-        $filename = $path . "/" . $name . ".blade.php";
+        $filename = $path . "/" . $name . $ext;
         $myfile = null;
 
         // create the directory if it doesn't exist
@@ -46,6 +46,8 @@ class Utility
         }
 
         fclose($myfile);
+
+        return ["path" => $filename, "name" => $name . $ext];
     }
 
     /**
@@ -113,19 +115,119 @@ class Utility
     }
 
     /**
-     * Scans a directory and returns all of the file names
+     * Creates a CSV file of all records belonging to a model
      * 
-     * @param  string $path
-     * @return array 
+     * @param  Class $model The model to backup
+     * @return array        Array of lines containing values
      */
-    public static function scanDirectory($path)
+    public static function createCSVArray($model)
     {
+        $objects = $model::all();
+        $lines = [];
+
+        foreach ($objects as $object)
+        {
+            $fillables = $object->getFillable();
+            $line = "";
+
+            for ($i = 0; $i < count($fillables); $i++)
+            {
+                $line .= $object{$fillables[$i]};
+
+                if ($i < count($fillables) - 1)
+                {
+                    $line .= ",";
+                }
+            }
+
+            $lines[] = $line;
+        }
+
+        return $lines;
+    }
+
+    /**
+     * Reads and creates objects of the model specified from the CSV file
+     * 
+     * @param  string $path  Path to the CSV file
+     * @param  Class $model  Class to create objects of
+     * @return array         An associative array of objects created and any warnings
+     */
+    public static function readCSVFile($path, $model)
+    {
+        $file = null;
+        $objects = [];
+        $warnings = [];
+        $lc = 1;
+
+        try
+        {
+            $file = fopen($path, "r");
+        }
+        catch (\Exception $e)
+        {
+            throw $e;
+        }
+
+        while (!feof($file))
+        {
+            // prevent from reading invalid lines
+            if ($line = fgets($file)) 
+            {
+                try
+                {
+                    $objects[] = self::splitLinesIntoArray($model, $line, ",");
+                }
+                catch (\Exception $e)
+                {
+                    $warnings[] = "Line: " . $lc . ". " . $e->getMessage();
+                }
+
+                $lc++;
+            }
+        }
+
+        fclose($file);
+
+        return ["objects" => $objects, "warnings" => $warnings];
+    }
+
+    /**
+     * Scans a directory and optionally filters files files 
+     * not matching the pattern
+     * 
+     * @param  string  $path    Path to the directory
+     * @param  boolean $filter
+     * @param  string  $pattern The files must match this pattern to be accepted
+     * @return array           An array of file names
+     */
+    public static function scanDirectory($path, $filter = false, $pattern = "/\.zip$/")
+    {
+        $files = null;
+
         if (is_dir($path))
         {
-            return scandir($path);
+            $files = scandir($path);
         }
+        else
+        {
+            throw new \Exception("Not a valid directory");
+        }
+
+        if ($filter)
+        {
+            $length = count($files);    // unset modifies the length of the array
+            for ($i = 0; $i < $length; $i++)
+            {
+                if (!preg_match($pattern, $files[$i]))
+                {
+                    unset($files[$i]);
+                }
+            }
+        }
+
+        return $files;
         
-        throw new \Exception("Not a valid directory");
     }
 
     /**
@@ -149,6 +251,7 @@ class Utility
         return trim($returnString);
     }
 
+
     public static function check(Request $request)
     {
         $type = MimeType::from($request->asset->getClientOriginalName());
@@ -164,6 +267,66 @@ class Utility
         }
         else{
             return false;
+        }
+    }
+
+    /**
+     * Deletes the specified directory and contents recursively
+     * 
+     * @param  string $dir
+     * @return void
+     */
+    public static function deleteDirectory($dir)
+    {
+        $files = null;
+
+        try
+        {
+            // exclude . and ..
+            $files = self::scanDirectory($dir, true, "/^[\w\.]\w[\w\.]+/");
+        }
+        catch (\Exception $e)
+        {
+            throw $e;
+        }
+
+        foreach ($files as $file)
+        {
+            if (is_dir($file))
+            {
+                self::deleteDirectory($file);
+            }
+            else
+            {
+                try
+                {
+                    self::delete($file);
+                }
+                catch (\Exception $e)
+                {
+                    throw $e;
+                }
+            }
+        }
+
+        if (!rmdir($dir))
+        {
+            throw new \Exception("Could not remove directory: " . $dir);
+        }
+    }
+
+    /**
+     * Renames/moves files
+     * 
+     * @param  string $old Absolute path to the file
+     * @param  string $new Absolute path to the file
+     * @return void
+     */
+    public static function move($old, $new)
+    {
+        if (!rename($old, $new))
+        {
+            throw new \Exception("Could not move file from: " . $old . " to: " . $new);
         }
     }
 }

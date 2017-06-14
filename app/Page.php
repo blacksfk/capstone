@@ -28,4 +28,22 @@ class Page extends Model
 
         return $matches["content"];
     }
+
+    /**
+     * Adds necessary blade directives to the file to be written
+     * 
+     * @param  string $name
+     * @param  string $html
+     * @return string
+     */
+    public static function insertBladeDirectives($name, $html)
+    {
+        $content = "@extends('layouts.master')\n";
+        $content .= "@section('title', '" . $name . "')\n";
+        $content .= "@section('content')\n";
+        $content .= $html . "\n";
+        $content .= "@endsection\n";
+
+        return $content;
+    }
 }

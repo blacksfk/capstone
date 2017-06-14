@@ -19,10 +19,16 @@ class Messages
     const WARNINGS = "warnings";
 
     const ASSET = [
-        self::ERRORS =>"Asset is not the selected type!",
+        self::ERRORS => "Asset is not the selected type!",
         self::CREATED => "Asset uploaded successfully",
         self::UPDATED => "Asset updated successfully",
         self::DELETED => "Asset removed successfully"
+    ];
+
+    const BACKUP = [
+        self::CREATED => "Backup created successfully",
+        self::UPDATED => "Backup updated successfully",
+        self::DELETED => "Backup deleted successfully"
     ];
 
     const CAROUSEL = [

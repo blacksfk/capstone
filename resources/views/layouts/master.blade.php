@@ -6,7 +6,6 @@
 </head>
 <body>
     @include('shared.navbar')
-    @include('shared.carousel')
     <span id="error-float" >
         @include('shared.messages')
     </span>

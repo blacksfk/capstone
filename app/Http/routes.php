@@ -25,9 +25,9 @@ Route::get("/noscript", function() {return view("noscript");});
 
 Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], function() {
 
-    /* =================================================
-        Custom resource controller methods
-        Must be declared before resource()
+    /*==================================================
+       CUSTOM RESOURCE CONTROLLER METHODS
+       Must be declared before resource()
       ================================================*/
 
     // event batch upload
@@ -48,7 +48,7 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
     ]);
 
     // toggle links
-    Route::post("admin/links/toggle", [
+    Route::post("links/toggle", [
         "as" => "links.toggle",
         "uses" => "LinkController@toggle"
     ]);
@@ -60,15 +60,62 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
         "uses" => "PageController@preview"
     ]);
 
+    // change user's password
+    Route::patch("users/{user}/updatePassword", [
+        "as" => "users.updatePassword",
+        "uses" => "UserController@updatePassword"
+    ]);
 
-    /* ==============================================
-        Resource controllers
-       ============================================*/
+    // elevate user's privileges
+    Route::patch("users/{user}/elevatePrivileges", [
+        "as" => "users.elevatePrivileges",
+        "uses" => "UserController@elevatePrivileges"
+    ]);
+
+    /*================================================
+       BACKUP CONTROLLER
+      ==============================================*/
+
+    // index function
+    Route::get("backups/index", [
+        "as" => "backups.index",
+        "uses" => "BackupController@index"
+    ]);
+
+    // preview the contents of the zip
+    Route::get("backups/preview/{name}", [
+        "as" => "backups.preview",
+        "uses" => "BackupController@preview"
+    ]);
+
+    // creates a backup of all files and records
+    Route::post("backups/backup", [
+        "as" => "backups.backup",
+        "uses" => "BackupController@backup"
+    ]);
+
+    // restores the selected backup
+    Route::post("backups/restore/{name}", [
+        "as" => "backups.restore",
+        "uses" => "BackupController@restore"
+    ]);
+
+    // delete the selected backup
+    Route::delete("backups/destroy/{name}", [
+        "as" => "backups.destroy",
+        "uses" => "BackupController@destroy"
+    ]);
+
+
+    /*==============================================
+       RESOURCE CONTROLLERS
+      ============================================*/
     Route::resource("assets", "AssetController");
     Route::resource("carousel", "CarouselController");
     Route::resource("events", "EventController");
     Route::resource("links", "LinkController");
     Route::resource("pages", "PageController");
+    Route::resource("users", "UserController");
 });
 
 // Dynamic routing to custom pages
