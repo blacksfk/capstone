@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('title', 'Welcome')
+@include('shared.carousel')
 @section('content')
 
 <div id="features-sec" class="set-pad">
