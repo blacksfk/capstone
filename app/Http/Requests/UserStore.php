@@ -14,7 +14,7 @@ class UserStore extends FormRequest
      */
     public function authorize()
     {
-        return (Auth::user()->is_admin ? true : false);
+        return Auth::user()->is_admin;
     }
 
     /**
@@ -41,7 +41,7 @@ class UserStore extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function($validator) {
-            if ($this->input("password") !== $this->input("password_confirm"))
+            if ($this->password !== $this->password_confirm)
             {
                 $validator->errors()->add("password", "Passwords do not match!");
             }

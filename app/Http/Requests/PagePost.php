@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PagePost extends FormRequest
@@ -13,7 +14,7 @@ class PagePost extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::user()->is_admin;
     }
 
     /**
@@ -25,6 +26,7 @@ class PagePost extends FormRequest
     {
         return [
             "name" => "required",
+            "content" => "required"
         ];
     }
 }

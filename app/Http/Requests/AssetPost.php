@@ -15,7 +15,7 @@ class AssetPost extends FormRequest
      */
     public function authorize()
     {
-        return (Auth::user()->is_admin ? true : false);
+        return Auth::user()->is_admin;
     }
 
     /**
