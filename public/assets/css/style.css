@@ -24,6 +24,9 @@ html {
     margin-left: 0;
 }
 
+.goog-te-banner-frame.skiptranslate {display: none !important;} 
+body { top: 0px !important; }
+
 .flex {
     display: flex;
     justify-content: center;
@@ -460,6 +463,11 @@ h1::after {
     transform: translateY(-50%);
     text-align: center;
     bottom: initial;
+}
+
+.carousel-caption h2 {
+    font-size: 35px;
+    font-family: 'Lato', sans-serif;
 }
 
 /*=====================================
