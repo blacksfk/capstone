@@ -25,102 +25,84 @@ class PageSeeder extends Seeder
 
         DB::table("pages")->insert([
             "id" => 3,
-            "name" => "history",
-            "link_id" => 4
-        ]);
-
-        DB::table("pages")->insert([
-            "id" => 4,
             "name" => "digital-tech",
             "link_id" => 6
         ]);
 
         DB::table("pages")->insert([
-            "id" => 5,
-            "name" => "esmart",
-            "link_id" => 7
-        ]);
-
-        DB::table("pages")->insert([
-            "id" => 6,
+            "id" => 4,
             "name" => "literacy",
             "link_id" => 8
         ]);
 
         DB::table("pages")->insert([
-            "id" => 7,
+            "id" => 5,
             "name" => "numeracy",
             "link_id" => 9
         ]);
 
         DB::table("pages")->insert([
-            "id" => 8,
+            "id" => 6,
             "name" => "lote",
             "link_id" => 10
         ]);
 
         DB::table("pages")->insert([
-            "id" => 9,
+            "id" => 7,
             "name" => "arts",
             "link_id" => 11
         ]);
 
         DB::table("pages")->insert([
-            "id" => 10,
+            "id" => 9,
             "name" => "sports",
             "link_id" => 12
         ]);
 
         DB::table("pages")->insert([
-            "id" => 11,
+            "id" => 10,
             "name" => "disabilities",
             "link_id" => 13
         ]);
 
         DB::table("pages")->insert([
-            "id" => 12,
-            "name" => "tms",
-            "link_id" => 14
-        ]);
-
-        DB::table("pages")->insert([
-            "id" => 13,
+            "id" => 11,
             "name" => "enrolment",
             "link_id" => 15
         ]);
 
         DB::table("pages")->insert([
-            "id" => 14,
+            "id" => 12,
             "name" => "newsletters",
             "link_id" => 17
         ]);
 
         DB::table("pages")->insert([
-            "id" => 15,
+            "id" => 13,
             "name" => "policies",
             "link_id" => 18
         ]);
 
         DB::table("pages")->insert([
-            "id" => 16,
+            "id" => 14,
             "name" => "uniform",
             "link_id" => 19
         ]);
 
         DB::table("pages")->insert([
-            "id" => 17,
+            "id" => 15,
             "name" => "canteen",
             "link_id" => 20
         ]);
 
         DB::table("pages")->insert([
-            "id" => 18,
+            "id" => 16,
             "name" => "events",
             "link_id" => 21
         ]);
 
         DB::table("pages")->insert([
-            "id" => 19,
+            "id" => 17,
             "name" => "contact",
             "link_id" => 22
         ]);

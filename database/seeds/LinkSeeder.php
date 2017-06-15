@@ -33,13 +33,6 @@ class LinkSeeder extends Seeder
         ]);
 
         DB::table("links")->insert([
-            "id" => 4,
-            "name" => "History",
-            "active" => true,
-            "parent_id" => 2
-        ]);
-
-        DB::table("links")->insert([
             "id" => 5,
             "name" => "Curriculum",
             "active" => true,
@@ -49,13 +42,6 @@ class LinkSeeder extends Seeder
         DB::table("links")->insert([
             "id" => 6,
             "name" => "Digital Tech",
-            "active" => true,
-            "parent_id" => 5
-        ]);
-
-        DB::table("links")->insert([
-            "id" => 7,
-            "name" => "eSmart",
             "active" => true,
             "parent_id" => 5
         ]);
@@ -103,13 +89,6 @@ class LinkSeeder extends Seeder
         ]);
 
         DB::table("links")->insert([
-            "id" => 14,
-            "name" => "TMS",
-            "active" => true,
-            "parent_id" => 5
-        ]);
-
-        DB::table("links")->insert([
             "id" => 15,
             "name" => "Enrolment",
             "active" => true,
@@ -133,13 +112,6 @@ class LinkSeeder extends Seeder
         DB::table("links")->insert([
             "id" => 18,
             "name" => "Policies",
-            "active" => true,
-            "parent_id" => 16
-        ]);
-
-        DB::table("links")->insert([
-            "id" => 19,
-            "name" => "Uniform",
             "active" => true,
             "parent_id" => 16
         ]);
