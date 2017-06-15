@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use App\Link;
+use App\Asset;
 use App\Utility;
 use App\Messages;
 use Illuminate\Http\Request;
@@ -42,7 +43,8 @@ class PageController extends Controller
         /* give the page both links
             to populate the dropdowns with */
         return view("admin.pages.create")
-            ->with("links", $links);
+            ->with("links", $links)
+            ->with("assetTypes", Asset::TYPES);
     }
 
     /**
@@ -115,7 +117,8 @@ class PageController extends Controller
         return view("admin.pages.edit")
             ->with("page", $page)
             ->with("links", $links)
-            ->with("content", $content);
+            ->with("content", $content)
+            ->with("assetTypes", Asset::TYPES);
     }
 
     /**
