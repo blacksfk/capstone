@@ -66,6 +66,7 @@ class Link extends Model
 
     /**
      * Returns links which have no children or bound pages
+     * 
      * @return Collection
      */
     public static function getOrphanLinks()
@@ -74,5 +75,28 @@ class Link extends Model
         $noChildren = self::has("children", "<", 1)->get();
 
         return $noPages->intersect($noChildren);
+    }
+
+    /**
+     * Returns links that aren't bound to pages and don't have parents, 
+     * also filters out the link provided
+     * 
+     * @param  Link $link The link to filter out
+     * @return Collection
+     */
+    public static function getPotentialParents($link = null)
+    {
+        $noPages = self::has("page", "<", 1)->get();
+        $noParents = self::has("parent", "<", 1)->get();
+        $result = $noPages->intersect($noParents);
+
+        if (!is_null($link))
+        {
+            $result = $result->filter(function($object) use ($link) {
+                return ($object->id !== $link->id);
+            });
+        }
+        
+        return $result;
     }
 }
