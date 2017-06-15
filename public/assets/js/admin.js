@@ -137,9 +137,9 @@ function appendToCarousel(event, tableSelector) {
     var html = "" +
         "<tr>" +
             "<td>&#35;" + index + "</td>" +
-            "<td><input type='text' name='items[" + count + "][asset_id]' class='form-control' value='" + $("#asset-select").val() + "' readonly></td>" + 
+            "<td><input type='text' name='items[" + count + "][asset_id]' class='form-control' value='" + $("#carousel-select").val() + "' readonly></td>" + 
             "<td><input type='text' name='items[" + count + "][caption]' class='form-control' value='" + $("#carousel-caption").val() + "'></td>" +
-            "<td><img src='" + $("#_asset_path").val() + "/" + $("#asset-select :selected").text() + "' height='200px' width='200px' class='img-thumbnail'></td>" +
+            "<td><img src='" + $("#_asset_path").val() + "/" + $("#carousel-select :selected").text() + "' height='200px' width='200px' class='img-thumbnail'></td>" +
             "<td>" +
                 "<button class='btn btn-default' onclick='shiftUp(this, event)'><span class='fa fa-arrow-circle-up'></span></button>" +
                 "<button class='btn btn-default' onclick='shiftDown(this, event)'><span class='fa fa-arrow-circle-down'></span></button>" +
@@ -257,33 +257,31 @@ function appendAsset(caller, event, type) {
         html += "</select>";
 
         if (type === "img") {
-            html += "<img id='asset-preview' class='img-thumbnail' src='";
+            html += "<img id='asset-preview' class='img-thumbnail' src='" + $("#_asset_path").val() + "/" + type + "/" + data[0].name + "' height='200px' width='200px'>";
         }
         else if (type === "video") {
-            html += "<video controls class='embed-responsive-item img-thumbnail'><source src='";
+            html += "<video id='asset-preview' controls class='embed-responsive-item img-thumbnail'><source src='" + $("#_asset_path").val() + "/" + type + "/" + data[0].name + "' height='200px' width='200px'></video>";
         }
         else {
-            html += "<object data='";
-        }
-
-        html += $("#_asset_path").val() + "/" + type + "/" + data[0].name + "' height='200px' width='200px'>";
-
-        if (type === "video") {
-            html += "</video>";
-        }
-        else if (type !== "img") {
-            html += "<a href='" + $("#_asset_path").val() + "/" + type + "/" + data[0].name + "'>" + data[0].name + "</a></object>";
+            html += "<object id='asset-preview' data='" + $("#_asset_path").val() + "/" + type + "/" + data[0].name + "' height='200px' width='200px'><a href='" + $("#_asset_path").val() + "/" + type + "/" + data[0].name + "'>" + data[0].name + "</a></object>"
         }
 
         $("#adminModal .modal-header").text("Select an asset to append");
         $("#adminModal .modal-body").html(html);
 
+        var $select = $("#asset-select");
+
         $confirm.addClass("btn-default");
         $confirm.text("Add Asset");
-        $confirm.off("click");  // prevent click handlers from piling up
+        $confirm.off("click")
         $confirm.click(function() {
-            var text = "{{ asset('assets/" + type + "/" + $("#asset-select").val() + "') }}";
+            var text = "{{ asset('assets/" + type + "/" + $select.val() + "') }}";
             $("#content").append(text);
+        });
+
+        $select.off("change");
+        $select.change(function() {
+            $("#asset-preview").prop("src", $("#_asset_path").val() + "/" + type + "/" + $select.val());
         });
 
         $spinner.fadeOut(100);
@@ -302,8 +300,8 @@ $(".alert").on("close.bs.alert", function(event) {
 });
 
 // change the image source for previewing carousel items
-$("body").on("change", "#asset-select", function() {
-    $("#asset-preview").prop("src", $("#_asset_path").val() + "/" + $("#asset-select :selected").text());
+$("#carousel-select").change(function() {
+    $("#carousel-preview").prop("src", $("#_asset_path").val() + "/" + $("#carousel-select :selected").text());
 });
 
 // asset management index filtering
