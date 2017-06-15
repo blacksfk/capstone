@@ -1,0 +1,1 @@
+<div id="overlay-spinner"><i class="fa fa-circle-o-notch fa-spin massive"></i><span class="sr-only">Loading...</span></div>
