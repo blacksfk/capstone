@@ -3,7 +3,7 @@
 @section('content')
 <a href="{{ route('admin.events.index') }}" class="btn btn-warning">Cancel</a>
 <hr>
-<p>Confirm that these events match the file. If some valid data does not appear correctly ensure the following format:</p>
+<p>Confirm that these events match the file. This will overwrite the current database. If some valid data does not appear correctly ensure the following format:</p>
 <div class="table-responsive">
     <table class="table table-hover">
         <thead>
@@ -37,9 +37,6 @@
         </tbody>
     </table>
 </div>
-<form action="{{ route('admin.events.batchUpload') }}" method="post" id="event-batch-form" class="hiddenForm">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-</form>
 @endsection
 @section('table')
 <div class="table-responsive">
@@ -56,6 +53,8 @@
             </tr>
         </thead>
         <tbody>
+        <form action="{{ route('admin.events.batchUpload') }}" method="post" id="event-batch-form">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
         @foreach ($events as $index => $event)
             <tr>
                 <td>&#35;{{ $index + 1 }}</td>
@@ -67,12 +66,13 @@
                 <td><button onclick="deleteRow(this, event)" class="btn btn-default"><span class="fa fa-times"></span></button></td>
             </tr>
         @endforeach
+        </form>
         <tbody>
     </table>
 </div>
 @endsection
 @section('form_nav')
 <div class="text-right">
-    <a class="btn btn-success" onclick="confirmOverwrite(event, '#event-batch-form', appendToForm, 'td > input')">Confirm</a>
+    <a class="btn btn-success" onclick="confirmOverwrite(event, '#event-batch-form', '', function(event, formID, selector) {$(formID).submit();})">Confirm</a>
 </div>
 @endsection

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\UserStore;
+use App\Http\Requests\UserUpdateDetails;
+use App\Http\Requests\UserUpdatePassword;
+use App\Http\Requests\UserElevatePrivileges;
 
 class UserController extends Controller
 {
@@ -33,7 +36,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStore $request)
     {
         $user = new User();
 
@@ -75,7 +78,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateDetails $request, $id)
     {
         $user = User::findOrFail($id);
 
@@ -114,7 +117,7 @@ class UserController extends Controller
      * @param  int     $id
      * @return \Illuminate\Http\Response
      */
-    public function updatePassword(Request $request, $id)
+    public function updatePassword(UserUpdatePassword $request, $id)
     {
         $user = User::findOrFail($id);
 
@@ -122,7 +125,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route("admin.users.index")
-            ->with("success", "User's password updated successfully");
+            ->with("success", $user->name . "'s password updated successfully");
     }
 
     /**
@@ -132,15 +135,9 @@ class UserController extends Controller
      * @param  int     $id
      * @return \Illuminate\Http\Response
      */
-    public function elevatePrivileges(Request $request, $id)
+    public function elevatePrivileges(UserElevatePrivileges $request, $id)
     {
         $user = User::findOrFail($id);
-
-        if ($id == 1 && $request->is_admin == 0)
-        {
-            return redirect()->route("admin.users.index")
-                ->with("errors", "The default user must be an admin");
-        }
 
         $user->is_admin = $request->is_admin;
         $user->save();

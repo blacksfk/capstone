@@ -28,7 +28,38 @@
 
             <p>If you have any further questions about the ICT/eSmart program, please feel free to contact us.</p>
 
-            <h1 class="header-line text-center">The Morning Show</h1>       
+            <h1 class="header-line text-center">The Morning Show</h1>
+
+            <p>At Courtenay Gardens, everyone is a star! We are extremely fortunate to have our very own student-run, school-based television program called "The Morning Show!"</p>
+
+            <p>Our Grade 5 and 6 students broadcast the show LIVE each morning from our state-of-the-art multimedia studio, complete with a bluescreen. Students work together in small teams for four weeks at a time to improve their communication & presentation skills, as well as improve their interpersonal and character education skills, like teamwork and responsibility.</p>
+
+            <p>In addition to our school's TV show, we also have a world-class movie-making program which is an extension to our writing program. Students from Prep to Grade 6 bring their ideas to life using script writing, storyboarding, drama and of course ICT to make very impressive movies. All our student movies are shown on "The Morning Show!" and at grade level film festival nights.</p>
+
+            <p>Feel free to take a look at some of the award-winning resources we have created by clicking on the links below:</p> 
+
+            <h2>Podcasts</h2>
+            <ul>
+            <li><a href="http://www.cgps.vic.edu.au/Podcasts/sustainability6Aug2010.swf">Sustainability</a> (State & Overall Winner of Future Shots 2009)</li>
+
+            <li><a href="http://www.cgps.vic.edu.au/Podcasts/narrativebegswf.swf">Narrative Beginnings</a> Grade 6</li>   
+
+            <li><a href="http://www.cgps.vic.edu.au/Podcasts/6402pb.swf">Persuasive Beginnings</a> Grades 3 - 6</li>
+
+            <li><a href="http://www.cgps.vic.edu.au/Podcasts/behindthescenes.m4v">Behind the Scenes</a> (41MB)</li>
+
+            <li><a href="http://www.cgps.vic.edu.au/Podcasts/rapunzswf.swf">Rapunzel</a>Grade 6 (Adapted fairy tale)</li>
+
+            <li><a href="http://www.cgps.vic.edu.au/Podcasts/4Smovie4.m4v">Sample maths Game</a> (41MB) Grade 4</li>  
+            </ul>
+
+            <h2>The DT Show!</h2>
+
+            <p>The DT Show is an exciting new series of podcasts presented by our Grade 6 students to help others around Victoria learn about Digital Technologies. Think of these as 'Webinars for Students by Students!' On each show, we are fortunate to have a professor from RMIT as a expert guest as we discuss topics like what is data, understanding binary, networks, etc.</p>
+
+            <h2>Teacher and Parent Resources</h2>
+
+            <p>If you have any further questions about the multimedia program, please feel free to send an email to <a href="mailto:balliet.scott.t@edumail.vic.gov.au">Scott Balliet.</a></p>
         </div>
     </div>
 </div>

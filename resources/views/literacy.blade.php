@@ -7,7 +7,7 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
             <h1 class="header-line">Literacy at Courtenay Gardens Primary School</h1>
             <div class="row text-left">
-                    <img class="img-responsive" src="{{ asset('assets/img/CGPS Web pics 018.jpg')}}" alt="literacy">
+                    <img class="img-responsive" src="{{ asset('assets/img/CGPS_20.jpg')}}" alt="literacy">
                 
                 <p>In the Victorian Curriculum, the English domain is central to the learning and development of all students. It helps create confident communicators, imaginative thinkers and informed citizens. It is through the study of English that students learn to analyse, understand, communicate with and build relationships with others and with the world around them. In English, students are assessed under three areas: Reading and Viewing, Writing and Speaking and Listening.</p>
 
