@@ -9,6 +9,7 @@ const SLIDE_TIME = 700;
   ==============================================================*/
 var col; // index of th was clicked when sorting tables
 var sortedElements = []; // elements which have been sorted
+var $spinner = $("#overlay-spinner"); // the div that contains the loading spinner
 
  /*================================================================
     FUNCTIONS
@@ -136,9 +137,9 @@ function appendToCarousel(event, tableSelector) {
     var html = "" +
         "<tr>" +
             "<td>&#35;" + index + "</td>" +
-            "<td><input type='text' name='items[" + count + "][asset_id]' class='form-control' value='" + $("#carousel-select").val() + "' readonly></td>" + 
+            "<td><input type='text' name='items[" + count + "][asset_id]' class='form-control' value='" + $("#asset-select").val() + "' readonly></td>" + 
             "<td><input type='text' name='items[" + count + "][caption]' class='form-control' value='" + $("#carousel-caption").val() + "'></td>" +
-            "<td><img src='" + $("#_asset_path").val() + "/" + $("#carousel-select :selected").text() + "' height='200px' width='200px' class='img-thumbnail'></td>" +
+            "<td><img src='" + $("#_asset_path").val() + "/" + $("#asset-select :selected").text() + "' height='200px' width='200px' class='img-thumbnail'></td>" +
             "<td>" +
                 "<button class='btn btn-default' onclick='shiftUp(this, event)'><span class='fa fa-arrow-circle-up'></span></button>" +
                 "<button class='btn btn-default' onclick='shiftDown(this, event)'><span class='fa fa-arrow-circle-down'></span></button>" +
@@ -228,6 +229,68 @@ function inArray(element, array) {
     return false;
 }
 
+/**
+ * This function shows a modal containing all of the assets of 
+ * the selected type. When the user clicks 'add', the blade asset 
+ * helper is appended to the content field.
+ * 
+ * @param  HTMLObject caller
+ * @param  JSEvent event
+ * @param  AssetType type
+ * @return void
+ */
+function appendAsset(caller, event, type) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    var url = $(caller).prop("href");
+    $spinner.fadeIn(100);
+
+    $.get(url, {type: type}, function(data) {
+        var html = "<select id='asset-select' class='form-control'>";
+        var $confirm = $("#modalConfirm");
+
+        $.each(data, function(index, json) {
+            html += "<option value='" + json.name + "'>" + json.name + "</option>";
+        });
+
+        html += "</select>";
+
+        if (type === "img") {
+            html += "<img id='asset-preview' class='img-thumbnail' src='";
+        }
+        else if (type === "video") {
+            html += "<video controls class='embed-responsive-item img-thumbnail'><source src='";
+        }
+        else {
+            html += "<object data='";
+        }
+
+        html += $("#_asset_path").val() + "/" + type + "/" + data[0].name + "' height='200px' width='200px'>";
+
+        if (type === "video") {
+            html += "</video>";
+        }
+        else if (type !== "img") {
+            html += "<a href='" + $("#_asset_path").val() + "/" + type + "/" + data[0].name + "'>" + data[0].name + "</a></object>";
+        }
+
+        $("#adminModal .modal-header").text("Select an asset to append");
+        $("#adminModal .modal-body").html(html);
+
+        $confirm.addClass("btn-default");
+        $confirm.text("Add Asset");
+        $confirm.off("click");  // prevent click handlers from piling up
+        $confirm.click(function() {
+            var text = "{{ asset('assets/" + type + "/" + $("#asset-select").val() + "') }}";
+            $("#content").append(text);
+        });
+
+        $spinner.fadeOut(100);
+        $("#adminModal").modal("show");
+    }, "json");
+}
+
 
 /*================================================================
     EVENT HANDLERS
@@ -239,8 +302,8 @@ $(".alert").on("close.bs.alert", function(event) {
 });
 
 // change the image source for previewing carousel items
-$("#carousel-select").change(function() {
-    $("#carousel-preview").prop("src", $("#_asset_path").val() + "/" + $("#carousel-select :selected").text());
+$("body").on("change", "#asset-select", function() {
+    $("#asset-preview").prop("src", $("#_asset_path").val() + "/" + $("#asset-select :selected").text());
 });
 
 // asset management index filtering
