@@ -10,6 +10,7 @@
 <form action="{{ route('admin.pages.update', $page->id) }}" method="post" id="edit-form">
     <input type="hidden" name="_method" value="PATCH">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="_asset_path" id="_asset_path" value="{{ asset('assets/') }}" disabled>
     <div class="form-group">
         <label for="name">Name</label>
         <input type="text" name="name" id="name" class="form-control" value="{{ $page->name }}">
@@ -36,6 +37,14 @@
 @endsection
 @section('form_nav')
 <a href="{{ route('admin.pages.destroy', $page->id) }}" class="btn btn-danger" onclick="confirmDelete(event, '#delete-form', '{{ $page->name }}')">Delete {{ $page->name }}</a>
-<a href="{{ route('admin.pages.preview') }}" class="btn btn-primary" onclick="previewPage(this, event)">Preview</a>
+<a href="{{ route('admin.pages.preview') }}" class="btn btn-default" onclick="previewPage(this, event)">Preview</a>
+<div class="btn-group">
+    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Asset&nbsp;<span class="caret"></span></button>
+    <ul class="dropdown-menu">
+    @foreach ($assetTypes as $key => $value)
+        <li><a href="{{ route('admin.assets.getAssetsByType') }}" onclick="appendAsset(this, event, '{{ $key }}')">Add {{ $value }}</a></li>
+    @endforeach
+    </ul>
+</div>
 <a class="btn btn-success pull-right" onclick="event.preventDefault();$('#edit-form').submit();">Update {{ $page->name }}</a>
 @endsection
