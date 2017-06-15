@@ -29,7 +29,7 @@ class LinkController extends Controller
      */
     public function create()
     {
-        return view("admin.links.create")->with("links", Link::all());
+        return view("admin.links.create")->with("links", Link::getPotentialParents());
     }
 
     /**
@@ -69,9 +69,11 @@ class LinkController extends Controller
      */
     public function edit($id)
     {
+        $link = Link::findOrfail($id);
+
         return view("admin.links.edit")
-            ->with("link", Link::findOrFail($id))
-            ->with("links", Link::all());
+            ->with("link", $link)
+            ->with("links", Link::getPotentialParents($link));
     }
 
     /**
@@ -150,7 +152,7 @@ class LinkController extends Controller
                 $success[] = $link->name . 
                     ($enable ? " enabled" : " disabled") . " successfully";
             }
-            else
+            elseif (!$result && $enable)
             {
                 $errors[] = $link->name . 
                     " does not have any active children or has not been bound to a page and cannot be enabled";
