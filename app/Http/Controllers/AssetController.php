@@ -6,6 +6,7 @@ use App\Asset;
 use App\Utility;
 use App\Messages;
 use App\Http\Requests\AssetPost;
+use Illuminate\Http\Request;
 
 class AssetController extends Controller
 {
@@ -120,5 +121,16 @@ class AssetController extends Controller
         return redirect()->route("admin.assets.index")
             ->with(Messages::SUCCESS, Messages::ASSET[Messages::DELETED])
             ->with(Messages::WARNINGS, $warnings);
+    }
+
+    /**
+     * AJAX only method to return all assets based on the type provided
+     * 
+     * @param  Request $request
+     * @return JSON
+     */
+    public function getAssetsByType(Request $request)
+    {
+        return json_encode(Asset::where("type", $request->type)->get());
     }
 }
