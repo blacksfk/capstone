@@ -131,6 +131,6 @@ class AssetController extends Controller
      */
     public function getAssetsByType(Request $request)
     {
-        return json_encode(Asset::where("type", $request->type)->get());
+        return json_encode(Asset::where("type", $request->type)->orderBy("name")->get());
     }
 }
