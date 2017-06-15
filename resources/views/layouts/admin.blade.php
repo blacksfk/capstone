@@ -5,6 +5,7 @@
     @include('shared.head')
 </head>
 <body>
+    @include('shared.overlay_spinner')
     @include('shared.modal')
     @include('shared.navbar')
     @include('shared.messages')
