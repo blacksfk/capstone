@@ -15,7 +15,6 @@
 @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-
 html {
     width: 100%;
     height: 100%;
@@ -24,8 +23,9 @@ html {
     margin-left: 0;
 }
 
-.goog-te-banner-frame.skiptranslate {display: none !important;} 
-body { top: 0px !important; }
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
 
 .flex {
     display: flex;
@@ -45,6 +45,7 @@ body {
     font-family: 'Lato', sans-serif;
     max-width: 100%;
     font-size: 15px;
+    top: 0px !important;
 }
 
 /* this is to overide bootstrap weird -15px margins*/
@@ -154,6 +155,54 @@ body {
 
 .navbar {
     border-radius: 0px;
+}
+
+/* Fix bootstrap media queries for overlapping menu */
+@media (max-width: 930px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+   .navbar-nav .open .dropdown-menu {
+       position: static;
+       float: none;
+       width: auto;
+       margin-top: 0;
+       background-color: transparent;
+       border: 0;
+       -webkit-box-shadow: none;
+       box-shadow: none;
+    }
 }
 
 @media (max-width: 768px) {
