@@ -1,1 +1,6 @@
-<div id="overlay-spinner"><i class="fa fa-circle-o-notch fa-spin massive"></i><span class="sr-only">Loading...</span></div>
+<div id="overlay-spinner">
+    <div class="row">
+        <h4>Loading...</h4>
+        <i class="fa fa-cog spin-reverse massive"></i>
+    </div>
+</div>

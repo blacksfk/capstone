@@ -803,18 +803,38 @@ list-left > dd {
     }
 }
 
+/* rotate anti clockwise */
+@keyframes anticlockSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
 .slideAway {
     position: relative;
     animation-name: slideLeftAndFade;
     animation-duration: 0.75s;
     animation-timing-function: ease-out;
 }
+
+.spin-reverse {
+    -webkit-animation: anticlockSpin 3s infinite;
+}
+
+/*===========================================
+   ERROR MESSAGES (USER)
+  =========================================*/
+
 #error-float {
     width: 100%;
     position: absolute;
     top: 50px;
     left: 0;
 }
+
 #error-float {
     z-index: 100;
 }
@@ -835,15 +855,13 @@ list-left > dd {
     z-index: 1;
 }
 
-#overlay-spinner > i {
-    color: #0086BF;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
+#overlay-spinner .row {
+    color: #676767;
+    position: relative;
+    top: 10%;
+    left: 1%;
 }
 
 .massive {
-    font-size: 175px;
+    font-size: 100px;
 }
