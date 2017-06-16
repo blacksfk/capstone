@@ -18,15 +18,22 @@ class Page extends Model
     }
     
     /**
-     * Extracts the HTML from the string
+     * Extracts HTML from the string if blade is present. Returns the 
+     * match if blade is present, otherwise returns the input string.
+     * 
      * @param  string $string
-     * @return string         The HTML extracted
+     * @return string         String of HTML
      */
     public static function extractHTML($string)
     {
-        preg_match("/\@section\('\w+'\)(?P<content>[\s\S]*)\@endsection/", $string, $matches);
+        $match = preg_match("/\@section\('\w+'\)(?P<content>[\s\S]*)\@endsection/", $string, $matches);
 
-        return $matches["content"];
+        if ($match)
+        {
+            return $matches["content"];
+        }
+
+        return $string;
     }
 
     /**
