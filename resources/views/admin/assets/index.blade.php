@@ -31,8 +31,7 @@
                     @if ($asset->type === App\Asset::TYPE_IMAGE)
                         <img src="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}" alt="{{ $asset->name }}" class="img-thumbnail" height="200" width="200">
                     @elseif ($asset->type === App\Asset::TYPE_VIDEO)
-                        <video controls class="embed-responsive-item img-thumbnail">
-                            <source src="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}">
+                        <video controls class="img-thumbnail" src="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}">
                         </video>
                     @else
                         <object data="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}" width="200px" height="200px"><a href="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}">{{ $asset->name }}</a></object>

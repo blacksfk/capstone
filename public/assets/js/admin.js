@@ -314,21 +314,21 @@ function appendAsset(caller, event, type) {
  * @return Object
  */
 function createAssetPreview(html, type, name) {
-    var src = {selector: "#asset-preview", prop: "src"};
+    var props = {selector: "#asset-preview", prop: "src"};
+    var src = $("#_asset_path").val() + "/" + type + "/" + name;
 
     if (type === "img") {
-        html += "<img id='asset-preview' class='img-thumbnail' src='" + $("#_asset_path").val() + "/" + type + "/" + name + "' height='200px' width='200px'>";
+        html += "<img id='asset-preview' class='img-thumbnail' src='" + src + "'>";
     }
     else if (type === "video") {
-        html += "<video id='asset-preview' controls class='embed-responsive-item img-thumbnail'><source src='" + $("#_asset_path").val() + "/" + type + "/" + name + "' height='200px' width='200px'></video>";
-        src["selector"] = "#asset-preview > source";
+        html += "<video id='asset-preview' controls class='img-thumbnail' src='" + src + "'></video>";
     }
     else {
-        html += "<object id='asset-preview' data='" + $("#_asset_path").val() + "/" + type + "/" + name + "' height='200px' width='200px'><a href='" + $("#_asset_path").val() + "/" + type + "/" + name + "'>" + name + "</a></object>"
-        src = [{selector: "#asset-preview", prop: "data"}, {selector: "#asset-preview > a", prop: "href"}];
+        html += "<object id='asset-preview' data='" + src + "' height='200px' width='200px'><a href='" + src + "</a></object>"
+        props = [{selector: "#asset-preview", prop: "data"}, {selector: "#asset-preview > a", prop: "href"}];
     }
 
-    return {html: html, selector: src};
+    return {html: html, selector: props};
 }
 
 
