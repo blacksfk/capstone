@@ -6,6 +6,7 @@ use App\Asset;
 use App\Utility;
 use App\Messages;
 use App\Http\Requests\AssetPost;
+use App\Http\Requests\AssetUpdate;
 use Illuminate\Http\Request;
 
 class AssetController extends Controller
@@ -75,7 +76,7 @@ class AssetController extends Controller
      */
     public function edit($id)
     {
-        abort(404);
+        return view("admin.assets.edit")->with("asset", Asset::findOrFail($id));
     }
 
     /**
@@ -85,9 +86,39 @@ class AssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AssetPost $request, $id)
+    public function update(AssetUpdate $request, $id)
     {
-        abort(404);
+        $asset = Asset::findOrFail($id);
+
+        /**
+         * prevent the user from modifying the file extension by matching
+         * everything before the file extension, and then setting the
+         * filename as the new name + old extension
+         */
+        $name = $request->name;
+        $match = preg_match("/^(?P<name>[^\.]+)/", $name, $matches);
+
+        if ($match)
+        {
+            $name = $matches["name"];
+        }
+
+        $name .= "." . pathinfo(public_path("assets/" . $asset->type . "/" . $asset->name), PATHINFO_EXTENSION);
+
+        try
+        {
+            Utility::move(public_path("assets/" . $asset->type . "/" . $asset->name), public_path("assets/" . $asset->type . "/" . $name));
+        }
+        catch (\Exception $e)
+        {
+            return back()->withInput()->with(Messages::ERRORS, $e->getMessage());
+        }
+
+        $asset->name = $name;
+        $asset->save();
+
+        return redirect()->route("admin.assets.index")
+            ->with(Messages::SUCCESS, Messages::ASSET[Messages::UPDATED]);
     }
 
     /**
