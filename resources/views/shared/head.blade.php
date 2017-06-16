@@ -7,7 +7,7 @@
 </noscript>
 <title>@yield('title')</title>
 <!-- BOOTSTRAP CORE STYLE CSS -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 <!-- FONT AWESOME CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <!-- CUSTOM STYLE CSS -->
