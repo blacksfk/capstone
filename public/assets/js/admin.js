@@ -218,14 +218,7 @@ function tdCompare(x, y) {
     var $x = $($(x).children("td").get(col));
     var $y = $($(y).children("td").get(col));
 
-    if ($x.text().toUpperCase() < $y.text().toUpperCase()) {
-        return -1;
-    }
-    else if($x.text().toUpperCase() === $y.text().toUpperCase()) {
-        return 0;
-    }
-
-    return 1;
+    return $x.text().localeCompare($y.text(), undefined, {numeric: true, sensitivity: 'base'});
 }
 
 /**
