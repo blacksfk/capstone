@@ -55,7 +55,8 @@ class PageController extends Controller
      */
     public function store(PagePost $request)
     {
-        $content = Page::insertBladeDirectives($request->name, $request->content);
+        $content = Page::extractHTML($request->content);
+        $content = Page::insertBladeDirectives($request->name, $content);
 
         // first try to write the file
         try
@@ -132,7 +133,8 @@ class PageController extends Controller
     {
         $page = Page::findOrFail($id);
         $update = "";
-        $oldContent = null;
+        $content = Page::extractHTML($request->content);
+        $oldContent = "";
 
         // first read the file to compare the new input against the old
         try
@@ -213,17 +215,26 @@ class PageController extends Controller
     }
 
     /**
-     * Ajax only method to build and return a view for previewing
-     * @param  Request $request HTTP GET request
-     * @return String           A string of HTML built with the view helper
+     * AJAX only method to create a preview for a file
+     * @param  Request $request
+     * @return JSON           A JSON object with errors (if they occured)
      */
     public function preview(Request $request)
     {
-        $view = view("admin.pages.preview")
-            ->with("name", $request->name)
-            ->with("content", $request->content)
-            ->render();
+        $html = Page::extractHTML($request->content);
+        $blade = Page::insertBladeDirectives($request->name, $html);
 
-        return $view;
+        /* in order to process the blade directives for previewing,
+            write to the preview file */
+        try
+        {
+            Utility::createFile("preview", $blade, resource_path("views/admin/pages/"));
+        }
+        catch (\Exception $e)
+        {
+            return json_encode([Messages::ERRORS => "Unable to create preview: " . $e->getMessage()]);
+        }
+
+        return json_encode(["html" => view("admin.pages.preview")->render()]);
     }
 }
