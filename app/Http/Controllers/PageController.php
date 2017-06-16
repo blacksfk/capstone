@@ -203,7 +203,7 @@ class PageController extends Controller
         if (isset($page->link))
         {
             Link::find($page->link_id)->active = false;
-            $update = $page->link->name . " is no longer active";
+            $update = $page->link->name . " link is no longer active";
         }
 
         $page->delete();
