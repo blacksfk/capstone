@@ -10,6 +10,8 @@ const SLIDE_TIME = 700;
 var col; // index of th was clicked when sorting tables
 var sortedElements = []; // elements which have been sorted
 var $spinner = $("#overlay-spinner"); // the div that contains the loading spinner
+var $adminModal = $("#adminModal"); // the modal pop up
+var $modalConfirm = $("#modalConfirm"); // the confirm button in the modal
 
  /*================================================================
     FUNCTIONS
@@ -26,24 +28,24 @@ function confirmDelete(event, formID, name) {
     event.stopPropagation();
     event.preventDefault();
 
-    $("#adminModal .modal-header").text("Confirm deletion");
-    $("#adminModal .modal-body").text(
-        "Are you sure you want to delete " +
-        name +
-        "? This action cannot be undone!"
+    modalText(
+        "Confirm deletion",
+        "Are you sure you want to delete " + name + "? This action cannot be undone!",
+        "btn btn-danger"
     );
-    $("#modalConfirm").addClass("btn-danger");
-    $("#adminModal").modal("show");
-    $("#modalConfirm").click(function() {
+
+    $modalConfirm.click(function() {
         $(formID).submit();
     });
+
+    $adminModal.modal("show")
 }
 
 /**
  * Shows a modal and runs a callback
  * @param  JSEvent   event
  * @param  string   formID      ID of the form to submit
- * @param  {Function} callback  The function to run once the user clicks confirm
+ * @param  {Function} callback  The function to run once the user clicks modalConfirm
  * @param  string   selector    The inputs to append to the form
  * @return void            
  */
@@ -51,13 +53,33 @@ function confirmOverwrite(event, formID, selector, callback) {
     event.stopPropagation();
     event.preventDefault();
 
-    $("#adminModal .modal-header").text("Confirm overwrite");
-    $("#adminModal .modal-body").text("Are you sure you want overwrite all records in the database? This action cannot be undone!");
-    $("#modalConfirm").addClass("btn-danger");
-    $("#adminModal").modal("show");
-    $("#modalConfirm").click(function() {
+    modalText(
+        "Confirm overwrite",
+        "Are you sure you want overwrite all records in the database? This action cannot be undone!",
+        "btn btn-danger",
+    );
+
+    $modalConfirm.click(function() {
         callback(event, formID, selector);
     });
+
+    $adminModal.modal("show");
+}
+
+/**
+ * Function for common modal operations
+ * 
+ * @param  string header  The text to go into the modal header
+ * @param  string body    The text to go into the modal body
+ * @param  string classes A string of css classes separated by spaces
+ * @return void
+ */
+function modalText(header, body, classes) {
+    $adminModal.find(".modal-header").html(header);
+    $adminModal.find(".modal-body").html(body);
+    
+    $modalConfirm.removeClass();
+    $modalConfirm.addClass(classes);
 }
 
 /**
@@ -248,7 +270,6 @@ function appendAsset(caller, event, type) {
 
     $.get(url, {type: type}, function(data) {
         var html = "<select id='asset-select' class='form-control'>";
-        var $confirm = $("#modalConfirm");
 
         $.each(data, function(index, json) {
             html += "<option value='" + json.name + "'>" + json.name + "</option>";
@@ -256,37 +277,58 @@ function appendAsset(caller, event, type) {
 
         html += "</select>";
 
-        if (type === "img") {
-            html += "<img id='asset-preview' class='img-thumbnail' src='" + $("#_asset_path").val() + "/" + type + "/" + data[0].name + "' height='200px' width='200px'>";
-        }
-        else if (type === "video") {
-            html += "<video id='asset-preview' controls class='embed-responsive-item img-thumbnail'><source src='" + $("#_asset_path").val() + "/" + type + "/" + data[0].name + "' height='200px' width='200px'></video>";
-        }
-        else {
-            html += "<object id='asset-preview' data='" + $("#_asset_path").val() + "/" + type + "/" + data[0].name + "' height='200px' width='200px'><a href='" + $("#_asset_path").val() + "/" + type + "/" + data[0].name + "'>" + data[0].name + "</a></object>"
-        }
-
-        $("#adminModal .modal-header").text("Select an asset to append");
-        $("#adminModal .modal-body").html(html);
-
+        var data = createAssetPreview(html, type, data[0].name);
+        var selector = data["selector"];
+        modalText("Select an asset to append", data["html"], "btn btn-default");
         var $select = $("#asset-select");
 
-        $confirm.addClass("btn-default");
-        $confirm.text("Add Asset");
-        $confirm.off("click")
-        $confirm.click(function() {
-            var text = "{{ asset('assets/" + type + "/" + $select.val() + "') }}";
-            $("#content").append(text);
+        $modalConfirm.off("click"); // remove any previous click handlers
+        $modalConfirm.click(function() {
+            $("#content").append("{{ asset('assets/" + type + "/" + $select.val() + "') }}");
         });
 
-        $select.off("change");
+        $select.off("change");  // remove any previous change handlers
         $select.change(function() {
-            $("#asset-preview").prop("src", $("#_asset_path").val() + "/" + type + "/" + $select.val());
+            if (Object.prototype.toString.call(selector) === "[object Array]") {
+                for (var i = 0; i < selector.length; i++) {
+                    $(selector[i]["selector"]).prop(selector[i]["prop"], $("#_asset_path").val() + "/" + type + "/" + $select.val());
+                }
+            }
+            else {
+                $(selector["selector"]).prop(selector["prop"], $("#_asset_path").val() + "/" + type + "/" + $select.val());
+            }
         });
 
         $spinner.fadeOut(100);
-        $("#adminModal").modal("show");
+        $adminModal.modal("show");
     }, "json");
+}
+
+/**
+ * Creates the HTML tags based on the type selected and determines 
+ * the selector and source properties to bind a change() event handler to
+ * 
+ * @param  string html The HTML to append to
+ * @param  string type The type selected
+ * @param  string name The name of the asset to set as the default preview
+ * @return Object
+ */
+function createAssetPreview(html, type, name) {
+    var src = {selector: "#asset-preview", prop: "src"};
+
+    if (type === "img") {
+        html += "<img id='asset-preview' class='img-thumbnail' src='" + $("#_asset_path").val() + "/" + type + "/" + name + "' height='200px' width='200px'>";
+    }
+    else if (type === "video") {
+        html += "<video id='asset-preview' controls class='embed-responsive-item img-thumbnail'><source src='" + $("#_asset_path").val() + "/" + type + "/" + name + "' height='200px' width='200px'></video>";
+        src["selector"] = "#asset-preview > source";
+    }
+    else {
+        html += "<object id='asset-preview' data='" + $("#_asset_path").val() + "/" + type + "/" + name + "' height='200px' width='200px'><a href='" + $("#_asset_path").val() + "/" + type + "/" + name + "'>" + name + "</a></object>"
+        src = [{selector: "#asset-preview", prop: "data"}, {selector: "#asset-preview > a", prop: "href"}];
+    }
+
+    return {html: html, selector: src};
 }
 
 
