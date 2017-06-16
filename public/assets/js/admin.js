@@ -100,9 +100,14 @@ function previewPage(caller, event) {
         _token: $("input[name=_token]").val()
     }, 
     function(data) {
-        var wdw = window.open();
-        wdw.document.write(data);
-    });
+        if ("errors" in data) {
+            alert(data["errors"]);
+        }
+        else {
+            var wdw = window.open();
+            wdw.document.write(data["html"]);
+        }
+    }, "json");
 }
 
 /**
