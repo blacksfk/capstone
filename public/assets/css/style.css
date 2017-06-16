@@ -519,6 +519,11 @@ h1::after {
     font-family: 'Lato', sans-serif;
 }
 
+.carousel-control .fa-chevron-left, .carousel-control .fa-chevron-right {
+    position: relative;
+    top: 40%;
+}
+
 /*=====================================
   CONTACT STYLES 
   ===================================*/
