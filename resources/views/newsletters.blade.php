@@ -10,18 +10,9 @@
     <div class="row">
         <div class="col-md-4">
             <div class="list-group">
-                <a href="{{ asset('assets/' . $newsletters[0]->type . '/' . $newsletters[0]->name) }}" class="list-group-item active" onclick="changeNewsletter(this, event, '{{ $newsletters[0]->name }}')">
-                    <h4>{{ $newsletters[0]->name }}</h4>
-                    {{-- <p>{{ $newsletters[0]->description }}</p> --}}
-                    <p>placeholder description</p>
-                </a>
-            @for ($i = 1; $i < count($newsletters); $i++)
-                <a href="{{ asset('assets/' . $newsletters[$i]->type . '/' . $newsletters[$i]->name) }}" class="list-group-item" onclick="changeNewsletter(this, event, '{{ $newsletters[$i]->name }}')">
-                    <h4>{{ $newsletters[$i]->name }}</h4>
-                    {{-- <p>{{ $newsletters[$i]->description }}</p> --}}
-                    <p>placeholder description</p>
-                </a>
-            @endfor
+            @foreach ($newsletters as $i => $nl)
+                <a href="{{ asset('assets/' . $nl->type . '/' . $nl->name) }}" class="list-group-item {{ ($i === 0 ? 'active' : '' ) }}" onclick="changeNewsletter(this, event, '{{ $nl->name }}')">{{ $nl->name }}<span class="badge">{{ $i + 1 }}</span></a>
+            @endforeach
             </div>         
         </div>
         <div class="col-md-8">
