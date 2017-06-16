@@ -25,15 +25,6 @@
     grade level. An interview will need to be scheduled by contacting the office and enrolment forms filled out. 
     Parents will then be notified if there is a vacancy available at their child’s grade level. 
     </p>
-    
-    <div class="container">
-        <div class="col-lg-8 col-md-8 col-xs-8">
-            <a class="thumbnail" href="#">
-                <img class="img-responsive" src="{{ asset('assets/img/priority_zones.JPG') }}" alt="">
-            </a>
-        </div>
-    </div>
-    
     <div class="pac-card" id="pac-card">
         <div>
             <div id="title">
