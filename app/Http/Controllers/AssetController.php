@@ -42,16 +42,19 @@ class AssetController extends Controller
      */
     public function store(AssetPost $request)
     {
-        $asset = new Asset();
-        $asset->name = $request->asset->getClientOriginalName();
-        $asset->type = $request->type;
-        $asset->save();
+        foreach ($request->assets as $newAsset)
+        {
+            $asset = new Asset();
+            $asset->name = $newAsset->getClientOriginalName();
+            $asset->type = $request->type;
+            $asset->save();
 
-        $request->asset->storeAs(
-            $request->type,
-            $request->asset->getClientOriginalName(),
-            "public"
-        );
+            $newAsset->storeAs(
+                $request->type,
+                $newAsset->getClientOriginalName(),
+                "public"
+            );
+        }
 
         return redirect()->route("admin.assets.index")
             ->with(Messages::SUCCESS, Messages::ASSET[Messages::CREATED]);
