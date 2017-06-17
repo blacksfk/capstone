@@ -84,12 +84,6 @@ class PageSeeder extends Seeder
         ]);
 
         DB::table("pages")->insert([
-            "id" => 14,
-            "name" => "uniform",
-            "link_id" => 19
-        ]);
-
-        DB::table("pages")->insert([
             "id" => 15,
             "name" => "canteen",
             "link_id" => 20
