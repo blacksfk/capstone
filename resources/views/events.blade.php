@@ -15,8 +15,10 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="sortable">Date&nbsp;<span class="fa fa-sort"></span></th>
-                                <th>Day</th>
+                                <th class="sortable">Start Date&nbsp;<span class="fa fa-sort"></span></th>
+                                <th>Start Day</th>
+                                <th class="sortable">End Date&nbsp;<span class="fa fa-sort"></span></th>
+                                <th>End Day</th>
                                 <th class="sortable">Name&nbsp;<span class="fa fa-sort"></span></th>
                                 <th>Start time</th>
                                 <th>End time</th>
@@ -26,8 +28,10 @@
                         <tbody class="events-week">
                         @foreach ($week as $event)
                             <tr>
-                                <td>{{ $event->date }}</td>
-                                <td>{{ $event->getDay() }}</td>
+                                <td>{{ $event->start_date }}</td>
+                                <td>{{ $event->getStartDay() }}</td>
+                                <td>{{ $event->end_date }}</td>
+                                <td>{{ $event->getEndDay() }}</td>
                                 <td><a href="{{ $event->getGoogleLink() }}">{{ $event->name }}</a></td>
                                 <td>{{ $event->start_time }}</td>
                                 <td>{{ $event->end_time }}</td>
@@ -38,8 +42,10 @@
                         <tbody class="events-month" style="display: none">
                         @foreach ($month as $event)
                             <tr>
-                                <td>{{ $event->date }}</td>
-                                <td>{{ $event->getDay() }}</td>
+                                <td>{{ $event->start_date }}</td>
+                                <td>{{ $event->getStartDay() }}</td>
+                                <td>{{ $event->end_date }}</td>
+                                <td>{{ $event->getEndDay() }}</td>
                                 <td><a href="{{ $event->getGoogleLink() }}">{{ $event->name }}</a></td>
                                 <td>{{ $event->start_time }}</td>
                                 <td>{{ $event->end_time }}</td>
@@ -50,8 +56,10 @@
                         <tbody class="events-year" style="display: none">
                         @foreach ($year as $event)
                             <tr>
-                                <td>{{ $event->date }}</td>
-                                <td>{{ $event->getDay() }}</td>
+                                <td>{{ $event->start_date }}</td>
+                                <td>{{ $event->getStartDay() }}</td>
+                                <td>{{ $event->end_date }}</td>
+                                <td>{{ $event->getEndDay() }}</td>
                                 <td><a href="{{ $event->getGoogleLink() }}">{{ $event->name }}</a></td>
                                 <td>{{ $event->start_time }}</td>
                                 <td>{{ $event->end_time }}</td>

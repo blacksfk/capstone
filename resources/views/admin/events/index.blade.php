@@ -10,7 +10,8 @@
         <thead>
             <tr>
                 <th class="sortable">Name <span class="fa fa-sort"></span></th>
-                <th class="sortable">Date <span class="fa fa-sort"></span></th>
+                <th class="sortable">Start Date <span class="fa fa-sort"></span></th>
+                <th class="sortable">End Date <span class="fa fa-sort"></span></th>
                 <th class="sortable">Start time <span class="fa fa-sort"></span></th>
                 <th class="sortable">End time <span class="fa fa-sort"></span></th>
                 <th class="sortable">Notes <span class="fa fa-sort"></span></th>
@@ -21,7 +22,8 @@
         @foreach ($events as $event)
             <tr>
                 <td>{{ $event->name }}</td>
-                <td>{{ $event->date }}</td>
+                <td>{{ $event->start_date }}</td>
+                <td>{{ $event->end_date }}</td>
                 <td>{{ $event->start_time }}</td>
                 <td>{{ $event->end_time }}</td>
                 <td>{{ $event->notes }}</td>

@@ -21,17 +21,17 @@ class HomeController extends Controller
     public function events()
     {
         $carbon = Carbon::now("Australia/Melbourne");
-        $w = Event::where("date", ">=", $carbon->startOfWeek()->format("Y-m-d"))
-                    ->where("date", "<=", $carbon->endOfWeek()->format("Y-m-d"))
-                    ->orderBy("date", "asc")
+        $w = Event::where("start_date", ">=", $carbon->startOfWeek()->format("Y-m-d"))
+                    ->where("end_date", "<=", $carbon->endOfWeek()->format("Y-m-d"))
+                    ->orderBy("start_date", "asc")
                         ->get();
-        $m = Event::where("date", ">=", $carbon->startOfMonth()->format("Y-m-d"))
-                    ->where("date", "<=", $carbon->endOfMonth()->format("Y-m-d"))
-                    ->orderBy("date", "asc")
+        $m = Event::where("start_date", ">=", $carbon->startOfMonth()->format("Y-m-d"))
+                    ->where("end_date", "<=", $carbon->endOfMonth()->format("Y-m-d"))
+                    ->orderBy("start_date", "asc")
                     ->get();
-        $y = Event::where("date", ">=", $carbon->startOfYear()->format("Y-m-d"))
-                    ->where("date", "<=", $carbon->endOfYear()->format("Y-m-d"))
-                    ->orderBy("date", "asc")
+        $y = Event::where("start_date", ">=", $carbon->startOfYear()->format("Y-m-d"))
+                    ->where("end_date", "<=", $carbon->endOfYear()->format("Y-m-d"))
+                    ->orderBy("start_date", "asc")
                     ->get();
 
         return view("events")

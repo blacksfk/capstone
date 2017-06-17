@@ -22,11 +22,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 
 $factory->define(App\Event::class, function(Faker\Generator $faker) {
-    $date = $faker->dateTimeBetween("-1 year", "+1 year", "Australia/Melbourne")->format("Y-m-d");
+    $start_date = $faker->dateTimeBetween("-1 year", "+1 year", "Australia/Melbourne")->format("Y-m-d");
+    $end_date = $faker->dateTimeBetween("-1 year", "+1 year", "Australia/Melbourne")->format("Y-m-d");
 
     return [
         "name" => $faker->name,
-        "date" => $date,
+        "start_date" => $start_date,
+        "end_date" => $end_date,
         "start_time" => $faker->time,
         "end_time" => $faker->time,
         "notes" => $faker->realText()

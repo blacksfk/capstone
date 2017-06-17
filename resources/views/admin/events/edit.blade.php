@@ -15,8 +15,12 @@
         <input type="text" name="name" id="name" class="form-control" value="{{ $event->name }}">
     </div>
     <div class="form-group">
-        <label for="date">Date</label>
-        <input type="date" name="date" id="date" class="form-control"  value="{{ $event->date }}">
+        <label for="start_date">Start Date</label>
+        <input type="date" name="start_date" id="start_date" class="form-control"  value="{{ $event->start_date }}">
+    </div>
+    <div class="form-group">
+        <label for="end_date">End Date</label>
+        <input type="date" name="end_date" id="end_date" class="form-control"  value="{{ $event->end_date }}">
     </div>
     <div class="form-group">
         <label for="start_time">Start time</label>

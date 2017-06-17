@@ -16,15 +16,17 @@ class Event extends Model
     const DATETIME_FORMAT = "Ymd\THis\Z";
 
     protected $fillable = [
-        "name", "date", "start_time", "end_time", "notes"
+        "name", "start_date", "end_date", "start_time", "end_time", "notes"
     ];
 
     public function getGoogleLink()
     {
         $start_time = ($this->start_time === "" ? "00:00:00" : $this->start_time);
         $end_time = ($this->end_time === "" ? "23:59:59" : $this->end_time);
-        $start = new Carbon($this->date . " " . $start_time);
-        $end = new Carbon($this->date . " " . $end_time);
+        $start = new Carbon($this->start_date . " " . $start_time, "Australia/Melbourne");
+        $end = new Carbon($this->end_date . " " . $end_time, "Australia/Melbourne");
+        $start->tz = "UTC";
+        $end->tz = "UTC";
 
         $link = self::CAL_URL;
         $link .= self::CAL_KEY_ACTION;
@@ -37,10 +39,17 @@ class Event extends Model
         return $link;
     }
 
-    public function getDay()
+    public function getStartDay()
     {
-        $carbon = new Carbon($this->date);
+        $carbon = new Carbon($this->start_date);
         
+        return $carbon->format("l");
+    }
+
+    public function getEndDay()
+    {
+        $carbon = new Carbon($this->end_date);
+
         return $carbon->format("l");
     }
 }
