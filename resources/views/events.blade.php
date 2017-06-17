@@ -39,6 +39,7 @@
                         @foreach ($month as $event)
                             <tr>
                                 <td>{{ $event->date }}</td>
+                                <td>{{ $event->getDay() }}</td>
                                 <td><a href="{{ $event->getGoogleLink() }}">{{ $event->name }}</a></td>
                                 <td>{{ $event->start_time }}</td>
                                 <td>{{ $event->end_time }}</td>
@@ -50,6 +51,7 @@
                         @foreach ($year as $event)
                             <tr>
                                 <td>{{ $event->date }}</td>
+                                <td>{{ $event->getDay() }}</td>
                                 <td><a href="{{ $event->getGoogleLink() }}">{{ $event->name }}</a></td>
                                 <td>{{ $event->start_time }}</td>
                                 <td>{{ $event->end_time }}</td>

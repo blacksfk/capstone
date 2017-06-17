@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
@@ -13,7 +14,7 @@ class Event extends Model
     const CAL_KEY_LOCATION = "&location=Courtenay Gardens Primary School";
     const CAL_KEY_DETAILS = "&details=";
     const DATETIME_FORMAT = "Ymd\THis\Z";
-    
+
     protected $fillable = [
         "name", "date", "start_time", "end_time", "notes"
     ];
