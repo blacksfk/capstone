@@ -26,18 +26,11 @@
             <h2><strong>Links:</strong></h2>
             <hr>
             <ul>
-                <li>
-                <a id="footer-header-links" href="{{ url('/about/history') }}">About Us</a>
+                <li><a id="footer-header-links" href="{{ url('enrolment') }}">Enrolment</a></li>
+                <li><a id="footer-header-links" href="{{ url('policies') }}">Parents Info</a>
                 </li>
-                <li>
-                    <div>
-                    <li><a id="footer-header-links" href="{{ url('/enrolment') }}">Enrolment</a></li>
-                    <li><a id="footer-header-links" href="{{ url('/parents-info/policies') }}">Parents Info</a>
-                    </li>
-                    <li><a id="footer-header-links" href="{{ url('/events') }}">Events</a></li>
-                    <li><a id="footer-header-links" href="{{ url('/contact') }}">Contact Us</a></li>
-                    </div>
-                </li>
+                <li><a id="footer-header-links" href="{{ url('events') }}">Events</a></li>
+                <li><a id="footer-header-links" href="{{ url('contact') }}">Contact Us</a></li>
             </ul>
         </div>        
     </div>
