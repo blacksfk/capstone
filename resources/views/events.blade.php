@@ -2,6 +2,7 @@
 @section('title', 'Events')
 @section('content')
 <div id="features-sec" class="container set-pad">
+    <div class="row text-center"><h1 class="header-line">Click on the event name to add it to your Google Calendar!</h1></div>
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -15,6 +16,7 @@
                         <thead>
                             <tr>
                                 <th class="sortable">Date&nbsp;<span class="fa fa-sort"></span></th>
+                                <th>Day</th>
                                 <th class="sortable">Name&nbsp;<span class="fa fa-sort"></span></th>
                                 <th>Start time</th>
                                 <th>End time</th>
@@ -25,7 +27,8 @@
                         @foreach ($week as $event)
                             <tr>
                                 <td>{{ $event->date }}</td>
-                                <td>{{ $event->name }}</td>
+                                <td>{{ $event->getDay() }}</td>
+                                <td><a href="{{ $event->getGoogleLink() }}">{{ $event->name }}</a></td>
                                 <td>{{ $event->start_time }}</td>
                                 <td>{{ $event->end_time }}</td>
                                 <td>{{ $event->notes }}</td>
@@ -36,7 +39,7 @@
                         @foreach ($month as $event)
                             <tr>
                                 <td>{{ $event->date }}</td>
-                                <td>{{ $event->name }}</td>
+                                <td><a href="{{ $event->getGoogleLink() }}">{{ $event->name }}</a></td>
                                 <td>{{ $event->start_time }}</td>
                                 <td>{{ $event->end_time }}</td>
                                 <td>{{ $event->notes }}</td>
@@ -47,7 +50,7 @@
                         @foreach ($year as $event)
                             <tr>
                                 <td>{{ $event->date }}</td>
-                                <td>{{ $event->name }}</td>
+                                <td><a href="{{ $event->getGoogleLink() }}">{{ $event->name }}</a></td>
                                 <td>{{ $event->start_time }}</td>
                                 <td>{{ $event->end_time }}</td>
                                 <td>{{ $event->notes }}</td>
