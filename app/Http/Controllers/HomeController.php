@@ -6,6 +6,7 @@ use App\Link;
 use App\Asset;
 use App\Event;
 use App\Utility;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -19,9 +20,24 @@ class HomeController extends Controller
      */
     public function events()
     {
-        $events = Event::orderBy("date", "asc")->get();
+        $carbon = Carbon::now("Australia/Melbourne");
+        $w = Event::where("date", ">=", $carbon->startOfWeek()->format("Y-m-d"))
+                    ->where("date", "<=", $carbon->endOfWeek()->format("Y-m-d"))
+                    ->orderBy("date", "asc")
+                        ->get();
+        $m = Event::where("date", ">=", $carbon->startOfMonth()->format("Y-m-d"))
+                    ->where("date", "<=", $carbon->endOfMonth()->format("Y-m-d"))
+                    ->orderBy("date", "asc")
+                    ->get();
+        $y = Event::where("date", ">=", $carbon->startOfYear()->format("Y-m-d"))
+                    ->where("date", "<=", $carbon->endOfYear()->format("Y-m-d"))
+                    ->orderBy("date", "asc")
+                    ->get();
 
-        return view("events")->with("events", $events);
+        return view("events")
+                ->with("week", $w)
+                ->with("month", $m)
+                ->with("year", $y);
     }
 
     /**
