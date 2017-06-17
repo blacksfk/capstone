@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Events')
 @section('content')
-<div id="features-sec" class="container">
+<div id="features-sec" class="container set-pad">
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
