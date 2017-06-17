@@ -20,12 +20,12 @@
                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">{{ strtoupper($link->getLink()->name) }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                         @foreach ($link->getChildren() as $child)
-                            <li><a href="{{ url($child->name) }}">{{ $child->name }}</a></li>
+                            <li><a href="{{ strtolower(url($child->name)) }}">{{ $child->name }}</a></li>
                         @endforeach
                         </ul>
                     </li>
                 @else
-                    <li><a href="{{ url($link->getLink()->name) }}">{{ strtoupper($link->getLink()->name) }}</a></li>
+                    <li><a href="{{ strtolower(url($link->getLink()->name)) }}">{{ strtoupper($link->getLink()->name) }}</a></li>
                 @endif
             @endforeach
                 <!-- Authentication Links -->

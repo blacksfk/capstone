@@ -32,7 +32,7 @@ class HomeController extends Controller
      */
     public function dynamic($name)
     {
-        $link = Link::where("name", $name)->first();
+        $link = Link::where("name", "LIKE", $name)->first();
 
         if (isset($link) && View::exists($link->page->name))
         {
