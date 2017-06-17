@@ -26,7 +26,6 @@
     </div>
     @include('shared.footer')
     @include('shared.scripts')
-    <script src="{{ asset('assets/js/sort.js') }}"></script>
     <script src="{{ asset('assets/js/admin.js') }}"></script>
 </body>
 </html>

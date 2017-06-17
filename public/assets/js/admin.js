@@ -7,8 +7,6 @@ const SLIDE_TIME = 700;
 /*================================================================
     GLOBALS
   ==============================================================*/
-var col; // index of th was clicked when sorting tables
-var sortedElements = []; // elements which have been sorted
 var $spinner = $("#overlay-spinner"); // the div that contains the loading spinner
 var $adminModal = $("#adminModal"); // the modal pop up
 var $modalConfirm = $("#modalConfirm"); // the confirm button in the modal
@@ -208,31 +206,6 @@ function shiftDown(caller, event) {
 }
 
 /**
- * Comparsion function for sorting tables
- * 
- * @param  Table row x
- * @param  Table row y
- * @return int
- */
-function tdCompare(x, y) {
-    var $x = $($(x).children("td").get(col));
-    var $y = $($(y).children("td").get(col));
-
-    return $x.text().localeCompare($y.text(), undefined, {numeric: true, sensitivity: 'base'});
-}
-
-/**
- * Comparsion function that sorts the table in reverse
- * 
- * @param  Table row x
- * @param  Table row y
- * @return int
- */
-function tdCompareInverse(x, y) {
-    return tdCompare(y, x);
-}
-
-/**
  * Checks if the element exists in the array
  * 
  * @param  element
@@ -355,27 +328,4 @@ $("#asset_filter").change(function() {
             $(element).hide();
         }
     });
-});
-
-// table sorting handler
-$(".sortable").click(function(event) {
-    event.stopPropagation();
-    event.preventDefault();
-
-    col = $(this).index();
-    var $table = $($(this).parents("table").first());
-    var array = $table.find("tbody > tr");
-    var cmp = null;
-
-    if (sortedElements[col] === true) {
-        cmp = tdCompareInverse;
-        sortedElements[col] = false;
-    }
-    else {
-        cmp = tdCompare;
-        sortedElements[col] = true;
-    }
-
-    sort.quick(array, 0, array.length - 1, cmp);
-    $table.find("tbody").html(array);
 });
