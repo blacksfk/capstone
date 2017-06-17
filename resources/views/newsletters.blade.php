@@ -7,6 +7,11 @@
         <p>The Courtenay Gardens newsletter, known as 'Courtenay News', is produced fortnightly on a Thursday. 
             Each issue can be downloaded by clicking on the links below.</p>
     </div>
+@if ($newsletters->isEmpty())
+    <div class="row text-center">
+        <h4>Unforunately, no newsletters were found</h4>
+    </div>
+@else
     <div class="row">
         <div class="col-md-4">
             <div class="list-group">
@@ -19,5 +24,6 @@
             <object id="newsletterObject" data="{{ asset('assets/' . $newsletters[0]->type . '/' . $newsletters[0]->name) }}" type="application/pdf" width="100%" height="800px"><p>Unfortunately your browser does not support PDFs, however, you can still download the newsletter from <a href="{{ asset('assets/' . $newsletters[0]->type . '/' . $newsletters[0]->name) }}">here</a></p></object>
         </div>
     </div>
+@endif
 </div>
 @endsection
