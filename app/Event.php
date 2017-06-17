@@ -19,6 +19,12 @@ class Event extends Model
         "name", "start_date", "end_date", "start_time", "end_time", "notes"
     ];
 
+    /**
+     * Creates a link to create a google calendar event.
+     * Time needs to be converted to UTC.
+     * 
+     * @return string A link to create a google calendar event
+     */
     public function getGoogleLink()
     {
         $start_time = ($this->start_time === "" ? "00:00:00" : $this->start_time);
@@ -39,6 +45,11 @@ class Event extends Model
         return $link;
     }
 
+    /**
+     * Get the start day of the event from the date
+     *
+     * @return string The day of the event start
+     */
     public function getStartDay()
     {
         $carbon = new Carbon($this->start_date);
@@ -46,6 +57,11 @@ class Event extends Model
         return $carbon->format("l");
     }
 
+    /**
+     * Get the end day of the event from the date
+     *
+     * @return string The day of the event end
+     */
     public function getEndDay()
     {
         $carbon = new Carbon($this->end_date);
