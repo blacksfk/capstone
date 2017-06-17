@@ -72,7 +72,7 @@ function changeNewsletter(caller, event, name) {
     var $nlObj = $("#newsletterObject");
     var $caller = $(caller);
 
-    $(".active").removeClass("active"); // remove active from the current
+    $(".list-group-item.active").removeClass("active"); // remove active from the current
     $caller.addClass("active");         // add active to the clicked item
     $nlObj.prop("data", $caller.prop("href"));  // switch the source
     $nlObj.find("a").prop("href", $caller.prop("href")); // switch the link
