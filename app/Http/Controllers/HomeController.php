@@ -37,7 +37,8 @@ class HomeController extends Controller
         return view("events")
                 ->with("week", $w)
                 ->with("month", $m)
-                ->with("year", $y);
+                ->with("year", $y)
+                ->with("carbon", Carbon::now("Australia/Melbourne"));   // using carbon->format() is destructive, so create a new instance
     }
 
     /**
