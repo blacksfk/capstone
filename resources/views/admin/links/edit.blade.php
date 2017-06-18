@@ -23,6 +23,7 @@
     @else
         <input type="hidden" name="active" value="0">
     @endif
+    @if (!count($link->children))
     <div class="form-group">
         <label for="parent_id">Parent link</label>
         <select name="parent_id" id="parent_id" class="form-control">
@@ -35,6 +36,9 @@
             @endforeach
         </select>
     </div>
+    @else
+    <input type="hidden" name="parent_id" value="">
+    @endif
 </form>
 @endsection
 @section('form_nav')

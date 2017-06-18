@@ -10,8 +10,13 @@
         <input type="text" name="name" id="name" class="form-control">
     </div>
     <div class="form-group">
-        <label for="date">Date</label>
-        <input type="date" name="date" id="date" class="form-control"></div>
+        <label for="start_date">Start Date</label>
+        <input type="date" name="start_date" id="start_date" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="end_date">End Date</label>
+        <input type="date" name="end_date" id="end_date" class="form-control">
+    </div>
     <div class="form-group">
         <label for="start_time">Start time</label>
         <input type="time" name="start_time" id="start_time" class="form-control">

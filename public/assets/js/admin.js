@@ -7,8 +7,9 @@ const SLIDE_TIME = 700;
 /*================================================================
     GLOBALS
   ==============================================================*/
-var col; // index of th was clicked when sorting tables
-var sortedElements = []; // elements which have been sorted
+var $spinner = $("#overlay-spinner"); // the div that contains the loading spinner
+var $adminModal = $("#adminModal"); // the modal pop up
+var $modalConfirm = $("#modalConfirm"); // the confirm button in the modal
 
  /*================================================================
     FUNCTIONS
@@ -25,24 +26,24 @@ function confirmDelete(event, formID, name) {
     event.stopPropagation();
     event.preventDefault();
 
-    $("#adminModal .modal-header").text("Confirm deletion");
-    $("#adminModal .modal-body").text(
-        "Are you sure you want to delete " +
-        name +
-        "? This action cannot be undone!"
+    modalText(
+        "Confirm deletion",
+        "Are you sure you want to delete " + name + "? This action cannot be undone!",
+        "btn btn-danger"
     );
-    $("#modalConfirm").addClass("btn-danger");
-    $("#adminModal").modal("show");
-    $("#modalConfirm").click(function() {
+
+    $modalConfirm.click(function() {
         $(formID).submit();
     });
+
+    $adminModal.modal("show")
 }
 
 /**
  * Shows a modal and runs a callback
  * @param  JSEvent   event
  * @param  string   formID      ID of the form to submit
- * @param  {Function} callback  The function to run once the user clicks confirm
+ * @param  {Function} callback  The function to run once the user clicks modalConfirm
  * @param  string   selector    The inputs to append to the form
  * @return void            
  */
@@ -50,13 +51,33 @@ function confirmOverwrite(event, formID, selector, callback) {
     event.stopPropagation();
     event.preventDefault();
 
-    $("#adminModal .modal-header").text("Confirm overwrite");
-    $("#adminModal .modal-body").text("Are you sure you want overwrite all records in the database? This action cannot be undone!");
-    $("#modalConfirm").addClass("btn-danger");
-    $("#adminModal").modal("show");
-    $("#modalConfirm").click(function() {
+    modalText(
+        "Confirm overwrite",
+        "Are you sure you want overwrite all records in the database? This action cannot be undone!",
+        "btn btn-danger",
+    );
+
+    $modalConfirm.click(function() {
         callback(event, formID, selector);
     });
+
+    $adminModal.modal("show");
+}
+
+/**
+ * Function for common modal operations
+ * 
+ * @param  string header  The text to go into the modal header
+ * @param  string body    The text to go into the modal body
+ * @param  string classes A string of css classes separated by spaces
+ * @return void
+ */
+function modalText(header, body, classes) {
+    $adminModal.find(".modal-header").html(header);
+    $adminModal.find(".modal-body").html(body);
+    
+    $modalConfirm.removeClass();
+    $modalConfirm.addClass(classes);
 }
 
 /**
@@ -77,9 +98,14 @@ function previewPage(caller, event) {
         _token: $("input[name=_token]").val()
     }, 
     function(data) {
-        var wdw = window.open();
-        wdw.document.write(data);
-    });
+        if ("errors" in data) {
+            alert(data["errors"]);
+        }
+        else {
+            var wdw = window.open();
+            wdw.document.write(data["html"]);
+        }
+    }, "json");
 }
 
 /**
@@ -180,38 +206,6 @@ function shiftDown(caller, event) {
 }
 
 /**
- * Comparsion function for sorting tables
- * 
- * @param  Table row x
- * @param  Table row y
- * @return int
- */
-function tdCompare(x, y) {
-    var $x = $($(x).children("td").get(col));
-    var $y = $($(y).children("td").get(col));
-
-    if ($x.text().toUpperCase() < $y.text().toUpperCase()) {
-        return -1;
-    }
-    else if($x.text().toUpperCase() === $y.text().toUpperCase()) {
-        return 0;
-    }
-
-    return 1;
-}
-
-/**
- * Comparsion function that sorts the table in reverse
- * 
- * @param  Table row x
- * @param  Table row y
- * @return int
- */
-function tdCompareInverse(x, y) {
-    return tdCompare(y, x);
-}
-
-/**
  * Checks if the element exists in the array
  * 
  * @param  element
@@ -226,6 +220,86 @@ function inArray(element, array) {
     }
 
     return false;
+}
+
+/**
+ * This function shows a modal containing all of the assets of 
+ * the selected type. When the user clicks 'add', the blade asset 
+ * helper is appended to the content field.
+ * 
+ * @param  HTMLObject caller
+ * @param  JSEvent event
+ * @param  AssetType type
+ * @return void
+ */
+function appendAsset(caller, event, type) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    var url = $(caller).prop("href");
+    $spinner.fadeIn(100);
+
+    $.get(url, {type: type}, function(data) {
+        var html = "<select id='asset-select' class='form-control'>";
+
+        $.each(data, function(index, json) {
+            html += "<option value='" + json.name + "'>" + json.name + "</option>";
+        });
+
+        html += "</select>";
+
+        var data = createAssetPreview(html, type, data[0].name);
+        var selector = data["selector"];
+        modalText("Select an asset to append", data["html"], "btn btn-default");
+        var $select = $("#asset-select");
+
+        $modalConfirm.off("click"); // remove any previous click handlers
+        $modalConfirm.click(function() {
+            $("#content").append("{{ asset('assets/" + type + "/" + $select.val() + "') }}");
+        });
+
+        $select.off("change");  // remove any previous change handlers
+        $select.change(function() {
+            if (Object.prototype.toString.call(selector) === "[object Array]") {
+                for (var i = 0; i < selector.length; i++) {
+                    $(selector[i]["selector"]).prop(selector[i]["prop"], $("#_asset_path").val() + "/" + type + "/" + $select.val());
+                }
+            }
+            else {
+                $(selector["selector"]).prop(selector["prop"], $("#_asset_path").val() + "/" + type + "/" + $select.val());
+            }
+        });
+
+        $spinner.fadeOut(100);
+        $adminModal.modal("show");
+    }, "json");
+}
+
+/**
+ * Creates the HTML tags based on the type selected and determines 
+ * the selector and source properties to bind a change() event handler to
+ * 
+ * @param  string html The HTML to append to
+ * @param  string type The type selected
+ * @param  string name The name of the asset to set as the default preview
+ * @return Object
+ */
+function createAssetPreview(html, type, name) {
+    var props = {selector: "#asset-preview", prop: "src"};
+    var src = $("#_asset_path").val() + "/" + type + "/" + name;
+
+    if (type === "img") {
+        html += "<img id='asset-preview' class='img-thumbnail' src='" + src + "'>";
+    }
+    else if (type === "video") {
+        html += "<video id='asset-preview' controls class='img-thumbnail' src='" + src + "'></video>";
+    }
+    else {
+        html += "<object id='asset-preview' data='" + src + "' height='200px' width='200px'><a href='" + src + "</a></object>"
+        props = [{selector: "#asset-preview", prop: "data"}, {selector: "#asset-preview > a", prop: "href"}];
+    }
+
+    return {html: html, selector: props};
 }
 
 
@@ -254,27 +328,4 @@ $("#asset_filter").change(function() {
             $(element).hide();
         }
     });
-});
-
-// table sorting handler
-$(".sortable").click(function(event) {
-    event.stopPropagation();
-    event.preventDefault();
-
-    col = $(this).index();
-    var $table = $($(this).parents("table").first());
-    var array = $table.find("tbody > tr");
-    var cmp = null;
-
-    if (sortedElements[col] === true) {
-        cmp = tdCompareInverse;
-        sortedElements[col] = false;
-    }
-    else {
-        cmp = tdCompare;
-        sortedElements[col] = true;
-    }
-
-    sort.quick(array, 0, array.length - 1, cmp);
-    $table.find("tbody").html(array);
 });

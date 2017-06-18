@@ -9,6 +9,7 @@
     <span id="error-float" >
         @include('shared.messages')
     </span>
+    @yield('carousel')
     <div class="tag-line" >
         <div class="container">
             <div class="row text-center" >

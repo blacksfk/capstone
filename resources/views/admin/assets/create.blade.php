@@ -14,8 +14,8 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="asset">Upload</label>
-        <input type="file" name="asset" id="asset">
+        <label for="assets[]">Upload</label>
+        <input type="file" name="assets[]" id="assets[]" multiple>
     </div>
 </form>
 @endsection

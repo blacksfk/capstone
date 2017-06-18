@@ -15,7 +15,6 @@
 @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-
 html {
     width: 100%;
     height: 100%;
@@ -24,12 +23,8 @@ html {
     margin-left: 0;
 }
 
-.goog-te-banner-frame.skiptranslate {display: none !important;} 
-body { top: 0px !important; }
-
-.flex {
-    display: flex;
-    justify-content: center;
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
 }
 
 h1 {
@@ -45,10 +40,11 @@ body {
     font-family: 'Lato', sans-serif;
     max-width: 100%;
     font-size: 15px;
+    top: 0px !important;
 }
 
 /* this is to overide bootstrap weird -15px margins*/
-.row{
+.row {
     margin-left: 0;
     margin-right: 0;
 }
@@ -83,7 +79,8 @@ body {
 
 /* =============================================================
    TABLE STYLES
- ============================================================ */
+  ============================================================*/
+
 .template_table {
     margin: auto;
     width: 90%;
@@ -125,8 +122,9 @@ body {
 }
 
 /*=====================================
-  NAVBAR STYLES 
-    ===================================*/
+   NAVBAR STYLES 
+  ===================================*/
+
 .background-nav {
     background-color: #2d3d5a;
 }
@@ -148,12 +146,60 @@ body {
     min-height: 70px;
     position: fixed;
     top: 0;
-    z-index: 500;
+    z-index: 200;
     width: 100%;
 }
 
 .navbar {
     border-radius: 0px;
+}
+
+/* Fix bootstrap media queries for overlapping menu */
+@media (max-width: 930px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+   .navbar-nav .open .dropdown-menu {
+       position: static;
+       float: none;
+       width: auto;
+       margin-top: 0;
+       background-color: transparent;
+       border: 0;
+       -webkit-box-shadow: none;
+       box-shadow: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -186,32 +232,14 @@ body {
     border-color: #FFF;
 }
 
-/*.sliding-middle-out {
-    display: inline-block;
-    position: relative;
-    padding-bottom: 3px;
-}
-.sliding-middle-out:after {
-    content: '';
-    display: block;
-    margin: auto;
-    height: 3px;
-    width: 0px;
-    background: transparent;
-    transition: width .2s ease, background-color .2s ease;
-}
-.sliding-middle-out:hover:after {
-    width: 100%;
-    background: white;
-}*/
-
 .static-sliding{
     color: blue;
 }
 
 /*=====================================
-  DROP DOWN MENU 
-    ===================================*/
+   DROP DOWN MENU 
+  ===================================*/
+
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover
 {
     background-color: rgba(28, 43, 75, 1);
@@ -224,122 +252,40 @@ body {
     }    
 }
 
-.dropbtn {
-    border: none;
-    cursor: pointer;
-}
-
 .dropdown {
     position: relative;
     display: inline-block;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
+/*=====================================
+   HOME STYLES 
+  ===================================*/
 
-.dropdown-content a {
-    background-color: rgba(28, 43, 75, 1);
-    color: white;
-    padding-left: 7.5%;
-    padding-right: 7.5%;
-    text-decoration: none;
-    display: block;
-}
-.dropdown-content a:after{
-    content: '';
-    display: block;
-    margin: auto;
-    height: 3px;
-    width: 0px;
-    background: transparent;
-    transition: width .2s ease, background-color .2s ease;
-}
-.dropdown-content a:hover:after {
-    width: 90%;
-    padding-right: 50%;
-    background: white;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-}
 
 /*=====================================
-  HOME STYLES 
-    ===================================*/
-.home-sec {
-    padding-top: 10px;
-    padding-bottom: 60px;
-    background: url(../img/kids_group.jpg) no-repeat center center;
-    padding: 0;
-    -webkit-background-size: cover;
-    background-size: cover;
-    color: #fff;
-    background-attachment: fixed;
-}
-
-    .home-sec .overlay {
-        background: rgba(38, 57, 88, 0.89);
-    }
-
-    .home-sec h1 {
-        color: #fff;
-        font-weight: 900;
-        font-size: 50px;
-        text-transform: uppercase;
-        padding-bottom: 35px;
-    }
-
-    .home-sec h3 {
-        text-transform: uppercase;
-    }
-
-
-
-.set-flexi {
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0);
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0);
-    -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0);
-    background-color: transparent;
-    border: 0px solid #000;
-    padding-top: 120px;
-}
-
-.flex-control-nav {
-    display: none!important;
-}
-
-.set-flexi a {
-    margin: 5px;
-}
-/*=====================================
-  TAG LINE STYLES 
-    ===================================*/
+   TAG LINE STYLES 
+  ===================================*/
 
 .tag-line {
     background: #E9E9E9;
     color: #000;
 }
 
-    .tag-line h2 {
-        font-size: 20px;
-        font-weight: 900;
-        padding: 5px 10px 10px 5px;
-        color: #005E5A;
-    }
+.tag-line h2 {
+    font-size: 20px;
+    font-weight: 900;
+    padding: 5px 10px 10px 5px;
+    color: #005E5A;
+}
 
-        .tag-line h2 > i {
-            margin-left: 8px;
-            margin-right: 8px;
-        }
+.tag-line h2 > i {
+    margin-left: 8px;
+    margin-right: 8px;
+}
 /*=====================================
-  HEADER LINE STYLES 
-    ===================================*/
+   HEADER LINE STYLES 
+  ===================================*/
+
 .header-line {
     font-weight: 900;
     font-size: 25px;
@@ -359,34 +305,10 @@ h1::after {
 /*=====================================
   ABOUT STYLES 
   ===================================*/
+
 .about-div {
     padding: 30px;
 }
-
-.icon-round-border {
-    border: 10px double #1A94C4;
-    color: #2f9484;
-    text-align: center;
-    padding-top: 15px;
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    cursor: pointer;
-    -webkit-transition: 0.3s;
-    -moz-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-}
-
-    .icon-round-border:hover {
-        color: #fff;
-        border: 10px double #fff;
-        background-color: #1A94C4;
-        -webkit-transition: 0.3s;
-        -moz-transition: 0.3s;
-        -o-transition: 0.3s;
-        transition: 0.3s;
-    }
 
 .about-div hr {
     border: 1px solid #1A94C4;
@@ -402,16 +324,11 @@ h1::after {
     padding-top: 10px;
 }
 
-.btn-set {
-    border-radius: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    margin-bottom: 20px;
-}
 
 /*=====================================
   CAROUSEL
   ===================================*/
+
 .carousel-inner{
   max-height: 100%;
   width: 100%;
@@ -425,13 +342,6 @@ h1::after {
   min-width: 100%;
   max-width: none;
   height: 40%;
-}
-
-.full-screen {
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  
 }
 
 .item {
@@ -470,35 +380,21 @@ h1::after {
     font-family: 'Lato', sans-serif;
 }
 
+.carousel-control .fa-chevron-left, .carousel-control .fa-chevron-right {
+    position: relative;
+    top: 40%;
+}
+
+
 /*=====================================
   CONTACT STYLES 
   ===================================*/
-#contact-sec {
-    padding-top: 10px;
-    padding-bottom: 60px;
-    background: url(../img/contact.jpg) no-repeat center center;
-    padding: 0;
-    -webkit-background-size: cover;
-    background-size: cover;
-    color: #fff;
-    background-attachment: fixed;
-}
 
-#contact-sec .overlay {
-        background: rgba(0, 0, 0, 0.76);
-        min-height: 600px;
-    }
 
-    #contact-sec h1 {
-        color:#fff;
-    }
-#contact-sec .form-control{
-    background-color:rgba(255, 255, 255, 0);
-    color:#fff;
-}
 /*=====================================
   Footer STYLES 
   ===================================*/
+
 #footer {
     padding:5px 20px;
     background-color:#2d3d5a;
@@ -513,8 +409,7 @@ h1::after {
     background-color: grey;
 }
 
-#footer-header-links
-{
+.footer-header-links {
     color: #2d3d5a;
     font-size: 16px;
 }
@@ -565,6 +460,7 @@ div.centered-footer {
 /*=====================================
   FOR KIDS, DESCRIPTION LISTS
   ===================================*/
+
 .list-left > dt{
     text-align: left;
     padding-left: auto;
@@ -574,6 +470,7 @@ div.centered-footer {
 list-left > dd {
     width: auto;
 }
+
 
 /*=====================================
   ENROLMENT ZONE MAP
@@ -678,30 +575,12 @@ list-left > dd {
 /*=====================================
   IMAGE GALLERY
   ===================================*/  
-#galleryimage {
-    border: 5px solid;
-    border-color: #2f9484;
-    transition-property: border;
-	transition-duration: 0.5s;
-	transition-timing-function: linear;
-	cursor: pointer;
-    margin: 5px;
-}
 
-#galleryimage:hover {
-    border-color: #182B4B;
-    position:relative;
-    top:-25px;
-    left:-35px;
-    width:500px;
-    height:auto;
-    display:block;
-    z-index:999;
-}
 
 /*=====================================
   FORM STYLES
   ===================================*/  
+
 .hiddenForm {
     display: none;
 }
@@ -733,6 +612,7 @@ list-left > dd {
 /*=====================================
   CUSTOM ANIMATIONS
   ===================================*/
+
 /* slide away */
 @keyframes slideLeftAndFade {
     0% {
@@ -754,18 +634,66 @@ list-left > dd {
     }
 }
 
+/* rotate anti clockwise */
+@keyframes anticlockSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
 .slideAway {
     position: relative;
     animation-name: slideLeftAndFade;
     animation-duration: 0.75s;
     animation-timing-function: ease-out;
 }
+
+.spin-reverse {
+    -webkit-animation: anticlockSpin 3s infinite;
+}
+
+/*===========================================
+   ERROR MESSAGES (USER)
+  =========================================*/
+
 #error-float {
     width: 100%;
     position: absolute;
     top: 50px;
     left: 0;
 }
+
 #error-float {
     z-index: 100;
+}
+
+/*===========================================
+   SPINNER STYLES
+  =========================================*/
+
+#overlay-spinner {
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+#overlay-spinner .row {
+    color: #676767;
+    position: relative;
+    top: 10%;
+    left: 1%;
+}
+
+.massive {
+    font-size: 100px;
 }

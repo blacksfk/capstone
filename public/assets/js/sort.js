@@ -80,7 +80,7 @@ var sort = (function() {
     function merge(left, right, array, cmp) {
         // trivial merge - last element of left is less than the
         // first element of right
-        if (left[left.length - 1].score < right[0].score) {
+        if (cmp(left[left.length - 1], right[0]) === -1) {
             for (var i = 0; i < left.length; i++) {
                 array[i] = left[i];
             }

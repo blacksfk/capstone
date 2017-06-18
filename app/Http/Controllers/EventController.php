@@ -41,11 +41,14 @@ class EventController extends Controller
     public function store(EventPost $request)
     {
         $event = new Event();
+
         $event->name = $request->name;
-        $event->date = $request->date;
+        $event->start_date = $request->start_date;
+        $event->end_date = ($request->end_date === "" ? $request->start_date : $request->end_date);
         $event->start_time = $request->start_time;
         $event->end_time = $request->end_time;
         $event->notes = $request->notes;
+
         $event->save();
 
         return redirect()->route("admin.events.index")
@@ -84,11 +87,14 @@ class EventController extends Controller
     public function update(EventPost $request, $id)
     {
         $event = Event::findOrFail($id);
+
         $event->name = $request->name;
-        $event->date = $request->date;
+        $event->start_date = $request->start_date;
+        $event->end_date = ($request->end_date === "" ? $request->start_date : $request->end_date);
         $event->start_time = $request->start_time;
         $event->end_time = $request->end_time;
         $event->notes = $request->notes;
+        
         $event->save();
 
 
@@ -199,8 +205,21 @@ class EventController extends Controller
         {
             if ($this->validateBatchEvent($event))
             {
-                $created = Event::create($event);
-                $success[] = $created->name . " inserted successfully";
+                $newEvent = new Event();
+
+                $newEvent->name = $event["name"];
+                $newEvent->start_date = $event["start_date"];
+                $newEvent->end_date = (
+                    $event["end_date"] === "" ?
+                    $event["start_date"] : 
+                    $event["end_date"]
+                );
+                $newEvent->start_time = $event["start_time"];
+                $newEvent->end_time = $event["end_time"];
+                $newEvent->notes = $event["notes"];
+
+                $newEvent->save();
+                $success[] = $newEvent->name . " inserted successfully";
             }
             else
             {
@@ -210,7 +229,8 @@ class EventController extends Controller
 
         return redirect()->route("admin.events.index")
             ->with(Messages::SUCCESS, $success)
-            ->with(Messages::UPDATED, $updated);
+            ->with(Messages::UPDATED, $updated)
+            ->with(Messages::WARNINGS, $warnings);
     }
 
     /**
@@ -223,7 +243,7 @@ class EventController extends Controller
      */
     private function validateBatchEvent($event)
     {
-        if (!empty($event["name"]) && !empty($event["date"]))
+        if (!empty($event["name"]) && !empty($event["start_date"]))
         {
             return true;
         }

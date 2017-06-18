@@ -30,6 +30,13 @@ Route::group(["as" => "admin.", "prefix" => "admin", "middleware" => "auth"], fu
        Must be declared before resource()
       ================================================*/
 
+    // ajax method to get all assets based on type
+    Route::get("assets/getAssetsByType", [
+        "as" => "assets.getAssetsByType",
+        "middleware" => "ajax",
+        "uses" => "AssetController@getAssetsByType"
+    ]);
+
     // event batch upload
     Route::get("events/uploadFile", function() {
         return view("admin.events.uploadFile");

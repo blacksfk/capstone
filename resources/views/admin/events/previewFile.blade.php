@@ -11,6 +11,7 @@
                 <th>Field</th>
                 <th>Accepted input format</th>
                 <th>Required?</th>
+                <th>Description</th>
             </tr>
         </thead>
         <tbody>
@@ -18,21 +19,31 @@
                 <td>Name</td>
                 <td>text</td>
                 <td>Yes</td>
+                <td>The name of the event</td>
             </tr>
             <tr>
-                <td>Date</td>
+                <td>Start date</td>
                 <td>yyyy-MM-dd</td>
                 <td>Yes</td>
+                <td>Start date of the event</td>
+            </tr>
+            <tr>
+                <td>End date</td>
+                <td>yyyy-MM-dd</td>
+                <td>No</td>
+                <td>End date of the event, if not provided then 1 day event is assumed</td>
             </tr>
             <tr>
                 <td>Start/End time</td>
                 <td>hh:mm:ss OR hh:mm</td>
                 <td>No</td>
+                <td>The start and end times of the event</td>
             </tr>
             <tr>
                 <td>Notes</td>
                 <td>text</td>
                 <td>No</td>
+                <td>A quick description of the event</td>
             </tr>
         </tbody>
     </table>
@@ -45,7 +56,8 @@
             <tr>
                 <th>No.</th>
                 <th>Name</th>
-                <th>Date</th>
+                <th>Start Date</th>
+                <th>End Date</th>
                 <th>Start time</th>
                 <th>End time</th>
                 <th>Notes</th>
@@ -59,7 +71,8 @@
             <tr>
                 <td>&#35;{{ $index + 1 }}</td>
                 <td><input type="text" name="events[{{ $index }}][name]" id="events[{{ $index }}][name]" value="{{ $event->name }}"></td>
-                <td><input type="date" name="events[{{ $index }}][date]" id="events[{{ $index }}][date]" value="{{ $event->date }}"></td>
+                <td><input type="date" name="events[{{ $index }}][start_date]" id="events[{{ $index }}][start_date]" value="{{ $event->start_date }}"></td>
+                <td><input type="date" name="events[{{ $index }}][end_date]" id="events[{{ $index }}][end_date]" value="{{ $event->end_date }}"></td>
                 <td><input type="time" name="events[{{ $index }}][start_time]" id="events[{{ $index }}][start_time]" value="{{ $event->start_time }}"></td>
                 <td><input type="time" name="events[{{ $index }}][end_time]" id="events[{{ $index }}][end_time]" value="{{ $event->end_time }}"></td>
                 <td><input type="text" name="events[{{ $index }}][notes]" id="events[{{ $index }}][notes]" value="{{ $event->notes }}"></td>

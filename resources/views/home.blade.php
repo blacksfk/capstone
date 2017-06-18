@@ -1,9 +1,11 @@
 @extends('layouts.master')
 @section('title', 'Welcome')
-@include('shared.carousel')
+@section('carousel')
+    @include('shared.carousel')
+@endsection
 @section('content')
 
-<div id="features-sec" class="set-pad">
+<div class="container">
     <div class="row text-center">
         <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
             <h2>Welcome to Courtenay Gardens Primary School</h2><br>

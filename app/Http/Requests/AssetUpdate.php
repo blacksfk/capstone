@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class IssuePost extends FormRequest
+class AssetUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class IssuePost extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::user()->is_admin;
     }
 
     /**
@@ -24,8 +25,7 @@ class IssuePost extends FormRequest
     public function rules()
     {
         return [
-            "asset" => "required",
-            "issue" => "required"
+            "name" => "required"
         ];
     }
 }

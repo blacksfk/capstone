@@ -6,6 +6,8 @@ use App\Asset;
 use App\Utility;
 use App\Messages;
 use App\Http\Requests\AssetPost;
+use App\Http\Requests\AssetUpdate;
+use Illuminate\Http\Request;
 
 class AssetController extends Controller
 {
@@ -40,16 +42,19 @@ class AssetController extends Controller
      */
     public function store(AssetPost $request)
     {
-        $asset = new Asset();
-        $asset->name = $request->asset->getClientOriginalName();
-        $asset->type = $request->type;
-        $asset->save();
+        foreach ($request->assets as $newAsset)
+        {
+            $asset = new Asset();
+            $asset->name = $newAsset->getClientOriginalName();
+            $asset->type = $request->type;
+            $asset->save();
 
-        $request->asset->storeAs(
-            $request->type,
-            $request->asset->getClientOriginalName(),
-            "public"
-        );
+            $newAsset->storeAs(
+                $request->type,
+                $newAsset->getClientOriginalName(),
+                "public"
+            );
+        }
 
         return redirect()->route("admin.assets.index")
             ->with(Messages::SUCCESS, Messages::ASSET[Messages::CREATED]);
@@ -74,7 +79,7 @@ class AssetController extends Controller
      */
     public function edit($id)
     {
-        abort(404);
+        return view("admin.assets.edit")->with("asset", Asset::findOrFail($id));
     }
 
     /**
@@ -84,9 +89,39 @@ class AssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AssetPost $request, $id)
+    public function update(AssetUpdate $request, $id)
     {
-        abort(404);
+        $asset = Asset::findOrFail($id);
+
+        /**
+         * prevent the user from modifying the file extension by matching
+         * everything before the file extension, and then setting the
+         * filename as the new name + old extension
+         */
+        $name = $request->name;
+        $match = preg_match("/^(?P<name>[^\.]+)/", $name, $matches);
+
+        if ($match)
+        {
+            $name = $matches["name"];
+        }
+
+        $name .= "." . pathinfo(public_path("assets/" . $asset->type . "/" . $asset->name), PATHINFO_EXTENSION);
+
+        try
+        {
+            Utility::move(public_path("assets/" . $asset->type . "/" . $asset->name), public_path("assets/" . $asset->type . "/" . $name));
+        }
+        catch (\Exception $e)
+        {
+            return back()->withInput()->with(Messages::ERRORS, $e->getMessage());
+        }
+
+        $asset->name = $name;
+        $asset->save();
+
+        return redirect()->route("admin.assets.index")
+            ->with(Messages::SUCCESS, Messages::ASSET[Messages::UPDATED]);
     }
 
     /**
@@ -120,5 +155,16 @@ class AssetController extends Controller
         return redirect()->route("admin.assets.index")
             ->with(Messages::SUCCESS, Messages::ASSET[Messages::DELETED])
             ->with(Messages::WARNINGS, $warnings);
+    }
+
+    /**
+     * AJAX only method to return all assets based on the type provided
+     * 
+     * @param  Request $request
+     * @return JSON
+     */
+    public function getAssetsByType(Request $request)
+    {
+        return json_encode(Asset::where("type", $request->type)->orderBy("name")->get());
     }
 }

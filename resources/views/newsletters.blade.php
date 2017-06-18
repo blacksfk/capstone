@@ -7,20 +7,23 @@
         <p>The Courtenay Gardens newsletter, known as 'Courtenay News', is produced fortnightly on a Thursday. 
             Each issue can be downloaded by clicking on the links below.</p>
     </div>
+@if ($newsletters->isEmpty())
     <div class="row text-center">
-        <div class="col-sm-1"></div>
-        <div class="well col-sm-2">
-            @foreach ($newsletters as $newsletter)
-                <a class="pdfLink" href="{{ asset('assets/' . $newsletter->type . '/' . $newsletter->name) }}">{{ $newsletter->name }}</a><br>
-            @endforeach
-        </div>
-
-        <div class="col-sm-1"></div>
-
-        <div class="well row col-sm-7" id="pdfContainer">
-            select an issue on the left to begin!
-        </div>
-        <div class="col-sm-1"></div>
+        <h4>Unforunately, no newsletters were found</h4>
     </div>
+@else
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group">
+            @foreach ($newsletters as $i => $nl)
+                <a href="{{ asset('assets/' . $nl->type . '/' . $nl->name) }}" class="list-group-item {{ ($i === 0 ? 'active' : '' ) }}" onclick="changeNewsletter(this, event, '{{ $nl->name }}')">{{ $nl->name }}<span class="badge">{{ $i + 1 }}</span></a>
+            @endforeach
+            </div>         
+        </div>
+        <div class="col-md-8">
+            <object id="newsletterObject" data="{{ asset('assets/' . $newsletters[0]->type . '/' . $newsletters[0]->name) }}" type="application/pdf" width="100%" height="800px"><p>Unfortunately your browser does not support PDFs, however, you can still download the newsletter from <a href="{{ asset('assets/' . $newsletters[0]->type . '/' . $newsletters[0]->name) }}">here</a></p></object>
+        </div>
+    </div>
+@endif
 </div>
 @endsection

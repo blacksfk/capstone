@@ -26,7 +26,7 @@ class AssetPost extends FormRequest
     public function rules()
     {
         return [
-            "asset" => "required",
+            "assets" => "required",
             "type" => "required"
         ];
     }
@@ -34,36 +34,40 @@ class AssetPost extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function($validator) {
-            $formats = null;
-            $valid = false;
-            $mimeType = $this->asset->getMimeType();
-
-            switch ($this->type)
+            foreach ($this->assets as $asset)
             {
-                case Asset::TYPE_IMAGE:
-                    $formats = Asset::TYPE_IMAGE_FORMATS;
-                    break;
-                case Asset::TYPE_VIDEO:
-                    $formats = Asset::TYPE_VIDEO_FORMATS;
-                    break;
-                case Asset::TYPE_NEWSLETTER:
-                case Asset::TYPE_PDF:
-                    $formats = Asset::TYPE_PDF_FORMATS;
-                default:
-                    break;
-            }
+                $formats = null;
+                $valid = false;
+                $mimeType = $asset->getMimeType();
 
-            foreach ($formats as $format)
-            {
-                if ($format === $mimeType)
+                switch ($this->type)
                 {
-                    $valid = true;
+                    case Asset::TYPE_IMAGE:
+                        $formats = Asset::TYPE_IMAGE_FORMATS;
+                        break;
+                    case Asset::TYPE_VIDEO:
+                        $formats = Asset::TYPE_VIDEO_FORMATS;
+                        break;
+                    case Asset::TYPE_NEWSLETTER:
+                    case Asset::TYPE_PDF:
+                        $formats = Asset::TYPE_PDF_FORMATS;
+                    default:
+                        break;
                 }
-            }
 
-            if (!$valid)
-            {
-                $validator->errors()->add("asset", "That file format is not accepted for this type. You selected: " . $this->type . ", and you uploaded: " . $mimeType);
+                foreach ($formats as $format)
+                {
+                    if ($format === $mimeType)
+                    {
+                        $valid = true;
+                        break;
+                    }
+                }
+
+                if (!$valid)
+                {
+                    $validator->errors()->add("assets.*", $asset->getClientOriginalName() . "'s format is not accepted for this type. You selected: " . $this->type . ", and you uploaded: " . $mimeType);
+                }
             }
         });
     }

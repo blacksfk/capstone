@@ -142,5 +142,11 @@ class AssetSeeder extends Seeder
             "name" => "CGPS_18.jpg",
             "type" => "img"
         ]);
+
+        DB::table("assets")->insert([
+            "id" => 23,
+            "name" => "CGPS_20.jpg",
+            "type" => "img"
+        ]);
     }
 }

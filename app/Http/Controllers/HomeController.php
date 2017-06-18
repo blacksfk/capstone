@@ -8,6 +8,7 @@ use App\Event;
 use App\Utility;
 use App\Mail\CommentReceived;
 use App\Messages;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Mail;
@@ -22,9 +23,25 @@ class HomeController extends Controller
      */
     public function events()
     {
-        $events = Event::orderBy("date", "asc")->get();
+        $carbon = Carbon::now("Australia/Melbourne");
+        $w = Event::where("start_date", ">=", $carbon->startOfWeek()->format("Y-m-d"))
+                    ->where("end_date", "<=", $carbon->endOfWeek()->format("Y-m-d"))
+                    ->orderBy("start_date", "asc")
+                        ->get();
+        $m = Event::where("start_date", ">=", $carbon->startOfMonth()->format("Y-m-d"))
+                    ->where("end_date", "<=", $carbon->endOfMonth()->format("Y-m-d"))
+                    ->orderBy("start_date", "asc")
+                    ->get();
+        $y = Event::where("start_date", ">=", $carbon->startOfYear()->format("Y-m-d"))
+                    ->where("end_date", "<=", $carbon->endOfYear()->format("Y-m-d"))
+                    ->orderBy("start_date", "asc")
+                    ->get();
 
-        return view("events")->with("events", $events);
+        return view("events")
+                ->with("week", $w)
+                ->with("month", $m)
+                ->with("year", $y)
+                ->with("carbon", Carbon::now("Australia/Melbourne"));   // using carbon->format() is destructive, so create a new instance
     }
 
     /**
@@ -35,7 +52,7 @@ class HomeController extends Controller
      */
     public function dynamic($name)
     {
-        $link = Link::where("name", $name)->first();
+        $link = Link::where("name", "LIKE", $name)->first();
 
         if (isset($link) && View::exists($link->page->name))
         {

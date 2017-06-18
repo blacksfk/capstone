@@ -26,7 +26,7 @@ class EventPost extends FormRequest
     {
         return [
             "name" => "required",
-            "date" => "required",
+            "start_date" => "required",
         ];
     }
 }

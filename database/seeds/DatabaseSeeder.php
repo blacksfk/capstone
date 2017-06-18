@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(AssetSeeder::class);
         $this->call(CarouselSeeder::class);
-        $this->call(LinkSeeder::class);
-        $this->call(PageSeeder::class);
+        $this->call(LinkPageSeeder::class);
     }
 }

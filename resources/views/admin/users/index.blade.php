@@ -20,7 +20,7 @@
                 <td>
                     {{ $user->name }}
                     @if (Auth::user()->id === $user->id)
-                        <span class="fa fa-star-o"><span> Current User </span></span><span class="fa fa-star-o"></span>
+                        <span class="fa fa-star-o"><span>&nbsp;Current User&nbsp;</span></span><span class="fa fa-star-o"></span>
                     @endif
                 </td>
                 <td>{{ $user->email }}</td>

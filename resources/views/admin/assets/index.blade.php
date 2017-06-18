@@ -20,7 +20,7 @@
             <th class="sortable">Name <span class="fa fa-sort"></span></th>
             <th class="sortable">Type <span class="fa fa-sort"></span></th>
             <th>Preview</th>
-            <th>Delete</th>
+            <th>Edit</th>
         </thead>
         <tbody>
             @foreach ($assets as $asset)
@@ -31,20 +31,13 @@
                     @if ($asset->type === App\Asset::TYPE_IMAGE)
                         <img src="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}" alt="{{ $asset->name }}" class="img-thumbnail" height="200" width="200">
                     @elseif ($asset->type === App\Asset::TYPE_VIDEO)
-                        <video controls class="embed-responsive-item img-thumbnail">
-                            <source src="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}">
+                        <video controls class="img-thumbnail" src="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}">
                         </video>
                     @else
                         <object data="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}" width="200px" height="200px"><a href="{{ asset('assets/' . $asset->type . '/' . $asset->name) }}">{{ $asset->name }}</a></object>
                     @endif
                     </td>
-                    <td>
-                        <form action="{{ route('admin.assets.destroy', $asset->id) }}" method="post" id="{{ $asset->id }}-delete-form">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="submit" value="Delete {{ $asset->name }}" class="btn btn-danger" onclick="confirmDelete(event, '#{{ $asset->id }}-delete-form', '{{ $asset->name }}')">
-                        </form>
-                    </td>
+                    <td><a href="{{ route('admin.assets.edit', $asset->id) }}">Edit</a></td>
                 </tr>
             @endforeach
         </tbody>

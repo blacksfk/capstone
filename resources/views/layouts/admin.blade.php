@@ -5,6 +5,7 @@
     @include('shared.head')
 </head>
 <body>
+    @include('shared.overlay_spinner')
     @include('shared.modal')
     @include('shared.navbar')
     @include('shared.messages')
@@ -25,7 +26,6 @@
     </div>
     @include('shared.footer')
     @include('shared.scripts')
-    <script src="{{ asset('assets/js/sort.js') }}"></script>
     <script src="{{ asset('assets/js/admin.js') }}"></script>
 </body>
 </html>
