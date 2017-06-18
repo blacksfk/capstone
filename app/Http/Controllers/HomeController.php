@@ -97,7 +97,7 @@ class HomeController extends Controller
 
             $message->from('comment@gmail.com', 'Enquiry Box');
 
-            $message->to('cgpsnew1@gmail.com');
+            $message->to(env('MAIL_TO'));
 
         });
 
