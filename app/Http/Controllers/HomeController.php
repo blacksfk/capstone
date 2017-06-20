@@ -85,22 +85,24 @@ class HomeController extends Controller
     }
 
 
+    /**
+     * Sends the enquiry to MAIL_TO address
+     * 
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function sendEmail(Request $request)
     {
-        $title = $request->name . ' ' . $request->surname ;
-        $email = $request->email;
-        $phone = $request->phone;
-        $content = $request->message;
-        Mail::send('emails.send', ['title' => $title, 'email' => $email, 'phone' => $phone,'content' => $content], function ($message)
-        {
-            $message->subject('Enquiry');
-
-            $message->from('comment@gmail.com', 'Enquiry Box');
-
-            $message->to(env('MAIL_TO'));
-
+        Mail::send("emails.send", [
+            "title" => $request->name . " " . $request->surname,
+            "email" => $request->email,
+            "phone" => $request->phone,
+            "content" => $request->message,
+        ], function($message) {
+            $message->subject("Enquiry");
+            $message->from($request->email);
+            $message->to(env("MAIL_TO"));
         });
-
 
         return redirect()->route("index")->with(Messages::SUCCESS, Messages::CONTACT[Messages::SUCCESS]);
     }
