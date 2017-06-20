@@ -9,6 +9,5 @@ Homestead.yaml
 .env
 *.sublime*
 *.phar
-/storage
 *.sqlite
 /public/assets/video
