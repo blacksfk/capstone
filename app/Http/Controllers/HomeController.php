@@ -27,11 +27,13 @@ class HomeController extends Controller
         $w = Event::where("start_date", ">=", $carbon->startOfWeek()->format("Y-m-d"))
                     ->where("end_date", "<=", $carbon->endOfWeek()->format("Y-m-d"))
                     ->orderBy("start_date", "asc")
-                        ->get();
+                    ->get();
+        $carbon = Carbon::now("Australia/Melbourne");
         $m = Event::where("start_date", ">=", $carbon->startOfMonth()->format("Y-m-d"))
                     ->where("end_date", "<=", $carbon->endOfMonth()->format("Y-m-d"))
                     ->orderBy("start_date", "asc")
                     ->get();
+        $carbon = Carbon::now("Australia/Melbourne");
         $y = Event::where("start_date", ">=", $carbon->startOfYear()->format("Y-m-d"))
                     ->where("end_date", "<=", $carbon->endOfYear()->format("Y-m-d"))
                     ->orderBy("start_date", "asc")
